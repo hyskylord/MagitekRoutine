@@ -10,7 +10,7 @@ Come join our [Discord server](https://discord.gg/uwbsn2E) for help and informat
 
 Magitek is a precompiled routine, which is different than some others. In order to get started as a user, follow these steps.
 
-1. Download the [latest version](https://ddjx48xxp2d6i.cloudfront.net/Magitek.zip).
+1. Download the [latest version](https://github.com/MagitekRB/MagitekRoutine/releases/latest/download/Magitek.zip).
 2. Right click the zip, select properties, and check the "Unblock" option. This is necessary because the zip file includes a dll.
 3. Unzip into your `RebornBuddy\Routines` folder.
 
