@@ -86,7 +86,7 @@ namespace Magitek.Utilities
             RightEye = 1453,
             LeftEye = 1454,
             Medicated = 49,
-            StraighterShot = 122,
+            HawksEye = 3861,
             VenomousBite = 124,
             RagingStrikes = 125,
             RadiantFinale = 2722,
