@@ -29,7 +29,7 @@ namespace Magitek.Logic.Bard
             if (!BardSettings.Instance.UseStraightShot)
                 return false;
 
-            if (!Core.Me.HasAura(Auras.StraighterShot))
+            if (!Core.Me.HasAura(Auras.HawksEye))
                 return false;
 
             if (Core.Me.ClassLevel < 70 || !ActionManager.HasSpell(Spells.RefulgentArrow.Id))
