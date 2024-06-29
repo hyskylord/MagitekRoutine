@@ -90,7 +90,7 @@ namespace Magitek.Logic.Bard
                     && (Casting.LastSpell == BardRoutine.BurstShot || Casting.LastSpell == BardRoutine.Stormbite || Casting.LastSpell == BardRoutine.CausticBite || Casting.LastSpell == Spells.IronJaws))
                     return false;
 
-                if (Core.Me.HasAura(Auras.StraighterShot) || Spells.RefulgentArrow.CanCast())
+                if (Core.Me.HasAura(Auras.HawksEye) || Spells.RefulgentArrow.CanCast())
                     return false;
             }
 
