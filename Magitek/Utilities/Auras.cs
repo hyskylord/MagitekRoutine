@@ -338,8 +338,21 @@ namespace Magitek.Utilities
             PhantomKamaitachiReady = 2723,
             SupplicationReady = 3827,
             SepulchreReady = 3828,
-            ImpactImminent = 3882;
-        
+            ImpactImminent = 3882,
+            Swiftscaled = 3669,
+            HindstungVenom = 3647,
+            HindsbaneVenom = 3648,
+            FlankstungVenom = 3645,
+            FlanksbaneVenom = 3646,
+            HunterInstinct = 3668,
+            HunterVenom = 3657,
+            SwiftskinVenom = 3658,
+            GrimhunterVenom = 3649,
+            GrimskinVenom = 3650,
+            FellhunterVenom = 3659,
+            FellskinVenom = 3660,
+            NoxiousGnash =  3667;
+
         private const int
             Invincibility0 = 981,
             Invincibility1 = 969,

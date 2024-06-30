@@ -3,12 +3,11 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace Magitek.Models;
-
-[Serializable]
 public abstract class JsonSettings : INotifyPropertyChanged
 {
 #nullable enable
@@ -143,6 +142,11 @@ public abstract class JsonSettings : INotifyPropertyChanged
     public event EventHandler? Reloaded;
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    private string GetDebuggerDisplay()
+    {
+        return ToString();
+    }
 }
 
 [Serializable]

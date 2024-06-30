@@ -117,6 +117,9 @@ namespace Magitek.Utilities.Managers
                 case ClassJobType.Sage:
                     return await Rotations.Sage.Rest();
 
+                case ClassJobType.Viper:
+                    return await Rotations.Viper.Rest();
+
                 default:
                     return false;
             }
@@ -209,6 +212,10 @@ namespace Magitek.Utilities.Managers
                     Globals.HealTarget = Group.CastableAlliesWithin30.FirstOrDefault();
                     return await Rotations.Sage.PreCombatBuff();
 
+                case ClassJobType.Viper:
+                    return await Rotations.Viper.PreCombatBuff();
+
+
                 default:
                     return false;
             }
@@ -289,6 +296,9 @@ namespace Magitek.Utilities.Managers
 
                 case ClassJobType.Sage:
                     return await Rotations.Sage.Pull();
+
+                case ClassJobType.Viper:
+                    return await Rotations.Viper.Pull();
 
                 default:
                     return false;
@@ -397,6 +407,10 @@ namespace Magitek.Utilities.Managers
                     Globals.HealTarget = Group.CastableAlliesWithin30.FirstOrDefault();
                     return await Rotations.Sage.Heal();
 
+                case ClassJobType.Viper:
+                    Group.UpdateAllies();
+                    return await Rotations.Viper.Heal();
+
                 default:
                     return false;
             }
@@ -477,6 +491,9 @@ namespace Magitek.Utilities.Managers
 
                 case ClassJobType.Sage:
                     return await Rotations.Sage.CombatBuff();
+
+                case ClassJobType.Viper:
+                    return await Rotations.Viper.CombatBuff();
 
                 default:
                     return false;
@@ -562,6 +579,9 @@ namespace Magitek.Utilities.Managers
                 case ClassJobType.Sage:
                     return await Rotations.Sage.Combat();
 
+                case ClassJobType.Viper:
+                    return await Rotations.Viper.Combat();
+
                 default:
                     return false;
             }
@@ -639,6 +659,9 @@ namespace Magitek.Utilities.Managers
 
                 case ClassJobType.Sage:
                     return await Rotations.Sage.PvP();
+
+                //case ClassJobType.Viper:
+                //    return await Rotations.Viper.PvP();
 
                 default:
                     return false;
