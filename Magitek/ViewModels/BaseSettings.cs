@@ -22,6 +22,7 @@ using Magitek.Models.Scholar;
 using Magitek.Models.Summoner;
 using Magitek.Models.Warrior;
 using Magitek.Models.WhiteMage;
+using Magitek.Models.Viper;
 using Magitek.Toggles;
 using Magitek.Utilities.Overlays;
 using Magitek.Views;
@@ -87,6 +88,7 @@ namespace Magitek.ViewModels
         public GunbreakerSettings GunbreakerSettings { get; set; } = GunbreakerSettings.Instance;
         public ReaperSettings ReaperSettings { get; set; } = ReaperSettings.Instance;
         public SageSettings SageSettings { get; set; } = SageSettings.Instance;
+        public ViperSettings ViperSettings { get; set; } = ViperSettings.Instance;
         public string CurrentRoutine { get; set; }
         public string RoutineSelectedInUi { get; set; }
         public bool SettingsFirstInitialization { get; set; }

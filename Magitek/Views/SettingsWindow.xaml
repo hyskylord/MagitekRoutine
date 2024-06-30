@@ -25,6 +25,7 @@
         xmlns:warrior="clr-namespace:Magitek.Views.UserControls.Warrior"
         xmlns:whitemage="clr-namespace:Magitek.Views.UserControls.WhiteMage"
         xmlns:gunbreaker="clr-namespace:Magitek.Views.UserControls.Gunbreaker"
+        xmlns:viper="clr-namespace:Magitek.Views.UserControls.Viper"
         Width="1000"
         Height="700"
         AllowsTransparency="True"
@@ -846,6 +847,23 @@
                         </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <reaper:Pvp />
+                        </TabItem>
+                        <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
+                            <customControls:TogglesSettings />
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+
+                <TabItem Name="Viper" Style="{DynamicResource TabItemReaper}">
+                    <TabControl Style="{DynamicResource JobOptionsTabControl}">
+                        <TabItem Header="Single Target " Style="{DynamicResource MainTabCombat}">
+                            <viper:SingleTarget />
+                        </TabItem>
+                        <TabItem Header="AoE " Style="{DynamicResource MainTabAoe}">
+                            <viper:AoE />
+                        </TabItem>
+                        <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
+                            <viper:Utility />
                         </TabItem>
                         <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
                             <customControls:TogglesSettings />

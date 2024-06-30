@@ -978,6 +978,41 @@ namespace Magitek.Utilities
         public static readonly SpellData TheEnd = DataManager.GetSpellData(24858);
         #endregion
 
+        // VPR
+        #region VPR
+        public static readonly SpellData SteelFangs = DataManager.GetSpellData(34606);
+        public static readonly SpellData DreadFangs = DataManager.GetSpellData(34607);
+        public static readonly SpellData HunterSting = DataManager.GetSpellData(34608);
+        public static readonly SpellData SwiftskinSting = DataManager.GetSpellData(34609);
+        public static readonly SpellData FankstingStrike = DataManager.GetSpellData(34610);
+        public static readonly SpellData FanksbaneFang = DataManager.GetSpellData(34611);
+        public static readonly SpellData HindstingStrike = DataManager.GetSpellData(34612);
+        public static readonly SpellData HindsbaneFang = DataManager.GetSpellData(34613);
+        public static readonly SpellData SteelMaw = DataManager.GetSpellData(34614);
+        public static readonly SpellData DreadMaw = DataManager.GetSpellData(34615);
+        public static readonly SpellData HunterBite = DataManager.GetSpellData(34616);
+        public static readonly SpellData SwiftskinBite = DataManager.GetSpellData(34617);
+        public static readonly SpellData JaggedMaw = DataManager.GetSpellData(34618);
+        public static readonly SpellData BloodiedMaw = DataManager.GetSpellData(34619);
+        public static readonly SpellData Dreadwinder = DataManager.GetSpellData(34620);
+        public static readonly SpellData HunterCoil = DataManager.GetSpellData(34621);
+        public static readonly SpellData SwiftskinCoil = DataManager.GetSpellData(34622);
+        public static readonly SpellData PitOfDread = DataManager.GetSpellData(34623);
+        public static readonly SpellData HunterDen = DataManager.GetSpellData(34624);
+        public static readonly SpellData SwiftskinDen = DataManager.GetSpellData(34625);
+        public static readonly SpellData WrithingSnap = DataManager.GetSpellData(34632);
+        public static readonly SpellData DeathRattle = DataManager.GetSpellData(34634);
+        public static readonly SpellData LastLash = DataManager.GetSpellData(34635);
+        public static readonly SpellData TwinfangBite = DataManager.GetSpellData(34636);
+        public static readonly SpellData TwinbloodBite = DataManager.GetSpellData(34637);
+        public static readonly SpellData TwinfangThresh = DataManager.GetSpellData(34638);
+        public static readonly SpellData TwinbloodThresh = DataManager.GetSpellData(34639);
+        public static readonly SpellData Slither = DataManager.GetSpellData(34646);
+        public static readonly SpellData SerpentTail = DataManager.GetSpellData(35920);
+        public static readonly SpellData Twinfang = DataManager.GetSpellData(35921);
+        public static readonly SpellData Twinblood = DataManager.GetSpellData(35922);
+        #endregion
+
         //PVP
         #region PVP
         /* How to find Combo uint value ?

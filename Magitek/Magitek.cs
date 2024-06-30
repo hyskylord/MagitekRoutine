@@ -25,6 +25,7 @@ using Magitek.Models.Scholar;
 using Magitek.Models.Summoner;
 using Magitek.Models.Warrior;
 using Magitek.Models.WhiteMage;
+using Magitek.Models.Viper;
 using Magitek.Toggles;
 using Magitek.Utilities;
 using Magitek.Utilities.CombatMessages;
@@ -191,6 +192,8 @@ namespace Magitek
                     case ClassJobType.BlueMage:
                     case ClassJobType.Reaper:
                     case ClassJobType.Sage:
+                    case ClassJobType.Pictomancer:
+                    case ClassJobType.Viper:
                         return new[] { Core.Me.CurrentJob };
                     default:
                         return new[] { ClassJobType.Adventurer };
