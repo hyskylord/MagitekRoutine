@@ -333,6 +333,24 @@ namespace Magitek.Models.Scholar
         [Setting]
         [DefaultValue(3)]
         public int ArtOfWarEnemies { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool BanefulImpaction { get; set; }
+
+        [Setting]
+        [DefaultValue(3)]
+        public int SeraphismAllies { get; set; }
+
+        [Setting]
+        [DefaultValue(45)]
+        public float SeraphismHealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Seraphism { get; set; }
+
+
         #endregion
 
         #region Pet

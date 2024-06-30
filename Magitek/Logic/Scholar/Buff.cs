@@ -103,6 +103,42 @@ namespace Magitek.Logic.Scholar
             }
         }
 
+        public static async Task<bool> Seraphism()
+        {
+            if (!ScholarSettings.Instance.Seraphism)
+                return false;
+
+            if (Core.Me.Pet == null)
+                return false;
+
+            if (!Core.Me.InCombat)
+                return false;
+
+            // check if seraph is already active
+            if (Core.Me.Pet.EnglishName == "Seraph")
+                return false;
+
+            if (Globals.InParty)
+            {
+                if (Group.CastableAlliesWithin30.Count(CanSeraphism) < ScholarSettings.Instance.SeraphismAllies)
+                    return false;
+
+                return await Spells.Seraphism.Cast(Core.Me);
+            }
+
+            if (Core.Me.CurrentHealthPercent > ScholarSettings.Instance.SeraphismHealthPercent)
+                return false;
+            
+            return await Spells.Seraphism.Cast(Core.Me);
+
+            bool CanSeraphism(Character unit)
+            {
+                if (unit == null)
+                    return false;
+                return unit.CurrentHealthPercent < ScholarSettings.Instance.SeraphismHealthPercent;
+            }
+        }
+
         public static async Task<bool> Swiftcast()
         {
             if (await Spells.Swiftcast.CastAura(Core.Me, Auras.Swiftcast))

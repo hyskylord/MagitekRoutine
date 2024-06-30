@@ -19,5 +19,16 @@ namespace Magitek.Logic.Scholar
 
             return await Spells.ArtOfWar.Cast(Core.Me);
         }
+
+        public static async Task<bool> BanefulImpaction()
+        {
+            if (!ScholarSettings.Instance.BanefulImpaction)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.ImpactImminent))
+                return false;
+
+            return await Spells.BanefulImpaction.Cast(Core.Me.CurrentTarget);
+        }
     }
 }
