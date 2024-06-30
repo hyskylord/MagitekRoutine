@@ -242,7 +242,7 @@ namespace Magitek.Logic.Sage
             if (philosophiaTarget == null)
                 return false;
 
-            return await Spells.Philosophia.CastAura(Core.me, Auras.Eudaimonia);
+            return await Spells.Philosophia.CastAura(Core.Me, Auras.Eudaimonia);
         }
 
     }
