@@ -144,6 +144,7 @@ namespace Magitek.Rotations
 
             if (Core.Me.Pet != null && Core.Me.InCombat)
             {
+                if (await Buff.Seraphism()) return true;
                 if (await Logic.Scholar.Buff.SummonSeraph()) return true;
                 if (await Logic.Scholar.Heal.Consolation()) return true;
                 if (await Logic.Scholar.Heal.FeyIllumination()) return true;
@@ -241,6 +242,7 @@ namespace Magitek.Rotations
             if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.ThoroughCanAttack())
                 return false;
 
+            if (await Aoe.BanefulImpaction()) return true;
             if (await SingleTarget.Bio()) return true;
             if (await SingleTarget.BioMultipleTargets()) return true;
             if (await SingleTarget.Ruin2()) return true;

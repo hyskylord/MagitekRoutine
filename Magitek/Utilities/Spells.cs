@@ -702,6 +702,8 @@ namespace Magitek.Utilities
         public static readonly SpellData Bio = DataManager.GetSpellData(17864);
         public static readonly SpellData Enkindle = DataManager.GetSpellData(184);
         public static readonly SpellData AngelFeathers = DataManager.GetSpellData(4247);
+        public static readonly SpellData BanefulImpaction = DataManager.GetSpellData(37012);
+        public static readonly SpellData Seraphism = DataManager.GetSpellData(37014);
         #endregion
 
         // SMN

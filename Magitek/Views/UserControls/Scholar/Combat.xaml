@@ -90,5 +90,11 @@
                 <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies In Range" />
             </StackPanel>
         </controls:SettingsBlock>
+
+        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <CheckBox Content="Baneful Impaction " IsChecked="{Binding ScholarSettings.BanefulImpaction, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+            </StackPanel>
+        </controls:SettingsBlock>
     </StackPanel>
 </UserControl>
