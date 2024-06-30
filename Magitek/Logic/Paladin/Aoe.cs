@@ -143,7 +143,7 @@ namespace Magitek.Logic.Paladin
                 var FightOrFlightAura = (Core.Me as Character).Auras.FirstOrDefault(x => x.Id == Auras.FightOrFlight && x.CasterId == Core.Player.ObjectId);
                 if (FightOrFlightAura != null && FightOrFlightAura.TimespanLeft.TotalMilliseconds >= (4 * Spells.Confiteor.AdjustedCooldown.TotalMilliseconds))
                 {
-                    var SwordOathAura = (Core.Me as Character).Auras.FirstOrDefault(x => x.Id == Auras.SwordOath && x.CasterId == Core.Player.ObjectId);
+                    var SwordOathAura = (Core.Me as Character).Auras.FirstOrDefault(x => x.Id == Auras.AtonementReady && x.CasterId == Core.Player.ObjectId);
                     if (SwordOathAura != null && SwordOathAura.TimespanLeft.TotalMilliseconds <= (3 * PaladinRoutine.GCDTimeMilliseconds))
                         return false;
 
@@ -196,6 +196,20 @@ namespace Magitek.Logic.Paladin
                 return false;
 
             return await Spells.BladeOfValor.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> BladeOfHonor()
+        {
+            if (!PaladinSettings.Instance.UseConfiteorCombo)
+                return false;
+
+            if (!Spells.BladeOfHonor.IsKnownAndReady())
+                return false;
+
+            if (!PaladinRoutine.CanContinueComboAfter(Spells.BladeOfValor))
+                return false;
+
+            return await Spells.BladeOfHonor.Cast(Core.Me.CurrentTarget);
         }
     }
 }
