@@ -197,5 +197,19 @@ namespace Magitek.Logic.Paladin
 
             return await Spells.BladeOfValor.Cast(Core.Me.CurrentTarget);
         }
+
+        public static async Task<bool> BladeOfHonor()
+        {
+            if (!PaladinSettings.Instance.UseConfiteorCombo)
+                return false;
+
+            if (!Spells.BladeOfHonor.IsKnownAndReady())
+                return false;
+
+            if (!PaladinRoutine.CanContinueComboAfter(Spells.BladeOfValor))
+                return false;
+
+            return await Spells.BladeOfHonor.Cast(Core.Me.CurrentTarget);
+        }
     }
 }

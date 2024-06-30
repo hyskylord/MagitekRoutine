@@ -538,6 +538,7 @@ namespace Magitek.Utilities
         public static readonly SpellData BladeOfFaith = DataManager.GetSpellData(25748);
         public static readonly SpellData BladeOfTruth = DataManager.GetSpellData(25749);
         public static readonly SpellData BladeOfValor = DataManager.GetSpellData(25750);
+        public static readonly SpellData BladeOfHonor = DataManager.GetSpellData(36922);
         public static readonly SpellData LastBastion = DataManager.GetSpellData(199);
         #endregion
 
