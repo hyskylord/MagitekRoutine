@@ -337,7 +337,8 @@ namespace Magitek.Utilities
             Bunshin = 1954,
             PhantomKamaitachiReady = 2723,
             SupplicationReady = 3827,
-            SepulchreReady = 3828;
+            SepulchreReady = 3828,
+            ImpactImminent = 3882;
         
         private const int
             Invincibility0 = 981,
