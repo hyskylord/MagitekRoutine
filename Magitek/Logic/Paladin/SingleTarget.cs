@@ -166,7 +166,7 @@ namespace Magitek.Logic.Paladin
             if (!PaladinSettings.Instance.UseAtonement)
                 return false;
 
-            if (!Core.Me.HasAura(Auras.SwordOath))
+            if (!Core.Me.HasAnyAura(new uint[] { Auras.AtonementReady, Auras.SupplicationReady, Auras.SepulchreReady }))
                 return false;
 
             if (Core.Me.HasAura(Auras.Requiescat))
@@ -175,19 +175,30 @@ namespace Magitek.Logic.Paladin
             //EXPERIMENTAL - In case we have 1 or 2 atonement remaining before FOF, it is better to start Basic combo (FastBlade + RiotBlade) and Keep atonment inside FOF
             if (PaladinSettings.Instance.KeepHolySpiritAtonementinFoF && Spells.FightorFlight.IsKnown())
             {
-                var SwordOathRemainingStack = Core.Me.CharacterAuras.GetAuraStacksById(Auras.SwordOath);
-                Aura SwordOathAura = (Core.Me as Character).Auras.FirstOrDefault(x => x.Id == Auras.SwordOath && x.CasterId == Core.Player.ObjectId);
-                
-                if (SwordOathRemainingStack == 2 
+                Aura SupplicationAura = (Core.Me as Character).Auras.FirstOrDefault(x => x.Id == Auras.SupplicationReady && x.CasterId == Core.Player.ObjectId);
+                Aura SepulchreAura = (Core.Me as Character).Auras.FirstOrDefault(x => x.Id == Auras.SepulchreReady && x.CasterId == Core.Player.ObjectId);
+
+
+                if (SupplicationAura != null 
                     && Spells.FightorFlight.IsReady( ((int)PaladinRoutine.GCDTimeMilliseconds) * 2)
-                    && SwordOathAura != null && SwordOathAura.TimespanLeft.TotalMilliseconds >= (4 * PaladinRoutine.GCDTimeMilliseconds))
+                    && SupplicationAura.TimespanLeft.TotalMilliseconds >= (4 * PaladinRoutine.GCDTimeMilliseconds))
                     return false;
                 
-                if (SwordOathRemainingStack == 1 
+                if (SepulchreAura != null
                     && Spells.FightorFlight.IsReady( (int)PaladinRoutine.GCDTimeMilliseconds)
-                    && SwordOathAura != null && SwordOathAura.TimespanLeft.TotalMilliseconds >= (3 * PaladinRoutine.GCDTimeMilliseconds))
+                    && SepulchreAura.TimespanLeft.TotalMilliseconds >= (3 * PaladinRoutine.GCDTimeMilliseconds))
                     return false;
             }
+
+            if (Core.Me.HasAura(Auras.SupplicationReady))
+            {
+                return await Spells.Supplication.Cast(Core.Me.CurrentTarget);
+            }
+            else if (Core.Me.HasAura(Auras.SepulchreReady))
+            {
+                return await Spells.Sepulchre.Cast(Core.Me.CurrentTarget);
+            }
+
             return await Spells.Atonement.Cast(Core.Me.CurrentTarget);
         }
 
@@ -210,7 +221,7 @@ namespace Magitek.Logic.Paladin
             if (!PaladinRoutine.CanContinueComboAfter(Spells.RiotBlade))
                 return false;
 
-            if (Core.Me.HasAura(Auras.SwordOath))
+            if (Core.Me.HasAura(Auras.AtonementReady))
                 return false;
 
             return await PaladinRoutine.RoyalAuthority.Cast(Core.Me.CurrentTarget);

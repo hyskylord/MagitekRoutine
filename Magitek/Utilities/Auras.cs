@@ -200,7 +200,7 @@ namespace Magitek.Utilities
             DancePartner = 1824,
             Devilment = 1825,
             ShieldSamba = 1826,
-            SwordOath = 1902,
+            AtonementReady = 1902,
             FightOrFlight = 76,
             Ruination = 1291,
             Dia = 1871,
@@ -335,7 +335,9 @@ namespace Magitek.Utilities
             DivineMight = 2673,
             CircleofScorn = 248,
             Bunshin = 1954,
-            PhantomKamaitachiReady = 2723;
+            PhantomKamaitachiReady = 2723,
+            SupplicationReady = 3827,
+            SepulchreReady = 3828;
         
         private const int
             Invincibility0 = 981,
