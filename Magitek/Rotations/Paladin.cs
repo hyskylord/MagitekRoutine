@@ -127,6 +127,7 @@ namespace Magitek.Rotations
                 if (await SingleTarget.GoringBlade()) return true;
 
                 //Combo AOE (Single Target or Multi Target)
+                if (await Aoe.BladeOfHonor()) return true;
                 if (await Aoe.BladeOfValor()) return true;
                 if (await Aoe.BladeOfTruth()) return true;
                 if (await Aoe.BladeOfFaith()) return true;
