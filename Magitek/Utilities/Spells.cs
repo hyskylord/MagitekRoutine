@@ -530,6 +530,8 @@ namespace Magitek.Utilities
         public static readonly SpellData HolyCircle = DataManager.GetSpellData(16458);
         public static readonly SpellData Intervene = DataManager.GetSpellData(16461);
         public static readonly SpellData Atonement = DataManager.GetSpellData(16460);
+        public static readonly SpellData Supplication = DataManager.GetSpellData(36918);
+        public static readonly SpellData Sepulchre = DataManager.GetSpellData(36919);
         public static readonly SpellData Confiteor = DataManager.GetSpellData(16459);
         public static readonly SpellData HolySheltron = DataManager.GetSpellData(25746);
         public static readonly SpellData Expiacion = DataManager.GetSpellData(25747);
