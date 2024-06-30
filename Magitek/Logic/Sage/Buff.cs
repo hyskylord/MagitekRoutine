@@ -236,10 +236,10 @@ namespace Magitek.Logic.Sage
                 return false;
 
             var targets = Group.CastableAlliesWithin30.Where(r => r.CurrentHealthPercent < SageSettings.Instance.PhilosophiaHealthPercent
-                                                                  && !r.HasAura(Auras.Philosophia));
+                                                                  && !r.HasAura(Auras.Eudaimonia));
             var target = targets.FirstOrDefault();
 
-            return await Spells.Philosophia.CastAura(target, Auras.Philosophia);
+            return await Spells.Philosophia.CastAura(target, Auras.Eudaimonia);
         }
 
     }
