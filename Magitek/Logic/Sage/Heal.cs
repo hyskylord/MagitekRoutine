@@ -7,6 +7,7 @@ using Magitek.Logic.Roles;
 using Magitek.Models.Sage;
 using Magitek.Toggles;
 using Magitek.Utilities;
+using Microsoft.Cci;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -769,29 +770,7 @@ namespace Magitek.Logic.Sage
             }
         }
 
-        public static async Task<bool> Philosophia()
-        {
-            if (!SageSettings.Instance.Philosophia)
-                return false;
-
-            if (!Spells.Philosophia.IsKnownAndReady())
-                return false;
-
-            if (SageSettings.Instance.DisableSingleHealWhenNeedAoeHealing && NeedAoEHealing())
-                return false;
-
-            var targets = Spells.Philosophia.IsKnown()
-                ? Group.CastableAlliesWithin30.Where(r => r.CurrentHealthPercent <= SageSettings.Instance.PhilosophiaHealthPercent && !r.HasAura(Auras.Eudaimonia))
-                : Group.CastableAlliesWithin15.Where(r => r.CurrentHealthPercent <= SageSettings.Instance.PhilosophiaHealthPercent && !r.HasAura(Auras.Eudaimonia));
-
-            if (targets.Count() < AoeNeedHealing)
-                return false;
-
-            if (!UseAoEHealingBuff(targets))
-                return false;
-
-            return await Spells.Philosophia.CastAura(Core.Me, Auras.Eudaimonia);
-        }
+        
             public static async Task<bool> Holos()
             {
             if (!SageSettings.Instance.Holos)

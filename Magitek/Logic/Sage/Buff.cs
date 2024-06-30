@@ -218,6 +218,29 @@ namespace Magitek.Logic.Sage
 
             return await Spells.Krasis.CastAura(target, Auras.Krasis);
         }
+        public static async Task<bool> Philosophia()
+        {
+            if (!SageSettings.Instance.Philosophia)
+                return false;
+
+            if (Core.Me.ClassLevel < Spells.Philosophia.LevelAcquired)
+                return false;
+
+            if (!Core.Me.InCombat)
+                return false;
+
+            if (!Globals.PartyInCombat)
+                return false;
+
+            if (Spells.Philosophia.Cooldown != TimeSpan.Zero)
+                return false;
+
+            var targets = Group.CastableAlliesWithin30.Where(r => r.CurrentHealthPercent < SageSettings.Instance.PhilosophiaHealthPercent
+                                                                  && !r.HasAura(Auras.Philosophia));
+            var target = targets.FirstOrDefault();
+
+            return await Spells.Philosophia.CastAura(target, Auras.Philosophia);
+        }
 
     }
 }
