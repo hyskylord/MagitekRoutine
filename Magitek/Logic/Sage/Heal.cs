@@ -59,7 +59,8 @@ namespace Magitek.Logic.Sage
             Auras.Kerachole,
             Auras.Panhaimatinon,
             Auras.PhysisII,
-            Auras.Holos
+            Auras.Holos,
+            Auras.Eudaimonia
         };
 
         private static readonly List<uint> HealingBuffSingleAuras = new List<uint> {
@@ -767,8 +768,10 @@ namespace Magitek.Logic.Sage
                 return unit.Distance(Core.Me) <= Spells.Kerachole.Radius;
             }
         }
-        public static async Task<bool> Holos()
-        {
+
+        
+            public static async Task<bool> Holos()
+            {
             if (!SageSettings.Instance.Holos)
                 return false;
 
