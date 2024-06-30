@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowedReferenceRelatedFileExtensions>".pdb".=""</AllowedReferenceRelatedFileExtensions>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<NoWarn>1701;1702;CA1416;</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deploy|AnyCPU'">
     <OutputPath>bin\deploy\</OutputPath>
@@ -80,7 +81,7 @@
     <PackageReference Include="System.Text.Json">
       <Version>8.0.3</Version>
     </PackageReference>
-    <PackageReference Include="RebornBuddy.ReferenceAssemblies" Version="1.0.616" />
+    <PackageReference Include="RebornBuddy.ReferenceAssemblies" Version="1.0.627" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.3" />
