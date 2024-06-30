@@ -1,6 +1,5 @@
 ﻿using ff14bot;
 using ff14bot.Managers;
-using Grpc.Core;
 using Magitek.Models.RedMage;
 using Magitek.Utilities;
 using System.Linq;
