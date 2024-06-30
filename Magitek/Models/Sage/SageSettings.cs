@@ -106,6 +106,10 @@ namespace Magitek.Models.Sage
 
         [Setting]
         [DefaultValue(true)]
+        public bool EukrasianDyskrasia { get; set; }
+        
+        [Setting]
+        [DefaultValue(true)]
         public bool DotMultipleTargets { get; set; }
 
         [Setting]
@@ -223,6 +227,13 @@ namespace Magitek.Models.Sage
         [Setting]
         [DefaultValue(80.0f)]
         public float SoteriaHealthPercent { get; set; }
+
+        [DefaultValue(true)]
+        public bool Philosophia { get; set; }
+
+        [Setting]
+        [DefaultValue(40.0f)]
+        public float PhilosophiaHealthPercent { get; set; }
 
         [Setting]
         [DefaultValue(true)]

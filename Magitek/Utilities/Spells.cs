@@ -659,6 +659,11 @@ namespace Magitek.Utilities
         public static readonly SpellData Krasis = DataManager.GetSpellData(24317);
         public static readonly SpellData Pneuma = DataManager.GetSpellData(24318);
         public static readonly SpellData TechneMakre = DataManager.GetSpellData(24859);
+        public static readonly SpellData EukrasianDyskrasia = DataManager.GetSpellData(37032);
+        public static readonly SpellData Psyche = DataManager.GetSpellData(37033);
+        public static readonly SpellData EukrasianPrognosisII = DataManager.GetSpellData(37034);
+        public static readonly SpellData Philosophia = DataManager.GetSpellData(37035);
+        public static readonly SpellData Eudaimonia = DataManager.GetSpellData(37036);
         #endregion
 
         // SCH

@@ -133,6 +133,22 @@
         </controls:SettingsBlock>
 
         <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Grid.Column="0" Content="Philosophia " IsChecked="{Binding SageSettings.Philosophia, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric Grid.Column="1" MaxValue="100" MinValue="1" Value="{Binding SageSettings.PhilosophiaHealthPercent, Mode=TwoWay}" />
+                    <TextBlock Grid.Column="2" Margin="2,0,3,0" Style="{DynamicResource TextBlockDefault}" Text="Health Percent" />
+                </Grid>
+            </StackPanel>
+        </controls:SettingsBlock>
+        
+        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Orientation="Vertical" Margin="5">
                 <StackPanel Orientation="Horizontal">
                     <RadioButton IsChecked="{Binding SageSettings.Zoe, Mode=TwoWay}" GroupName="UseZoe" Style="{DynamicResource RadioButtonCheckboxLike}">Use Zoe</RadioButton>
