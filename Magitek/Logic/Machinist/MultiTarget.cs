@@ -153,6 +153,40 @@ namespace Magitek.Logic.Machinist
             return await Spells.ChainSaw.Cast(Core.Me.CurrentTarget);
         }
 
+        public static async Task<bool> Excavator()
+        {
+            if (!MachinistSettings.Instance.UseExcavator)
+                return false;
+
+            if (!Spells.Excavator.IsKnownAndReady())
+                return false;
+
+            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+                return false;
+
+            if (Core.Me.HasAura(Auras.WildfireBuff))
+                return false;
+
+            return await Spells.Excavator.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> FullMetalField()
+        {
+            if (!MachinistSettings.Instance.UseFullMetalField)
+                return false;
+
+            if (!Spells.FullMetalField.IsKnownAndReady())
+                return false;
+
+            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+                return false;
+
+            if (Core.Me.HasAura(Auras.WildfireBuff))
+                return false;
+
+            return await Spells.FullMetalField.Cast(Core.Me.CurrentTarget);
+        }
+
         /**********************************************************************************************
         *                              Limit Break
         * ********************************************************************************************/

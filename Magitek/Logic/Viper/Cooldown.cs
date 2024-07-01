@@ -1,6 +1,7 @@
 using ff14bot;
 using ff14bot.Managers;
 using Magitek.Extensions;
+using Magitek.Models.Machinist;
 using Magitek.Models.Viper;
 using Magitek.Utilities;
 using System;
@@ -62,6 +63,24 @@ namespace Magitek.Logic.Viper
                 return await Spells.TwinbloodThresh.Cast(Core.Me);
 
             return false;
+        }
+
+        public static async Task<bool> SerpentIre()
+        {
+            if (Core.Me.ClassLevel < 86)
+                return false;
+
+            if (!ViperSettings.Instance.UseSerpentIre)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.HunterInstinct, true))
+                return false;
+
+            if (!Core.Me.HasAura(Auras.Swiftscaled, true))
+                return false;
+
+            return await Spells.SerpentIre.Cast(Core.Me);
+
         }
 
     }
