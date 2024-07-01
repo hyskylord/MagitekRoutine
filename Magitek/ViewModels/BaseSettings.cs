@@ -28,6 +28,7 @@ using Magitek.Utilities.Overlays;
 using Magitek.Views;
 using PropertyChanged;
 using System.Windows.Input;
+using Magitek.Models.Pictomancer;
 
 namespace Magitek.ViewModels
 {
@@ -89,6 +90,7 @@ namespace Magitek.ViewModels
         public ReaperSettings ReaperSettings { get; set; } = ReaperSettings.Instance;
         public SageSettings SageSettings { get; set; } = SageSettings.Instance;
         public ViperSettings ViperSettings { get; set; } = ViperSettings.Instance;
+        public PictomancerSettings PictomancerSettings { get; set; } = PictomancerSettings.Instance;
         public string CurrentRoutine { get; set; }
         public string RoutineSelectedInUi { get; set; }
         public bool SettingsFirstInitialization { get; set; }

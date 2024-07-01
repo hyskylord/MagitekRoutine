@@ -120,6 +120,9 @@ namespace Magitek.Utilities.Managers
                 case ClassJobType.Viper:
                     return await Rotations.Viper.Rest();
 
+                case ClassJobType.Pictomancer:
+                    return await Rotations.Pictomancer.Rest();
+
                 default:
                     return false;
             }
@@ -215,6 +218,8 @@ namespace Magitek.Utilities.Managers
                 case ClassJobType.Viper:
                     return await Rotations.Viper.PreCombatBuff();
 
+                case ClassJobType.Pictomancer:
+                    return await Rotations.Pictomancer.PreCombatBuff();
 
                 default:
                     return false;
@@ -299,6 +304,9 @@ namespace Magitek.Utilities.Managers
 
                 case ClassJobType.Viper:
                     return await Rotations.Viper.Pull();
+
+                case ClassJobType.Pictomancer:
+                    return await Rotations.Pictomancer.Pull();
 
                 default:
                     return false;
@@ -411,6 +419,10 @@ namespace Magitek.Utilities.Managers
                     Group.UpdateAllies();
                     return await Rotations.Viper.Heal();
 
+                case ClassJobType.Pictomancer:
+                    Group.UpdateAllies();
+                    return await Rotations.Pictomancer.Heal();  
+
                 default:
                     return false;
             }
@@ -494,6 +506,9 @@ namespace Magitek.Utilities.Managers
 
                 case ClassJobType.Viper:
                     return await Rotations.Viper.CombatBuff();
+                
+                case ClassJobType.Pictomancer:
+                    return await Rotations.Pictomancer.CombatBuff();
 
                 default:
                     return false;
@@ -582,6 +597,9 @@ namespace Magitek.Utilities.Managers
                 case ClassJobType.Viper:
                     return await Rotations.Viper.Combat();
 
+                case ClassJobType.Pictomancer:
+                    return await Rotations.Pictomancer.Combat();
+
                 default:
                     return false;
             }
@@ -662,6 +680,9 @@ namespace Magitek.Utilities.Managers
 
                 //case ClassJobType.Viper:
                 //    return await Rotations.Viper.PvP();
+
+                //case ClassJobType.Pictomancer:
+                //    return await Rotations.Pictomancer.PvP();
 
                 default:
                     return false;
