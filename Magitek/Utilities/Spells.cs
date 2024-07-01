@@ -1,5 +1,7 @@
 using ff14bot.Managers;
 using ff14bot.Objects;
+using System.Windows.Forms;
+using System;
 
 namespace Magitek.Utilities
 {
@@ -418,7 +420,11 @@ namespace Magitek.Utilities
         public static readonly SpellData ChainSaw = DataManager.GetSpellData(25788);
         public static readonly SpellData SatelliteBeam = DataManager.GetSpellData(4245);
         public static readonly SpellData Dismantle = DataManager.GetSpellData(2287);
-
+        public static readonly SpellData BlazingShot = DataManager.GetSpellData(36978);
+        public static readonly SpellData DoubleCheck = DataManager.GetSpellData(36979);
+        public static readonly SpellData Checkmate = DataManager.GetSpellData(36980);
+        public static readonly SpellData Excavator = DataManager.GetSpellData(36981);
+        public static readonly SpellData FullMetalField = DataManager.GetSpellData(36982);
         #endregion
 
         // MNK
@@ -1007,7 +1013,13 @@ namespace Magitek.Utilities
         public static readonly SpellData PitOfDread = DataManager.GetSpellData(34623);
         public static readonly SpellData HunterDen = DataManager.GetSpellData(34624);
         public static readonly SpellData SwiftskinDen = DataManager.GetSpellData(34625);
+        public static readonly SpellData Reawaken = DataManager.GetSpellData(34626);
+        public static readonly SpellData FirstGeneration = DataManager.GetSpellData(34627);
+        public static readonly SpellData SecondGeneration = DataManager.GetSpellData(34628);
+        public static readonly SpellData ThirdGeneration = DataManager.GetSpellData(34629);
+        public static readonly SpellData FourthGeneration = DataManager.GetSpellData(34630);
         public static readonly SpellData WrithingSnap = DataManager.GetSpellData(34632);
+        public static readonly SpellData UncoiledFury = DataManager.GetSpellData(34633);
         public static readonly SpellData DeathRattle = DataManager.GetSpellData(34634);
         public static readonly SpellData LastLash = DataManager.GetSpellData(34635);
         public static readonly SpellData TwinfangBite = DataManager.GetSpellData(34636);
@@ -1015,6 +1027,7 @@ namespace Magitek.Utilities
         public static readonly SpellData TwinfangThresh = DataManager.GetSpellData(34638);
         public static readonly SpellData TwinbloodThresh = DataManager.GetSpellData(34639);
         public static readonly SpellData Slither = DataManager.GetSpellData(34646);
+        public static readonly SpellData SerpentIre = DataManager.GetSpellData(34647);
         public static readonly SpellData SerpentTail = DataManager.GetSpellData(35920);
         public static readonly SpellData Twinfang = DataManager.GetSpellData(35921);
         public static readonly SpellData Twinblood = DataManager.GetSpellData(35922);

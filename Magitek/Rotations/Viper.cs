@@ -117,6 +117,16 @@ namespace Magitek.Rotations
                     if (await SingleTarget.Slither()) return true;
                 }
 
+                if (await SingleTarget.FourthGeneration()) return true;
+                if (await SingleTarget.ThirdGeneration()) return true;
+                if (await SingleTarget.SecondGeneration()) return true;
+                if (await SingleTarget.FirstGeneration()) return true;
+
+                if (await SingleTarget.Reawaken()) return true;
+                if (await Cooldown.SerpentIre()) return true;
+                if (await SingleTarget.UncoiledFury()) return true;
+
+
                 if (await Cooldown.TwinThreshCombo()) return true;
                 if (await AoE.HunterOrSwiftskinDen()) return true;
                 if (await AoE.PitOfDread()) return true;

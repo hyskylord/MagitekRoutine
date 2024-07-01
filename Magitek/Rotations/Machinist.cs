@@ -165,11 +165,13 @@ namespace Magitek.Rotations
             if (await SingleTarget.HeatBlast()) return true;
 
             //Use On CD
+            if (await MultiTarget.FullMetalField()) return true;
             if (await MultiTarget.BioBlaster()) return true;
             if (await SingleTarget.HotAirAnchor()) return true;
             if (await SingleTarget.Drill()) return true;
+            if (await MultiTarget.Excavator()) return true;
             if (await MultiTarget.ChainSaw()) return true;
-            
+
             //AOE
             if (await MultiTarget.Flamethrower()) return true;
             if (await MultiTarget.Scattergun()) return true;

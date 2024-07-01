@@ -33,8 +33,15 @@ namespace Magitek.Models.Machinist
 
         [Setting]
         [DefaultValue(true)]
+        public bool UseExcavator { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
         public bool UseGaussRound { get; set; }
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseFullMetalField { get; set; }
         #endregion
 
         #region Area-Of-Effect

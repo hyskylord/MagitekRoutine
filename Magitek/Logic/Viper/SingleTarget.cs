@@ -18,7 +18,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> SteelOrDreadFangs()
         {
-            if (Core.Me.ClassLevel >= 10 && Spells.DreadFangs.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true, 4000))
+            if (Core.Me.ClassLevel >= 10 && Spells.DreadFangs.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true, 10000))
                 return await Spells.DreadFangs.Cast(Core.Me.CurrentTarget);
             else
                 return await Spells.SteelFangs.Cast(Core.Me.CurrentTarget);
@@ -84,6 +84,93 @@ namespace Magitek.Logic.Viper
                 return await Spells.HunterCoil.Cast(Core.Me.CurrentTarget);
             else
                 return await Spells.SwiftskinCoil.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> UncoiledFury()
+        {
+            if (Core.Me.ClassLevel < 82)
+                return false;
+
+            if (!ViperSettings.Instance.UseUncoiledFury)
+                return false;
+
+            if (!Spells.UncoiledFury.CanCast())
+                return false;
+
+            return await Spells.UncoiledFury.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> Reawaken()
+        {
+            if (Core.Me.ClassLevel < 90)
+                return false;
+
+            if (!ViperSettings.Instance.UseReawaken)
+                return false;
+
+            if (!Spells.Reawaken.CanCast())
+                return false;
+
+            return await Spells.Reawaken.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> FirstGeneration()
+        {
+            if (Core.Me.ClassLevel < 90)
+                return false;
+
+            if (!Spells.FirstGeneration.CanCast())
+                return false;
+
+            return await Spells.FirstGeneration.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> SecondGeneration()
+        {
+            if (Core.Me.ClassLevel < 90)
+                return false;
+
+            if (!Spells.SecondGeneration.CanCast())
+                return false;
+
+            if (Casting.LastSpell != Spells.FirstGeneration)
+                return false;
+
+            return await Spells.SecondGeneration.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> ThirdGeneration()
+        {
+            if (Core.Me.ClassLevel < 90)
+                return false;
+
+            if (!Spells.ThirdGeneration.CanCast())
+                return false;
+
+            if (Casting.LastSpell != Spells.SecondGeneration)
+                return false;
+
+            return await Spells.ThirdGeneration.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> FourthGeneration()
+        {
+            if (Core.Me.ClassLevel < 90)
+                return false;
+
+            if (!Spells.FourthGeneration.CanCast())
+                return false;
+
+            if (Casting.LastSpell != Spells.ThirdGeneration)
+                return false;
+
+            return await Spells.FourthGeneration.Cast(Core.Me.CurrentTarget);
+
         }
 
         public static async Task<bool> Slither()

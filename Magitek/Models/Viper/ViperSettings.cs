@@ -37,6 +37,18 @@ namespace Magitek.Models.Viper
         [DefaultValue(true)]
         public bool UseDreadwinder { get; set; }
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseReawaken { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseUncoiledFury { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseWrithingSnap { get; set; }
+
         #endregion
 
         #region AoE-Abilities
@@ -65,10 +77,13 @@ namespace Magitek.Models.Viper
         [DefaultValue(true)]
         public bool UseDeathRattle { get; set; }
 
-
         [Setting]
         [DefaultValue(true)]
         public bool UseLastLash { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseSerpentIre { get; set; }
         #endregion
 
         #region Utility-Abilities
