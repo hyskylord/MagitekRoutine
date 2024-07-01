@@ -136,6 +136,8 @@ namespace Magitek.Rotations
             if (await DamageOverTime.StormbiteOnCurrentTarget()) return true;
             if (await DamageOverTime.CausticBiteOnCurrentTarget()) return true;
             if (await Aoe.ApexArrow()) return true;
+            if (await SingleTarget.ResonantArrow()) return true;
+            if (await SingleTarget.RadiantEncore()) return true;
             if (await Aoe.ShadowBite()) return true;
             if (await DamageOverTime.IronJawsOnOffTarget()) return true;
             if (await DamageOverTime.StormbiteOnOffTarget()) return true;

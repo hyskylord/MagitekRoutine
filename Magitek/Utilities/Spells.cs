@@ -195,6 +195,8 @@ namespace Magitek.Utilities
         public static readonly SpellData EmpyrealArrow = DataManager.GetSpellData(3558);
         public static readonly SpellData Sidewinder = DataManager.GetSpellData(3562);
         public static readonly SpellData RefulgentArrow = DataManager.GetSpellData(7409);
+        public static readonly SpellData ResonantArrow = DataManager.GetSpellData(36976);
+        public static readonly SpellData RadiantEncore = DataManager.GetSpellData(36977);
         public static readonly SpellData BurstShot = DataManager.GetSpellData(16495);
 
         //AoE
