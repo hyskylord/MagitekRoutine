@@ -38,6 +38,22 @@ namespace Magitek.Logic.Bard
             return await Spells.RefulgentArrow.Cast(Core.Me.CurrentTarget);
         }
 
+        public static async Task<bool> ResonantArrow()
+        {
+            if (!Core.Me.HasAura(Auras.ResonantReady))
+                return false;
+
+            return await Spells.ResonantArrow.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> RadiantEncore()
+        {
+            if (!Core.Me.HasAura(Auras.RadiantEncore))
+                return false;
+
+            return await Spells.RadiantEncore.Cast(Core.Me.CurrentTarget);
+        }
+
         public static async Task<bool> StraightShotAfterBarrage()
         {
             if (!Core.Me.HasAura(Auras.Barrage))

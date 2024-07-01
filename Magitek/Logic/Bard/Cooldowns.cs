@@ -111,7 +111,7 @@ namespace Magitek.Logic.Bard
             if (ActionResourceManager.Bard.ActiveSong != ActionResourceManager.Bard.BardSong.WanderersMinuet)
                 return false;
 
-            if (Spells.RagingStrikes.IsKnown() && Spells.RagingStrikes.Cooldown.TotalMilliseconds > 116000) 
+            if (Spells.RagingStrikes.IsKnown() && !Core.Me.HasAura(Auras.BattleVoice))
                 return false;
 
             if (!Core.Me.HasAura(Auras.RagingStrikes))
