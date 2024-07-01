@@ -26,6 +26,7 @@
         xmlns:whitemage="clr-namespace:Magitek.Views.UserControls.WhiteMage"
         xmlns:gunbreaker="clr-namespace:Magitek.Views.UserControls.Gunbreaker"
         xmlns:viper="clr-namespace:Magitek.Views.UserControls.Viper"
+        xmlns:pictomancer="clr-namespace:Magitek.Views.UserControls.Pictomancer"
         Width="1000"
         Height="700"
         AllowsTransparency="True"
@@ -864,6 +865,23 @@
                         </TabItem>
                         <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
                             <viper:Utility />
+                        </TabItem>
+                        <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
+                            <customControls:TogglesSettings />
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+
+                <TabItem Name="Pictomancer" Style="{DynamicResource TabItemSage}">
+                    <TabControl Style="{DynamicResource JobOptionsTabControl}">
+                        <TabItem Header="Single Target " Style="{DynamicResource MainTabCombat}">
+                            <pictomancer:SingleTarget />
+                        </TabItem>
+                        <TabItem Header="AoE " Style="{DynamicResource MainTabAoe}">
+                            <pictomancer:AoE />
+                        </TabItem>
+                        <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
+                            <pictomancer:Utility />
                         </TabItem>
                         <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
                             <customControls:TogglesSettings />

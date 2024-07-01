@@ -1018,6 +1018,53 @@ namespace Magitek.Utilities
         public static readonly SpellData Twinblood = DataManager.GetSpellData(35922);
         #endregion
 
+        // PCT
+        #region PCT
+        public static readonly SpellData FireinRed = DataManager.GetSpellData(34650);
+        public static readonly SpellData AeroinGreen = DataManager.GetSpellData(34651);
+        public static readonly SpellData TemperaCoat = DataManager.GetSpellData(34685);
+        public static readonly SpellData WaterinBlue = DataManager.GetSpellData(34652);
+        public static readonly SpellData Smudge = DataManager.GetSpellData(34684);
+        public static readonly SpellData FireIIinRed = DataManager.GetSpellData(34656);
+        public static readonly SpellData CreatureMotif = DataManager.GetSpellData(34689);
+        public static readonly SpellData LivingMuse = DataManager.GetSpellData(35347);
+        public static readonly SpellData MogoftheAges = DataManager.GetSpellData(34676);
+        public static readonly SpellData PomMotif = DataManager.GetSpellData(34664);
+        public static readonly SpellData WingMotif = DataManager.GetSpellData(34665);
+        public static readonly SpellData PomMuse = DataManager.GetSpellData(34670);
+        public static readonly SpellData WingedMuse = DataManager.GetSpellData(34671);
+        public static readonly SpellData AeroIIinGreen = DataManager.GetSpellData(34657);
+        public static readonly SpellData WaterIIinBlue = DataManager.GetSpellData(34658);
+        public static readonly SpellData WeaponMotif = DataManager.GetSpellData(34690);
+        public static readonly SpellData SteelMuse = DataManager.GetSpellData(35348);
+        public static readonly SpellData HammerStamp = DataManager.GetSpellData(34678);
+        public static readonly SpellData HammerMotif = DataManager.GetSpellData(34668);
+        public static readonly SpellData StrikingMuse = DataManager.GetSpellData(34674);
+        public static readonly SpellData BlizzardinCyan = DataManager.GetSpellData(34653);
+        public static readonly SpellData BlizzardIIinCyan = DataManager.GetSpellData(34659);
+        public static readonly SpellData SubtractivePalette = DataManager.GetSpellData(34683);
+        public static readonly SpellData StoneinYellow = DataManager.GetSpellData(34654);
+        public static readonly SpellData ThunderinMagenta = DataManager.GetSpellData(34655);
+        public static readonly SpellData StoneIIinYellow = DataManager.GetSpellData(34660);
+        public static readonly SpellData ThunderIIinMagenta = DataManager.GetSpellData(34661);
+        public static readonly SpellData LandscapeMotif = DataManager.GetSpellData(34691);
+        public static readonly SpellData ScenicMuse = DataManager.GetSpellData(35349);
+        public static readonly SpellData StarrySkyMotif = DataManager.GetSpellData(34669);
+        public static readonly SpellData StarryMuse = DataManager.GetSpellData(34675);
+        public static readonly SpellData HolyinWhite = DataManager.GetSpellData(34662);
+        public static readonly SpellData HammerBrush = DataManager.GetSpellData(34679);
+        public static readonly SpellData PolishingHammer = DataManager.GetSpellData(34680);
+        public static readonly SpellData TemperaGrassa = DataManager.GetSpellData(34686);
+        public static readonly SpellData CometinBlack = DataManager.GetSpellData(34663);
+        public static readonly SpellData RainbowDrip = DataManager.GetSpellData(34688);
+        public static readonly SpellData ClawMotif = DataManager.GetSpellData(34666);
+        public static readonly SpellData MawMotif = DataManager.GetSpellData(34667);
+        public static readonly SpellData ClawedMuse = DataManager.GetSpellData(34672);
+        public static readonly SpellData FangedMuse = DataManager.GetSpellData(34673);
+        public static readonly SpellData RetributionoftheMadeen = DataManager.GetSpellData(34677);
+        public static readonly SpellData StarPrism = DataManager.GetSpellData(34681);
+        #endregion
+
         //PVP
         #region PVP
         /* How to find Combo uint value ?

@@ -354,7 +354,14 @@ namespace Magitek.Utilities
             GrimskinVenom = 3650,
             FellhunterVenom = 3659,
             FellskinVenom = 3660,
-            NoxiousGnash =  3667;
+            NoxiousGnash =  3667,
+            Aetherhues = 3675,
+            Aetherhues2 = 3676,
+            SubtractivePalette = 3674,
+            TempuraCoat = 3686,
+            StarryMuse = 3685,
+            SubtractiveSpectrum = 3690,
+            Hyperphantasia = 3688;
 
         private const int
             Invincibility0 = 981,
