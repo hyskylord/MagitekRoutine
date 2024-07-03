@@ -36,6 +36,9 @@ namespace Magitek.Rotations
             if (WorldManager.InSanctuary)
                 return false;
 
+            if (DutyManager.InInstance && !Globals.InActiveDuty)
+                return false;
+
             if (await Palette.PrePaintPalettes()) return true;
 
             return false;

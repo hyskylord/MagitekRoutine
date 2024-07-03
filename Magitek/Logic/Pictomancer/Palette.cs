@@ -27,9 +27,6 @@ namespace Magitek.Logic.Pictomancer
 
         public static async Task<bool> PrePaintPalettes()
         {
-            if (DutyManager.InInstance && !Globals.InActiveDuty)
-                return false;
-
             // creatures
             if (Spells.CreatureMotif.IsKnownAndReady() && Spells.CreatureMotif.CanCast())
                 return await Spells.CreatureMotif.Cast(Core.Me);
@@ -50,20 +47,14 @@ namespace Magitek.Logic.Pictomancer
             if (!Core.Me.InCombat)
                 return false;
 
+            if (!Spells.Swiftcast.IsKnownAndReady())
+                return false;
+
             if (Spells.StarryMuse.IsKnown())
-            {
-                if (Core.Me.HasAura(Auras.StarryMuse))
-                    if (Spells.Swiftcast.IsKnownAndReady())
-                        await Roles.Healer.Swiftcast();
-                    else
-                        return false;
-            } else
-            {
-                if (Spells.Swiftcast.IsKnownAndReady())
-                    await Roles.Healer.Swiftcast();
-                else
-                    return false;
-            }            
+                if (Core.Me.HasAura(Auras.StarryMuse) || Spells.Swiftcast.AdjustedCooldown <= Spells.ScenicMuse.Cooldown)
+                    return await Roles.Healer.Swiftcast();
+            else
+                return await Roles.Healer.Swiftcast();
 
             return false;
         }
