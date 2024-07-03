@@ -86,6 +86,7 @@ namespace Magitek.Extensions
                 {
                     Logger.WriteInfo($@"[Path] {sourceFilePath}");
                 }
+
             }
 
             if (!GameSettingsManager.FaceTargetOnAction && BaseSettings.Instance.AssumeFaceTargetOnAction)
@@ -194,6 +195,10 @@ namespace Magitek.Extensions
                 {
                     return false;
                 }
+
+                if (GameSettingsManager.FaceTargetOnAction
+                    && RoutineManager.IsAnyDisallowed(CapabilityFlags.Facing))
+                    return false;
 
                 return true;
             }

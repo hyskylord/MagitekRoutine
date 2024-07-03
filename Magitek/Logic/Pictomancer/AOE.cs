@@ -12,6 +12,20 @@ namespace Magitek.Logic.Pictomancer
 {
     internal static class AOE
     {
+        public static async Task<bool> CometinBlack()
+        {
+            if (!Spells.CometinBlack.IsKnownAndReady())
+                return false;
+
+            if (!Spells.CometinBlack.CanCast(Core.Me.CurrentTarget))
+                return false;
+
+            if (Core.Me.CurrentTarget.EnemiesNearby(5).Count() < PictomancerSettings.Instance.AoeEnemies)
+                return false;
+
+            return await Spells.CometinBlack.Cast(Core.Me.CurrentTarget);
+        }
+
         public static async Task<bool> HolyinWhite()
         {
             if (PictomancerSettings.Instance.UseAoe == false)

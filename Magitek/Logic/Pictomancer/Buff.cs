@@ -43,8 +43,19 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (FightLogic.EnemyIsCastingAoe() || FightLogic.EnemyIsCastingBigAoe())
-                return await FightLogic.DoAndBuffer(Spells.TemperaCoat.CastAura(Core.Me, Auras.TempuraCoat));
-
+            {
+                if (Spells.TemperaGrassa.IsKnownAndReady())
+                {
+                    await Spells.TemperaCoat.CastAura(Core.Me, Auras.TempuraCoat);
+                    if (await Coroutine.Wait(2500, () => Core.Me.HasAura(Auras.TempuraCoat, true)))
+                        return await FightLogic.DoAndBuffer(Spells.TemperaGrassa.CastAura(Core.Me, Auras.TempuraGrassa));
+                    else
+                        return false;
+                } else
+                {
+                    return await FightLogic.DoAndBuffer(Spells.TemperaCoat.CastAura(Core.Me, Auras.TempuraCoat));
+                }                
+            }
             return false;
         }
     }

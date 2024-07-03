@@ -8,6 +8,7 @@ using Magitek.Models.Account;
 using Magitek.Models.Pictomancer;
 using Magitek.Utilities;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace Magitek.Rotations
 {
@@ -81,8 +82,13 @@ namespace Magitek.Rotations
                     Movement.NavigateToUnitLos(Core.Me.CurrentTarget, 20 + Core.Me.CurrentTarget.CombatReach);
             }
 
-            if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.ThoroughCanAttack())
+            if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.ThoroughCanAttack()) {
+                // Paint up the palettes during "downtime".
+                if (await Palette.LandscapeMotif()) return true;
+                if (await Palette.CreatureMotif()) return true;
+                if (await Palette.WeaponMotif()) return true;
                 return false;
+            }
 
             if (await CustomOpenerLogic.Opener())
                 return true;
@@ -98,23 +104,32 @@ namespace Magitek.Rotations
 
             // palettes
             if (await Palette.ScenicMuse()) return true;
+            if (await Palette.StarPrism()) return true;
+            if (await Palette.RainbowDrip()) return true;
 
             if (await Palette.MogoftheAges()) return true;
             if (await Palette.HammerStamp()) return true;
 
             if (await Palette.CreatureMuse()) return true;
-            if (await Palette.WeaponMuse()) return true;
+            if (await Palette.StrikingMuse()) return true;
 
-            if (await Palette.LandscapeMotif()) return true;
-            if (await Palette.CreatureMotif()) return true;
-            if (await Palette.WeaponMotif()) return true;
+            // inspiration is on a timer, need to consume those stacks first.
+            // don't waste time painting more palettes
+            if (!Core.Me.HasAura(Auras.Hyperphantasia))
+            {
+                if (await Palette.LandscapeMotif()) return true;
+                if (await Palette.CreatureMotif()) return true;
+                if (await Palette.WeaponMotif()) return true;
+            }
 
             // attacks
+            if (await AOE.CometinBlack()) return true;
             if (await AOE.HolyinWhite()) return true;
+            if (await SingleTarget.HolyinWhite()) return true;
             if (await Buff.SubtractivePalette()) return true;
             if (await AOE.Paint()) return true;
+            if (await SingleTarget.CometinBlack()) return true;
             if (await SingleTarget.Paint()) return true;
-            if (await SingleTarget.HolyinWhite()) return true;
             return false;
         }
 
