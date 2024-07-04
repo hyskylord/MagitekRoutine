@@ -259,9 +259,7 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (!Core.Me.HasAura(Auras.RainbowBright))
-                if (Spells.Swiftcast.IsKnownAndReady())
-                    if (!await Roles.Healer.Swiftcast())
-                        return false;
+                return false;
 
             return await Spells.RainbowDrip.Cast(Core.Me.CurrentTarget);
         }
