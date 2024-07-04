@@ -83,5 +83,53 @@ namespace Magitek.Logic.Viper
 
         }
 
+        public static async Task<bool> FirstLegacy()
+        {
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!Spells.FirstLegacy.CanCast())
+                return false;
+
+            return await Spells.FirstLegacy.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> SecondLegacy()
+        {
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!Spells.SecondLegacy.CanCast())
+                return false;
+
+            return await Spells.SecondLegacy.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> ThirdLegacy()
+        {
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!Spells.ThirdLegacy.CanCast())
+                return false;
+
+            return await Spells.ThirdLegacy.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> FourthLegacy()
+        {
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!Spells.FourthLegacy.CanCast())
+                return false;
+
+            return await Spells.FourthLegacy.Cast(Core.Me.CurrentTarget);
+
+        }
+
     }
 }

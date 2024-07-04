@@ -113,9 +113,17 @@ namespace Magitek.Rotations
                     if (await PhysicalDps.SecondWind(ViperSettings.Instance)) return true;
                     if (await PhysicalDps.Bloodbath(ViperSettings.Instance)) return true;
 
-                    //if (await Utility.TrueNorth()) return true;
+                //if (await Utility.TrueNorth()) return true;
                     if (await SingleTarget.Slither()) return true;
+
+                    if (await Cooldown.FourthLegacy()) return true;
+                    if (await Cooldown.ThirdLegacy()) return true;
+                    if (await Cooldown.SecondLegacy()) return true;
+                    if (await Cooldown.FirstLegacy()) return true;
+                    if (await Cooldown.SerpentIre()) return true;
                 }
+
+                if (await SingleTarget.Ouroboros()) return true;
 
                 if (await SingleTarget.FourthGeneration()) return true;
                 if (await SingleTarget.ThirdGeneration()) return true;
@@ -123,7 +131,6 @@ namespace Magitek.Rotations
                 if (await SingleTarget.FirstGeneration()) return true;
 
                 if (await SingleTarget.Reawaken()) return true;
-                if (await Cooldown.SerpentIre()) return true;
                 if (await SingleTarget.UncoiledFury()) return true;
 
 

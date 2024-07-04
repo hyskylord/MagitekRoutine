@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.CodeAnalysis.Operations;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Shapes;
 
@@ -344,6 +345,8 @@ namespace Magitek.Utilities
             SupplicationReady = 3827,
             SepulchreReady = 3828,
             ImpactImminent = 3882,
+
+            //VPR
             Swiftscaled = 3669,
             HindstungVenom = 3647,
             HindsbaneVenom = 3648,
@@ -357,6 +360,7 @@ namespace Magitek.Utilities
             FellhunterVenom = 3659,
             FellskinVenom = 3660,
             NoxiousGnash =  3667,
+
             Aetherhues = 3675,
             Aetherhues2 = 3676,
             SubtractivePalette = 3674,
@@ -368,7 +372,15 @@ namespace Magitek.Utilities
             RainbowBright = 3679,
             Starstruck = 3681,
             MonochromeTones = 3691,
-            Inspiration = 3689;
+            Inspiration = 3689,
+
+            //MCH
+            Hypercharged = 3864,
+            FullMetalMachinist = 3866,
+
+            //To prevent conflict
+            Placeholder = 9999;
+
 
         private const int
             Invincibility0 = 981,
