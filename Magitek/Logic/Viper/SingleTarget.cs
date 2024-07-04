@@ -116,6 +116,21 @@ namespace Magitek.Logic.Viper
 
         }
 
+        public static async Task<bool> Ouroboros()
+        {
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!Spells.Ouroboros.CanCast())
+                return false;
+
+            if (Casting.LastSpell == Spells.FourthGeneration || Casting.LastSpell == Spells.FourthLegacy)
+                return await Spells.Ouroboros.Cast(Core.Me.CurrentTarget);
+
+            return false;
+
+        }
+
         public static async Task<bool> FirstGeneration()
         {
             if (Core.Me.ClassLevel < 90)
@@ -136,10 +151,10 @@ namespace Magitek.Logic.Viper
             if (!Spells.SecondGeneration.CanCast())
                 return false;
 
-            if (Casting.LastSpell != Spells.FirstGeneration)
-                return false;
+            if (Casting.LastSpell == Spells.FirstGeneration || Casting.LastSpell == Spells.FirstLegacy)
+                return await Spells.SecondGeneration.Cast(Core.Me.CurrentTarget);
 
-            return await Spells.SecondGeneration.Cast(Core.Me.CurrentTarget);
+            return false;
 
         }
 
@@ -151,10 +166,10 @@ namespace Magitek.Logic.Viper
             if (!Spells.ThirdGeneration.CanCast())
                 return false;
 
-            if (Casting.LastSpell != Spells.SecondGeneration)
-                return false;
+            if (Casting.LastSpell == Spells.SecondGeneration || Casting.LastSpell == Spells.SecondLegacy)
+                return await Spells.ThirdGeneration.Cast(Core.Me.CurrentTarget);
 
-            return await Spells.ThirdGeneration.Cast(Core.Me.CurrentTarget);
+            return false;
 
         }
 
@@ -166,10 +181,10 @@ namespace Magitek.Logic.Viper
             if (!Spells.FourthGeneration.CanCast())
                 return false;
 
-            if (Casting.LastSpell != Spells.ThirdGeneration)
-                return false;
+            if (Casting.LastSpell == Spells.ThirdGeneration || Casting.LastSpell == Spells.ThirdLegacy)
+                return await Spells.FourthGeneration.Cast(Core.Me.CurrentTarget);
 
-            return await Spells.FourthGeneration.Cast(Core.Me.CurrentTarget);
+            return false;
 
         }
 

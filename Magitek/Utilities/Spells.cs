@@ -1019,6 +1019,7 @@ namespace Magitek.Utilities
         public static readonly SpellData SecondGeneration = DataManager.GetSpellData(34628);
         public static readonly SpellData ThirdGeneration = DataManager.GetSpellData(34629);
         public static readonly SpellData FourthGeneration = DataManager.GetSpellData(34630);
+        public static readonly SpellData Ouroboros = DataManager.GetSpellData(34631);
         public static readonly SpellData WrithingSnap = DataManager.GetSpellData(34632);
         public static readonly SpellData UncoiledFury = DataManager.GetSpellData(34633);
         public static readonly SpellData DeathRattle = DataManager.GetSpellData(34634);
@@ -1027,6 +1028,10 @@ namespace Magitek.Utilities
         public static readonly SpellData TwinbloodBite = DataManager.GetSpellData(34637);
         public static readonly SpellData TwinfangThresh = DataManager.GetSpellData(34638);
         public static readonly SpellData TwinbloodThresh = DataManager.GetSpellData(34639);
+        public static readonly SpellData FirstLegacy = DataManager.GetSpellData(34640);
+        public static readonly SpellData SecondLegacy = DataManager.GetSpellData(34641);
+        public static readonly SpellData ThirdLegacy = DataManager.GetSpellData(34642);
+        public static readonly SpellData FourthLegacy = DataManager.GetSpellData(34643);
         public static readonly SpellData Slither = DataManager.GetSpellData(34646);
         public static readonly SpellData SerpentIre = DataManager.GetSpellData(34647);
         public static readonly SpellData SerpentTail = DataManager.GetSpellData(35920);

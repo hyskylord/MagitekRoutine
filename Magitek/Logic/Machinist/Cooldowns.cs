@@ -37,10 +37,16 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> Hypercharge()
         {
+            if (Core.Me.ClassLevel < 65)
+                return false;
+
             if (!MachinistSettings.Instance.UseHypercharge)
                 return false;
 
-            if (ActionResourceManager.Machinist.Heat < 50)
+            if (!Spells.Hypercharge.CanCast())
+                return false;
+
+            if (ActionResourceManager.Machinist.Heat < 50 && !Core.Me.HasAura(Auras.Hypercharged, true))
                 return false;
 
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
