@@ -144,6 +144,7 @@ namespace Magitek.Rotations
             //Combo procs
             if (await SingleTarget.Verflare()) return true;
             if (await SingleTarget.Verholy()) return true;
+            if (await SingleTarget.ViceofThorns()) return true;
             
             //AoE
             if (RedMageSettings.Instance.UseAoe && Core.Me.CurrentTarget.EnemiesNearby(8).Count() >= RedMageSettings.Instance.AoeEnemies)
