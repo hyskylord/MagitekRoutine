@@ -33,9 +33,6 @@ namespace Magitek.Logic.Paladin
             if (Combat.Enemies.Count(x => x.Distance(Core.Me) <= Spells.CircleofScorn.Radius + x.CombatReach) < 1)
                 return false;
 
-            if (!PaladinRoutine.GlobalCooldown.CanDoubleWeave() || !PaladinRoutine.GlobalCooldown.CanWeave(2))
-                return false;
-
             return await Spells.CircleofScorn.Cast(Core.Me);
         }
 
