@@ -217,6 +217,17 @@ namespace Magitek.Logic.RedMage
             return await Spells.Verflare.Cast(Core.Me.CurrentTarget);
 
         }
+        public static async Task<bool> ViceofThorns()
+        {
+            if (Core.Me.ClassLevel < Spells.ViceofThorns.LevelAcquired)
+                return false;
+
+            if (!ActionManager.CanCast(Spells.ViceofThorns, Core.Me.CurrentTarget))
+                return false;
+
+            return await Spells.Verholy.Cast(Core.Me.CurrentTarget);
+
+        }
         public static async Task<bool> Verholy()
         {
             if (Core.Me.ClassLevel < Spells.Verholy.LevelAcquired)

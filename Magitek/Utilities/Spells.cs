@@ -573,12 +573,15 @@ namespace Magitek.Utilities
         public static readonly SpellData Manafication = DataManager.GetSpellData(7521);
         public static readonly SpellData Verraise = DataManager.GetSpellData(7523);
         public static readonly SpellData Jolt2 = DataManager.GetSpellData(7524);
+        public static readonly SpellData Jolt3 = DataManager.GetSpellData(37004);
         public static readonly SpellData Verflare = DataManager.GetSpellData(7525);
         public static readonly SpellData Verholy = DataManager.GetSpellData(7526);
         public static readonly SpellData EnchantedRiposte = DataManager.GetSpellData(7527);
         public static readonly SpellData EnchantedZwerchhau = DataManager.GetSpellData(7528);
         public static readonly SpellData EnchantedRedoublement = DataManager.GetSpellData(7529);
         public static readonly SpellData EnchantedMoulinet = DataManager.GetSpellData(7530);
+        public static readonly SpellData EnchantedMoulinetDeux = DataManager.GetSpellData(37002);
+        public static readonly SpellData EnchantedMoulinetTrois = DataManager.GetSpellData(37003);
         public static readonly SpellData Verthunder2 = DataManager.GetSpellData(16524);
         public static readonly SpellData Veraero2 = DataManager.GetSpellData(16525);
         public static readonly SpellData Impact = DataManager.GetSpellData(16526);
@@ -590,6 +593,7 @@ namespace Magitek.Utilities
         public static readonly SpellData VeraeroIII = DataManager.GetSpellData(25856);
         public static readonly SpellData MagickBarrier = DataManager.GetSpellData(25857);
         public static readonly SpellData VermillionScourge = DataManager.GetSpellData(7862);
+        public static readonly SpellData ViceofThorns = DataManager.GetSpellData(37005);
         #endregion
 
         // SAM
