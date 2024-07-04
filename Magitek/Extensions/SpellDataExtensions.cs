@@ -86,6 +86,7 @@ namespace Magitek.Extensions
                 {
                     Logger.WriteInfo($@"[Path] {sourceFilePath}");
                 }
+
             }
 
             if (!GameSettingsManager.FaceTargetOnAction && BaseSettings.Instance.AssumeFaceTargetOnAction)
@@ -195,6 +196,10 @@ namespace Magitek.Extensions
                     return false;
                 }
 
+                if (GameSettingsManager.FaceTargetOnAction
+                    && RoutineManager.IsAnyDisallowed(CapabilityFlags.Facing))
+                    return false;
+
                 return true;
             }
 
@@ -224,6 +229,11 @@ namespace Magitek.Extensions
             {
                 return ActionManager.CanCastOrQueue(spell, Core.Me);
             }
+        }
+
+        public static SpellData Masked(this SpellData spell)
+        {
+            return ActionManager.GetMaskedAction(spell.Id);
         }
 
         private static async Task<bool> DoAction(SpellData spell, GameObject target, uint aura = 0, bool needAura = false, bool useRefreshTime = false, int refreshTime = 0, bool canCastCheck = true)
