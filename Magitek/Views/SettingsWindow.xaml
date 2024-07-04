@@ -855,7 +855,7 @@
                     </TabControl>
                 </TabItem>
 
-                <TabItem Name="Viper" Style="{DynamicResource TabItemReaper}">
+                <TabItem Name="Viper" Style="{DynamicResource TabItemViper}">
                     <TabControl Style="{DynamicResource JobOptionsTabControl}">
                         <TabItem Header="Single Target " Style="{DynamicResource MainTabCombat}">
                             <viper:SingleTarget />
@@ -872,7 +872,7 @@
                     </TabControl>
                 </TabItem>
 
-                <TabItem Name="Pictomancer" Style="{DynamicResource TabItemSage}">
+                <TabItem Name="Pictomancer" Style="{DynamicResource TabItemPictomancer}">
                     <TabControl Style="{DynamicResource JobOptionsTabControl}">
                         <TabItem Header="Single Target " Style="{DynamicResource MainTabCombat}">
                             <pictomancer:SingleTarget />
