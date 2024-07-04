@@ -1,7 +1,9 @@
-﻿using ff14bot;
+﻿using Buddy.Coroutines;
+using ff14bot;
 using ff14bot.Managers;
 using ff14bot.Objects;
 using Magitek.Extensions;
+using Magitek.Models.Account;
 using Magitek.Models.Pictomancer;
 using Magitek.Models.Reaper;
 using Magitek.Utilities;
@@ -18,32 +20,43 @@ namespace Magitek.Logic.Pictomancer
 {
     internal static class Palette
     {
-        // creature -> pom/wing muse -> pom of ages
-        // living muse
-        // weapon -> hammer stamp
-        // steel muse
-        // landscape -> starry muse
-        // scenic muse
-
-        public static async Task<bool> PrePaintPalettes()
+        public static async Task<bool> PrePaintPalettes(bool prebuff)
         {
+            if (!PictomancerSettings.Instance.UseMotifs)
+                return false;
+
+            if (prebuff && !PictomancerSettings.Instance.PrePaletteOutOfCombat)
+                return false;
+
+            if (!prebuff && !PictomancerSettings.Instance.PaletteDuringDowntime)
+                return false;
+
+            var creature = Spells.CreatureMotif.Masked();
+
             // creatures
-            if (Spells.CreatureMotif.IsKnownAndReady() && Spells.CreatureMotif.CanCast())
-                return await Spells.CreatureMotif.Cast(Core.Me);
+            if (creature.IsKnownAndReady() && creature.CanCast())
+                return await creature.Cast(Core.Me);
+
+            var weapon = Spells.WeaponMotif.Masked();
 
             // hammers
-            if (Spells.WeaponMotif.IsKnownAndReady() && Spells.WeaponMotif.CanCast())
-                return await Spells.WeaponMotif.Cast(Core.Me);
+            if (weapon.IsKnownAndReady() && weapon.CanCast())
+                return await weapon.Cast(Core.Me);
+
+            var landscape = Spells.LandscapeMotif.Masked();
 
             // stars
-            if (Spells.LandscapeMotif.IsKnownAndReady() && Spells.LandscapeMotif.CanCast())
-                return await Spells.LandscapeMotif.Cast(Core.Me);
+            if (landscape.IsKnownAndReady() && landscape.CanCast())
+                return await landscape.Cast(Core.Me);
 
             return false;
         }
 
         public static async Task<bool> SwitfcastMotif()
         {
+            if (!PictomancerSettings.Instance.SwiftcastMotifs)
+                return false;
+
             if (!Core.Me.InCombat)
                 return false;
 
@@ -51,7 +64,7 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (Spells.StarryMuse.IsKnown())
-                if (Core.Me.HasAura(Auras.StarryMuse) || Spells.Swiftcast.AdjustedCooldown <= Spells.ScenicMuse.Cooldown)
+                if (Core.Me.HasAura(Auras.StarryMuse) || Spells.Swiftcast.AdjustedCooldown <= Spells.StarryMuse.Cooldown)
                     return await Roles.Healer.Swiftcast();
             else
                 return await Roles.Healer.Swiftcast();
@@ -78,40 +91,50 @@ namespace Magitek.Logic.Pictomancer
 
         public static async Task<bool> CreatureMotif()
         {
-            if (!MotifCanCast(Spells.CreatureMotif, Spells.LivingMuse))
+            if (!PictomancerSettings.Instance.UseMotifs)
                 return false;
 
-            await SwitfcastMotif();
+            var motif = Spells.CreatureMotif.Masked();
+            var muse = Spells.LivingMuse.Masked();
+
+            if (!MotifCanCast(motif, muse))
+                return false;
 
             // PomMotif -> WingMotif -> ClawMotif -> MawMotif
-            if (Spells.CreatureMotif.IsKnownAndReady() && Spells.CreatureMotif.CanCast())
-                return await Spells.CreatureMotif.Cast(Core.Me);
+            if (motif.IsKnownAndReady() && motif.CanCast())
+            {
+                await SwitfcastMotif();
+                return await motif.Cast(Core.Me);
+            }
 
             return false;
         }
 
         public static async Task<bool> CreatureMuse()
         {
-            if (Spells.LivingMuse.IsKnown() && Spells.LivingMuse.CanCast(Core.Me.CurrentTarget))
-                return await Spells.LivingMuse.Cast(Core.Me.CurrentTarget);
+            if (!PictomancerSettings.Instance.UseMuses)
+                return false;
 
-            //if (Spells.FangedMuse.IsKnown() && Spells.FangedMuse.CanCast(Core.Me.CurrentTarget))
-            //    return await Spells.FangedMuse.Cast(Core.Me.CurrentTarget);
+            var muse = Spells.LivingMuse.Masked();
 
-            //if (Spells.ClawedMuse.IsKnown() && Spells.ClawedMuse.CanCast(Core.Me.CurrentTarget))
-            //    return await Spells.ClawedMuse.Cast(Core.Me.CurrentTarget);
-
-            //if (Spells.WingedMuse.IsKnown() && Spells.WingedMuse.CanCast(Core.Me.CurrentTarget))
-            //    return await Spells.WingedMuse.Cast(Core.Me.CurrentTarget);
-
-            //if (Spells.PomMuse.IsKnown() && Spells.PomMuse.CanCast(Core.Me.CurrentTarget))
-            //    return await Spells.PomMuse.Cast(Core.Me.CurrentTarget);
+            if (muse.IsKnown/*AndReady*/() && muse.CanCast(Core.Me.CurrentTarget))
+                return await muse.Cast(Core.Me.CurrentTarget);
 
             return false;
         }
 
         public static async Task<bool> MogoftheAges()
         {
+            if (!PictomancerSettings.Instance.UseMogOfTheAges)
+                return false;
+
+            if (PictomancerSettings.Instance.SaveMogForStarry
+                && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
+                return false;
+
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
+                return false;
+
             if (Spells.RetributionoftheMadeen.IsKnownAndReady() && Spells.RetributionoftheMadeen.CanCast())
                 return await Spells.RetributionoftheMadeen.Cast(Core.Me.CurrentTarget);
 
@@ -123,59 +146,88 @@ namespace Magitek.Logic.Pictomancer
 
         public static async Task<bool> WeaponMotif()
         {
-            if (!MotifCanCast(Spells.WeaponMotif, Spells.SteelMuse))
+            if (!PictomancerSettings.Instance.UseMotifs)
                 return false;
 
-            await SwitfcastMotif();
+            var motif = Spells.WeaponMotif.Masked();
+            var muse = Spells.SteelMuse.Masked();
 
-            if (Spells.WeaponMotif.IsKnownAndReady() && Spells.WeaponMotif.CanCast())
-                return await Spells.WeaponMotif.Cast(Core.Me);
+            if (!MotifCanCast(motif, muse))
+                return false;
+
+            if (motif.IsKnownAndReady() && motif.CanCast())
+            {
+                await SwitfcastMotif();
+                return await motif.Cast(Core.Me);
+            }
 
             return false;
         }
 
         public static async Task<bool> StrikingMuse()
         {
-            if (Spells.StrikingMuse.IsKnown() && Spells.StrikingMuse.CanCast(Core.Me.CurrentTarget))
-                return await Spells.StrikingMuse.Cast(Core.Me.CurrentTarget);
+            if (!PictomancerSettings.Instance.UseMuses)
+                return false;
+
+            var muse = Spells.SteelMuse.Masked();
+
+            if (muse.IsKnown/*AndReady*/() && muse.CanCast(Core.Me.CurrentTarget))
+                return await muse.Cast(Core.Me.CurrentTarget);
 
             return false;
         }
 
         public static async Task<bool> HammerStamp()
         {
-            //if (Spells.PolishingHammer.IsKnown() && Spells.PolishingHammer.CanCast(Core.Me.CurrentTarget))
-            //    return await Spells.PolishingHammer.Cast(Core.Me.CurrentTarget);
+            if (!PictomancerSettings.Instance.UseHammers)
+                return false;
 
-            //if (Spells.HammerBrush.IsKnown() && Spells.HammerBrush.CanCast(Core.Me.CurrentTarget))
-            //    return await Spells.HammerBrush.Cast(Core.Me.CurrentTarget);
+            if (PictomancerSettings.Instance.SaveHammerForStarry 
+                && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
+                return false;
 
-            if (Spells.HammerStamp.IsKnown() && Spells.HammerStamp.CanCast(Core.Me.CurrentTarget))
-                return await Spells.HammerStamp.Cast(Core.Me.CurrentTarget);
+            var hammer = Spells.HammerStamp.Masked();
+
+            if (hammer.IsKnown/*AndReady*/() && hammer.CanCast(Core.Me.CurrentTarget))
+                return await hammer.Cast(Core.Me.CurrentTarget);
 
             return false;
         }
 
         public static async Task<bool> LandscapeMotif()
         {
+            if (!PictomancerSettings.Instance.UseMotifs)
+                return false;
+
             if (!PictomancerSettings.Instance.UseStarrySky)
                 return false;
 
-            if (!MotifCanCast(Spells.LandscapeMotif, Spells.ScenicMuse))
+            var motif = Spells.LandscapeMotif.Masked();
+            var muse = Spells.ScenicMuse.Masked();
+
+            if (!MotifCanCast(motif, muse))
                 return false;
 
-            if (Spells.LandscapeMotif.IsKnownAndReady() && Spells.LandscapeMotif.CanCast())
-                return await Spells.LandscapeMotif.Cast(Core.Me);
+            if (motif.IsKnownAndReady() && motif.CanCast())
+                return await motif.Cast(Core.Me);
 
             return false;
         }
 
         public static async Task<bool> ScenicMuse()
         {
+            if (!PictomancerSettings.Instance.UseMuses)
+                return false;
+
             if (!PictomancerSettings.Instance.UseStarrySky)
                 return false;
 
-            if (Spells.ScenicMuse.IsKnownAndReady() && Spells.ScenicMuse.CanCast(Core.Me)){
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
+                return false;
+
+            var muse = Spells.ScenicMuse.Masked();
+
+            if (muse.IsKnown/*AndReady*/() && muse.CanCast(Core.Me)){
                 if (Globals.InParty)
                 {
                     var couldStar = Group.CastableAlliesWithin30.Count(r => !r.HasAura(Auras.StarryMuse));
@@ -185,18 +237,21 @@ namespace Magitek.Logic.Pictomancer
                         starNeededCount = Group.CastableParty.Count();
 
                     if (couldStar >= starNeededCount)
-                        return await Spells.ScenicMuse.Cast(Core.Me);
+                        return await muse.Cast(Core.Me);
                     else
                         return false;
                 }
 
-                return await Spells.ScenicMuse.Cast(Core.Me);
+                return await muse.Cast(Core.Me);
             }
 
             return false;
         }
         public static async Task<bool> RainbowDrip()
         {
+            if (!PictomancerSettings.Instance.UseRainbowDrip)
+                return false;
+
             if (!Spells.RainbowDrip.IsKnownAndReady())
                 return false;
 
@@ -213,6 +268,9 @@ namespace Magitek.Logic.Pictomancer
 
         public static async Task<bool> StarPrism()
         {
+            if (!PictomancerSettings.Instance.UseStarPrism)
+                return false;
+
             if (!Spells.StarPrism.IsKnownAndReady())
                 return false;
 
@@ -220,6 +278,9 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (!Core.Me.HasAura(Auras.Starstruck))
+                return false;
+
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
                 return false;
 
             return await Spells.StarPrism.Cast(Core.Me.CurrentTarget);

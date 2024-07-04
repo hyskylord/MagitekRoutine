@@ -366,7 +366,9 @@ namespace Magitek.Utilities
             SubtractiveSpectrum = 3690,
             Hyperphantasia = 3688,
             RainbowBright = 3679,
-            Starstruck = 3681;
+            Starstruck = 3681,
+            MonochromeTones = 3691,
+            Inspiration = 3689;
 
         private const int
             Invincibility0 = 981,

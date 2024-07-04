@@ -15,6 +15,9 @@ namespace Magitek.Logic.Pictomancer
     {
         public static async Task<bool> Paint()
         {
+            if (!PictomancerSettings.Instance.UseSinglePaint)
+                return false;
+
             if (Core.Me.HasAura(Auras.SubtractivePalette))
             {
                 if (Core.Me.HasAura(Auras.Aetherhues2))
@@ -43,7 +46,7 @@ namespace Magitek.Logic.Pictomancer
 
         public static async Task<bool> HolyinWhite()
         {
-            if (!PictomancerSettings.Instance.UseHolyinWhiteMoving)
+            if (!PictomancerSettings.Instance.UseSingleHolyinWhiteMoving)
                 return false;
 
             if (!Spells.HolyinWhite.IsKnownAndReady())
@@ -52,10 +55,15 @@ namespace Magitek.Logic.Pictomancer
             if (!Spells.HolyinWhite.CanCast(Core.Me.CurrentTarget))
                 return false;
 
-            // check # of white paint when ActionResourceManager.Pictomancer is available
-            // if capped on white paint, cast HolyinWhite
-            // if only have 1 white paint, save it for black paint
-            if (!MovementManager.IsMoving)
+            // if capped on white paint, cast HolyinWhite even if not moving
+            if ((ActionResourceManager.Pictomancer.Paint != 5) && !MovementManager.IsMoving)
+                return false;
+
+            if ((ActionResourceManager.Pictomancer.Paint == 5) && !PictomancerSettings.Instance.WhitePaintUseWhenFull)
+                return false;
+
+            // save 1 paint for black paint
+            if (ActionResourceManager.Pictomancer.Paint == PictomancerSettings.Instance.WhitePaintSaveXCharges)
                 return false;
 
             return await Spells.HolyinWhite.Cast(Core.Me.CurrentTarget);
@@ -63,13 +71,21 @@ namespace Magitek.Logic.Pictomancer
 
         public static async Task<bool> CometinBlack()
         {
+            if (!PictomancerSettings.Instance.UseSingleCometinBlack)
+                return false;
+
+            if (PictomancerSettings.Instance.SaveCometInBlackForStarry
+                && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
+                return false;
+
             if (!Spells.CometinBlack.IsKnownAndReady())
                 return false;
 
             if (!Spells.CometinBlack.CanCast(Core.Me.CurrentTarget))
                 return false;
 
-            // Save comet for Hyperphantasia/StarrySky only when single target
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
+                return false;
 
             return await Spells.CometinBlack.Cast(Core.Me.CurrentTarget);
         }

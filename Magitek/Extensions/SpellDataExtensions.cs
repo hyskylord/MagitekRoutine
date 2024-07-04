@@ -231,6 +231,11 @@ namespace Magitek.Extensions
             }
         }
 
+        public static SpellData Masked(this SpellData spell)
+        {
+            return ActionManager.GetMaskedAction(spell.Id);
+        }
+
         private static async Task<bool> DoAction(SpellData spell, GameObject target, uint aura = 0, bool needAura = false, bool useRefreshTime = false, int refreshTime = 0, bool canCastCheck = true)
         {
             if (!Check(spell, target))
