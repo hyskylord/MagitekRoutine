@@ -90,7 +90,7 @@ namespace Magitek.Logic.Pictomancer
             else
             {
                 var castTime = motif.AdjustedCastTime.TotalMilliseconds;
-                var precastCooldown = (castTime + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset) / muse.AdjustedCooldown.TotalMilliseconds;
+                var precastCooldown = (castTime + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset) / muse.AdjustedCooldown.TotalMilliseconds + 500;
                 var precastThreshold = 1 - precastCooldown;
                 if (muse.Charges < precastThreshold) return false;
             }
