@@ -20,27 +20,18 @@
     </UserControl.Resources>
 
     <StackPanel Margin="10">
-
-        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="5">
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox Margin="5" Content=" Enable Starry Sky " IsChecked="{Binding PictomancerSettings.UseStarrySky, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-
-                </StackPanel>
-                <StackPanel Margin="10,0" Orientation="Horizontal">
-                    <CheckBox Margin="5" Content="Entire Party In Range Otherwise:" IsChecked="{Binding PictomancerSettings.StarrySkyEntireParty, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    <controls:Numeric MaxValue="30" MinValue="1" Value="{Binding PictomancerSettings.StarrySkyCount, Mode=TwoWay}" />
-                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Players Are In Range For Buff" />
-                </StackPanel>
-            </StackPanel>
-        </controls:SettingsBlock>
-
         <controls:SettingsBlock Margin="0,5,0,0" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox Margin="5" Content=" Use Subtractive Palette " IsChecked="{Binding PictomancerSettings.UseSubtractivePalette, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    <CheckBox Margin="5" Content=" FightLogic Use Tempera Coat/Grassa " IsChecked="{Binding PictomancerSettings.FightLogicTemperaCoat, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    <CheckBox Margin="5" Content=" FightLogic Use Addle " IsChecked="{Binding PictomancerSettings.FightLogicAddle, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Margin="5" Content=" Use Subtractive Palette " IsChecked="{Binding PictomancerSettings.UseSubtractivePalette, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Margin="5" Content=" FightLogic Use Tempera Coat/Grassa " IsChecked="{Binding PictomancerSettings.FightLogicTemperaCoat, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Margin="5" Content=" FightLogic Use Addle " IsChecked="{Binding PictomancerSettings.FightLogicAddle, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>

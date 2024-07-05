@@ -63,7 +63,7 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             // save 1 paint for black paint
-            if (ActionResourceManager.Pictomancer.Paint == PictomancerSettings.Instance.WhitePaintSaveXCharges)
+            if (ActionResourceManager.Pictomancer.Paint == PictomancerSettings.Instance.WhitePaintSaveXCharges && Spells.CometinBlack.IsKnown())
                 return false;
 
             return await Spells.HolyinWhite.Cast(Core.Me.CurrentTarget);

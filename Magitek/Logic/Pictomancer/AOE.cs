@@ -47,8 +47,7 @@ namespace Magitek.Logic.Pictomancer
             if (Core.Me.CurrentTarget.EnemiesNearby(5).Count() < PictomancerSettings.Instance.AoeEnemies)
                 return false;
 
-            // save 1 paint for black paint
-            if (ActionResourceManager.Pictomancer.Paint == 1)
+            if (ActionResourceManager.Pictomancer.Paint == PictomancerSettings.Instance.WhitePaintSaveXCharges && Spells.CometinBlack.IsKnown())
                 return false;
 
             return await Spells.HolyinWhite.Cast(Core.Me.CurrentTarget);
