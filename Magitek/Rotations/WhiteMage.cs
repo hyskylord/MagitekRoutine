@@ -120,6 +120,7 @@ namespace Magitek.Rotations
             if (await Logic.WhiteMage.Heal.Benediction()) return true;
             if (await Dispel.Execute()) return true;
             if (await Buff.Temperance()) return true;
+            if (await Logic.WhiteMage.Heal.DivineCaress()) return true;
             if (await Buff.ThinAir(false)) return true;
             if (await Buff.DivineBenison()) return true;
             if (await Logic.WhiteMage.Heal.PlenaryIndulgence()) return true;
@@ -216,10 +217,10 @@ namespace Magitek.Rotations
             if (await Aoe.Holy()) return true;
             if (await Aoe.AssizeDamage()) return true;
 
-            
-
             if (await SingleTarget.Dots()) return true;
             if (await SingleTarget.DotMultipleTargets()) return true;
+            if (await Buff.PresenceOfMind()) return true;
+            if (await SingleTarget.GlareIV()) return true;
             return await SingleTarget.Stone();
         }
 

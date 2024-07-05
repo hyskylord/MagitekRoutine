@@ -43,6 +43,13 @@ namespace Magitek.Logic.WhiteMage
             if (!Core.Me.InCombat)
                 return false;
 
+            if (WhiteMageSettings.Instance.PresenceOfMindForGlareIV 
+                && Spells.PresenceofMind.IsKnownAndReady() 
+                && Spells.GlareIV.IsKnownAndReady())
+            {
+                return await Spells.PresenceofMind.Cast(Core.Me);
+            }
+
             if (Globals.InParty)
             {
                 if (WhiteMageSettings.Instance.PresenceOfMindTankOnly)

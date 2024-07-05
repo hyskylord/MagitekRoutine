@@ -21,6 +21,16 @@ namespace Magitek.Logic.WhiteMage
             return await Spells.Stone.Cast(Core.Me.CurrentTarget);
         }
 
+        public static async Task<bool> GlareIV()
+        {
+            if (!Spells.GlareIV.IsKnownAndReady())
+                return false;
+
+            if (!Core.Me.HasAura(Auras.SacredSight))
+                return false;
+
+            return await Spells.GlareIV.Cast(Core.Me.CurrentTarget);
+        }
 
         public static async Task<bool> AfflatusMisery()
         {
