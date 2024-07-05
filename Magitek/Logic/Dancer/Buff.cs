@@ -47,8 +47,9 @@ namespace Magitek.Logic.Dancer
             if (Core.Me.HasAnyAura(FlourishingAuras))
                 return false;
 
-            if (Spells.StandardStep.IsKnownAndReady())
-                return false;
+            //StandardStep becomes FinishingMove after flourish so don't skip flourish for standard step anymore
+            //if (Spells.StandardStep.IsKnownAndReady())
+            //    return false;
 
             if (Spells.TechnicalStep.IsKnownAndReady())
                 return false;
