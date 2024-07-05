@@ -291,6 +291,10 @@ namespace Magitek.Models.WhiteMage
 
         [Setting]
         [DefaultValue(true)]
+        public bool PresenceOfMindForGlareIV { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
         public bool Aquaveil { get; set; }
 
         [Setting]

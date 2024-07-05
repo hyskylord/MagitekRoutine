@@ -624,6 +624,17 @@ namespace Magitek.Logic.WhiteMage
             }
         }
 
+        public static async Task<bool> DivineCaress()
+        {
+            if (!Spells.DivineCaress.IsKnownAndReady())
+                return false;
+
+            if (!Core.Me.HasAura(Auras.DivineGrace))
+                return false;
+
+            return await Spells.DivineCaress.Cast(Core.Me);
+        }
+
         public static async Task<bool> ForceMedica()
         {
             if (!WhiteMageSettings.Instance.ForceMedica)

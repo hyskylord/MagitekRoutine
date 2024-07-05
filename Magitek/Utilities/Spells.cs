@@ -845,6 +845,8 @@ namespace Magitek.Utilities
         public static readonly SpellData Aquaveil = DataManager.GetSpellData(25861);
         public static readonly SpellData LiturgyOfTheBell = DataManager.GetSpellData(25862);
         public static readonly SpellData PulseofLife = DataManager.GetSpellData(208);
+        public static readonly SpellData GlareIV = DataManager.GetSpellData(37009);
+        public static readonly SpellData DivineCaress = DataManager.GetSpellData(37011);
         #endregion
 
         // BLU
