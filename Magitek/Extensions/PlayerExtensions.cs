@@ -13,8 +13,7 @@ namespace Magitek.Extensions
     {
         public static bool HasAetherflow(this LocalPlayer me)
         {
-            //return ActionResourceManager.Scholar.Aetherflow > 0;
-            return ActionResourceManager.CostTypesStruct.offset_8 > 0;
+            return ActionResourceManager.Scholar.Aetherflow > 0;
         }
 
         public static bool HasDarkArts(this LocalPlayer me)
