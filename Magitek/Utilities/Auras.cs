@@ -345,6 +345,7 @@ namespace Magitek.Utilities
             SupplicationReady = 3827,
             SepulchreReady = 3828,
             ImpactImminent = 3882,
+            LastDanceReady = 3867,
 
             //VPR
             Swiftscaled = 3669,

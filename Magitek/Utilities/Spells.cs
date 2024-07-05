@@ -2,6 +2,7 @@ using ff14bot.Managers;
 using ff14bot.Objects;
 using System.Windows.Forms;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace Magitek.Utilities
 {
@@ -282,6 +283,7 @@ namespace Magitek.Utilities
         public static readonly SpellData StarfallDance = DataManager.GetSpellData(25792);
         public static readonly SpellData Tillana = DataManager.GetSpellData(25790);
         public static readonly SpellData CrimsonLotus = DataManager.GetSpellData(17106);
+        public static readonly SpellData LastDance = DataManager.GetSpellData(36983);
         #endregion
 
         // DRG
