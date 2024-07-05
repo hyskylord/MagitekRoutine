@@ -712,7 +712,7 @@ namespace Magitek.Utilities
         public static readonly SpellData SummonSeraph = DataManager.GetSpellData(16545);
         public static readonly SpellData Consolation = DataManager.GetSpellData(16546);
         public static readonly SpellData SummonEos = DataManager.GetSpellData(17215);
-        public static readonly SpellData SummonSelene = DataManager.GetSpellData(17216);
+        public static readonly SpellData SummonSelene = DataManager.GetSpellData(17215);
         public static readonly SpellData BroilIV = DataManager.GetSpellData(25865);
         public static readonly SpellData ArtOfWarII = DataManager.GetSpellData(25866);
         public static readonly SpellData Protraction = DataManager.GetSpellData(25867);

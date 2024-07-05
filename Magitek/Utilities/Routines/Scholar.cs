@@ -1,4 +1,5 @@
 ﻿using ff14bot;
+using ff14bot.Managers;
 using ff14bot.Objects;
 using Magitek.Extensions;
 using Magitek.Models.Scholar;
@@ -14,7 +15,8 @@ namespace Magitek.Utilities.Routines
 
         public static double SeraphTimeRemaining()
         {
-            return Math.Max(Spells.SummonSeraph.Cooldown.TotalSeconds - 98, 0);
+            //return Math.Max(Spells.SummonSeraph.Cooldown.TotalSeconds - 98, 0);
+            return (double)ActionResourceManager.CostTypesStruct.timer2 / 1000.0;
         }
 
         public static bool NeedToInterruptCast()
