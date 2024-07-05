@@ -14,6 +14,17 @@ namespace Magitek.Logic.Dancer
 {
     internal static class Dances
     {
+        public static async Task<bool> LastDance()
+        {
+            if (!Spells.LastDance.IsKnownAndReady())
+                return false;
+
+            if (!Core.Me.HasAura(Auras.LastDanceReady))
+                return false;
+
+            return await Spells.LastDance.Cast(Core.Me.CurrentTarget);
+        }
+
         public static async Task<bool> Tillana()
         {
             if (Core.Me.ClassLevel < Spells.Tillana.LevelAcquired) 

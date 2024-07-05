@@ -347,6 +347,7 @@ namespace Magitek.Utilities
             ImpactImminent = 3882,
             SacredSight = 3879,
             DivineGrace = 3881,
+            LastDanceReady = 3867,
 
             //VPR
             Swiftscaled = 3669,

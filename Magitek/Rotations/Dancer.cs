@@ -143,6 +143,7 @@ namespace Magitek.Rotations
             //GCD
             if (await Aoe.StarfallDance()) return true;
             if (await Dances.Tillana()) return true;
+            if (await Dances.LastDance()) return true;
             if (await Aoe.SaberDance()) return true;
 
             //Silken Flow Aura
