@@ -651,7 +651,8 @@ namespace Magitek.Logic.Scholar
             if (Spells.FeyBlessing.Cooldown != TimeSpan.Zero)
                 return false;
 
-            if (ActionResourceManager.Scholar.FaerieGauge < ScholarSettings.Instance.FeyBlessingMinimumFairieGauge)
+            //if (ActionResourceManager.Scholar.FaerieGauge < ScholarSettings.Instance.FeyBlessingMinimumFairieGauge)
+            if (ActionResourceManager.CostTypesStruct.offset_9 < ScholarSettings.Instance.AetherpactMinimumFairieGauge)
                 return false;
 
             if (Globals.InParty)
