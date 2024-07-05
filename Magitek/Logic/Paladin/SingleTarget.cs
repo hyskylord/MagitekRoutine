@@ -155,7 +155,7 @@ namespace Magitek.Logic.Paladin
             /*if (Combat.Enemies.Count(x => x.Distance(Core.Me) <= 5 + x.CombatReach) >= PaladinSettings.Instance.TotalEclipseEnemies)
                 return await Spells.Requiescat.Cast(Core.Me.CurrentTarget);
             */
-            if (Casting.LastSpell != Spells.FightorFlight)
+            if (!Core.Me.HasAura(Auras.FightOrFlight))
                 return false;
 
             if (Spells.Imperator.IsKnown()) 
