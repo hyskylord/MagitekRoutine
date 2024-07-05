@@ -373,6 +373,7 @@ namespace Magitek.Utilities
             Starstruck = 3681,
             MonochromeTones = 3691,
             Inspiration = 3689,
+            HammerTime = 3680,
 
             //MCH
             Hypercharged = 3864,

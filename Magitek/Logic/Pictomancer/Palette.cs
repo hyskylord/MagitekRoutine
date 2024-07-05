@@ -5,15 +5,10 @@ using ff14bot.Objects;
 using Magitek.Extensions;
 using Magitek.Models.Account;
 using Magitek.Models.Pictomancer;
-using Magitek.Models.Reaper;
 using Magitek.Utilities;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using TreeSharp;
 using Auras = Magitek.Utilities.Auras;
 
 namespace Magitek.Logic.Pictomancer
@@ -26,6 +21,9 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (prebuff && !PictomancerSettings.Instance.PrePaletteOutOfCombat)
+                return false;
+
+            if (prebuff && PictomancerSettings.Instance.PrePaletteOutOfCombatOnlyInDuty && !Globals.InActiveDuty)
                 return false;
 
             if (!prebuff && !PictomancerSettings.Instance.PaletteDuringDowntime)
@@ -52,7 +50,7 @@ namespace Magitek.Logic.Pictomancer
             return false;
         }
 
-        public static async Task<bool> SwitfcastMotif()
+        public static bool SwiftcastMotifCheck()
         {
             if (!PictomancerSettings.Instance.SwiftcastMotifs)
                 return false;
@@ -64,11 +62,16 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (Spells.StarryMuse.IsKnown())
-                if (Core.Me.HasAura(Auras.StarryMuse) || Spells.Swiftcast.AdjustedCooldown <= Spells.StarryMuse.Cooldown)
-                    return await Roles.Healer.Swiftcast();
+                return (Core.Me.HasAura(Auras.StarryMuse) || Spells.Swiftcast.AdjustedCooldown <= Spells.StarryMuse.Cooldown);
             else
-                return await Roles.Healer.Swiftcast();
+                return true;
+        }
 
+        public static async Task<bool> SwitfcastMotif()
+        {
+            if (SwiftcastMotifCheck())
+                return await Roles.Healer.Swiftcast();
+            
             return false;
         }
 
@@ -82,10 +85,15 @@ namespace Magitek.Logic.Pictomancer
             // hack since muse.Cooldown doesn't seem to be accurate, as it's doubling 
             // the Cooldown time for some reason with a single cast of the Muse.
             // The same information can be derived from Charges, so I used that instead.
-            var castTime = motif.AdjustedCastTime.TotalMilliseconds;
-            var precastCooldown = (castTime + 750) / muse.AdjustedCooldown.TotalMilliseconds;
-            var precastThreshold = 1 - precastCooldown;
-            if (muse.Charges < precastThreshold) return false;
+            if (SwiftcastMotifCheck())
+                return muse.Charges >= 1;
+            else
+            {
+                var castTime = motif.AdjustedCastTime.TotalMilliseconds;
+                var precastCooldown = (castTime + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset) / muse.AdjustedCooldown.TotalMilliseconds;
+                var precastThreshold = 1 - precastCooldown;
+                if (muse.Charges < precastThreshold) return false;
+            }
             return true;
         }
 
@@ -182,8 +190,19 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseHammers)
                 return false;
 
+            var hammerAura = Core.Me.CharacterAuras.Where(r => r.CasterId == Core.Player.ObjectId && r.Id == Auras.HammerTime).FirstOrDefault();
+
+            if (hammerAura == null)
+                return false;
+
+            var hammerTimeLeft = hammerAura.TimespanLeft.TotalMilliseconds;
+            var hammersLeft = hammerAura.Value;
+            var hammerCastTime = Spells.HammerStamp.AdjustedCastTime.TotalMilliseconds + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset;
+            var totalHammerCastTime = hammerCastTime * hammersLeft;
+
             if (PictomancerSettings.Instance.SaveHammerForStarry 
-                && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
+                && Utilities.Routines.Pictomancer.StarryOffCooldownSoon()
+                && totalHammerCastTime > Utilities.Routines.Pictomancer.StarryCooldownRemaining())
                 return false;
 
             var hammer = Spells.HammerStamp.Masked();

@@ -3,11 +3,11 @@
 namespace Magitek.Views.UserControls.Pictomancer
 {
     /// <summary>
-    /// Interaction logic for SingleTarget.xaml
+    /// Interaction logic for Palettes.xaml
     /// </summary>
-    public partial class AoE : UserControl
+    public partial class Palettes : UserControl
     {
-        public AoE()
+        public Palettes()
         {
             InitializeComponent();
         }

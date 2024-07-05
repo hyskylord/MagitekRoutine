@@ -54,6 +54,10 @@ namespace Magitek.Models.Pictomancer
 
         [Setting]
         [DefaultValue(true)]
+        public bool PrePaletteOutOfCombatOnlyInDuty { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
         public bool PaletteDuringDowntime { get; set; }
 
         [Setting]

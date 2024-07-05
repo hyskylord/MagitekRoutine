@@ -3,11 +3,11 @@
 namespace Magitek.Views.UserControls.Pictomancer
 {
     /// <summary>
-    /// Interaction logic for SingleTarget.xaml
+    /// Interaction logic for Paint.xaml
     /// </summary>
-    public partial class SingleTarget : UserControl
+    public partial class Paint : UserControl
     {
-        public SingleTarget()
+        public Paint()
         {
             InitializeComponent();
         }

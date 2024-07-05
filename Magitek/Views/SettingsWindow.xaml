@@ -874,11 +874,11 @@
 
                 <TabItem Name="Pictomancer" Style="{DynamicResource TabItemPictomancer}">
                     <TabControl Style="{DynamicResource JobOptionsTabControl}">
-                        <TabItem Header="Single Target " Style="{DynamicResource MainTabCombat}">
-                            <pictomancer:SingleTarget />
+                        <TabItem Header="Paint " Style="{DynamicResource MainTabCombat}">
+                            <pictomancer:Paint />
                         </TabItem>
-                        <TabItem Header="AoE " Style="{DynamicResource MainTabAoe}">
-                            <pictomancer:AoE />
+                        <TabItem Header="Palettes " Style="{DynamicResource MainTabAoe}">
+                            <pictomancer:Palettes />
                         </TabItem>
                         <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
                             <pictomancer:Utility />

@@ -4,7 +4,6 @@ using ff14bot.Managers;
 using ff14bot.Objects;
 using Magitek.Enumerations;
 using Magitek.Extensions;
-using Magitek.Models.Paladin;
 using Magitek.Models.Pictomancer;
 using System;
 using System.Linq;
@@ -31,6 +30,23 @@ namespace Magitek.Utilities.Routines
                 return true;
 
             return false;
+        }
+
+        public static double StarryCooldownRemaining()
+        {
+            if (!Spells.StarryMuse.IsKnown())
+                return 0;
+
+            if (Core.Me.HasAura(Auras.StarryMuse))
+                return 0;
+
+            if (Spells.StarryMuse.Cooldown == TimeSpan.Zero && !Core.Me.HasAura(Auras.StarryMuse))
+                return 0;
+
+            if (Spells.StarryMuse.Cooldown > TimeSpan.Zero)
+                return Spells.StarryMuse.Cooldown.TotalMilliseconds;
+
+            return 0;
         }
 
         public static bool HasBlackPaint()
