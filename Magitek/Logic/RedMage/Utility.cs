@@ -36,7 +36,7 @@ namespace Magitek.Logic.RedMage
         public static int ManaStacks()
         {
 
-            return ActionResourceManager.CostTypesStruct.offset_A;
+            return ActionResourceManager.RedMage.ManaStacks;
         }
 
         public static bool InAoeCombo()

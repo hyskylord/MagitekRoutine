@@ -14,9 +14,8 @@ namespace Magitek.Utilities.Routines
         public static List<Character> AlliancePhysickOnly = new List<Character>();
 
         public static double SeraphTimeRemaining()
-        {
-            //return Math.Max(Spells.SummonSeraph.Cooldown.TotalSeconds - 98, 0);
-            return (double)ActionResourceManager.CostTypesStruct.timer2 / 1000.0;
+        {            
+            return ActionResourceManager.Scholar.Timer.TotalSeconds;
         }
 
         public static bool NeedToInterruptCast()
