@@ -86,6 +86,22 @@ namespace Magitek.Logic.Warrior
             return await Spells.Vengeance.CastAura(Core.Me, Auras.Vengeance);
         }
 
+        public static async Task<bool> Damnation()
+        {
+            if (!WarriorSettings.Instance.UseDamnation)
+                return false;
+
+            if (!UseDefensives())
+                return false;
+
+            if (Core.Me.CurrentHealthPercent > WarriorSettings.Instance.DamnationHpPercentage)
+                return false;
+
+            return await Spells.Damnation.CastAura(Core.Me, Auras.Damnation);
+        }
+
+
+
         public static async Task<bool> ShakeItOff()
         {
             if (!WarriorSettings.Instance.UseShakeItOff)
