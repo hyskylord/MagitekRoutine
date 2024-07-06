@@ -115,7 +115,8 @@ namespace Magitek.Rotations
             if (await Palette.ScenicMuse()) return true;
 
             if (Core.Me.HasAura(Auras.Inspiration) ||
-                PictomancerRoutine.GlobalCooldown.CanWeave(1))
+                PictomancerRoutine.GlobalCooldown.CanWeave(1) ||
+                PictomancerRoutine.GlobalCooldown.CanWeave(2))
             {
                 if (await Palette.MogoftheAges()) return true;
                 if (await Palette.StrikingMuse()) return true;

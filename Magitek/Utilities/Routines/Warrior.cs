@@ -44,7 +44,8 @@ namespace Magitek.Utilities.Routines
             Auras.Bloodwhetting,
             Auras.Vengeance,
             Auras.Holmgang,
-            Auras.ThrillOfBattle
+            Auras.ThrillOfBattle,
+            Auras.Damnation
         };
 
         public static readonly List<uint> Heal = new List<uint>()

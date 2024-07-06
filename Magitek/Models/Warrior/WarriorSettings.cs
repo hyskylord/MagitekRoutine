@@ -99,6 +99,14 @@ namespace Magitek.Models.Warrior
 
         [Setting]
         [DefaultValue(false)]
+        public bool UseDamnation { get; set; }
+
+        [Setting]
+        [DefaultValue(50)]
+        public int DamnationHpPercentage { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
         public bool UseHolmgang { get; set; }
 
         [Setting]

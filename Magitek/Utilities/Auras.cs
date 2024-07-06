@@ -348,6 +348,7 @@ namespace Magitek.Utilities
             SacredSight = 3879,
             DivineGrace = 3881,
             LastDanceReady = 3867,
+            Damnation = 3832,
 
             //VPR
             Swiftscaled = 3669,

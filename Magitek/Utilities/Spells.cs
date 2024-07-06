@@ -809,6 +809,7 @@ namespace Magitek.Utilities
         public static readonly SpellData PrimalRend = DataManager.GetSpellData(25753);
         public static readonly SpellData NascentFlash = DataManager.GetSpellData(16464);
         public static readonly SpellData LandWaker = DataManager.GetSpellData(4240);
+        public static readonly SpellData Damnation = DataManager.GetSpellData(36923);
         #endregion
 
         // WHM

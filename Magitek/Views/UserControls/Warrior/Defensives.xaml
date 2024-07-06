@@ -105,6 +105,15 @@
                                       MinValue="1"
                                       Value="{Binding WarriorSettings.ShakeItOffHpPercentage, Mode=TwoWay}" />
                     <TextBlock Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
+
+                    <CheckBox Grid.Row="7" Grid.Column="0" Content="Damnation" IsChecked="{Binding WarriorSettings.UseDamnation, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric Grid.Row="7"
+                      Grid.Column="1"
+                      Margin="0,3"
+                      MaxValue="100"
+                      MinValue="1"
+                      Value="{Binding WarriorSettings.DamnationHpPercentage, Mode=TwoWay}" />
+                    <TextBlock Grid.Row="7" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
                 </Grid>
             </StackPanel>
         </controls:SettingsBlock>
