@@ -3,6 +3,9 @@ using ff14bot.Objects;
 using System.Windows.Forms;
 using System;
 using Microsoft.CodeAnalysis.CSharp;
+using static Microsoft.CodeAnalysis.CSharp.DecisionDagBuilder;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Windows;
 
 namespace Magitek.Utilities
 {
@@ -372,7 +375,7 @@ namespace Magitek.Utilities
         public static readonly SpellData Aurora = DataManager.GetSpellData(16151);
         public static readonly SpellData Superbolide = DataManager.GetSpellData(16152);
         public static readonly SpellData SonicBreak = DataManager.GetSpellData(16153);
-        public static readonly SpellData RoughDivide = DataManager.GetSpellData(16154);
+        //public static readonly SpellData RoughDivide = DataManager.GetSpellData(16154);
         public static readonly SpellData Continuation = DataManager.GetSpellData(16155);
         public static readonly SpellData JugularRip = DataManager.GetSpellData(16156);
         public static readonly SpellData AbdomenTear = DataManager.GetSpellData(16157);
@@ -388,6 +391,12 @@ namespace Magitek.Utilities
         public static readonly SpellData DoubleDown = DataManager.GetSpellData(25760);
         public static readonly SpellData Hypervelocity = DataManager.GetSpellData(25759);
         public static readonly SpellData GunmetalSoul = DataManager.GetSpellData(17105);
+        public static readonly SpellData ReignOfBeasts = DataManager.GetSpellData(36937);
+        public static readonly SpellData NobleBlood = DataManager.GetSpellData(36938);
+        public static readonly SpellData LionHeart = DataManager.GetSpellData(36939);
+        public static readonly SpellData Trajectory = DataManager.GetSpellData(36934);
+        public static readonly SpellData GreatNebula = DataManager.GetSpellData(36935);
+        public static readonly SpellData FatedBrand = DataManager.GetSpellData(36936);
         #endregion
 
         // MCH

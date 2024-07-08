@@ -58,15 +58,6 @@
             </Grid>
         </controls:SettingsBlock>
 
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="5" Orientation="Horizontal">
-                <CheckBox Content="Rough Divide / Dash " IsChecked="{Binding GunbreakerSettings.UseRoughDivide, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                <CheckBox Content="Only in Melee. Save " IsChecked="{Binding GunbreakerSettings.RoughDivideOnlyInMelee, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                <controls:Numeric Margin="0,3" MaxValue="5" MinValue="0" Value="{Binding GunbreakerSettings.SaveRoughDivideCharges, Mode=TwoWay}" />
-                <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" charges" />
-            </StackPanel>
-        </controls:SettingsBlock>
-
         <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -76,7 +67,8 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Margin="5">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="Use Ammo Combo " IsChecked="{Binding GunbreakerSettings.UseAmmoCombo, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                        <CheckBox Content="Use Ammo Combo         " IsChecked="{Binding GunbreakerSettings.UseAmmoCombo, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                        <CheckBox Content="Use LionHeart Combo " IsChecked="{Binding GunbreakerSettings.UseLionHeartCombo, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     </StackPanel>
                 </StackPanel>
 

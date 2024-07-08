@@ -38,6 +38,9 @@ namespace Magitek.Logic.Gunbreaker
             if (Spells.KeenEdge.Cooldown.TotalMilliseconds > Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset + 100)
                 return false;
 
+            if (Spells.Bloodfest.IsKnownAndReady(10000))
+                return false;
+
             return await Spells.NoMercy.Cast(Core.Me);
         }
 
