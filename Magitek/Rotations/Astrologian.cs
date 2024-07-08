@@ -40,16 +40,7 @@ namespace Magitek.Rotations
             if (Globals.OnPvpMap)
                 return false;
             
-            var Arcana = ActionResourceManager.CostTypesStruct.offset_D;
-            var cardDrawn = Arcana != (byte)ActionResourceManager.Astrologian.AstrologianCard.None
-                && Arcana != (byte)ActionResourceManager.Astrologian.AstrologianCard.LordofCrowns
-                && Arcana != (byte)ActionResourceManager.Astrologian.AstrologianCard.LadyofCrowns;
-
-            if (!cardDrawn && AstrologianSettings.Instance.UseDraw)
-                if (await Spells.Draw.Cast(Core.Me))
-                    return await Coroutine.Wait(750, () => Arcana != (byte)ActionResourceManager.Astrologian.AstrologianCard.None);
-
-            return false;
+            return await Cards.Draw();
         }
 
         public static async Task<bool> Pull()
@@ -111,8 +102,7 @@ namespace Magitek.Rotations
                 if (await Buff.LucidDreaming()) return true;
                 if (await Buff.Lightspeed()) return true;
                 if (await Buff.NeutralSect()) return true;
-                if (await Cards.AstroDyne()) return true;
-                if (await Cards.RedrawOrDrawAgain(Cards.GetDrawnCard())) return true;
+                if (await Cards.Draw()) return true;
                 if (await Cards.PlayCards()) return true;
             }
 
@@ -131,9 +121,8 @@ namespace Magitek.Rotations
                     if (await Heals.CelestialIntersection()) return true;
                     if (await Heals.Horoscope()) return true;
                     if (await Heals.Exaltation()) return true;
-                    if (await Cards.AstroDyne()) return true;
                     if (await Aoe.LordOfCrown()) return true;
-                    if (await Cards.RedrawOrDrawAgain(Cards.GetDrawnCard())) return true;
+                    if (await Cards.Draw()) return true;
                     if (await Cards.PlayCards()) return true;
                 }
                 
@@ -187,8 +176,7 @@ namespace Magitek.Rotations
                 if (await Buff.LucidDreaming()) return true;
                 if (await Buff.Lightspeed()) return true;
                 if (await Buff.NeutralSect()) return true;
-                if (await Cards.AstroDyne()) return true;
-                if (await Cards.RedrawOrDrawAgain(Cards.GetDrawnCard())) return true;
+                if (await Cards.Draw()) return true;
                 if (await Cards.PlayCards()) return true;
 
 
@@ -209,9 +197,8 @@ namespace Magitek.Rotations
                     if (await Heals.EssentialDignity()) return true;
                     if (await Heals.CelestialIntersection()) return true;
                     if (await Heals.Exaltation()) return true;
-                    if (await Cards.AstroDyne()) return true;
                     if (await Aoe.LordOfCrown()) return true;
-                    if (await Cards.RedrawOrDrawAgain(Cards.GetDrawnCard())) return true;
+                    if (await Cards.Draw()) return true;
                     if (await Cards.PlayCards()) return true;
                 }
                 
