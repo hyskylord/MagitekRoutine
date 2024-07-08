@@ -196,11 +196,18 @@ namespace Magitek.Extensions
                     return false;
                 }
 
+                // If Facing is dis-allowed and the action would cause a new facing check then don't cast
                 if (GameSettingsManager.FaceTargetOnAction
-                    && RoutineManager.IsAnyDisallowed(CapabilityFlags.Facing))
+                    && RoutineManager.IsAnyDisallowed(CapabilityFlags.Facing)
+                    && target != Core.Me)
                     return false;
 
-                return true;
+                // Autonomous mode should still perform moving or instant
+                // spell checks. This reverts a previous issue where bots may
+                // potentially get stuck on a wall due to the avoidance not 
+                // stopping after it successfully avoids
+                // See.
+                // https://github.com/Exmortem/MagitekRoutine/pull/396
             }
 
             return Core.Me.HasAura(Auras.Swiftcast) || !MovementManager.IsMoving || spell.AdjustedCastTime <= TimeSpan.Zero;
