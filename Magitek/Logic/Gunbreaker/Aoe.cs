@@ -121,6 +121,20 @@ namespace Magitek.Logic.Gunbreaker
             return await Spells.BowShock.Cast(Core.Me.CurrentTarget);
         }
 
+        public static async Task<bool> FatedBrand()
+        {
+            if (Core.Me.ClassLevel < 96)
+                return false;
+
+            if (!GunbreakerSettings.Instance.UseAoe)
+                return false;
+
+            if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 5 + r.CombatReach) < 1)
+                return false;
+
+            return await Spells.FatedBrand.Cast(Core.Me.CurrentTarget);
+        }
+
         public static async Task<bool> DoubleDown()
         {
             if (!GunbreakerSettings.Instance.UseDoubleDown)

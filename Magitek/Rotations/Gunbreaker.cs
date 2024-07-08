@@ -126,8 +126,8 @@ namespace Magitek.Rotations
                 if (await Buff.Bloodfest()) return true;
 
                 //oGCD - Damage
-                if (await SingleTarget.RoughDivide()) return true;
                 if (await SingleTarget.BlastingZone()) return true;
+                if (await Aoe.FatedBrand()) return true;
                 if (await Aoe.BowShock()) return true;
             }
 
@@ -138,6 +138,11 @@ namespace Magitek.Rotations
             //Apply DOT / Burst
             if (await Aoe.DoubleDown()) return true;
             if (await SingleTarget.SonicBreak()) return true;
+
+            //LionHeart Combo
+            if (await SingleTarget.LionHeart()) return true;
+            if (await SingleTarget.NobleBlood()) return true;
+            if (await SingleTarget.ReignOfBeasts()) return true;
 
             //Combo 2
             if (await SingleTarget.SavageClaw()) return true;

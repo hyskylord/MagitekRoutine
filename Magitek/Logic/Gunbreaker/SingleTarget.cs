@@ -129,7 +129,8 @@ namespace Magitek.Logic.Gunbreaker
             if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 5 + r.CombatReach) >= GunbreakerSettings.Instance.PrioritizeFatedCircleOverGnashingFangEnemies)
                 return false;
 
-            if (Spells.NoMercy.IsKnownAndReady(10000))
+            //Hold for NoMercy Combo
+            if (Spells.NoMercy.IsKnownAndReady(15000))
                 return false;
 
             return await Spells.GnashingFang.Cast(Core.Me.CurrentTarget);
@@ -187,7 +188,7 @@ namespace Magitek.Logic.Gunbreaker
 
 
         /********************************************************************************
-         *                              Third combo oGCD  
+         *                              Third combo GCD  
          *******************************************************************************/
 
         public static async Task<bool> BurstStrike()
@@ -204,6 +205,9 @@ namespace Magitek.Logic.Gunbreaker
             if (Spells.FatedCircle.IsKnown() && Combat.Enemies.Count(r => r.Distance(Core.Me) <= 5 + r.CombatReach) >= GunbreakerSettings.Instance.PrioritizeFatedCircleOverBurstStrikeEnemies)
                 return false;
 
+            if (Core.Me.HasAura(Auras.ReadyToReign))
+                 return false;
+
             if (Core.Me.HasAura(Auras.NoMercy) && Cartridge > 0)
             {
                 if (Cartridge < GunbreakerRoutine.MaxCartridge && (Spells.DoubleDown.IsKnownAndReady(10000) || Spells.GnashingFang.IsKnownAndReady(10000)))
@@ -212,10 +216,16 @@ namespace Magitek.Logic.Gunbreaker
                 return await Spells.BurstStrike.Cast(Core.Me.CurrentTarget);
             }
 
-            if (Cartridge == GunbreakerRoutine.MaxCartridge && ActionManager.LastSpell.Id != Spells.BrutalShell.Id)
-                return false;
+            //if (Cartridge == GunbreakerRoutine.MaxCartridge && ActionManager.LastSpell.Id != Spells.BrutalShell.Id)
+            //    return false;
 
-            if (Cartridge < GunbreakerRoutine.MaxCartridge)
+            if (Cartridge > 0 && Spells.Bloodfest.IsKnownAndReady(14000))
+                return await Spells.BurstStrike.Cast(Core.Me.CurrentTarget);
+
+            if (Cartridge < GunbreakerRoutine.MaxCartridge && Spells.DoubleDown.IsKnownAndReady(20000))
+                  return false;
+
+            if (Cartridge < GunbreakerRoutine.MaxCartridge && Spells.GnashingFang.IsKnownAndReady(8000))
                 return false;
 
             return await Spells.BurstStrike.Cast(Core.Me.CurrentTarget);
@@ -232,6 +242,56 @@ namespace Magitek.Logic.Gunbreaker
             return await Spells.Hypervelocity.Cast(Core.Me.CurrentTarget);
         }
 
+        /********************************************************************************
+        *                              Four combo oGCD  
+        *******************************************************************************/
+
+        public static async Task<bool> ReignOfBeasts()
+        {
+
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!GunbreakerSettings.Instance.UseLionHeartCombo)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.ReadyToReign))
+                return false;
+
+            if (Spells.GnashingFang.IsKnownAndReady(1000))
+                return false;
+
+            if (Spells.DoubleDown.IsKnownAndReady(1000))
+                return false;
+
+            if (GunbreakerRoutine.IsAurasForComboActive())
+                return false;
+
+            return await Spells.ReignOfBeasts.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> NobleBlood()
+        {
+
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!GunbreakerSettings.Instance.UseLionHeartCombo)
+                return false;
+
+            return await Spells.NobleBlood.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> LionHeart()
+        {
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!GunbreakerSettings.Instance.UseLionHeartCombo)
+                return false;
+
+            return await Spells.LionHeart.Cast(Core.Me.CurrentTarget);
+        }
 
         /********************************************************************************
          *                                    oGCD 
@@ -246,32 +306,6 @@ namespace Magitek.Logic.Gunbreaker
                 return false;
 
             return await GunbreakerRoutine.BlastingZone.Cast(Core.Me.CurrentTarget);
-        }
-
-
-        public static async Task<bool> RoughDivide() //Dash
-        {
-            if (!GunbreakerSettings.Instance.UseRoughDivide)
-                return false;
-
-            if (!Core.Me.HasAura(Auras.NoMercy))
-                return false;
-
-            if (GunbreakerSettings.Instance.RoughDivideOnlyInMelee
-                && !Core.Me.CurrentTarget.WithinSpellRange(3))
-            {
-                return false;
-            }
-
-            if (Spells.RoughDivide.Charges < GunbreakerSettings.Instance.SaveRoughDivideCharges + 1)
-            {
-                return false;
-            }
-
-            //if (GunbreakerRoutine.IsAurasForComboActive())
-            //    return false;
-
-            return await Spells.RoughDivide.Cast(Core.Me.CurrentTarget);
         }
 
 
