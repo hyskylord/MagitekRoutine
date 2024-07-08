@@ -349,7 +349,7 @@ namespace Magitek.Logic.Astrologian
 
         public static async Task<bool> LadyOfCrowns()
         {
-            if (!Core.Me.HasAura(Auras.LadyOfCrownsDrawn))
+            if (ActionResourceManager.Astrologian.CurrentDraw != ActionResourceManager.Astrologian.AstrologianDraw.Umbral)
                 return false;
 
             if (!AstrologianSettings.Instance.LadyOfCrowns)

@@ -108,8 +108,8 @@ namespace Magitek.Utilities
 
         // AST
         #region AST
-        public static readonly SpellData Draw = DataManager.GetSpellData(3590);
-        public static readonly SpellData Redraw = DataManager.GetSpellData(3593);
+        public static readonly SpellData AstralDraw = DataManager.GetSpellData(37017);
+        public static readonly SpellData UmbralDraw = DataManager.GetSpellData(37018);
         public static readonly SpellData Benefic = DataManager.GetSpellData(3594);
         public static readonly SpellData AspectedBenefic = DataManager.GetSpellData(3595);
         public static readonly SpellData Malefic = DataManager.GetSpellData(3596);
@@ -133,7 +133,7 @@ namespace Magitek.Utilities
         public static readonly SpellData Spire = DataManager.GetSpellData(4406);
         public static readonly SpellData EarthlyStar = DataManager.GetSpellData(7439);
         public static readonly SpellData Malefic3 = DataManager.GetSpellData(7442);
-        public static readonly SpellData MinorArcana = DataManager.GetSpellData(7443);
+        public static readonly SpellData MinorArcana = DataManager.GetSpellData(37022);
         public static readonly SpellData LordofCrowns = DataManager.GetSpellData(7444);
         public static readonly SpellData LadyofCrowns = DataManager.GetSpellData(7445);
         public static readonly SpellData StellarDetonation = DataManager.GetSpellData(8324);
@@ -145,8 +145,9 @@ namespace Magitek.Utilities
         public static readonly SpellData CelestialIntersection = DataManager.GetSpellData(16556);
         public static readonly SpellData Horoscope = DataManager.GetSpellData(16557);
         public static readonly SpellData NeutralSect = DataManager.GetSpellData(16559);
-        public static readonly SpellData Play = DataManager.GetSpellData(17055);
-        public static readonly SpellData Astrodyne = DataManager.GetSpellData(25870);
+        public static readonly SpellData PlayI = DataManager.GetSpellData(37019);
+        public static readonly SpellData PlayII = DataManager.GetSpellData(37020);
+        public static readonly SpellData PlayIII = DataManager.GetSpellData(37021);
         public static readonly SpellData CrownPlay = DataManager.GetSpellData(25869);
         public static readonly SpellData Exaltation = DataManager.GetSpellData(25873);
         public static readonly SpellData Macrocosmos = DataManager.GetSpellData(25874);

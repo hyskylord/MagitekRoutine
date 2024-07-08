@@ -3,6 +3,7 @@ using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
 using ff14bot.Objects;
+using Magitek.Enumerations;
 using Magitek.Extensions;
 using Magitek.Models.Astrologian;
 using Magitek.Utilities;
@@ -17,35 +18,24 @@ namespace Magitek.Logic.Astrologian
     internal static class Cards
     {
 
-        public enum NewAstroCards
+        public static AstrologianCard GetDrawnCard()
         {
-            None,
-            Balance,
-            Bole,
-            Arrow,
-            Spear,
-            Ewer,
-            Spire
-        }
+            var drawnCards = CurrentCards;
 
-        public static NewAstroCards GetDrawnCard()
-        {
-            var drawnCard = ActionResourceManager.CostTypesStruct.offset_D;
+            foreach (var card in drawnCards)             {
+                if (card == AstrologianCard.None)
+                    continue;
 
-            if (drawnCard == 1 || drawnCard == 113 || drawnCard == 129) return NewAstroCards.Balance;
-            if (drawnCard == 2 || drawnCard == 114 || drawnCard == 130) return NewAstroCards.Bole;
-            if (drawnCard == 3 || drawnCard == 115 || drawnCard == 131) return NewAstroCards.Arrow;
-            if (drawnCard == 4 || drawnCard == 116 || drawnCard == 132) return NewAstroCards.Spear;
-            if (drawnCard == 5 || drawnCard == 117 || drawnCard == 133) return NewAstroCards.Ewer;
-            if (drawnCard == 6 || drawnCard == 118 || drawnCard == 134) return NewAstroCards.Spire;
+                return card;
+            }
 
-            return NewAstroCards.None;
+            return AstrologianCard.None;
         }
         public static async Task<bool> PlayCards()
         {
             var drawnCard = GetDrawnCard();
             
-            var cardDrawn = drawnCard != NewAstroCards.None;
+            var cardDrawn = drawnCard != AstrologianCard.None;
 
             /*
             Looks like Arcana is now filled with either the Crown Draw, Or the Arcana Draw with Arcana Draw taking priority.
@@ -67,17 +57,17 @@ namespace Magitek.Logic.Astrologian
             //    && AstrologianSettings.Instance.UseDraw
             //    && !cardDrawn)
             //     if (await Spells.Draw.Cast(Core.Me))
-            //       await Coroutine.Wait(700, () => GetDrawnCard() != NewAstroCards.None);
+            //       await Coroutine.Wait(700, () => GetDrawnCard() != AstrologianCard.None);
                 
             if (!cardDrawn)
                 return false;
 
-            if (Core.Me.InCombat && Spells.MinorArcana.IsKnownAndReady() && AstrologianSettings.Instance.UseMinorArcana)
-                if (!Core.Me.HasAnyAura(new uint[] { Auras.LadyOfCrownsDrawn, Auras.LordOfCrownsDrawn }))
-                    return await Spells.MinorArcana.Cast(Core.Me);
+            //if (Core.Me.InCombat && Spells.MinorArcana.IsKnownAndReady() && AstrologianSettings.Instance.UseMinorArcana)
+            //    if (!Core.Me.HasAnyAura(new uint[] { Auras.LadyOfCrownsDrawn, Auras.LordOfCrownsDrawn }))
+            //        return await Spells.MinorArcana.Cast(Core.Me);
 
-            if (Combat.CombatTotalTimeLeft <= AstrologianSettings.Instance.DontPlayWhenCombatTimeIsLessThan)
-                return false;
+            //if (Combat.CombatTotalTimeLeft <= AstrologianSettings.Instance.DontPlayWhenCombatTimeIsLessThan)
+            //    return false;
 
             //if (await RedrawOrDrawAgain(drawnCard))
             //    return true;
@@ -86,151 +76,80 @@ namespace Magitek.Logic.Astrologian
             {
                 switch (drawnCard)
                 {
-                    //Solar Seal
-                    case NewAstroCards.Balance:
-                        if (DivinationSeals.All(seal => seal != AstrologianSeal.Solar_Seal))
-                        {
-                            return await MeleeDpsOrTank();
-                        }
-                        break;
-                    case NewAstroCards.Bole:
-                        if (DivinationSeals.All(seal => seal != AstrologianSeal.Solar_Seal))
-                        {
-                            return await RangedDpsOrHealer();
-                        }
-                        break;
-
-                    //Lunar Seal
-                    case NewAstroCards.Arrow:
-                        if (DivinationSeals.All(seal => seal != AstrologianSeal.Lunar_Seal))
-                        {
-                            return await MeleeDpsOrTank();
-                        }
-                        break;
-                    case NewAstroCards.Ewer:
-                        if (DivinationSeals.All(seal => seal != AstrologianSeal.Lunar_Seal))
-                        {
-                            return await RangedDpsOrHealer();
-                        }
-                        break;
-
-                    //Celestial Seal
-                    case NewAstroCards.Spear:
-                        if (DivinationSeals.All(seal => seal != AstrologianSeal.Celestial_Seal))
-                        {
-                            return await MeleeDpsOrTank();
-                        }
-                        break;
-                    case NewAstroCards.Spire:
-                        if (DivinationSeals.All(seal => seal != AstrologianSeal.Celestial_Seal))
-                        {
-                            return await RangedDpsOrHealer();
-                        }
-                        break;
+                    case AstrologianCard.Balance:
+                        return await Spells.PlayI.Masked().Cast(MeleeDpsOrTank());
+                    case AstrologianCard.Spear:
+                        return await Spells.PlayI.Masked().Cast(RangedDpsOrHealer());
+                    case AstrologianCard.Bole:
+                        return await Spells.PlayII.Masked().Cast(Tank());
+                    case AstrologianCard.Arrow:
+                        return await Spells.PlayII.Masked().Cast(Tank());
+                    case AstrologianCard.Ewer:
+                        return await Spells.PlayIII.Masked().Cast(Tank());
+                    case AstrologianCard.Spire:
+                        return await Spells.PlayIII.Masked().Cast(Tank());
                 }
             }
 
             if (!AstrologianSettings.Instance.Play)
                 return false;
 
-            if (!Globals.InParty && Core.Me.InCombat && !(Casting.LastSpell == Spells.Play))
-                return await Spells.Play.Cast(Core.Me);
+            if (!Globals.InParty && Core.Me.InCombat)
+                switch (drawnCard)
+                {
+                    case AstrologianCard.Balance:
+                    case AstrologianCard.Spear:
+                        return await Spells.PlayI.Masked().Cast(Core.Me);
+                    case AstrologianCard.Bole:
+                    case AstrologianCard.Arrow:
+                        return await Spells.PlayII.Masked().Cast(Core.Me);
+                    case AstrologianCard.Ewer:
+                    case AstrologianCard.Spire:
+                        return await Spells.PlayIII.Masked().Cast(Core.Me);
+                }
 
             return false;
         }
 
-        public static async Task<bool> RedrawOrDrawAgain(NewAstroCards drawnCard)
+        public static async Task<bool> Draw()
         {
             if (!Core.Me.InCombat)
                 return false;
 
-            if (drawnCard == NewAstroCards.Balance && DivinationSeals.All(seal => seal != AstrologianSeal.Solar_Seal))
-                return false;
+            foreach (var card in CurrentCards)
+            {
+                if (card != AstrologianCard.None)
+                    return false;
+            }
 
-            if (drawnCard == NewAstroCards.Bole && DivinationSeals.All(seal => seal != AstrologianSeal.Solar_Seal))
-                return false;
+            if (Spells.AstralDraw.IsKnownAndReady())
+                return await Spells.AstralDraw.Cast(Core.Me);
 
-            if (drawnCard == NewAstroCards.Arrow && DivinationSeals.All(seal => seal != AstrologianSeal.Lunar_Seal))
-                return false;
-
-            if (drawnCard == NewAstroCards.Ewer && DivinationSeals.All(seal => seal != AstrologianSeal.Lunar_Seal))
-                return false;
-
-            if (drawnCard == NewAstroCards.Spear && DivinationSeals.All(seal => seal != AstrologianSeal.Celestial_Seal))
-                return false;
-
-            if (drawnCard == NewAstroCards.Spire && DivinationSeals.All(seal => seal != AstrologianSeal.Celestial_Seal))
-                return false;
-
-            //Redraw no longer has charges
-            if (Spells.Redraw.IsKnownAndReady() && AstrologianSettings.Instance.UseReDraw && Core.Me.HasAura(Auras.ClarifyingDraw))
-                return await Spells.Redraw.Cast(Core.Me);
-
-            if (Spells.Draw.IsKnownAndReady() && Spells.Draw.Charges >= 1)
-                return await Spells.Draw.Cast(Core.Me);
+            if (Spells.UmbralDraw.IsKnownAndReady())
+                return await Spells.UmbralDraw.Cast(Core.Me);
 
             return false;
         }
 
-        public static async Task<bool> AstroDyne()
+        private static GameObject Tank()
         {
-            if (!AstrologianSettings.Instance.Play || !AstrologianSettings.Instance.AstroDyne)
-                return false;
+            var ally = Group.CastableAlliesWithin30.Where(a => !a.HasAnyCardAura() && a.CurrentHealth > 0 && (a.IsTank())).OrderBy(GetWeight);
 
-            if (!Core.Me.InCombat)
-                return false;
-
-            if (Casting.LastSpell == Spells.Astrodyne)
-                return false;
-
-            if (!Spells.Astrodyne.IsKnownAndReady())
-                return false;
-
-            if (Combat.CombatTotalTimeLeft <= AstrologianSettings.Instance.DontPlayWhenCombatTimeIsLessThan)
-                return false;
-
-            if (DivinationSeals.All(seal => seal == 0))
-                return false;
-
-            /* NEEDS REWORK: Astrodyne cannot be cast without 3 seals, number of buffs determined by unique seals, needs draw logic for sub-3 astrodyne plays.
-            
-            //1 = MP Regen
-            if (DivinationSeals.Count(seal => seal != 0) == 1 && (Core.Me.CurrentManaPercent > 20 || Spells.LucidDreaming.IsReady() || Core.Me.HasAura(Auras.LucidDreaming)))
-                return false;
-
-            //2 = MP Regen + Haste
-            var hasteThreshold = PartyManager.NumMembers == 4 ? 2 : 3;
-
-            if (DivinationSeals.Count(seal => seal != 0) == 2 && (Core.Me.CurrentManaPercent > 60 || Spells.Lightspeed.IsReady()))
-                return false;
-
-            if (Core.Me.HasAura(Auras.Lightspeed))
-                return false;
-            */
-            //3 = MP Regen + Haste + Dmg (or shortcut from above logic)
-            if (DivinationSeals.Count(seal => seal != 0) == 3)
-                return await Spells.Astrodyne.Cast(Core.Me);
-
-            return false;
+            return ally.FirstOrDefault(Core.Me);
         }
-        private static async Task<bool> MeleeDpsOrTank()
+
+        private static GameObject MeleeDpsOrTank()
         {
             var ally = Group.CastableAlliesWithin30.Where(a => !a.HasAnyCardAura() && a.CurrentHealth > 0 && (a.IsTank() || a.IsMeleeDps())).OrderBy(GetWeight);
             
-            if (ally == null)
-                return false;
-
-            return await Spells.Play.Cast(ally.FirstOrDefault());
+            return ally.FirstOrDefault(Core.Me);
         }
 
-        private static async Task<bool> RangedDpsOrHealer()
+        private static GameObject RangedDpsOrHealer()
         {
             var ally = Group.CastableAlliesWithin30.Where(a => !a.HasAnyCardAura() && a.CurrentHealth > 0 && (a.IsHealer() || a.IsRangedDpsCard())).OrderBy(GetWeight);
 
-            if (ally == null)
-                return false;
-
-            return await Spells.Play.Cast(ally.FirstOrDefault());
+            return ally.FirstOrDefault(Core.Me);
         }
 
         private static int GetWeight(Character c)

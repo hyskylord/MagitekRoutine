@@ -1,4 +1,5 @@
 using ff14bot;
+using ff14bot.Managers;
 using Magitek.Extensions;
 using Magitek.Models.Astrologian;
 using Magitek.Utilities;
@@ -79,9 +80,8 @@ namespace Magitek.Logic.Astrologian
 
         public static async Task<bool> LordOfCrown()
         {
-            if (!Core.Me.HasAura(Auras.LordOfCrownsDrawn))
+            if (ActionResourceManager.Astrologian.CurrentDraw != ActionResourceManager.Astrologian.AstrologianDraw.Astral)
                 return false;
-
 
             if (Combat.Enemies.Count(r => r.Distance(Core.Me.Location) <= Spells.LordofCrowns.Radius) >= AstrologianSettings.Instance.LordOfCrownsEnemies)
                 return await Spells.LordofCrowns.Cast(Core.Me);

@@ -49,7 +49,7 @@
         <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5">
                 <StackPanel Orientation="Horizontal">
-                    <CheckBox Margin="5" Content=" Use Weaving (Only cast Instant Abilities after spell casts)" IsChecked="{Binding PictomancerSettings.UseTTD, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Margin="5" Content=" Use Weaving (Only cast Instant Abilities after spell casts)" IsChecked="{Binding PictomancerSettings.UseWeaving, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>
