@@ -38,7 +38,8 @@ namespace Magitek.Logic.Gunbreaker
             if (Spells.KeenEdge.Cooldown.TotalMilliseconds > Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset + 100)
                 return false;
 
-            if (Spells.Bloodfest.IsKnownAndReady(10000))
+            //Force Delay until butral shell is cast
+            if (Casting.LastSpell == Spells.KeenEdge)
                 return false;
 
             return await Spells.NoMercy.Cast(Core.Me);
@@ -49,7 +50,10 @@ namespace Magitek.Logic.Gunbreaker
             if (!GunbreakerSettings.Instance.UseBloodfest)
                 return false;
 
-            if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
+            //if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
+            //    return false;
+
+            if (!Core.Me.HasAura(Auras.NoMercy))
                 return false;
 
             return await Spells.Bloodfest.Cast(Core.Me.CurrentTarget);

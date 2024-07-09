@@ -137,12 +137,6 @@ namespace Magitek.Rotations
 
             //Apply DOT / Burst
             if (await Aoe.DoubleDown()) return true;
-            if (await SingleTarget.SonicBreak()) return true;
-
-            //LionHeart Combo
-            if (await SingleTarget.LionHeart()) return true;
-            if (await SingleTarget.NobleBlood()) return true;
-            if (await SingleTarget.ReignOfBeasts()) return true;
 
             //Combo 2
             if (await SingleTarget.SavageClaw()) return true;
@@ -151,6 +145,13 @@ namespace Magitek.Rotations
 
             //Combo 3
             if (await SingleTarget.BurstStrike()) return true;
+
+            //LionHeart Combo
+            if (await SingleTarget.LionHeart()) return true;
+            if (await SingleTarget.NobleBlood()) return true;
+            if (await SingleTarget.ReignOfBeasts()) return true;
+
+            if (await SingleTarget.SonicBreak()) return true;
 
             //AOE
             if (await Aoe.FatedCircle()) return true;
