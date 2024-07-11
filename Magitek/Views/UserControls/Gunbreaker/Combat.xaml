@@ -88,6 +88,7 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Margin="5">
                     <StackPanel Orientation="Horizontal">
@@ -102,6 +103,14 @@
                         <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
                     </StackPanel>
 
+                    <StackPanel Grid.Row="2" Margin="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{DynamicResource TextBlockDefault}" Text="BowShock When There Are At Least " />
+                            <controls:Numeric Margin="0,3" MaxValue="50" MinValue="1" Value="{Binding GunbreakerSettings.BowShockEnemies, Mode=TwoWay}" />
+                            <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
+                        </StackPanel>
+                    </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{DynamicResource TextBlockDefault}" Text="Prioritize Fated Circle over Gnashing Fang from " />
                         <controls:Numeric Margin="0,3" MaxValue="50" MinValue="1" Value="{Binding GunbreakerSettings.PrioritizeFatedCircleOverGnashingFangEnemies, Mode=TwoWay}" />
