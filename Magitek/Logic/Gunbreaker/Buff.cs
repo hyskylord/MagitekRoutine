@@ -4,6 +4,7 @@ using Magitek.Logic.Roles;
 using Magitek.Models.Account;
 using Magitek.Models.Gunbreaker;
 using Magitek.Utilities;
+using System.Linq;
 using System.Threading.Tasks;
 using static ff14bot.Managers.ActionResourceManager.Gunbreaker;
 using GunbreakerRoutine = Magitek.Utilities.Routines.Gunbreaker;
@@ -38,9 +39,15 @@ namespace Magitek.Logic.Gunbreaker
             if (Spells.KeenEdge.Cooldown.TotalMilliseconds > Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset + 100)
                 return false;
 
-            //Force Delay until butral shell is cast
-            if (Casting.LastSpell == Spells.KeenEdge)
+            //Force Delay when pulling
+            if (Casting.LastSpell == Spells.LightningShot)
                 return false;
+
+            if (!Core.Me.CurrentTarget.ValidAttackUnit())
+                return false;
+
+            if(!Core.Me.CurrentTarget.WithinSpellRange(Spells.KeenEdge.Range))
+                 return false;
 
             return await Spells.NoMercy.Cast(Core.Me);
         }
@@ -50,10 +57,10 @@ namespace Magitek.Logic.Gunbreaker
             if (!GunbreakerSettings.Instance.UseBloodfest)
                 return false;
 
-            //if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
-            //    return false;
+            if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
+                return false;
 
-            if (!Core.Me.HasAura(Auras.NoMercy))
+            if (Spells.NoMercy.IsKnownAndReady(4000))
                 return false;
 
             return await Spells.Bloodfest.Cast(Core.Me.CurrentTarget);

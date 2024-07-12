@@ -114,6 +114,9 @@ namespace Magitek.Rotations
             //oGCD to use with BurstStrike
             if (await SingleTarget.Hypervelocity()) return true;
 
+            //GCD to use when No Mercy
+            if (await SingleTarget.SonicBreak()) return true;
+
             //oGCD to use inside Combo 2
             if (await SingleTarget.EyeGouge()) return true;
             if (await SingleTarget.AbdomenTear()) return true;
@@ -121,21 +124,21 @@ namespace Magitek.Rotations
 
             if (GunbreakerRoutine.GlobalCooldown.CanWeave())
             {
+                //OGCD dots
+                if (await Aoe.BowShock()) return true;
                 //oGCD - Buffs
                 if (await Buff.NoMercy()) return true;
                 if (await Buff.Bloodfest()) return true;
 
                 //oGCD - Damage
                 if (await SingleTarget.BlastingZone()) return true;
-                if (await Aoe.FatedBrand()) return true;
-                if (await Aoe.BowShock()) return true;
             }
 
             //Pull or get back aggro with LightningShot
             if (await SingleTarget.LightningShotToPullOrAggro()) return true;
             if (await SingleTarget.LightningShotToDps()) return true;
 
-            //Apply DOT / Burst
+            //Burst
             if (await Aoe.DoubleDown()) return true;
 
             //Combo 2
@@ -143,15 +146,13 @@ namespace Magitek.Rotations
             if (await SingleTarget.WickedTalon()) return true;
             if (await SingleTarget.GnashingFang()) return true;
 
-            //Combo 3
-            if (await SingleTarget.BurstStrike()) return true;
-
             //LionHeart Combo
             if (await SingleTarget.LionHeart()) return true;
             if (await SingleTarget.NobleBlood()) return true;
             if (await SingleTarget.ReignOfBeasts()) return true;
 
-            if (await SingleTarget.SonicBreak()) return true;
+            //Combo 3
+            if (await SingleTarget.BurstStrike()) return true;
 
             //AOE
             if (await Aoe.FatedCircle()) return true;

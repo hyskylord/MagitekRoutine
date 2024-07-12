@@ -129,8 +129,7 @@ namespace Magitek.Logic.Gunbreaker
             if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 5 + r.CombatReach) >= GunbreakerSettings.Instance.PrioritizeFatedCircleOverGnashingFangEnemies)
                 return false;
 
-            //Hold for NoMercy Combo
-            if (Spells.NoMercy.IsKnownAndReady(15000))
+            if (Spells.NoMercy.IsKnownAndReady(2000))
                 return false;
 
             return await Spells.GnashingFang.Cast(Core.Me.CurrentTarget);
@@ -208,6 +207,9 @@ namespace Magitek.Logic.Gunbreaker
             if (Core.Me.HasAura(Auras.ReadyToReign))
                  return false;
 
+            if (Spells.NoMercy.IsKnownAndReady(2000))
+                return false;
+
             if (Core.Me.HasAura(Auras.NoMercy) && Cartridge > 0)
             {
                 if (Cartridge < GunbreakerRoutine.MaxCartridge && (Spells.DoubleDown.IsKnownAndReady(10000) || Spells.GnashingFang.IsKnownAndReady(10000)))
@@ -216,16 +218,10 @@ namespace Magitek.Logic.Gunbreaker
                 return await Spells.BurstStrike.Cast(Core.Me.CurrentTarget);
             }
 
-            //if (Cartridge == GunbreakerRoutine.MaxCartridge && ActionManager.LastSpell.Id != Spells.BrutalShell.Id)
-            //    return false;
+            if (Cartridge == GunbreakerRoutine.MaxCartridge && ActionManager.LastSpell.Id != Spells.BrutalShell.Id)
+                return false;
 
-            if (Cartridge > 0 && Spells.Bloodfest.IsKnownAndReady(14000))
-                return await Spells.BurstStrike.Cast(Core.Me.CurrentTarget);
-
-            if (Cartridge < GunbreakerRoutine.MaxCartridge && Spells.DoubleDown.IsKnownAndReady(20000))
-                  return false;
-
-            if (Cartridge < GunbreakerRoutine.MaxCartridge && Spells.GnashingFang.IsKnownAndReady(8000))
+            if (Cartridge < GunbreakerRoutine.MaxCartridge)
                 return false;
 
             return await Spells.BurstStrike.Cast(Core.Me.CurrentTarget);

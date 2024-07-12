@@ -115,7 +115,7 @@ namespace Magitek.Logic.Gunbreaker
             if (GunbreakerRoutine.IsAurasForComboActive())
                 return false;
 
-            if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 5 + r.CombatReach) < 1)
+            if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 5 + r.CombatReach) < GunbreakerSettings.Instance.BowShockEnemies)
                 return false;
 
             return await Spells.BowShock.Cast(Core.Me.CurrentTarget);
@@ -147,6 +147,9 @@ namespace Magitek.Logic.Gunbreaker
                 return false;
 
             if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 5 + r.CombatReach) < GunbreakerSettings.Instance.DoubleDownEnemies)
+                return false;
+
+            if (Spells.GnashingFang.IsKnownAndReady(1000))
                 return false;
 
             return await Spells.DoubleDown.Cast(Core.Me.CurrentTarget);

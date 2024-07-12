@@ -30,6 +30,10 @@ namespace Magitek.Models.Gunbreaker
         public bool UseBowShock { get; set; }
 
         [Setting]
+        [DefaultValue(1)]
+        public int BowShockEnemies { get; set; }
+
+        [Setting]
         [DefaultValue(true)]
         public bool UseRoughDivide { get; set; }
 
