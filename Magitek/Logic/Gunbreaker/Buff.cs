@@ -43,8 +43,11 @@ namespace Magitek.Logic.Gunbreaker
             if (Casting.LastSpell == Spells.LightningShot)
                 return false;
 
-            if (Core.Me.CurrentTarget.Distance(Core.Me) > 3)
+            if (!Core.Me.CurrentTarget.ValidAttackUnit())
                 return false;
+
+            if(!Core.Me.CurrentTarget.WithinSpellRange(Spells.KeenEdge.Range))
+                 return false;
 
             return await Spells.NoMercy.Cast(Core.Me);
         }
