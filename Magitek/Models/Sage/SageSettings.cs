@@ -156,6 +156,14 @@ namespace Magitek.Models.Sage
         [DefaultValue(true)]
         public bool ToxiconOnLowMana { get; set; }
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool UsedPsyche { get; set; }
+
+        [Setting]
+        [DefaultValue(1)]
+        public int PsycheAoEEnemies { get; set; }
+
         #endregion
 
         #region Buffs

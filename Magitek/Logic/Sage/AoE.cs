@@ -151,5 +151,22 @@ namespace Magitek.Logic.Sage
 
             return await Spells.Pneuma.Cast(Core.Me.CurrentTarget);
         }
+
+        public static async Task<bool> Psyche()
+        {
+            if (!SageSettings.Instance.DoDamage)
+                return false;
+
+            if (!SageSettings.Instance.UsedPsyche)
+                return false;
+
+            if (Combat.Enemies.Count(r => r.Distance(Core.Me.CurrentTarget) <= Spells.Psyche.Radius) < SageSettings.Instance.PsycheAoEEnemies)
+                return false;
+
+            if (Core.Me.ClassLevel < Spells.Psyche.LevelAcquired)
+                return false;
+
+            return await Spells.Psyche.Cast(Core.Me.CurrentTarget);
+        }
     }
 }
