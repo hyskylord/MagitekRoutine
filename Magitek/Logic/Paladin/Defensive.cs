@@ -61,7 +61,10 @@ namespace Magitek.Logic.Paladin
             if (Core.Me.CurrentHealthPercent > PaladinSettings.Instance.SentinelHp)
                 return false;
 
-            return await Spells.Sentinel.CastAura(Core.Me, Auras.Sentinel);
+            if (Spells.Guardian.IsKnown())
+                return await Spells.Guardian.CastAura(Core.Me, Auras.Guardian);
+            else
+                return await Spells.Sentinel.CastAura(Core.Me, Auras.Sentinel);
         }
 
         public static async Task<bool> Reprisal()

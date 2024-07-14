@@ -108,6 +108,7 @@ namespace Magitek.Rotations
                     if (await Defensive.Reprisal()) return true;
                     if (await Defensive.Sheltron()) return true;
                     if (await Defensive.DivineVeil()) return true;
+                    if (await Tank.ArmsLength(PaladinSettings.Instance)) return true;
 
                     //Cover
                     if (await Defensive.Intervention()) return true;

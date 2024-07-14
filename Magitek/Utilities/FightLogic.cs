@@ -21,6 +21,7 @@ namespace Magitek.Utilities
             Stormblood,
             Shadowbringers,
             Endwalker,
+            Dawntrail
         }
 
         private static readonly Stopwatch FlStopwatch = new Stopwatch();
@@ -205,12 +206,12 @@ namespace Magitek.Utilities
             if (encounter == null)
                 return SetAndReturn();
 
-            enemyLogic = encounter.Enemies.FirstOrDefault(x => Combat.Enemies.Any(y => x.Id == y.NpcId));
+            enemyLogic = encounter.Enemies.FirstOrDefault(x => Combat.Enemies.Any(y => x.Id == y.NpcId), encounter.Enemies.First());
 
             if (enemyLogic == null)
                 return SetAndReturn();
 
-            enemy = Combat.Enemies.FirstOrDefault(y => enemyLogic.Id == y.NpcId);
+            enemy = Combat.Enemies.FirstOrDefault(y => enemyLogic.Id == y.NpcId, Combat.Enemies.First());
 
             return SetAndReturn();
 
@@ -5551,7 +5552,532 @@ namespace Magitek.Utilities
                     }
                 }
             },
-            
+
+            #endregion
+
+            #region: Dawntrail Dungeons
+            new Encounter {
+                ZoneId = ZoneId.Ihuykatumu,
+                Name = "Dungeon: Ihuykatumu",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12723,
+                        Name = "Prime Punutiy",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36492, // punuti press
+                            36506, // song of the punutiy
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12716,
+                        Name = "Drowsie",
+                        TankBusters = new List<uint>() {
+                            39132, // uppercut
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            // Add Aoes here if available
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12711,
+                        Name = "Apollyon",
+                        TankBusters = new List<uint>() {
+                            36347, // blade
+                            36356, // blade
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36341, // high wind
+                            36352, // thunder iii
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.WorqorZormor,
+                Name = "Dungeon: Worqor Zormor",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12819,
+                        Name = "Ryoqor Terteh",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36279, // frosting fracas aoe
+                            36713, // sparling sprinkling
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12703,
+                        Name = "Kahderyor",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36282, // wind unbound
+                            36285, // crystalline crush
+                            36283, // earthen shot
+                            36291, // seed crystals
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12705,
+                        Name = "Gurfurlur",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36269, // heaving haymaker
+                            36313, // sledgehammer
+                        },
+                        BigAoes = new List<uint>() {
+                            36320, // enduring glory
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.TheSkydeepCenote,
+                Name = "Dungeon: The Skydeep Cenote",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12755,
+                        Name = "Feather Ray",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36739, // immersion
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12888,
+                        Name = "Firearms",
+                        TankBusters = new List<uint>() {
+                            36447, // pummel
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36448, // dynamic dominance
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12728,
+                        Name = "Maulskull",
+                        TankBusters = new List<uint>() {
+                            39121, // wrought fire
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36675, // skullcrush
+                            36687, // deep thunder
+                            36711, // ashlayer
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.Vanguard,
+                Name = "Dungeon: Vanguard",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12750,
+                        Name = "Vanguard Commander R8",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36571, // electrowave
+                            36572, // electrosurge
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12757,
+                        Name = "Protector",
+                        TankBusters = new List<uint>() {
+                            37162, // rapid thunder
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            37161, // electrowave
+                            37345, // heavy blast cannon
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12752,
+                        Name = "Zander the Snakeskinner",
+                        TankBusters = new List<uint>() {
+                            36595, // saber rush
+                            36597, // shade shot
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36594, // electrothermia
+                            36596, // screech
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.Origenics,
+                Name = "Dungeon: Origenics",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12741,
+                        Name = "Herpekaris",
+                        TankBusters = new List<uint>() {
+                            36518, // convulsive crush
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36519, // strident shriek
+                            36473, // collective agony
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12693,
+                        Name = "Deceiver",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36371, // electrowave
+                            36367, // surge
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12695,
+                        Name = "Ambrose the Undeparted",
+                        TankBusters = new List<uint>() {
+                            36437, // voltic slash
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36436, // psychic wave
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.Alexandria,
+                Name = "Dungeon: Alexandria",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12844,
+                        Name = "Antivirus X",
+                        TankBusters = new List<uint> {
+                        },
+                        SharedTankBusters = null,
+                        Aoes = null,
+                        BigAoes = null
+                    },
+                    new Enemy {
+                        Id = 12864,
+                        Name = "Amalgam",
+                        TankBusters = new List<uint> {
+                        },
+                        SharedTankBusters = null,
+                        Aoes = null,
+                        BigAoes = null
+                    },
+                    new Enemy {
+                        Id = 12729,
+                        Name = "Eliminator",
+                        TankBusters = new List<uint> {
+                        },
+                        SharedTankBusters = null,
+                        Aoes = new List<uint> {
+                        },
+                        BigAoes = null
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.TheStrayboroughDeadwalk,
+                Name = "Dungeon: The Strayborough Deadwalk",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 13073,
+                        Name = "His Royal Headness Leonogg 1",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36529, // malicious mist
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12760,
+                        Name = "Jack in the Pot",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36725, // sordid scream
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12763,
+                        Name = "Traumerei",
+                        TankBusters = new List<uint>() {
+                            // Add TankBusters here if available
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            37168, // malicious mist
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.TenderValley,
+                Name = "Dungeon: Tender Valley",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12889,
+                        Name = "Barreltender",
+                        TankBusters = new List<uint>() {
+                            39242, // tender fury
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            37391, // succulent stomp
+                            37392, // barbed bellow
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12853,
+                        Name = "Anthracite",
+                        TankBusters = new List<uint>() {
+                            38467, // chimney smack
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36556, // carbonaceous combustion
+                            36554, // burning coals
+                            36542, // anthrabomb
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    },
+                    new Enemy {
+                        Id = 12709,
+                        Name = "The Greatest Serpent of Tural",
+                        TankBusters = new List<uint>() {
+                            36744, // screes of fury
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // Add SharedTankBusters here if available
+                        },
+                        Aoes = new List<uint>() {
+                            36748, // dubious tulidisaster
+                            36743, // moist summoning
+                        },
+                        BigAoes = new List<uint>() {
+                            // Add BigAoes here if available
+                        }
+                    }
+                }
+            },  
+            #endregion           
+
+            #region: Dawntrail Extreme Trials
+            new Encounter {
+                ZoneId = ZoneId.WorqorLarDorExtreme,
+                Name = "Trial: Valigarmanda (Extreme)",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12854,
+                        Name = "Valigarmanda",
+                        TankBusters = new List<uint>() {
+                            
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            0x8ffb, // ice talon
+                            0x8ffd, // ruinfall tower
+                        },
+                        Aoes = new List<uint>() {
+                            0x8fd4, // skyruin fire
+                            0x8fd2, // skyruin ice
+                            0x8fe7, // triscourge
+                            0x9005, // calamitous cry
+                            0x8fff, // ruinfall knockback
+                        },
+                        BigAoes = new List<uint>() {
+                            0x8fda, // disaster zone
+                            0x9692, // ruin foretold
+                            0x9008, 0x924c, 0x924e, 0x924f // tulidisasters
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.EverkeepExtreme,
+                Name = "Trial: Zoraal Ja (Extreme)",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 12881,
+                        Name = "Zoraal Ja",
+                        TankBusters = new List<uint>() {
+                            0x993e, // bitter whirlwind
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            0x993c, // regicidal rage
+                        },
+                        Aoes = new List<uint>() {
+                            0x9398, // actualize
+                            0x9374, // duty's edge
+                        },
+                        BigAoes = new List<uint>() {
+                            0x9397, // dawn of an age
+                        }
+                    },
+                    new Enemy {
+                        Id = 12882,
+                        Name = "Zoraal Ja",
+                        TankBusters = new List<uint>() {
+                            0x993e, // bitter whirlwind
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            0x993c, // regicidal rage
+                        },
+                        Aoes = new List<uint>() {
+                            0x9398, // actualize
+                            0x9374, // duty's edge
+                        },
+                        BigAoes = new List<uint>() {
+                            0x9397, // dawn of an age
+                        }
+                    }
+                }
+            },
             #endregion
         };
 
@@ -6085,7 +6611,21 @@ namespace Magitek.Utilities
                 WorthyOfHisBack = 1014,
                 Xelphatol = 572,
                 Yanxia = 614,
-                Zadnor = 975;
+                Zadnor = 975,
+                Alexandria = 1199,
+                Everkeep = 1200,
+                EverkeepExtreme = 1201,
+                Ihuykatumu = 1167,
+                Kozamauka = 1188,
+                LivingMemory = 1192,
+                Origenics = 1208,
+                TenderValley = 1203,
+                TheSkydeepCenote = 1194,
+                Vanguard = 1198,
+                WorqorLarDor = 1195,
+                WorqorLarDorExtreme = 1196,
+                WorqorZormor = 1193,
+                TheStrayboroughDeadwalk = 1204;
         }
     }
 }

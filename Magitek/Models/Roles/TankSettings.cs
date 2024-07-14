@@ -46,6 +46,18 @@ namespace Magitek.Models.Roles
         [Setting]
         [DefaultValue(10)]
         public int ReprisalHealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseArmsLength { get; set; }
+
+        [Setting]
+        [DefaultValue(75)]
+        public int ArmsLengthPercentage { get; set; }
+
+        [Setting]
+        [DefaultValue(4)]
+        public int ArmsLengthEnemies { get; set; }
         #endregion
 
         #region aggro

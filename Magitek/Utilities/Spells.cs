@@ -561,6 +561,7 @@ namespace Magitek.Utilities
         public static readonly SpellData BladeOfHonor = DataManager.GetSpellData(36922);
         public static readonly SpellData LastBastion = DataManager.GetSpellData(199);
         public static readonly SpellData Imperator = DataManager.GetSpellData(36921);
+        public static readonly SpellData Guardian = DataManager.GetSpellData(36920);
         #endregion
 
         // RDM

@@ -97,12 +97,14 @@
 
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
+                        <CheckBox Margin="5" Content=" Use Hammers During Starry " IsChecked="{Binding PictomancerSettings.UseHammerDuringStarry, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                         <CheckBox Margin="5" Content=" Save Hammers for Starry " IsChecked="{Binding PictomancerSettings.SaveHammerForStarry, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <CheckBox Margin="5" Content=" Save Comet for Starry " IsChecked="{Binding PictomancerSettings.SaveCometInBlackForStarry, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
+                        <CheckBox Margin="5" Content=" Use Mog / Madeen During Starry " IsChecked="{Binding PictomancerSettings.UseMogDuringStarry, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                         <CheckBox Margin="5" Content=" Save Mog / Madeen for Starry " IsChecked="{Binding PictomancerSettings.SaveMogForStarry, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     </StackPanel>
                 </StackPanel>

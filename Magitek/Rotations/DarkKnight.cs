@@ -81,6 +81,7 @@ namespace Magitek.Rotations
                 if (await Defensive.Execute()) return true;
                 if (await Defensive.Oblation(true)) return true;
                 if (await Defensive.Reprisal()) return true;
+                if (await Tank.ArmsLength(DarkKnightSettings.Instance)) return true;
 
                 if (await SingleTarget.CarveAndSpit()) return true;
                 if (await Aoe.SaltedEarth()) return true;

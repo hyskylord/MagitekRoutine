@@ -104,6 +104,7 @@ namespace Magitek.Rotations
                 if (await Defensive.Vengeance()) return true;
                 if (await Defensive.ShakeItOff()) return true;
                 if (await Buff.NascentFlash()) return true;
+                if (await Tank.ArmsLength(WarriorSettings.Instance)) return true;
 
                 //Cooldowns
                 if (await Buff.InnerRelease()) return true;

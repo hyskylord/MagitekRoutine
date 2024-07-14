@@ -109,6 +109,7 @@ namespace Magitek.Rotations
                 if (await Defensive.Reprisal()) return true;
                 if (await Defensive.HeartofLight()) return true;
                 if (await Defensive.HeartofCorundum()) return true;
+                if (await Tank.ArmsLength(GunbreakerSettings.Instance)) return true;
             }
 
             //oGCD to use with BurstStrike

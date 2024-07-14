@@ -67,6 +67,20 @@ namespace Magitek.Logic.Roles
             return await spell.CastAura(target, aura);
         }
 
+        public static async Task<bool> ArmsLength<T>(T settings) where T : TankSettings
+        {
+            if (!settings.UseArmsLength)
+                return false;
+
+            if (Core.Me.CurrentHealthPercent > settings.ArmsLengthPercentage)
+                return false;
+
+            if (!(Combat.Enemies.Count(r => r.TargetGameObject == Core.Me) >= settings.ArmsLengthEnemies))
+                return false;
+
+            return await Spells.ArmsLength.Cast(Core.Me);
+        }
+
         //If the calling class has stuns or interrupts beyond the default tank abilities (e.g.,
         //Paladin has Shield Bash in addition to Low Blow and Interject), pass them in the
         //extraStuns and extraInterrupts parameters
