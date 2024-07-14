@@ -18,9 +18,6 @@ namespace Magitek.Logic.Bard
             if(!Spells.PowerfulShotPvp.CanCast())
                 return false;
 
-            if (MovementManager.IsMoving)
-                return false;
-
             if(Core.Me.HasAura(Auras.Guard))
                 return false;
 

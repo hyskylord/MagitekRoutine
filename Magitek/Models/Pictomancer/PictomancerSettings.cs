@@ -31,12 +31,20 @@ namespace Magitek.Models.Pictomancer
         public bool UseWeaving { get; set; }
 
         [Setting]
+        [DefaultValue(true)]
+        public bool UseHammerDuringStarry { get; set; }
+
+        [Setting]
         [DefaultValue(false)]
         public bool SaveHammerForStarry { get; set; }
 
         [Setting]
         [DefaultValue(false)]
         public bool SaveCometInBlackForStarry { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseMogDuringStarry { get; set; }
 
         [Setting]
         [DefaultValue(false)]

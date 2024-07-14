@@ -47,6 +47,8 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -87,6 +89,21 @@
                                       Value="{Binding DarkKnightSettings.RampartHpPercentage, Mode=TwoWay}" />
                     <TextBlock Grid.Row="5" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
 
+                    <CheckBox Grid.Row="6" Grid.Column="0" Content="Arms Length" IsChecked="{Binding DarkKnightSettings.UseArmsLength, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric Grid.Row="6"
+                          Grid.Column="1"
+                          Margin="0,3"
+                          MaxValue="100"
+                          MinValue="1"
+                          Value="{Binding DarkKnightSettings.ArmsLengthPercentage, Mode=TwoWay}" />
+                    <TextBlock Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
+                    <controls:Numeric Grid.Row="6"
+                           Grid.Column="3"
+                           Margin="0,3"
+                           MaxValue="100"
+                           MinValue="1"
+                           Value="{Binding DarkKnightSettings.ArmsLengthEnemies, Mode=TwoWay}" />
+                    <TextBlock Grid.Row="6" Grid.Column="4" Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
                 </Grid>
 
             </StackPanel>

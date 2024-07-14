@@ -168,24 +168,12 @@ namespace Magitek.Extensions
                     return false;
             }
 
-            //if (Core.Me.OnPvpMap())
-            //{
-            //    if (Core.Me.IsCasting && Core.Me.CastingSpellId == spell.Id)
-            //        return false;
-
-            //    if (spell != Spells.PvpPlayDrawn)
-            //    {
-            //        if (target.Distance() > spell.Range)
-            //            return false;
-
-            //        if (spell != Spells.PvpPlayDrawn && spell.Cooldown != TimeSpan.Zero)
-            //            return false;
-            //    }
-            //    else
-            //    {
-            //        if (target.Distance() > 30) return false;
-            //    }
-            //}
+            if (Core.Me.OnPvpMap())
+            {
+                // these spells have cast times, but can be cast while moving
+                if (spell == Spells.BlastChargePvp || spell == Spells.PowerfulShotPvp)
+                    return true;
+            }
 
             if (BotManager.Current.IsAutonomous)
             {

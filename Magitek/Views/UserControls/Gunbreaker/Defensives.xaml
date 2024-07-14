@@ -43,6 +43,8 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -77,6 +79,22 @@
                     <CheckBox Grid.Row="5" Grid.Column="0" Content="Nebula" IsChecked="{Binding GunbreakerSettings.UseNebula, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     <controls:Numeric Grid.Row="5" Grid.Column="1" Margin="0,3,0,0" MaxValue="100" MinValue="1" Value="{Binding GunbreakerSettings.NebulaHealthPercent, Mode=TwoWay}" />
                     <TextBlock Grid.Row="5" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
+
+                    <CheckBox Grid.Row="6" Grid.Column="0" Content="Arms Length" IsChecked="{Binding GunbreakerSettings.UseArmsLength, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric Grid.Row="6"
+                            Grid.Column="1"
+                            Margin="0,3"
+                            MaxValue="100"
+                            MinValue="1"
+                            Value="{Binding GunbreakerSettings.ArmsLengthPercentage, Mode=TwoWay}" />
+                    <TextBlock Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
+                    <controls:Numeric Grid.Row="6"
+                           Grid.Column="3"
+                           Margin="0,3"
+                           MaxValue="100"
+                           MinValue="1"
+                           Value="{Binding GunbreakerSettings.ArmsLengthEnemies, Mode=TwoWay}" />
+                    <TextBlock Grid.Row="6" Grid.Column="4" Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
                 </Grid>
             </StackPanel>
         </controls:SettingsBlock>

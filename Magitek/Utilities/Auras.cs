@@ -345,6 +345,7 @@ namespace Magitek.Utilities
             PhantomKamaitachiReady = 2723,
             SupplicationReady = 3827,
             SepulchreReady = 3828,
+            Guardian = 3829,
             ImpactImminent = 3882,
             SacredSight = 3879,
             DivineGrace = 3881,

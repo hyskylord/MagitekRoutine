@@ -102,6 +102,13 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseMotifs)
                 return false;
 
+            if (ActionResourceManager.Pictomancer.MadeenPortraitReady
+                || ActionResourceManager.Pictomancer.MooglePortraitReady)
+                return false;
+
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
+                return false;
+
             var motif = Spells.CreatureMotif.Masked();
             var muse = Spells.LivingMuse.Masked();
 
@@ -136,6 +143,9 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseMogOfTheAges)
                 return false;
 
+            if (!PictomancerSettings.Instance.UseMogDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
+                return false;
+
             if (PictomancerSettings.Instance.SaveMogForStarry
                 && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
                 return false;
@@ -155,6 +165,9 @@ namespace Magitek.Logic.Pictomancer
         public static async Task<bool> WeaponMotif()
         {
             if (!PictomancerSettings.Instance.UseMotifs)
+                return false;
+
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
                 return false;
 
             var motif = Spells.WeaponMotif.Masked();
@@ -195,12 +208,15 @@ namespace Magitek.Logic.Pictomancer
             if (hammerAura == null)
                 return false;
 
+            if (!PictomancerSettings.Instance.UseHammerDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
+                return false;
+
             var hammerTimeLeft = hammerAura.TimespanLeft.TotalMilliseconds;
             var hammersLeft = hammerAura.Value;
             var hammerCastTime = Spells.HammerStamp.AdjustedCastTime.TotalMilliseconds + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset;
             var totalHammerCastTime = hammerCastTime * hammersLeft;
 
-            if (PictomancerSettings.Instance.SaveHammerForStarry 
+            if (PictomancerSettings.Instance.SaveHammerForStarry && PictomancerSettings.Instance.UseHammerDuringStarry
                 && Utilities.Routines.Pictomancer.StarryOffCooldownSoon()
                 && totalHammerCastTime > Utilities.Routines.Pictomancer.StarryCooldownRemaining())
                 return false;
@@ -219,6 +235,9 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (!PictomancerSettings.Instance.UseStarrySky)
+                return false;
+
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
                 return false;
 
             var motif = Spells.LandscapeMotif.Masked();

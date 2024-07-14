@@ -131,7 +131,9 @@ namespace Magitek.Rotations
 
             // inspiration is on a timer, need to consume those stacks first.
             // don't waste time painting more palettes
-            if (PictomancerSettings.Instance.PaletteDuringStarry || !Core.Me.HasAura(Auras.Hyperphantasia) || Spells.Swiftcast.IsKnownAndReady())
+            if (PictomancerSettings.Instance.PaletteDuringStarry 
+                || !Core.Me.HasAura(Auras.Hyperphantasia) 
+                || (PictomancerSettings.Instance.SwiftcastMotifs && Spells.Swiftcast.IsKnownAndReady()))
             {
                 if (await Palette.LandscapeMotif()) return true;
                 if (await Palette.CreatureMotif()) return true;
