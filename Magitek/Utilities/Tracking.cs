@@ -44,21 +44,15 @@ namespace Magitek.Utilities
                 }
             }
             else
-            {
-                if (Globals.InParty)
-                {
-                    //In the open world, in a party
-                    //Track everything our party tagged or every Fate Mob that is tagged by a player
-                    _enemyCache = GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => r.TaggerType == 2 || r.IsFate && r.TaggerType > 0 && !GameObjectManager.GetObjectsOfType<BattleCharacter>().Any(x => x.IsNpc && x.ObjectId == r.TaggerObjectId))
-                                                                                       .ToList();
-                }
-                else
-                {
-                    //In the open world, not in a party
-                    //Track the attacker list combined with every Fate Mob that is tagged by a player
-                    var _fateEnemyCache = GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => r.IsFate && r.TaggerType > 0 && !GameObjectManager.GetObjectsOfType<BattleCharacter>().Any(x => x.IsNpc && x.ObjectId == r.TaggerObjectId));
-                    _enemyCache = GameObjectManager.Attackers.Union(_fateEnemyCache).ToList();
-                }
+            {                
+                // Track the attacker list combined with every aggro'd Fate Mob
+                var _fateEnemyCache = GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r =>
+                    r.HasTarget
+                    && r.IsFate
+                    && Core.Me.Distance(r) < 50
+                    && !GameObjectManager.GetObjectsOfType<BattleCharacter>().Any(x => x.IsNpc && x.ObjectId == r.TaggerObjectId)
+                );
+                _enemyCache = GameObjectManager.Attackers.Union(_fateEnemyCache).ToList();
             }
 
             Combat.Enemies.Clear();
