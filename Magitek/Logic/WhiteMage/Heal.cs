@@ -454,6 +454,43 @@ namespace Magitek.Logic.WhiteMage
             }
         }
 
+        public static async Task<bool> Medica3()
+        {
+            if (!WhiteMageSettings.Instance.Medica3)
+                return false;
+
+            if (Core.Me.ClassLevel < Spells.Medica3.LevelAcquired)
+                return false;
+
+            if (Casting.LastSpell == Spells.Medica3)
+                return false;
+
+            if (Group.CastableAlliesWithin30.Count(CanMedica3) < AoeNeedHealing)
+                return false;
+
+            if (!await Spells.Medica3.Heal(Core.Me, false))
+            {
+                return false;
+            }
+
+            return await Coroutine.Wait(5000, () => MovementManager.IsMoving || Group.CastableAlliesWithin30.Count(CanMedica3) < AoeNeedHealing);
+
+            bool CanMedica3(GameObject unit)
+            {
+                //Medica III has always been 20y iirc
+                if (unit.Distance(Core.Me) > 20)
+                    return false;
+
+                if (unit.CurrentHealthPercent > WhiteMageSettings.Instance.Medica3HealthPercent)
+                    return false;
+
+                if (unit.HasAura(Auras.Medica3, true))
+                    return false;
+
+                return true;
+            }
+        }
+
         private static async Task<bool> RegenHealers()
         {
             if (!WhiteMageSettings.Instance.RegenOnHealers)
@@ -561,14 +598,15 @@ namespace Magitek.Logic.WhiteMage
 
             var canPlenaryIndulgence = Group.CastableAlliesWithin30.Count(r => r.CurrentHealthPercent < WhiteMageSettings.Instance.PlenaryIndulgenceHealthPercent);
 
-            if (canPlenaryIndulgence < AoeNeedHealing)
+            if (canPlenaryIndulgence < WhiteMageSettings.Instance.PlenaryIndulgenceAllies)
                 return false;
 
             if (await Spells.PlenaryIndulgence.Cast(Core.Me))
                 if (!await Cure3())
                     if (!await AfflatusRapture())
-                        if (!await Medica2())
-                            return await Spells.Medica.Cast(Core.Me);
+                        if (!await Medica3())
+                            if (!await Medica2())
+                                return await Spells.Medica.Cast(Core.Me);
 
             return false;
         }

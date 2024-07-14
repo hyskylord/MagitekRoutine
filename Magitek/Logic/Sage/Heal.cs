@@ -261,10 +261,20 @@ namespace Magitek.Logic.Sage
                     if (targets.Any(r => r.CurrentHealthPercent <= SageSettings.Instance.ZoeHealthPercent))
                         await UseZoe(); // intentionally ignore failures
 
-            if (!await UseEukrasia(Spells.EukrasianPrognosis.Id))
-                return false;
+            if (Core.Me.ClassLevel < 100)
+            {
+                if (!await UseEukrasia(Spells.EukrasianPrognosis.Id))
+                    return false;
 
-            return await Spells.EukrasianPrognosis.HealAura(Core.Me, Auras.EukrasianPrognosis);
+                return await Spells.EukrasianPrognosis.HealAura(Core.Me, Auras.EukrasianPrognosis);
+            }
+            else
+            {
+                if (!await UseEukrasia(Spells.EukrasianPrognosisII.Id))
+                    return false;
+
+                return await Spells.EukrasianPrognosisII.HealAura(Core.Me, Auras.EukrasianPrognosis);
+            }
         }
         public static async Task<bool> ForceEukrasianPrognosis()
         {
@@ -274,11 +284,22 @@ namespace Magitek.Logic.Sage
             if (!IsEukrasiaReady())
                 return false;
 
-            if (!await UseEukrasia(Spells.EukrasianPrognosis.Id))
-                return false;
+            if (Core.Me.ClassLevel < 100)
+            {
+                if (!await UseEukrasia(Spells.EukrasianPrognosis.Id))
+                    return false;
 
-            if (!await Spells.EukrasianPrognosis.HealAura(Core.Me, Auras.EukrasianPrognosis))
-                return false;
+                if (!await Spells.EukrasianPrognosis.HealAura(Core.Me, Auras.EukrasianPrognosis))
+                    return false;
+            }
+            else
+            {
+                if (!await UseEukrasia(Spells.EukrasianPrognosisII.Id))
+                    return false;
+
+                if (!await Spells.EukrasianPrognosisII.HealAura(Core.Me, Auras.EukrasianPrognosis))
+                    return false;
+            }
 
             SageSettings.Instance.ForceEukrasianPrognosis = false;
             TogglesManager.ResetToggles();

@@ -43,7 +43,7 @@ namespace Magitek.Logic.WhiteMage
             if (ActionResourceManager.WhiteMage.BloodLily < 3)
                 return false;
             if (!BotManager.Current.IsAutonomous && !MovementManager.IsMoving
-                && Combat.Enemies.Count(r => r.Distance(Core.Me.CurrentTarget) <= 5 + r.CombatReach) < WhiteMageSettings.Instance.HolyEnemies)
+                && Combat.Enemies.Count(r => r.Distance(Core.Me.CurrentTarget) <= 5 + r.CombatReach) < WhiteMageSettings.Instance.AfflatusMiseryEnemies)
                 return false;
             return await Spells.AfflatusMisery.Cast(Core.Me.CurrentTarget);
         }
@@ -52,7 +52,8 @@ namespace Magitek.Logic.WhiteMage
         {
             if (!WhiteMageSettings.Instance.ForceAfflatusMisery)
                 return false;
-
+            if (ActionResourceManager.WhiteMage.BloodLily < 3)
+                return false;
             if (!await Spells.AfflatusMisery.Cast(Core.Me.CurrentTarget)) return false;
             WhiteMageSettings.Instance.ForceAfflatusMisery = false;
             TogglesManager.ResetToggles();

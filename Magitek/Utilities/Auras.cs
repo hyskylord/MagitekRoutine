@@ -387,6 +387,9 @@ namespace Magitek.Utilities
             Hypercharged = 3864,
             FullMetalMachinist = 3866,
 
+            //WHM
+            Medica3 =  3880,
+
             //To prevent conflict
             Placeholder = 9999;
 

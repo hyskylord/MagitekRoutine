@@ -212,6 +212,8 @@ namespace Magitek.Rotations
             {
                 if (await Buff.Kardia()) return true;
                 if (await Buff.Soteria()) return true;
+                if (await Buff.Philosophia()) return true;
+                if (await AoE.Psyche()) return true;
             }
 
             if (Core.Me.CurrentManaPercent < SageSettings.Instance.MinimumManaPercentToDoDamage
