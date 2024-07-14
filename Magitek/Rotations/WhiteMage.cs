@@ -113,6 +113,7 @@ namespace Magitek.Rotations
             {
                 if (await Logic.WhiteMage.Heal.AfflatusRapture()) return true;
                 if (await Logic.WhiteMage.Heal.Cure3()) return true;
+                if (await Logic.WhiteMage.Heal.Medica3()) return true;
                 if (await Logic.WhiteMage.Heal.Medica2()) return true;
                 return await Spells.Medica.Cast(Core.Me);
             }
@@ -138,6 +139,7 @@ namespace Magitek.Rotations
                 if (await Logic.WhiteMage.Heal.AfflatusRapture()) return true;
                 if (await Logic.WhiteMage.Heal.Cure3()) return true;
                 if (await Logic.WhiteMage.Heal.Asylum()) return true;
+                if (await Logic.WhiteMage.Heal.Medica3()) return true;
                 if (await Logic.WhiteMage.Heal.Medica2()) return true;
                 if (await Logic.WhiteMage.Heal.Medica()) return true;
             }
@@ -213,14 +215,16 @@ namespace Magitek.Rotations
             if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.ThoroughCanAttack())
                 return false;
 
-            if (await SingleTarget.AfflatusMisery()) return true;
-            if (await Aoe.Holy()) return true;
-            if (await Aoe.AssizeDamage()) return true;
-
             if (await SingleTarget.Dots()) return true;
             if (await SingleTarget.DotMultipleTargets()) return true;
             if (await Buff.PresenceOfMind()) return true;
+            
             if (await SingleTarget.GlareIV()) return true;
+            if (await SingleTarget.AfflatusMisery()) return true;
+
+            if (await Aoe.Holy()) return true;
+            if (await Aoe.AssizeDamage()) return true;
+
             return await SingleTarget.Stone();
         }
 

@@ -106,6 +106,10 @@ namespace Magitek.Models.WhiteMage
         public bool UseAfflatusMisery { get; set; }
 
         [Setting]
+        [DefaultValue(3)]
+        public int AfflatusMiseryEnemies { get; set; }
+
+        [Setting]
         [DefaultValue(true)]
         public bool Assize { get; set; }
 
@@ -176,6 +180,14 @@ namespace Magitek.Models.WhiteMage
         [Setting]
         [DefaultValue(60.0f)]
         public float Medica2HealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Medica3 { get; set; }
+
+        [Setting]
+        [DefaultValue(60.0f)]
+        public float Medica3HealthPercent { get; set; }
 
         [Setting]
         [DefaultValue(3)]
