@@ -35,7 +35,7 @@ namespace Magitek.Logic.Samurai
          * ***********************************************************************************************/
         public static async Task<bool> Jinpu()
         {
-            if (!SamuraiRoutine.CanContinueComboAfter(Spells.Hakaze))
+            if (!SamuraiRoutine.CanContinueComboAfter(Spells.Hakaze) && !SamuraiRoutine.CanContinueComboAfter(Spells.Gyofu))
                 return false;
 
             if (ActionResourceManager.Samurai.Sen.HasFlag(Iaijutsu.Getsu))
@@ -60,7 +60,7 @@ namespace Magitek.Logic.Samurai
          * ***********************************************************************************************/
         public static async Task<bool> Shifu()
         {
-            if (!SamuraiRoutine.CanContinueComboAfter(Spells.Hakaze))
+            if (!SamuraiRoutine.CanContinueComboAfter(Spells.Hakaze) && !SamuraiRoutine.CanContinueComboAfter(Spells.Gyofu))
                 return false;
 
             if (ActionResourceManager.Samurai.Sen.HasFlag(Iaijutsu.Ka))
@@ -88,7 +88,8 @@ namespace Magitek.Logic.Samurai
             if (ActionResourceManager.Samurai.Sen.HasFlag(Iaijutsu.Setsu))
                 return false;
 
-            if (!SamuraiRoutine.CanContinueComboAfter(Spells.Hakaze) && !Core.Me.HasAura(Auras.MeikyoShisui))
+            if (!SamuraiRoutine.CanContinueComboAfter(Spells.Hakaze) && !SamuraiRoutine.CanContinueComboAfter(Spells.Gyofu)
+                && !Core.Me.HasAura(Auras.MeikyoShisui))
                 return false;
 
             if (SamuraiRoutine.isReadyFillerRotation && SamuraiSettings.Instance.SamuraiFillerStrategy.Equals(SamuraiFillerStrategy.ThreeGCD))
@@ -305,7 +306,7 @@ namespace Magitek.Logic.Samurai
             if (!Core.Me.HasTarget)
                 return false;
 
-            return PhysicalDps.ForceLimitBreak(Spells.Braver, Spells.Bladedance, Spells.DoomoftheLiving, Spells.Hakaze);
+            return PhysicalDps.ForceLimitBreak(Spells.Braver, Spells.Bladedance, Spells.DoomoftheLiving, Spells.Hakaze, Spells.Gyofu);
         }
     }
 }

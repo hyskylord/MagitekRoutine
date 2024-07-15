@@ -29,8 +29,8 @@ namespace Magitek.Logic.Samurai
                 return false;
 
             //Don't use mid combo
-            if (ActionManager.LastSpell == Spells.Hakaze || ActionManager.LastSpell == Spells.Shifu || ActionManager.LastSpell == Spells.Jinpu || ActionManager.LastSpell == Spells.Fuga
-                || Casting.LastSpell == Spells.Hakaze || Casting.LastSpell == Spells.Shifu || Casting.LastSpell == Spells.Jinpu || Casting.LastSpell == Spells.Fuga)
+            if (ActionManager.LastSpell == Spells.Hakaze || ActionManager.LastSpell == Spells.Gyofu || ActionManager.LastSpell == Spells.Shifu || ActionManager.LastSpell == Spells.Jinpu || ActionManager.LastSpell == Spells.Fuga
+                || Casting.LastSpell == Spells.Hakaze || Casting.LastSpell == Spells.Gyofu || Casting.LastSpell == Spells.Shifu || Casting.LastSpell == Spells.Jinpu || Casting.LastSpell == Spells.Fuga)
                 return false;
 
             if (!SamuraiRoutine.isReadyFillerRotation)
