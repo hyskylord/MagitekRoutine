@@ -612,6 +612,7 @@ namespace Magitek.Utilities
         // SAM
         #region SAM
         public static readonly SpellData Hakaze = DataManager.GetSpellData(7477);
+        public static readonly SpellData Gyofu = DataManager.GetSpellData(7477);
         public static readonly SpellData Shoha = DataManager.GetSpellData(16487);
         public static readonly SpellData Jinpu = DataManager.GetSpellData(7478);
         public static readonly SpellData Shifu = DataManager.GetSpellData(7479);
@@ -623,9 +624,13 @@ namespace Magitek.Utilities
         public static readonly SpellData Oka = DataManager.GetSpellData(7485);
         public static readonly SpellData Enpi = DataManager.GetSpellData(7486);
         public static readonly SpellData MidareSetsugekka = DataManager.GetSpellData(7487);
+        public static readonly SpellData TendoSetsugekka = DataManager.GetSpellData(36966);
         public static readonly SpellData KaeshiSetsugekka = DataManager.GetSpellData(16486);
+        public static readonly SpellData TendoKaeshiSetsugekka = DataManager.GetSpellData(16486);
         public static readonly SpellData TenkaGoken = DataManager.GetSpellData(7488);
+        public static readonly SpellData TendoGoken = DataManager.GetSpellData(36965);
         public static readonly SpellData KaeshiGoken = DataManager.GetSpellData(16485);
+        public static readonly SpellData TendoKaeshiGoken = DataManager.GetSpellData(36967);
         public static readonly SpellData Higanbana = DataManager.GetSpellData(7489);
         public static readonly SpellData KaeshiHiganbana = DataManager.GetSpellData(16484);
         public static readonly SpellData HissatsuShinten = DataManager.GetSpellData(7490);
@@ -648,6 +653,7 @@ namespace Magitek.Utilities
         public static readonly SpellData OgiNamikiri = DataManager.GetSpellData(25781);
         public static readonly SpellData KaeshiNamikiri = DataManager.GetSpellData(25782);
         public static readonly SpellData DoomoftheLiving = DataManager.GetSpellData(7861);
+        public static readonly SpellData Zanshin = DataManager.GetSpellData(36964);
         #endregion
 
         // SGE

@@ -124,6 +124,20 @@ namespace Magitek.Logic.Samurai
             return await Spells.HissatsuGuren.Cast(Core.Me.CurrentTarget);
         }
 
+        public static async Task<bool> Zanshin()
+        {
+            if (ActionResourceManager.Samurai.Kenki < 50 + SamuraiSettings.Instance.ReservedKenki)
+                return false;
+
+            if (!Core.Me.CurrentTarget.InView())
+                return false;
+
+            if (!Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
+            return await Spells.Zanshin.Cast(Core.Me.CurrentTarget);
+        }
+
 
         /**********************************************************************************************
          *                                   oGCD
@@ -157,9 +171,10 @@ namespace Magitek.Logic.Samurai
             if (SamuraiRoutine.AoeEnemies8Yards < SamuraiSettings.Instance.AoeEnemies)
                 return false;
 
-            await Spells.TenkaGoken.Cast(Core.Me.CurrentTarget);
-
-            return true;
+            if (Core.Me.HasAura(Auras.Tendo))
+                return await Spells.TendoGoken.Cast(Core.Me.CurrentTarget);
+            else 
+                return await Spells.TenkaGoken.Cast(Core.Me.CurrentTarget);
         }
 
 
@@ -170,6 +185,9 @@ namespace Magitek.Logic.Samurai
         {
             if (!SamuraiSettings.Instance.UseKaeshiGoken)
                 return false;
+
+            if (Core.Me.HasAura(Auras.Tendo))
+                return await Spells.TendoKaeshiGoken.Cast(Core.Me.CurrentTarget);
 
             return await Spells.KaeshiGoken.Cast(Core.Me.CurrentTarget);
         }

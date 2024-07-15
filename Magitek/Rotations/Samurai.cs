@@ -111,6 +111,7 @@ namespace Magitek.Rotations
                 if (await SingleTarget.Shoha()) return true;
 
                 //oGCD Kenki - AOE
+                if (await Aoe.Zanshin()) return true;
                 if (await Aoe.HissatsuGuren()) return true; //share recast time with Senei
                 if (await Aoe.HissatsuKyuten()) return true;
 
