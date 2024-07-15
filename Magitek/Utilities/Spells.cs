@@ -991,6 +991,7 @@ namespace Magitek.Utilities
         public static readonly SpellData Gibbet = DataManager.GetSpellData(24382); // [24382, Gibbet]
         public static readonly SpellData Gallows = DataManager.GetSpellData(24383); // [24383, Gallows]
         public static readonly SpellData Guillotine = DataManager.GetSpellData(24384); // [24384, Guillotine]
+        public static readonly SpellData ExecutionersGuillotine = DataManager.GetSpellData(36972);
         public static readonly SpellData PlentifulHarvest = DataManager.GetSpellData(24385); // [24385, Plentiful Harvest]
         public static readonly SpellData Harpe = DataManager.GetSpellData(24386); // [24386, Harpe]
         public static readonly SpellData Soulsow = DataManager.GetSpellData(24387); // [24387, Soulsow]
@@ -998,6 +999,8 @@ namespace Magitek.Utilities
         public static readonly SpellData BloodStalk = DataManager.GetSpellData(24389); // [24389, Blood Stalk]
         public static readonly SpellData UnveiledGibbet = DataManager.GetSpellData(24390); // [24390, UnveiledGibbet]
         public static readonly SpellData UnveiledGallows = DataManager.GetSpellData(24391); // [24391, Unveiled Gallows]
+        public static readonly SpellData ExecutionersGibbet = DataManager.GetSpellData(36970);
+        public static readonly SpellData ExecutionersGallows = DataManager.GetSpellData(36971);
         public static readonly SpellData GrimSwathe = DataManager.GetSpellData(24392); // [24392, Grim Swathe]
         public static readonly SpellData Gluttony = DataManager.GetSpellData(24393); // [24393, Gluttony]
         public static readonly SpellData Enshroud = DataManager.GetSpellData(24394); // [24394, Enshroud]
@@ -1005,6 +1008,7 @@ namespace Magitek.Utilities
         public static readonly SpellData CrossReaping = DataManager.GetSpellData(24396); // [24396, Cross Reaping]
         public static readonly SpellData GrimReaping = DataManager.GetSpellData(24397); // [24397, Grim Reaping]
         public static readonly SpellData Communio = DataManager.GetSpellData(24398); // [24398, Communio]
+        public static readonly SpellData Perfectio = DataManager.GetSpellData(36973);
         public static readonly SpellData LemuresSlice = DataManager.GetSpellData(24399); // [24399, Lemure's Slice]
         public static readonly SpellData LemuresScythe = DataManager.GetSpellData(24400); // [24400, Lemure's Scythe]
         public static readonly SpellData HellsIngress = DataManager.GetSpellData(24401); // [24401, Hell's Ingress]
@@ -1013,6 +1017,7 @@ namespace Magitek.Utilities
         public static readonly SpellData ArcaneCrest = DataManager.GetSpellData(24404); // [24404, Arcane Crest]
         public static readonly SpellData ArcaneCircle = DataManager.GetSpellData(24405); // [24405, Arcane Circle]
         public static readonly SpellData TheEnd = DataManager.GetSpellData(24858);
+        public static readonly SpellData Sacraficium = DataManager.GetSpellData(36969);
         #endregion
 
         // VPR

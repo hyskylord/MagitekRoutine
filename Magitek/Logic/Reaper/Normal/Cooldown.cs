@@ -19,6 +19,7 @@ namespace Magitek.Logic.Reaper
                 return false;
             if (!ReaperSettings.Instance.UseGluttony) return false;
             if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
             if (Spells.Slice.Cooldown > new TimeSpan(Spells.Slice.AdjustedCooldown.Ticks / 2)) return false;
             if (!Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true)) return false;
             if (ActionResourceManager.Reaper.ShroudGauge > 80)
@@ -35,8 +36,10 @@ namespace Magitek.Logic.Reaper
                 return false;
             if (Core.Me.HasAura(Auras.SoulReaver))
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
+            if (Core.Me.HasAura(Auras.PerfectioParata)) return false;
             if (!ReaperSettings.Instance.UseEnshroud) return false;
-            if (ActionResourceManager.Reaper.ShroudGauge < 50) return false;
+            if (ActionResourceManager.Reaper.ShroudGauge < 50 && !Core.Me.HasAura(Auras.IdealHost)) return false;
             if (!Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true)) return false;
             if (Utilities.Routines.Reaper.CheckTTDIsEnemyDyingSoon())
                 return false;

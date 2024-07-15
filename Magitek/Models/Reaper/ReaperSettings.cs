@@ -195,6 +195,10 @@ namespace Magitek.Models.Reaper
 
         [Setting]
         [DefaultValue(true)]
+        public bool UseSacrificium { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
         public bool UseArcaneCircle { get; set; }
 
         [Setting]

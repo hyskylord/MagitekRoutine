@@ -21,6 +21,7 @@ namespace Magitek.Logic.Reaper
 
             if (Core.Me.HasAura(Auras.SoulReaver))
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
 
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards < ReaperSettings.Instance.WhorlOfDeathTargetCount)
                 return false;
@@ -48,6 +49,7 @@ namespace Magitek.Logic.Reaper
 
             if (Core.Me.HasAura(Auras.SoulReaver))
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
 
             if (!Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true))
                 return false;
@@ -68,6 +70,7 @@ namespace Magitek.Logic.Reaper
 
             if (Core.Me.HasAura(Auras.SoulReaver))
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
 
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards < ReaperSettings.Instance.WhorlOfDeathTargetCount)
                 return false;
@@ -91,6 +94,8 @@ namespace Magitek.Logic.Reaper
             if (!ReaperSettings.Instance.UseSpinningScythe) return false;
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards < ReaperSettings.Instance.SpinningScytheTargetCount) return false;
             if (!await Spells.SpinningScythe.Cast(Core.Me)) return false;
+            if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
             Utilities.Routines.Reaper.CurrentComboStage = ReaperComboStages.NightmareScythe;
             return true;
 
@@ -107,8 +112,9 @@ namespace Magitek.Logic.Reaper
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards < ReaperSettings.Instance.NightmareScytheTargetCount) return false;
             if (Utilities.Routines.Reaper.CurrentComboStage != ReaperComboStages.NightmareScythe) return false;
             if (ActionManager.ComboTimeLeft <= 0) return false;
-
             if (!await Spells.NightmareScythe.Cast(Core.Me)) return false;
+            if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
             Utilities.Routines.Reaper.CurrentComboStage = ReaperComboStages.SpinningScythe;
             return true;
 
@@ -122,6 +128,8 @@ namespace Magitek.Logic.Reaper
             if (!ReaperSettings.Instance.UseSoulSlice
                 || Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards < ReaperSettings.Instance.SoulScytheTargetCount)
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
+            if (Core.Me.HasAura(Auras.SoulReaver)) return false;
 
             if (ActionResourceManager.Reaper.SoulGauge > 50) return false;
 
@@ -153,6 +161,7 @@ namespace Magitek.Logic.Reaper
             }
             if (Utilities.Routines.Reaper.EnemiesIn8YardCone < ReaperSettings.Instance.GrimSwatheTargetCount) return false;
             if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
             if (!Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true)) return false;
             if (ActionResourceManager.Reaper.ShroudGauge > 90)
                 return false;
@@ -173,9 +182,29 @@ namespace Magitek.Logic.Reaper
             if (Core.Me.ClassLevel < Spells.Guillotine.LevelAcquired)
                 return false;
             if (!ReaperSettings.Instance.UseGuillotine) return false;
-            if (!Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (!Core.Me.HasAnyAura(new uint[] { Auras.Executioner, Auras.SoulReaver })) return false;
             if (Utilities.Routines.Reaper.EnemiesIn8YardCone < ReaperSettings.Instance.GuillotineTargetCount) return false;
-            return await Spells.Guillotine.Cast(Core.Me.CurrentTarget);
+
+            if (Core.Me.HasAura(Auras.Executioner))
+            {
+                return await Spells.ExecutionersGuillotine.Cast(Core.Me.CurrentTarget);
+            } else if (Core.Me.HasAura(Auras.SoulReaver))
+            {
+                return await Spells.Guillotine.Cast(Core.Me.CurrentTarget);
+            }
+            else
+            {
+                return false;
+            }            
+        }
+
+        public static async Task<bool> Perfectio()
+        {
+            if (!ReaperSettings.Instance.UseCommunio) return false;
+            if (Core.Me.ClassLevel < Spells.Perfectio.LevelAcquired)
+                return false;
+            if (!Core.Me.HasAura(Auras.PerfectioParata)) return false;
+            return await Spells.Perfectio.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> PlentifulHarvest()
@@ -188,6 +217,7 @@ namespace Magitek.Logic.Reaper
 
             if (Core.Me.HasAura(Auras.SoulReaver))
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
 
             if (ActionResourceManager.Reaper.ShroudGauge > 50)
             {

@@ -85,5 +85,18 @@ namespace Magitek.Logic.Reaper.Enshroud
 
             return await Spells.Communio.Cast(Core.Me.CurrentTarget);
         }
+
+        public static async Task<bool> Sacrificium()
+        {
+            if (!ReaperSettings.Instance.UseSacrificium || Core.Me.ClassLevel < Spells.Sacraficium.LevelAcquired)
+                return false;
+
+            var shroudEndingSoon = Core.Me.HasAura(Auras.Enshrouded) && !Core.Me.HasAura(Auras.Enshrouded, true, 3000);
+
+            if (!Core.Me.HasAura(Auras.Oblatio))
+                return false;
+
+            return await Spells.Sacraficium.Cast(Core.Me.CurrentTarget);
+        }
     }
 }
