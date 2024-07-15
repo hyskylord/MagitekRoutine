@@ -612,7 +612,7 @@ namespace Magitek.Utilities
         // SAM
         #region SAM
         public static readonly SpellData Hakaze = DataManager.GetSpellData(7477);
-        public static readonly SpellData Gyofu = DataManager.GetSpellData(7477);
+        public static readonly SpellData Gyofu = DataManager.GetSpellData(36963);
         public static readonly SpellData Shoha = DataManager.GetSpellData(16487);
         public static readonly SpellData Jinpu = DataManager.GetSpellData(7478);
         public static readonly SpellData Shifu = DataManager.GetSpellData(7479);
@@ -626,7 +626,7 @@ namespace Magitek.Utilities
         public static readonly SpellData MidareSetsugekka = DataManager.GetSpellData(7487);
         public static readonly SpellData TendoSetsugekka = DataManager.GetSpellData(36966);
         public static readonly SpellData KaeshiSetsugekka = DataManager.GetSpellData(16486);
-        public static readonly SpellData TendoKaeshiSetsugekka = DataManager.GetSpellData(16486);
+        public static readonly SpellData TendoKaeshiSetsugekka = DataManager.GetSpellData(36968);
         public static readonly SpellData TenkaGoken = DataManager.GetSpellData(7488);
         public static readonly SpellData TendoGoken = DataManager.GetSpellData(36965);
         public static readonly SpellData KaeshiGoken = DataManager.GetSpellData(16485);
