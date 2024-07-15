@@ -24,7 +24,10 @@ namespace Magitek.Logic.Samurai
             if (Spells.Higanbana.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.Higanbana, true))
                 return false;
 
-            return await Spells.Hakaze.Cast(Core.Me.CurrentTarget);
+            if (Spells.Gyofu.IsKnown())
+                return await Spells.Gyofu.Cast(Core.Me.CurrentTarget);
+            else
+                return await Spells.Hakaze.Cast(Core.Me.CurrentTarget);
         }
 
         /*************************************************************************************************
@@ -226,8 +229,11 @@ namespace Magitek.Logic.Samurai
             if (SamuraiRoutine.SenCount != 3)
                 return false;
 
-            if(!await Spells.MidareSetsugekka.Cast(Core.Me.CurrentTarget))
-                return false;
+            if (Core.Me.HasAura(Auras.Tendo))
+                return await Spells.TendoSetsugekka.Cast(Core.Me.CurrentTarget);
+            else
+                if(!await Spells.MidareSetsugekka.Cast(Core.Me.CurrentTarget))
+                    return false;
 
             if (SamuraiRoutine.prepareFillerRotation && (Spells.TsubameGaeshi.Charges < 1 || Spells.KaeshiSetsugekka.Charges < 1))
             {
@@ -279,6 +285,9 @@ namespace Magitek.Logic.Samurai
         {
             if (!SamuraiSettings.Instance.UseKaeshiSetsugekka)
                 return false;
+
+            if (Core.Me.HasAura(Auras.Tendo))
+                return await Spells.TendoKaeshiSetsugekka.Cast(Core.Me.CurrentTarget);
 
             if (!await Spells.KaeshiSetsugekka.Cast(Core.Me.CurrentTarget))
                 return false;

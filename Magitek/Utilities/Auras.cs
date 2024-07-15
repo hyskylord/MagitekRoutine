@@ -374,6 +374,7 @@ namespace Magitek.Utilities
             FellskinVenom = 3660,
             NoxiousGnash =  3667,
 
+            //PCT
             Aetherhues = 3675,
             Aetherhues2 = 3676,
             SubtractivePalette = 3674,
@@ -394,6 +395,10 @@ namespace Magitek.Utilities
 
             //WHM
             Medica3 =  3880,
+
+            //SAM
+            ZanshinReady = 3855,
+            Tendo = 3856,
 
             //To prevent conflict
             Placeholder = 9999;
