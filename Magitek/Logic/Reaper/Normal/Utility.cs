@@ -19,7 +19,7 @@ namespace Magitek.Logic.Reaper
 
                 if (ReaperSettings.Instance.TrueNorthWithSoulReaverOnly)
                 {
-                    if (!Core.Me.HasAura(Auras.SoulReaver))
+                    if (!Core.Me.HasAura(Auras.SoulReaver) && !Core.Me.HasAura(Auras.Executioner))
                         return false;
                 }
                 else

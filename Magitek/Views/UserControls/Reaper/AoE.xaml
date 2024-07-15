@@ -98,6 +98,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Margin="5" Content=" Enable Communio " IsChecked="{Binding ReaperSettings.UseCommunio, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Margin="5" Content=" Enable Sacrificium " IsChecked="{Binding ReaperSettings.UseSacrificium, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>

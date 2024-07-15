@@ -22,6 +22,7 @@ namespace Magitek.Logic.Reaper
 
             if (Core.Me.HasAura(Auras.SoulReaver))
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
 
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards >= ReaperSettings.Instance.WhorlOfDeathTargetCount)
                 return false;
@@ -42,6 +43,8 @@ namespace Magitek.Logic.Reaper
 
             if (Core.Me.HasAura(Auras.SoulReaver))
                 return false;
+
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
 
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards >= ReaperSettings.Instance.WhorlOfDeathTargetCount)
                 return false;
@@ -95,6 +98,8 @@ namespace Magitek.Logic.Reaper
             if (ReaperSettings.Instance.UseSoulScythe &&
                 Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards >= ReaperSettings.Instance.SoulScytheTargetCount)
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
+            if (Core.Me.HasAura(Auras.SoulReaver)) return false;
 
             //Keep SoulSlice/SoulScythe Charges at a maximum
             /*
@@ -112,36 +117,44 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> GibbetAndGallows()
         {
-            if (!Core.Me.HasAura(Auras.SoulReaver)) return false;
-            if (Core.Me.HasAura(Auras.EnhancedGibbet))
-            {
-                if (ReaperSettings.Instance.UseGibbet)
-                    return await Spells.Gibbet.Cast(Core.Me.CurrentTarget);
-            }
-            else if (Core.Me.HasAura(Auras.EnhancedGallows))
-            {
-                if (ReaperSettings.Instance.UseGallows)
-                    return await Spells.Gallows.Cast(Core.Me.CurrentTarget);
-            }
-            if ((!Core.Me.CurrentTarget.IsBehind && !Core.Me.CurrentTarget.IsFlanking) || ReaperSettings.Instance.EnemyIsOmni)
-            {
-                if (ReaperSettings.Instance.UseGallows)
-                    return await Spells.Gallows.Cast(Core.Me.CurrentTarget);
+            if (!Core.Me.HasAnyAura(new uint[] { Auras.Executioner, Auras.SoulReaver })) return false;
 
-                if (ReaperSettings.Instance.UseGibbet)
-                    return await Spells.Gibbet.Cast(Core.Me.CurrentTarget);
+            ff14bot.Objects.SpellData gibbetspell;
+            ff14bot.Objects.SpellData gallowsspell;
 
-            }
-            else if (Core.Me.CurrentTarget.IsBehind)
+            if (Core.Me.HasAura(Auras.Executioner))
             {
-                if (ReaperSettings.Instance.UseGallows)
-                    return await Spells.Gallows.Cast(Core.Me.CurrentTarget);
-            }
-            else
+                gibbetspell = Spells.ExecutionersGibbet;
+                gallowsspell = Spells.ExecutionersGallows;
+            } else
             {
-                if (ReaperSettings.Instance.UseGibbet)
-                    return await Spells.Gibbet.Cast(Core.Me.CurrentTarget);
+                gibbetspell = Spells.Gibbet;
+                gallowsspell = Spells.Gallows;
             }
+
+            if (Core.Me.HasAura(Auras.EnhancedGibbet) && ReaperSettings.Instance.UseGibbet)
+                return await gibbetspell.Cast(Core.Me.CurrentTarget);
+
+            if (Core.Me.HasAura(Auras.EnhancedGallows) && ReaperSettings.Instance.UseGallows)
+                return await gallowsspell.Cast(Core.Me.CurrentTarget);
+
+            bool canUseGallows = ReaperSettings.Instance.UseGallows;
+            bool canUseGibbet = ReaperSettings.Instance.UseGibbet;
+
+            if (ReaperSettings.Instance.EnemyIsOmni || (!Core.Me.CurrentTarget.IsBehind && !Core.Me.CurrentTarget.IsFlanking))
+            {
+                if (canUseGallows) return await gallowsspell.Cast(Core.Me.CurrentTarget);
+                if (canUseGibbet) return await gibbetspell.Cast(Core.Me.CurrentTarget);
+            }
+            else if (Core.Me.CurrentTarget.IsBehind && canUseGallows)
+            {
+                return await gallowsspell.Cast(Core.Me.CurrentTarget);
+            }
+            else if (Core.Me.CurrentTarget.IsFlanking && canUseGibbet)
+            {
+                return await gibbetspell.Cast(Core.Me.CurrentTarget);
+            }
+
             return false;
         }
 
@@ -167,6 +180,7 @@ namespace Magitek.Logic.Reaper
                     return false;
             }
             if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
             if (!Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true)) return false;
             if (ActionResourceManager.Reaper.ShroudGauge > 90)
                 return false;
@@ -188,6 +202,7 @@ namespace Magitek.Logic.Reaper
 
             if (Core.Me.HasAura(Auras.SoulReaver))
                 return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
 
             //if (!Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true))
             //    return false;

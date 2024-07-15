@@ -1,5 +1,6 @@
 ﻿using Buddy.Coroutines;
 using ff14bot;
+using ff14bot.Managers;
 using Magitek.Extensions;
 using Magitek.Models.Pictomancer;
 using Magitek.Utilities;
@@ -73,14 +74,10 @@ namespace Magitek.Logic.Pictomancer
             if (!Core.Me.HasAura(Auras.TempuraCoat))
                 return false;
 
-            if (!FightLogic.ZoneHasFightLogic() || !FightLogic.EnemyHasAnyAoeLogic())
+            if (!Globals.InParty)
                 return false;
-
-            if (FightLogic.EnemyIsCastingAoe() || FightLogic.EnemyIsCastingBigAoe())
-            {
-                return await FightLogic.DoAndBuffer(Spells.TemperaGrassa.CastAura(Core.Me, Auras.TempuraGrassa));
-            }
-            return false;
+               
+            return await Spells.TemperaGrassa.CastAura(Core.Me, Auras.TempuraGrassa);
         }
 
         public static async Task<bool> FightLogic_Addle()
@@ -91,10 +88,10 @@ namespace Magitek.Logic.Pictomancer
             if (!Spells.Addle.IsKnownAndReady())
                 return false;
 
-            if (!FightLogic.ZoneHasFightLogic() || !FightLogic.EnemyHasAnyAoeLogic())
+            if (!FightLogic.ZoneHasFightLogic())
                 return false;
 
-            if (FightLogic.EnemyIsCastingAoe() || FightLogic.EnemyIsCastingBigAoe())
+            if (FightLogic.EnemyIsCastingAoe() || FightLogic.EnemyIsCastingBigAoe() || FightLogic.EnemyIsCastingTankBuster() != null)
             {
                 return await FightLogic.DoAndBuffer(Spells.Addle.Cast(Core.Me.CurrentTarget));
             }

@@ -130,6 +130,12 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseMuses)
                 return false;
 
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
+                return false;
+
+            if (!PictomancerSettings.Instance.UseMogDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
+                return false;
+
             var muse = Spells.LivingMuse.Masked();
 
             if (muse.IsKnown/*AndReady*/() && muse.CanCast(Core.Me.CurrentTarget))
@@ -146,7 +152,7 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseMogDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
                 return false;
 
-            if (PictomancerSettings.Instance.SaveMogForStarry
+            if (PictomancerSettings.Instance.SaveMogForStarry && PictomancerSettings.Instance.UseMogDuringStarry
                 && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
                 return false;
 
@@ -188,6 +194,12 @@ namespace Magitek.Logic.Pictomancer
         public static async Task<bool> StrikingMuse()
         {
             if (!PictomancerSettings.Instance.UseMuses)
+                return false;
+
+            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
+                return false;
+
+            if (!PictomancerSettings.Instance.UseHammerDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
                 return false;
 
             var muse = Spells.SteelMuse.Masked();
