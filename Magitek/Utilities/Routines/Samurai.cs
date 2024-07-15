@@ -22,8 +22,8 @@ namespace Magitek.Utilities.Routines
 
         public static bool CanContinueComboAfter(SpellData LastSpellExecuted)
         {
-            //if (ActionManager.ComboTimeLeft <= 0)
-            //    return false;
+            if (ActionManager.ComboTimeLeft <= 0)
+                return false;
 
             if (ActionManager.LastSpell.Id != LastSpellExecuted.Id)
                 return false;
