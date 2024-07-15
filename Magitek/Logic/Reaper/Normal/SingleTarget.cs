@@ -63,6 +63,8 @@ namespace Magitek.Logic.Reaper
         {
             if (!ReaperSettings.Instance.UseSlice) return false;
             if (!await Spells.Slice.Cast(Core.Me.CurrentTarget)) return false;
+            if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
             Utilities.Routines.Reaper.CurrentComboStage = ReaperComboStages.WaxingSlice;
             return true;
 
@@ -75,6 +77,8 @@ namespace Magitek.Logic.Reaper
             if (ActionManager.ComboTimeLeft <= 0) return false;
 
             if (!await Spells.WaxingSlice.Cast(Core.Me.CurrentTarget)) return false;
+            if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
             Utilities.Routines.Reaper.CurrentComboStage = ReaperComboStages.InfernalSlice;
             return true;
 
@@ -87,6 +91,8 @@ namespace Magitek.Logic.Reaper
             if (ActionManager.ComboTimeLeft <= 0) return false;
 
             if (!await Spells.InfernalSlice.Cast(Core.Me.CurrentTarget)) return false;
+            if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
             Utilities.Routines.Reaper.CurrentComboStage = ReaperComboStages.Slice;
             return true;
 
@@ -252,6 +258,9 @@ namespace Magitek.Logic.Reaper
 
             if (!ReaperSettings.Instance.UseRangeHarpe && Core.Me.CurrentTarget.Distance(Core.Me) > 3)
                 return false;
+
+            if (Core.Me.HasAura(Auras.SoulReaver)) return false;
+            if (Core.Me.HasAura(Auras.Executioner)) return false;
 
             return await Spells.Harpe.Cast(Core.Me.CurrentTarget);
         }
