@@ -348,6 +348,21 @@ namespace Magitek.Extensions
             return spell.IsKnown() && spell.IsReady(remainingTimeInMs);
         }
 
+        public static bool IsKnownAndReadyAndCastable(this SpellData spell, int remainingTimeInMs = 0)
+        {
+            return spell.IsKnown() && spell.IsReady(remainingTimeInMs) && spell.CanCast(Core.Me.CurrentTarget);
+        }
+
+        public static bool IsKnownAndReadyAndCastableAtTarget(this SpellData spell, int remainingTimeInMs = 0)
+        {
+            return spell.IsKnown() && spell.IsReady(remainingTimeInMs) && spell.CanCast(Core.Me.CurrentTarget);
+        }
+
+        public static bool IsKnownAndReadyAndCastable(this SpellData spell, GameObject target, int remainingTimeInMs = 0)
+        {
+            return spell.IsKnown() && spell.IsReady(remainingTimeInMs) && spell.CanCast(target);
+        }
+
         public static string IconUrl(this SpellData spell)
         {
             var icon = (decimal)spell.Icon;

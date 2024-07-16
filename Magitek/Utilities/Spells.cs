@@ -773,7 +773,12 @@ namespace Magitek.Utilities
         public static readonly SpellData Ruin4 = DataManager.GetSpellData(7426);
         public static readonly SpellData SearingLight = DataManager.GetSpellData(25801);
         public static readonly SpellData SummonBahamut = DataManager.GetSpellData(7427);
+        public static readonly SpellData SummonSolarBahamut = DataManager.GetSpellData(36992);
         public static readonly SpellData EnkindleBahamut = DataManager.GetSpellData(7429);
+        public static readonly SpellData EnkindleSolarBahamut = DataManager.GetSpellData(36998);
+        public static readonly SpellData Sunflare = DataManager.GetSpellData(36996);
+        public static readonly SpellData UmbralFlare = DataManager.GetSpellData(36995);
+        public static readonly SpellData UmbralImpulse = DataManager.GetSpellData(36994);
         public static readonly SpellData TriDisaster = DataManager.GetSpellData(25826);
         public static readonly SpellData SummonIfrit2 = DataManager.GetSpellData(25838);
         public static readonly SpellData SummonTitan2 = DataManager.GetSpellData(25839);

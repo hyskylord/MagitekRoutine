@@ -39,6 +39,7 @@ namespace Magitek.Utilities.Routines
             Titan,
             Garuda,
             Bahamut,
+            SolarBahamut,
             Pheonix
         }
 
@@ -80,6 +81,9 @@ namespace Magitek.Utilities.Routines
             
             if ((int) PetManager.ActivePetType == 32)
                 return SmnPets.Garuda;
+
+            if ((int)PetManager.ActivePetType == 46)
+                return SmnPets.SolarBahamut;
 
             return GameObjectManager.PetObjectId != GameObjectManager.EmptyGameObject
                 ? SmnPets.Carbuncle 
