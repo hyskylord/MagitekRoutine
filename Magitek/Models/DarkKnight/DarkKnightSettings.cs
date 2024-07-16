@@ -44,7 +44,12 @@ namespace Magitek.Models.DarkKnight
         [Setting]
         [DefaultValue(true)]
         public bool UseBloodspiller { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseDisesteem { get; set; }
         #endregion
+
 
         //Defensives
         #region Defensives
@@ -126,6 +131,10 @@ namespace Magitek.Models.DarkKnight
         [Setting]
         [DefaultValue(true)]
         public bool LivingShadow { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool ShadowedVigil { get; set; }
         #endregion
 
         //oGCDs

@@ -52,12 +52,12 @@ namespace Magitek.Logic.DarkKnight
 
         }
 
-        public static async Task<bool> Shadowbringer()
+        public static async Task<bool> Disesteem()
         {
-            if (!DarkKnightSettings.Instance.UseShadowbringer)
+            if (!DarkKnightSettings.Instance.UseDisesteem)
                 return false;
 
-            return await Spells.Shadowbringer.Cast(Core.Me.CurrentTarget);
+            return await Spells.Disesteem.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> EdgeofDarknessShadow()
@@ -86,24 +86,12 @@ namespace Magitek.Logic.DarkKnight
             return await Spells.CarveandSpit.Cast(Core.Me.CurrentTarget);
         }
 
-        public static async Task<bool> Plunge()
+        public static async Task<bool> Shadowbringer()
         {
-            if (!DarkKnightSettings.Instance.UsePlunge)
+            if (!DarkKnightSettings.Instance.UseShadowbringer)
                 return false;
 
-            if (DarkKnightSettings.Instance.PlungeOnlyInMelee
-                && Core.Me.CurrentTarget != null
-                && !Core.Me.CurrentTarget.WithinSpellRange(3))
-            {
-                return false;
-            }
-
-            if (Spells.Plunge.Charges < DarkKnightSettings.Instance.SavePlungeCharges + 1)
-            {
-                return false;
-            }
-
-            return await Spells.Plunge.Cast(Core.Me.CurrentTarget);
+            return await Spells.Shadowbringer.Cast(Core.Me.CurrentTarget);
         }
 
         /*********************************************************************

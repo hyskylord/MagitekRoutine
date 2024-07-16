@@ -57,6 +57,14 @@ namespace Magitek.Logic.DarkKnight
             return await Spells.Delirium.Cast(Core.Me);
         }
 
+        public static async Task<bool> ShadowedVigil()
+        {
+            if (!DarkKnightSettings.Instance.ShadowedVigil)
+                return false;
+
+            return await Spells.ShadowedVigil.Cast(Core.Me);
+        }
+
         public static async Task<bool> UsePotion()
         {
             if (Spells.LivingShadow.IsKnown() && !Spells.LivingShadow.IsReady(10000))
