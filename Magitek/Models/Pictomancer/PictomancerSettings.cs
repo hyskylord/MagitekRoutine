@@ -27,11 +27,7 @@ namespace Magitek.Models.Pictomancer
         public int SaveIfEnemyDyingWithin { get; set; }
 
         [Setting]
-        [DefaultValue(true)]
-        public bool UseWeaving { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool UseHammerDuringStarry { get; set; }
 
         [Setting]

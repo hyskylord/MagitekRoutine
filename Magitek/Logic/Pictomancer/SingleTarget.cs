@@ -62,8 +62,8 @@ namespace Magitek.Logic.Pictomancer
             if ((ActionResourceManager.Pictomancer.Paint == 5) && !PictomancerSettings.Instance.WhitePaintUseWhenFull)
                 return false;
 
-            // save 1 paint for black paint
-            if (ActionResourceManager.Pictomancer.Paint == PictomancerSettings.Instance.WhitePaintSaveXCharges && Spells.CometinBlack.IsKnown())
+            // save paint for black paint
+            if (ActionResourceManager.Pictomancer.Paint <= PictomancerSettings.Instance.WhitePaintSaveXCharges && Spells.CometinBlack.IsKnown())
                 return false;
 
             return await Spells.HolyinWhite.Cast(Core.Me.CurrentTarget);

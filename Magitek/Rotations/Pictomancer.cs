@@ -102,13 +102,13 @@ namespace Magitek.Rotations
             if (Core.Me.CurrentTarget.HasAnyAura(Auras.Invincibility))
                 return false;
 
-            if (!PictomancerSettings.Instance.UseWeaving || 
-                PictomancerRoutine.GlobalCooldown.CanWeave(1)) 
+            if (PictomancerRoutine.GlobalCooldown.CanWeave()) 
             {
                 if (await Buff.FightLogic_TemperaGrassa()) return true;
                 if (await Buff.FightLogic_TemperaCoat()) return true;
                 if (await Buff.FightLogic_Addle()) return true;
                 if (await Healer.LucidDreaming(PictomancerSettings.Instance.UseLucidDreaming, PictomancerSettings.Instance.LucidDreamingMinimumManaPercent)) return true;
+                if (await Buff.SubtractivePalette()) return true;
             }
 
             // palettes
@@ -116,18 +116,11 @@ namespace Magitek.Rotations
             if (await Palette.RainbowDrip()) return true;
             if (await Palette.ScenicMuse()) return true;
 
-            if (!PictomancerSettings.Instance.UseWeaving ||
-                Core.Me.HasAura(Auras.Inspiration) ||
-                PictomancerRoutine.GlobalCooldown.CanWeave(1) ||
-                PictomancerRoutine.GlobalCooldown.CanWeave(2))
-            {
-                if (await Palette.MogoftheAges()) return true;
-                if (await Palette.StrikingMuse()) return true;
-                if (await Palette.CreatureMuse()) return true;
-                if (await Buff.SubtractivePalette()) return true;
-            }
-
+            if (await Palette.MogoftheAges()) return true;
             if (await Palette.HammerStamp()) return true;
+
+            if (await Palette.CreatureMuse()) return true;
+            if (await Palette.StrikingMuse()) return true;   
 
             // inspiration is on a timer, need to consume those stacks first.
             // don't waste time painting more palettes
@@ -143,9 +136,9 @@ namespace Magitek.Rotations
             // attacks
             if (await AOE.CometinBlack()) return true;
             if (await AOE.HolyinWhite()) return true;
-            if (await SingleTarget.HolyinWhite()) return true;
             if (await AOE.Paint()) return true;
             if (await SingleTarget.CometinBlack()) return true;
+            if (await SingleTarget.HolyinWhite()) return true;
             if (await SingleTarget.Paint()) return true;
             return false;
         }
