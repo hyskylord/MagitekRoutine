@@ -1147,6 +1147,16 @@ namespace Magitek.Utilities
         public static readonly SpellData Purify = DataManager.GetSpellData(29056);
         public static readonly SpellData Guard = DataManager.GetSpellData(29054);
 
+        //PCT
+        public static readonly SpellData PaintRGBPvp = DataManager.GetSpellData(39191); // fire in red base
+        public static readonly SpellData PaintWBPvp = DataManager.GetSpellData(39198); // holy white and comet black
+        public static readonly SpellData CreatureMotifPvp = DataManager.GetSpellData(39204);
+        public static readonly SpellData LivingMusePvp = DataManager.GetSpellData(39209);
+        public static readonly SpellData MogOfTheAgesPvp = DataManager.GetSpellData(39782);
+        public static readonly SpellData SubtractivePalettePvp = DataManager.GetSpellData(39213);
+        public static readonly SpellData ReleaseSubtractivePalettePvp = DataManager.GetSpellData(39214);
+        public static readonly SpellData AdventofChocobastionPvp = DataManager.GetSpellData(39215); // star prism
+
         //WHM
         public static readonly SpellData GlareIIIPvp = DataManager.GetSpellData(29223);
         public static readonly SpellData CureIIPvp = DataManager.GetSpellData(29224);

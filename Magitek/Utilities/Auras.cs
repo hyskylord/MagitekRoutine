@@ -486,7 +486,10 @@ namespace Magitek.Utilities
             PvpSwordOath = 1991, 
             PvpHallowedGround  = 1302,
             PvpOnslaught = 3029,
-            PvpOrogeny = 3256;
+            PvpOrogeny = 3256,
+            PvpSubtractivePalette = 4102,
+            PvpStarstruck = 4118
+            ;
 
 
         #endregion
