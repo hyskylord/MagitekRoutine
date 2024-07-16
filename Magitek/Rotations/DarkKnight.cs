@@ -88,7 +88,6 @@ namespace Magitek.Rotations
                 if (await Aoe.AbyssalDrain()) return true;
                 if (await Aoe.FloodofDarknessShadow()) return true;
                 if (await SingleTarget.EdgeofDarknessShadow()) return true;
-                if (await SingleTarget.Plunge()) return true;
                 if (await Buff.Delirium()) return true;
                 if (await Buff.BloodWeapon()) return true;
                 if (await Buff.LivingShadow()) return true;
@@ -98,6 +97,8 @@ namespace Magitek.Rotations
             //Pull or get back aggro with LightningShot
             if (await SingleTarget.UnmendToPullOrAggro()) return true;
             if (await SingleTarget.UnmendToDps()) return true;
+
+            if (await SingleTarget.Disesteem()) return true;
 
             if (await Aoe.Quietus()) return true;
             if (await Aoe.StalwartSoul()) return true;

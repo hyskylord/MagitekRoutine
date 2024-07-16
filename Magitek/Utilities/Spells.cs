@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using static Microsoft.CodeAnalysis.CSharp.DecisionDagBuilder;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Windows;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Magitek.Utilities
 {
@@ -360,6 +361,13 @@ namespace Magitek.Utilities
         public static readonly SpellData Oblation = DataManager.GetSpellData(25754);
         public static readonly SpellData Shadowbringer = DataManager.GetSpellData(25757);
         public static readonly SpellData DarkForce = DataManager.GetSpellData(4241);
+        public static readonly SpellData Shadowstride = DataManager.GetSpellData(36926);
+        public static readonly SpellData ShadowedVigil = DataManager.GetSpellData(36927);
+        public static readonly SpellData ScarletDelirium = DataManager.GetSpellData(36928);
+        public static readonly SpellData ComeuppanceAction = DataManager.GetSpellData(36929);
+        public static readonly SpellData Torcleaver = DataManager.GetSpellData(36930);
+        public static readonly SpellData Impalement = DataManager.GetSpellData(36931);
+        public static readonly SpellData Disesteem = DataManager.GetSpellData(36932);
         #endregion
 
         // GNB
