@@ -105,8 +105,6 @@ namespace Magitek.Extensions
             Auras.Grit,
             Auras.RoyalGuard,
             Auras.EyesOpen,
-            Auras.LeftEye,
-            Auras.RightEye,
             Auras.Kardia,
             Auras.Kardion,
             Auras.Eukrasia
