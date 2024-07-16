@@ -18,7 +18,6 @@ namespace Magitek.Logic.Summoner
     {
         public static async Task<bool> Ruin()
         {
-            Logger.WriteInfo("Ruin Check");
             if (!SummonerSettings.Instance.Ruin)
                 return false;
 
@@ -27,88 +26,45 @@ namespace Magitek.Logic.Summoner
 
             if (Core.Me.SummonedPet() == SmnPets.Bahamut)
                 return await Spells.AstralImpulse.Cast(Core.Me.CurrentTarget);
+
+            if (Core.Me.SummonedPet() == SmnPets.SolarBahamut)
+                return await Spells.UmbralImpulse.Cast(Core.Me.CurrentTarget);
             
             if (Spells.AstralImpulse.IsKnownAndReady() && SmnResources.TranceTimer > 0 && Core.Me.SummonedPet() == SmnPets.Carbuncle) //It means we're in Dreadwyrm Trance
                 return await Spells.AstralImpulse.Cast(Core.Me.CurrentTarget);
 
-            if (Core.Me.CurrentJob == ClassJobType.Summoner)
-                switch (SmnResources.ActivePet)
+            var gemshine = Spells.Gemshine.Masked();
+
+            if (gemshine.IsKnownAndReadyAndCastableAtTarget())
+            {
+                if (gemshine == Spells.RubyRite)
                 {
-                    case SmnResources.ActivePetType.Ifrit when Spells.RubyRite.IsKnown():
+                    if (!Spells.Swiftcast.IsKnownAndReady())
+                        return await Spells.RubyRite.Cast(Core.Me.CurrentTarget);
+
+                    var anyDead = Group.DeadAllies.Any(u => !u.HasAura(Auras.Raise) &&
+                                                            u.Distance(Core.Me) <= 30 &&
+                                                            u.InLineOfSight() &&
+                                                            u.IsTargetable);
+
+                    if (anyDead || SmnResources.ElementalAttunement > 1 ||
+                        !SummonerSettings.Instance.SwiftRubyRite)
+                        return await Spells.RubyRite.Cast(Core.Me.CurrentTarget);
+
+                    if (await Buff.Swiftcast())
+                    {
+                        while (Core.Me.HasAura(Auras.Swiftcast))
                         {
-                            if (!Spells.Swiftcast.IsKnownAndReady())
-                                return await Spells.RubyRite.Cast(Core.Me.CurrentTarget);
-
-                            var anyDead = Group.DeadAllies.Any(u => !u.HasAura(Auras.Raise) &&
-                                                                    u.Distance(Core.Me) <= 30 &&
-                                                                    u.InLineOfSight() &&
-                                                                    u.IsTargetable);
-
-                            if (anyDead || SmnResources.ElementalAttunement > 1 ||
-                                !SummonerSettings.Instance.SwiftRubyRite)
-                                return await Spells.RubyRite.Cast(Core.Me.CurrentTarget);
-
-                            if (await Buff.Swiftcast())
-                            {
-                                while (Core.Me.HasAura(Auras.Swiftcast))
-                                {
-                                    if (await Spells.RubyRite.Cast(Core.Me.CurrentTarget)) return true;
-                                    await Coroutine.Yield();
-                                }
-                            }
-
-                            return false;
+                            if (await Spells.RubyRite.Cast(Core.Me.CurrentTarget)) return true;
+                            await Coroutine.Yield();
                         }
-                    case SmnResources.ActivePetType.Ifrit when Spells.RubyRuinIII.IsKnown():
-                        return await Spells.RubyRuinIII.Cast(Core.Me.CurrentTarget);
-                    case SmnResources.ActivePetType.Ifrit when Spells.RubyRuinII.IsKnown():
-                        return await Spells.RubyRuinII.Cast(Core.Me.CurrentTarget);
-                    case SmnResources.ActivePetType.Ifrit:
-                        return await Spells.RubyRuin.Cast(Core.Me.CurrentTarget);
-                    
-
-                    case SmnResources.ActivePetType.Titan when Spells.TopazRite.IsKnown():
-                        return await Spells.TopazRite.Cast(Core.Me.CurrentTarget);
-                    case SmnResources.ActivePetType.Titan when Spells.TopazRuinIII.IsKnown():
-                        return await Spells.TopazRuinIII.Cast(Core.Me.CurrentTarget);
-                    case SmnResources.ActivePetType.Titan when Spells.TopazRuinII.IsKnown():
-                        return await Spells.TopazRuinII.Cast(Core.Me.CurrentTarget);
-                    case SmnResources.ActivePetType.Titan:
-                        return await Spells.TopazRuin.Cast(Core.Me.CurrentTarget);
-                        
-                    
-
-                    case SmnResources.ActivePetType.Garuda when Spells.EmeraldRite.IsKnown():
-                        return await Spells.EmeraldRite.Cast(Core.Me.CurrentTarget);
-                    case SmnResources.ActivePetType.Garuda when Spells.EmeraldRuinIII.IsKnown():
-                        return await Spells.EmeraldRuinIII.Cast(Core.Me.CurrentTarget);
-                    case SmnResources.ActivePetType.Garuda when Spells.EmeraldRuinII.IsKnown():
-                        return await Spells.EmeraldRuinII.Cast(Core.Me.CurrentTarget);
-                    case SmnResources.ActivePetType.Garuda:
-                        return await Spells.EmeraldRuin.Cast(Core.Me.CurrentTarget);
+                    }
                 }
 
-            if (Core.Me.CurrentJob == ClassJobType.Arcanist || Core.Me.ClassLevel <= 30)
-                switch (ArcResources.ActivePet)
-                {
-                    case ArcResources.ActivePetType.Ruby when Spells.RubyRuinII.IsKnown():
-                        return await Spells.RubyRuinII.Cast(Core.Me.CurrentTarget);
-                    case ArcResources.ActivePetType.Ruby:
-                        return await Spells.RubyRuin.Cast(Core.Me.CurrentTarget);
+                return await gemshine.Cast(Core.Me.CurrentTarget);
+            }
 
-                    case ArcResources.ActivePetType.Topaz when Spells.TopazRuinII.IsKnown():
-                        return await Spells.TopazRuinII.Cast(Core.Me.CurrentTarget);
-                    case ArcResources.ActivePetType.Topaz:
-                        return await Spells.TopazRuin.Cast(Core.Me.CurrentTarget);
-
-                    case ArcResources.ActivePetType.Emerald when Spells.EmeraldRuinII.IsKnown():
-                        return await Spells.EmeraldRuinII.Cast(Core.Me.CurrentTarget);
-                    case ArcResources.ActivePetType.Emerald:
-                        return await Spells.EmeraldRuin.Cast(Core.Me.CurrentTarget);
-                }    
-
-
-            if (Spells.Ruin3.IsKnown())
+            if (Spells.Ruin3.IsKnownAndReadyAndCastableAtTarget())
                 return await Spells.Ruin3.Cast(Core.Me.CurrentTarget);
                     
             return Spells.Ruin2.IsKnown()
@@ -166,6 +122,7 @@ namespace Magitek.Logic.Summoner
                 return false;
 
             if (Core.Me.SummonedPet() == SmnPets.Bahamut) return await EnkindleBahamut();
+            if (Core.Me.SummonedPet() == SmnPets.SolarBahamut) return await EnkindleSolarBahamut();
             if (Core.Me.SummonedPet() == SmnPets.Pheonix) return await EnkindlePhoenix();
 
             return false;
@@ -183,6 +140,20 @@ namespace Magitek.Logic.Summoner
                 return false;
             
             return await Spells.EnkindleBahamut.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> EnkindleSolarBahamut()
+        {
+            if (!SummonerSettings.Instance.EnkindleBahamut)
+                return false;
+
+            if (!Spells.EnkindleSolarBahamut.IsKnownAndReady())
+                return false;
+
+            if (!GlobalCooldown.CanWeave())
+                return false;
+
+            return await Spells.EnkindleSolarBahamut.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> EnkindlePhoenix()

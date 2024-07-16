@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ArcResources = ff14bot.Managers.ActionResourceManager.Arcanist;
 using SmnResources = ff14bot.Managers.ActionResourceManager.Summoner;
 using static Magitek.Utilities.Routines.Summoner;
+using SpellData = ff14bot.Objects.SpellData;
 
 
 namespace Magitek.Logic.Summoner
@@ -40,9 +41,6 @@ namespace Magitek.Logic.Summoner
             if (!Spells.SummonPhoenix.IsKnownAndReady())
                 return false;
             
-            if (!SmnResources.AvailablePets.HasFlag(SmnResources.AvailablePetFlags.Phoenix))
-                return false;
-            
             if (!Core.Me.InCombat)
                 return false;
             
@@ -70,8 +68,14 @@ namespace Magitek.Logic.Summoner
         {
             if (!SummonerSettings.Instance.SummonBahamut)
                 return false;
-            
-            if (!Spells.SummonBahamut.IsKnownAndReady())
+
+            SpellData bahamutSpell;
+
+            if (Spells.SummonBahamut.IsKnownAndReady())
+                bahamutSpell = Spells.SummonBahamut;
+            else if (Spells.SummonSolarBahamut.IsKnownAndReady())
+                bahamutSpell = Spells.SummonSolarBahamut;
+            else
                 return false;
 
             if (!Core.Me.InCombat)
@@ -98,10 +102,10 @@ namespace Magitek.Logic.Summoner
                 return false;
             
             if (!SummonerSettings.Instance.SearingLight)
-                return await Spells.SummonBahamut.Cast(Core.Me.CurrentTarget);
+                return await bahamutSpell.Cast(Core.Me.CurrentTarget);
 
             if (!Spells.SearingLight.IsReady() && !Core.Me.HasAura(Auras.SearingLight))
-                return await Spells.SummonBahamut.Cast(Core.Me.CurrentTarget);
+                return await bahamutSpell.Cast(Core.Me.CurrentTarget);
 
             if (Spells.SearingLight.IsReady() && GlobalCooldown.CanWeave())
                 return await Buff.SearingLight();
@@ -109,7 +113,7 @@ namespace Magitek.Logic.Summoner
             if (!Core.Me.HasAura(Auras.SearingLight))
                 return false;
 
-            return await Spells.SummonBahamut.Cast(Core.Me.CurrentTarget);
+            return await bahamutSpell.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> SummonCarbuncleOrEgi()

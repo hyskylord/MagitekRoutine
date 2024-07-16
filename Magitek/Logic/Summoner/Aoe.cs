@@ -25,6 +25,7 @@ namespace Magitek.Logic.Summoner
                 return false;
 
             if (Core.Me.SummonedPet() == SmnPets.Bahamut) return await Deathflare();
+            if (Core.Me.SummonedPet() == SmnPets.SolarBahamut) return await Sunflare();
             if (ArcResources.TranceTimer > 0 && Core.Me.SummonedPet() == SmnPets.Carbuncle) return await Deathflare();
 
             if (Core.Me.SummonedPet() == SmnPets.Pheonix) return await Rekindle();
@@ -52,6 +53,25 @@ namespace Magitek.Logic.Summoner
                 return false;
                 
             return await Spells.Deathflare.Cast(target);
+        }
+
+        public static async Task<bool> Sunflare()
+        {
+            if (!SummonerSettings.Instance.Deathflare)
+                return false;
+
+            if (!Spells.Sunflare.IsKnownAndReady())
+                return false;
+
+            if (!GlobalCooldown.CanWeave())
+                return false;
+
+            var target = Combat.SmartAoeTarget(Spells.Sunflare, SummonerSettings.Instance.SmartAoe);
+
+            if (target == null || Core.Me.CurrentTarget == null)
+                return false;
+
+            return await Spells.Sunflare.Cast(target);
         }
 
         public static async Task<bool> Rekindle()
@@ -237,48 +257,19 @@ namespace Magitek.Logic.Summoner
 
             if (Core.Me.SummonedPet() == SmnPets.Bahamut)
                 return await Spells.AstralFlare.Cast(target);
-            
-            if (Spells.AstralFlare.IsKnownAndReady() && SmnResources.TranceTimer > 0 && Core.Me.SummonedPet() == SmnPets.Carbuncle) //It means we're in Dreadwyrm Trance
+
+            if (Core.Me.SummonedPet() == SmnPets.SolarBahamut)
+                return await Spells.UmbralFlare.Cast(target);
+
+            if (Spells.AstralFlare.IsKnownAndReadyAndCastableAtTarget() && SmnResources.TranceTimer > 0 && Core.Me.SummonedPet() == SmnPets.Carbuncle) //It means we're in Dreadwyrm Trance
                 return await Spells.AstralFlare.Cast(target);
 
-            if (Core.Me.CurrentJob == ClassJobType.Summoner)
-                switch (SmnResources.ActivePet)
-                {
-                    case SmnResources.ActivePetType.Ifrit when Spells.RubyCatastrophe.IsKnown():
-                        return await Spells.RubyCatastrophe.Cast(target);
-                    case SmnResources.ActivePetType.Ifrit when Spells.RubyDisaster.IsKnown():
-                        return await Spells.RubyDisaster.Cast(target);
-                    case SmnResources.ActivePetType.Ifrit:
-                        return await Spells.RubyOutburst.Cast(target);
+            var brilliance = Spells.PreciousBrilliance.Masked();
 
-                    case SmnResources.ActivePetType.Titan when Spells.TopazCatastrophe.IsKnown():
-                        return await Spells.TopazCatastrophe.Cast(target);
-                    case SmnResources.ActivePetType.Titan when Spells.TopazDisaster.IsKnown():
-                        return await Spells.TopazDisaster.Cast(target);
-                    case SmnResources.ActivePetType.Titan:
-                        return await Spells.TopazOutburst.Cast(target);
+            if (brilliance.IsKnownAndReadyAndCastableAtTarget())
+                return await brilliance.Cast(target);
 
-                    case SmnResources.ActivePetType.Garuda when Spells.EmeraldCatastrophe.IsKnown():
-                        return await Spells.EmeraldCatastrophe.Cast(target);
-                    case SmnResources.ActivePetType.Garuda when Spells.EmeraldDisaster.IsKnown():
-                        return await Spells.EmeraldDisaster.Cast(target);
-                    case SmnResources.ActivePetType.Garuda:
-                        return await Spells.EmeraldOutburst.Cast(target);
-                }
-
-            switch (ArcResources.ActivePet)
-            {
-                case ArcResources.ActivePetType.Ruby:
-                    return await Spells.RubyOutburst.Cast(target);
-
-                case ArcResources.ActivePetType.Topaz:
-                    return await Spells.TopazOutburst.Cast(target);
-
-                case ArcResources.ActivePetType.Emerald:
-                    return await Spells.EmeraldOutburst.Cast(target);
-            }
-
-            if (Spells.TriDisaster.IsKnown())
+            if (Spells.TriDisaster.IsKnownAndReadyAndCastableAtTarget())
                 return await Spells.TriDisaster.Cast(target);
                     
             return await Spells.Outburst.Cast(target);
@@ -321,6 +312,7 @@ namespace Magitek.Logic.Summoner
                 return false;
 
             if (Core.Me.SummonedPet() == SmnPets.Bahamut 
+                || Core.Me.SummonedPet() == SmnPets.SolarBahamut
                 || Core.Me.SummonedPet() == SmnPets.Pheonix) 
                 return false;
             
