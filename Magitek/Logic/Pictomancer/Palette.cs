@@ -106,6 +106,9 @@ namespace Magitek.Logic.Pictomancer
                 || ActionResourceManager.Pictomancer.MooglePortraitReady)
                 return false;
 
+            if (!PictomancerSettings.Instance.UseMogDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
+                return false;
+
             if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
                 return false;
 
@@ -128,6 +131,10 @@ namespace Magitek.Logic.Pictomancer
         public static async Task<bool> CreatureMuse()
         {
             if (!PictomancerSettings.Instance.UseMuses)
+                return false;
+
+            if (ActionResourceManager.Pictomancer.MadeenPortraitReady
+                || ActionResourceManager.Pictomancer.MooglePortraitReady)
                 return false;
 
             if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
@@ -173,6 +180,9 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseMotifs)
                 return false;
 
+            if (!PictomancerSettings.Instance.UseHammerDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
+                return false;
+
             if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
                 return false;
 
@@ -200,6 +210,9 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (!PictomancerSettings.Instance.UseHammerDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
+                return false;
+
+            if (Core.Me.HasAura(Auras.HammerTime))
                 return false;
 
             var muse = Spells.SteelMuse.Masked();
@@ -249,6 +262,9 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseStarrySky)
                 return false;
 
+            if (Core.Me.HasAura(Auras.Hyperphantasia))
+                return false;
+
             if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
                 return false;
 
@@ -295,7 +311,7 @@ namespace Magitek.Logic.Pictomancer
                         return false;
                 }
 
-                return await muse.Cast(Core.Me);
+                return await muse.CastAura(Core.Me, Auras.Hyperphantasia);
             }
 
             return false;
