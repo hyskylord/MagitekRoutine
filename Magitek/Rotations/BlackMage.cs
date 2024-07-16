@@ -141,6 +141,7 @@ namespace Magitek.Rotations
                 if (await Aoe.Thunder4()) return true;
             }
 
+            if (await Aoe.FlareStar()) return true;
             if (await SingleTarget.ParadoxUmbral()) return true;
             if (await SingleTarget.Blizzard4()) return true;
             if (await SingleTarget.Fire()) return true;

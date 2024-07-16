@@ -137,6 +137,17 @@ namespace Magitek.Logic.BlackMage
             return await Spells.Flare.Cast(Core.Me.CurrentTarget);
         }
 
+        public static async Task<bool> FlareStar()
+        {
+            if (Core.Me.ClassLevel < Spells.FlareStar.LevelAcquired)
+                return false;
+
+            if (AstralSoulStacks < 6)
+                return false;
+
+            return await Spells.FlareStar.Cast(Core.Me.CurrentTarget);
+        }
+
         public static async Task<bool> Freeze()
         {
             //If we don't have Freeze, how can we cast it?
