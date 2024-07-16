@@ -299,7 +299,6 @@ namespace Magitek.Utilities
         public static readonly SpellData Disembowel = DataManager.GetSpellData(87);
         public static readonly SpellData ChaosThrust = DataManager.GetSpellData(88);
         public static readonly SpellData Jump = DataManager.GetSpellData(92);
-        public static readonly SpellData SpineshatterDive = DataManager.GetSpellData(95);
         public static readonly SpellData DragonfireDive = DataManager.GetSpellData(96);
         public static readonly SpellData BloodoftheDragon = DataManager.GetSpellData(3553);
         public static readonly SpellData FangAndClaw = DataManager.GetSpellData(3554);
@@ -311,7 +310,6 @@ namespace Magitek.Utilities
         public static readonly SpellData LanceCharge = DataManager.GetSpellData(85);
         public static readonly SpellData FullThrust = DataManager.GetSpellData(84);
         public static readonly SpellData SonicThrust = DataManager.GetSpellData(7397);
-        public static readonly SpellData DragonSight = DataManager.GetSpellData(7398);
         public static readonly SpellData CoerthanTorment = DataManager.GetSpellData(16477);
         public static readonly SpellData HighJump = DataManager.GetSpellData(16478);
         public static readonly SpellData RaidenThrust = DataManager.GetSpellData(16479);
@@ -321,6 +319,12 @@ namespace Magitek.Utilities
         public static readonly SpellData WyrmwindThrust = DataManager.GetSpellData(25773);
         public static readonly SpellData DraconianFury = DataManager.GetSpellData(25770);
         public static readonly SpellData DragonsongDive = DataManager.GetSpellData(4242);
+        public static readonly SpellData Drakesbane = DataManager.GetSpellData(36952);
+        public static readonly SpellData LanceBarrage = DataManager.GetSpellData(36954);
+        public static readonly SpellData SpiralBlow = DataManager.GetSpellData(36955);
+        public static readonly SpellData RiseOfTheDragon = DataManager.GetSpellData(36953);
+        public static readonly SpellData Starcross = DataManager.GetSpellData(36956);
+
         #endregion
 
         // DRK

@@ -71,21 +71,6 @@ namespace Magitek.Logic.Dragoon
             return await Spells.MirageDive.Cast(Core.Me.CurrentTarget);
         }
 
-        public static async Task<bool> SpineshatterDive()
-        {
-            if (!DragoonSettings.Instance.UseSpineshatterDive)
-                return false;
-
-            if (!CheckBeforeExecuteJumps())
-                return false;
-
-            if (Spells.SpineshatterDive.Charges <= 1 && Spells.LanceCharge.IsKnownAndReady(10000))
-                return false;
-
-            return await Spells.SpineshatterDive.Cast(Core.Me.CurrentTarget);
-        }
-
-
 
         /***************************************************************************
          *                           AOE
@@ -104,6 +89,17 @@ namespace Magitek.Logic.Dragoon
             return await Spells.DragonfireDive.Cast(Core.Me.CurrentTarget);
         }
 
+        public static async Task<bool> RiseOfTheDragon()
+        {
+            if (!DragoonSettings.Instance.UseDragonfireDive)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.DragonsFlight))
+                return false;
+
+            return await Spells.RiseOfTheDragon.Cast(Core.Me.CurrentTarget);
+        }
+
         public static async Task<bool> Stardiver()
         {
             if (!DragoonSettings.Instance.UseStardiver)
@@ -116,6 +112,17 @@ namespace Magitek.Logic.Dragoon
                 return false;
 
             return await Spells.Stardiver.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> Starcross()
+        {
+            if (!DragoonSettings.Instance.UseStardiver)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.StarcrossReady))
+                return false;
+
+            return await Spells.Starcross.Cast(Core.Me.CurrentTarget);
         }
     }
 }
