@@ -68,14 +68,6 @@ namespace Magitek.Models.Dragoon
         public bool UseLanceCharge { get; set; }
 
         [Setting]
-        [DefaultValue(true)]
-        public bool UseDragonSight { get; set; }
-
-        [Setting]
-        [DefaultValue(false)]
-        public bool ForceDragonSight { get; set; }
-
-        [Setting]
         [DefaultValue(DragonSightStrategy.ClosestDps)]
         public DragonSightStrategy SelectedStrategy { get; set; }
 

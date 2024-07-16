@@ -84,8 +84,6 @@ namespace Magitek.Utilities
             Disembowel = 1914,
             SharperFangandClaw = 802,
             EnhancedWheelingThrust = 803,
-            RightEye = 1453,
-            LeftEye = 1454,
             Medicated = 49,
             HawksEye = 3861,
             ResonantReady = 3862,
@@ -399,6 +397,10 @@ namespace Magitek.Utilities
             //SAM
             ZanshinReady = 3855,
             Tendo = 3856,
+
+            //DRG
+            StarcrossReady = 3846,
+            DragonsFlight = 3845,
 
             //To prevent conflict
             Placeholder = 9999;

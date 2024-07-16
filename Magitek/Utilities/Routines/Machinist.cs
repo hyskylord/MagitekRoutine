@@ -101,8 +101,6 @@ namespace Magitek.Utilities.Routines
                 dmgIncrease *= 1.05;
 
             //From DRG
-            if (Core.Me.HasAura(Auras.LeftEye))
-                dmgIncrease *= 1.05;
             if (Core.Me.HasAura(Auras.BattleLitany))
                 dmgIncrease *= 1.01;
 

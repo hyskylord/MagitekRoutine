@@ -127,11 +127,12 @@ namespace Magitek.Rotations
                 if (await Buff.UsePotion()) return true;
 
                 //Buffs
-                if (await Buff.ForceDragonSight()) return true;
                 if (await Buff.LanceCharge()) return true;
-                if (await Buff.DragonSight()) return true;
                 if (await Buff.BattleLitany()) return true;
                 if (await Buff.LifeSurge()) return true;
+
+                if (await Jumps.Starcross()) return true;
+                if (await Jumps.RiseOfTheDragon()) return true;
 
                 //oGCD AOE / SingleTarget
                 if (await Aoe.WyrmwindThrust()) return true; //used in Single Target Rotation
@@ -143,14 +144,11 @@ namespace Magitek.Rotations
                 {
                     if (await Jumps.HighJump()) return true;  //SingleWeave
                     if (await Jumps.DragonfireDive()) return true; //SingleWeave
-                    if (await Jumps.SpineshatterDive()) return true; //SingleWeave
                     if (await Jumps.Stardiver()) return true; //SingleWeave
                 }
 
                 //Jump DoubleWeave
                 if (await Jumps.MirageDive()) return true; //DoubleWeave
-
-
             }
 
             if (await Aoe.DraconianFury()) return true;
@@ -159,6 +157,9 @@ namespace Magitek.Rotations
             if (await Aoe.DoomSpike()) return true;
 
             if (await SingleTarget.RaidenThrust()) return true;
+
+            // Combo finisher
+            if (await SingleTarget.Drakesbane()) return true;
 
             // Combo 2
             if (await SingleTarget.FangAndClaw()) return true;

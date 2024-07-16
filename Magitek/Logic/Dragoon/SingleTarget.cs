@@ -36,6 +36,14 @@ namespace Magitek.Logic.Dragoon
             return await Spells.RaidenThrust.Cast(Core.Me.CurrentTarget);
         }
 
+        public static async Task<bool> Drakesbane()
+        {
+            if (!DragoonRoutine.CanContinueComboAfter(Spells.WheelingThrust) && !DragoonRoutine.CanContinueComboAfter(Spells.FangAndClaw))
+                return false;
+
+            return await Spells.Drakesbane.Cast(Core.Me.CurrentTarget);
+        }
+
         /***************************************************************************
         *                           Combo 1
         * *************************************************************************/
@@ -44,12 +52,15 @@ namespace Magitek.Logic.Dragoon
             if (!DragoonRoutine.CanContinueComboAfter(Spells.TrueThrust) && !DragoonRoutine.CanContinueComboAfter(Spells.RaidenThrust))
                 return false;
 
-            return await Spells.Disembowel.Cast(Core.Me.CurrentTarget);
+            if (Spells.SpiralBlow.IsKnown())
+                return await Spells.SpiralBlow.Cast(Core.Me.CurrentTarget);
+            else
+                return await Spells.Disembowel.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> ChaoticSpring()
         {
-            if (!DragoonRoutine.CanContinueComboAfter(Spells.Disembowel))
+            if (!DragoonRoutine.CanContinueComboAfter(Spells.Disembowel) && !DragoonRoutine.CanContinueComboAfter(Spells.SpiralBlow))
                 return false;
 
             return await DragoonRoutine.ChaoticSpring.Cast(Core.Me.CurrentTarget);
@@ -98,12 +109,16 @@ namespace Magitek.Logic.Dragoon
                         return false;
                 }
             }
-            return await Spells.VorpalThrust.Cast(Core.Me.CurrentTarget);
+
+            if (Spells.LanceBarrage.IsKnown())
+                return await Spells.LanceBarrage.Cast(Core.Me.CurrentTarget);
+            else
+                return await Spells.VorpalThrust.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> HeavensThrust()
         {
-            if (!DragoonRoutine.CanContinueComboAfter(Spells.VorpalThrust))
+            if (!DragoonRoutine.CanContinueComboAfter(Spells.VorpalThrust) && !DragoonRoutine.CanContinueComboAfter(Spells.LanceBarrage))
                 return false;
 
             return await DragoonRoutine.HeavensThrust.Cast(Core.Me.CurrentTarget);
