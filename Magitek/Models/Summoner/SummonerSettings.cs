@@ -153,6 +153,14 @@ namespace Magitek.Models.Summoner
         [DefaultValue(80f)]
         public float RadiantAegisHPThreshold { get; set; }
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool LuxSolaris { get; set; }
+
+        [Setting]
+        [DefaultValue(80.0f)]
+        public float LuxSolarisHpPercent { get; set; }
+
         #endregion
 
         #region Heals

@@ -66,6 +66,7 @@ namespace Magitek.Rotations
             if (await Logic.Summoner.Heal.ForceHardRaise()) return true;
             #endregion
 
+            if (await Logic.Summoner.Heal.LuxSolaris()) return true;
             if (await Logic.Summoner.Heal.RadiantAegis()) return true;
             return await Logic.Summoner.Heal.Physick();
 
@@ -105,6 +106,7 @@ namespace Magitek.Rotations
             if (await Buff.LucidDreaming()) return true;
             if (await Pets.SummonCarbuncleOrEgi()) return true;
             if (await Aoe.EnergySiphon()) return true;
+            if (await Aoe.SearingFlash()) return true;
             if (await SingleTarget.EnergyDrain()) return true;
             if (await SingleTarget.Enkindle()) return true;
             if (await Aoe.AstralFlow()) return true;
