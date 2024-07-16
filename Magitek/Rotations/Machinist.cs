@@ -187,9 +187,6 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.ThoroughCanAttack())
-                return false;
-
             // Utilities
             if (await PhysicalDps.Guard(MachinistSettings.Instance)) return true;
             if (await PhysicalDps.Purify(MachinistSettings.Instance)) return true;

@@ -681,8 +681,8 @@ namespace Magitek.Utilities.Managers
                 //case ClassJobType.Viper:
                 //    return await Rotations.Viper.PvP();
 
-                //case ClassJobType.Pictomancer:
-                //    return await Rotations.Pictomancer.PvP();
+                case ClassJobType.Pictomancer:
+                    return await Rotations.Pictomancer.PvP();
 
                 default:
                     return false;

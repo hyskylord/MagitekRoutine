@@ -145,6 +145,26 @@ namespace Magitek.Rotations
 
         public static async Task<bool> PvP()
         {
+            if (!BaseSettings.Instance.ActivePvpCombatRoutine)
+                return await Combat();
+
+            if (Core.Me.HasAura(Auras.Guard))
+                return false;
+
+            if (await MagicDps.Guard(PictomancerSettings.Instance)) return true;
+            if (await MagicDps.Purify(PictomancerSettings.Instance)) return true;
+            if (await MagicDps.Recuperate(PictomancerSettings.Instance)) return true;
+
+            if (await Pvp.AdventofChocobastion()) return true;
+
+            if (await Pvp.SubtractivePalette()) return true;
+            if (await Pvp.MogoftheAges()) return true;
+            if (await Pvp.LivingMuse()) return true;
+            if (await Pvp.CreatureMotif()) return true;
+
+            if (await Pvp.PaintWB()) return true;
+            if (await Pvp.PaintRGB()) return true;
+
             return false;
         }
     }
