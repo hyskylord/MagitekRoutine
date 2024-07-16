@@ -102,8 +102,9 @@ namespace Magitek.Utilities
         public static readonly SpellData EmeraldOutburst = DataManager.GetSpellData(25816);
         public static readonly SpellData Ruin2 = DataManager.GetSpellData(172);
         public static readonly SpellData SmnPhysick = DataManager.GetSpellData(16230);
-
-
+        public static readonly SpellData Necrotize = DataManager.GetSpellData(36990);
+        public static readonly SpellData SearingFlash = DataManager.GetSpellData(36991);
+        public static readonly SpellData LuxSolaris = DataManager.GetSpellData(36997);
         #endregion
 
         // AST

@@ -356,6 +356,10 @@ namespace Magitek.Utilities
             LastDanceReady = 3867,
             Damnation = 3832,
 
+            //SMN
+            RubysGlimmer = 3873,
+            RefulgentLux = 3874,
+
             //GNB
             ReadyToReign = 3840,
 

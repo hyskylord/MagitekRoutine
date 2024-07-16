@@ -188,6 +188,25 @@ namespace Magitek.Logic.Summoner
             return await Spells.EnergySiphon.Cast(target);
         }
 
+        public static async Task<bool> SearingFlash()
+        {
+            if (!Spells.SearingFlash.IsKnownAndReady())
+                return false;
+
+            if (!GlobalCooldown.CanWeave())
+                return false;
+
+            if (!Core.Me.HasAura(Auras.RubysGlimmer))
+                return false;
+
+            var target = Combat.SmartAoeTarget(Spells.SearingFlash, SummonerSettings.Instance.SmartAoe);
+
+            if (target == null || Core.Me.CurrentTarget == null)
+                return false;
+
+            return await Spells.SearingFlash.Cast(target);
+        }
+
         public static async Task<bool> Outburst()
         {
             if (!SummonerSettings.Instance.Outburst)

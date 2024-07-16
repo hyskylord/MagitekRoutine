@@ -170,5 +170,32 @@ namespace Magitek.Logic.Summoner
 
             return await Spells.RadiantAegis.CastAura(Core.Me, Auras.RadiantAegis);
         }
+
+        public static async Task<bool> LuxSolaris()
+        {
+            if (!SummonerSettings.Instance.LuxSolaris)
+                return false;
+
+            if (Core.Me.ClassLevel < Spells.LuxSolaris.LevelAcquired)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.RefulgentLux))
+                return false;
+
+            if (Globals.InParty)
+            {
+                var needHealing = PartyManager.NumMembers > 4 ? 3 : 2;
+
+                if (Group.CastableAlliesWithin15.Count(r => r.CurrentHealthPercent <= SummonerSettings.Instance.LuxSolarisHpPercent) < needHealing)
+                    return false;
+            }
+            else
+            {
+                if (Core.Me.CurrentHealthPercent <= SummonerSettings.Instance.LuxSolarisHpPercent)
+                    return false;
+            }
+
+            return await Spells.LuxSolaris.Cast(Core.Me);
+        }
     }
 }
