@@ -286,7 +286,7 @@ namespace Magitek.Logic.Summoner
             if (SmnResources.Aetherflow + ArcResources.Aetherflow == 0)
                 return false;
             
-            if (Core.Me.CurrentTarget.EnemiesNearby(5).Count() < 2) 
+            if (Core.Me.CurrentTarget.EnemiesNearby(5).Count() < 3) 
                 return false;
             
             if (!GlobalCooldown.CanWeave())
