@@ -115,7 +115,8 @@ namespace Magitek.Rotations
 
             if (ActionResourceManager.Machinist.OverheatRemaining != TimeSpan.Zero)
             {
-                if (MachinistRoutine.GlobalCooldown.CanWeave(1)) {
+                if (MachinistRoutine.GlobalCooldown.CanWeave())
+                {
                     //Utility
                     if (await PhysicalDps.ArmsLength(MachinistSettings.Instance)) return true;
                     if (await PhysicalDps.Interrupt(MachinistSettings.Instance)) return true;
@@ -126,7 +127,7 @@ namespace Magitek.Rotations
                     //Cooldowns
                     if (await Cooldowns.BarrelStabilizer()) return true;
                     //if (await Cooldowns.Reassemble()) return true;
-                    
+
                     //oGCDs
                     if (await SingleTarget.GaussRound()) return true;
                     if (await MultiTarget.Ricochet()) return true;
@@ -156,7 +157,6 @@ namespace Magitek.Rotations
                     //oGCDs
                     if (await SingleTarget.GaussRound()) return true;
                     if (await MultiTarget.Ricochet()) return true;
-
                 }
             }
 

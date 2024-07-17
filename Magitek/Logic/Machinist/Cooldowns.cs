@@ -29,7 +29,7 @@ namespace Magitek.Logic.Machinist
             if (Spells.Reassemble.IsKnown() && Spells.Reassemble.Charges > 1)
                 return false;
 
-            if (Spells.Wildfire.Cooldown.Milliseconds > 0 && Spells.Wildfire.Cooldown.Milliseconds <= 6000)
+            if (Spells.Wildfire.Cooldown.TotalMilliseconds > 0 && Spells.Wildfire.Cooldown.TotalMilliseconds <= 6000)
                 return false;
 
             return await Spells.BarrelStabilizer.Cast(Core.Me);
@@ -52,13 +52,16 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
+            // Force cast if barrel stabilizer is active
+            if (Core.Me.HasAura(Auras.Hypercharged, true))
+                return await Spells.Hypercharge.Cast(Core.Me);
+
             if (Spells.Wildfire.IsKnownAndReady())
                 return false;
 
-            //Force cast during wildfire
+            // Force cast during wildfire
             if (Spells.Wildfire.IsKnown() && (Casting.LastSpell == Spells.Wildfire || Core.Me.HasAura(Auras.WildfireBuff, true)))
                 return await Spells.Hypercharge.Cast(Core.Me);
-
 
             if (MachinistSettings.Instance.DelayHypercharge)
             {
@@ -111,6 +114,9 @@ namespace Magitek.Logic.Machinist
             if (Spells.Reassemble.Charges < 1)
                 return false;
 
+            if (Core.Me.HasAura(Auras.Reassembled))
+                return false;
+
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
@@ -120,7 +126,7 @@ namespace Magitek.Logic.Machinist
 
             if (Core.Me.ClassLevel < 58)
             {
-                if (ActionManager.LastSpell != MachinistRoutine.HeatedSlugShot)
+                if (ActionManager.LastSpell == MachinistRoutine.HeatedSlugShot)
                     return false;
             }
 
@@ -139,19 +145,19 @@ namespace Magitek.Logic.Machinist
 
             if (Core.Me.ClassLevel >= 90)
             {
-                if (Spells.Reassemble.Charges >= Spells.Reassemble.MaxCharges)
+                if (Spells.Reassemble.Charges >= 1)
                 {
-                    if (MachinistSettings.Instance.UseDrill && Spells.Drill.IsReady(3000)
-                        || MachinistSettings.Instance.UseHotAirAnchor && Spells.AirAnchor.IsReady(3000)
-                        || MachinistSettings.Instance.UseChainSaw && Spells.ChainSaw.IsReady(3000))
+                    if (MachinistSettings.Instance.UseDrill && Spells.Drill.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100)
+                        || MachinistSettings.Instance.UseHotAirAnchor && Spells.AirAnchor.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100)
+                        || MachinistSettings.Instance.UseChainSaw && Spells.ChainSaw.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100))
+                    {
                         return await Spells.Reassemble.Cast(Core.Me);
-                } 
-                else
-                {
-                    if (MachinistSettings.Instance.UseChainSaw && !Spells.ChainSaw.IsReady(2000))
+                    }
+                    else
                         return false;
                 }
-
+                else
+                    return false;
             }
 
             return await Spells.Reassemble.Cast(Core.Me);

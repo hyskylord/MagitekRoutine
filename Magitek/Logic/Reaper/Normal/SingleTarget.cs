@@ -27,7 +27,7 @@ namespace Magitek.Logic.Reaper
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards >= ReaperSettings.Instance.WhorlOfDeathTargetCount)
                 return false;
 
-            if (Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true) && Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true, Spells.Slice.AdjustedCooldown.Milliseconds))
+            if (Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true) && Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true, (int)Spells.Slice.AdjustedCooldown.TotalMilliseconds))
                 return false;
 
             if (Utilities.Routines.Reaper.CheckTTDIsEnemyDyingSoon())
@@ -49,7 +49,7 @@ namespace Magitek.Logic.Reaper
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards >= ReaperSettings.Instance.WhorlOfDeathTargetCount)
                 return false;
 
-            if (Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true) && Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true, 30000 - Spells.Slice.AdjustedCooldown.Milliseconds))
+            if (Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true) && Core.Me.CurrentTarget.HasAura(Auras.DeathsDesign, true, 30000 - (int)Spells.Slice.AdjustedCooldown.TotalMilliseconds))
                 return false;
 
             if (Utilities.Routines.Reaper.CheckTTDIsEnemyDyingSoon())

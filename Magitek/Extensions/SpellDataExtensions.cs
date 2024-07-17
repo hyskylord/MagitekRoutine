@@ -337,7 +337,7 @@ namespace Magitek.Extensions
                 if (spell.Charges >= 1)
                     return true;
 
-                var remainingCooldownTime = spell.Cooldown.TotalMilliseconds - (spell.AdjustedCooldown.TotalMilliseconds * spell.MaxCharges - 1);
+                var remainingCooldownTime = spell.Cooldown.TotalMilliseconds - (spell.AdjustedCooldown.TotalMilliseconds * (spell.MaxCharges - (uint)spell.Charges - 1));
 
                 if (!BaseSettings.Instance.UseCastOrQueue)
                 {
