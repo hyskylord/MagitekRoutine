@@ -5860,28 +5860,36 @@ namespace Magitek.Utilities
                     new Enemy {
                         Id = 12844,
                         Name = "Antivirus X",
-                        TankBusters = new List<uint> {
-                        },
+                        TankBusters = null,
                         SharedTankBusters = null,
-                        Aoes = null,
+                        Aoes = new List<uint> {
+                            36384, // quarantine
+                            36387, // cytolysis
+                        },
                         BigAoes = null
                     },
                     new Enemy {
                         Id = 12864,
                         Name = "Amalgam",
                         TankBusters = new List<uint> {
+                            36339, // amalgamight
                         },
                         SharedTankBusters = null,
-                        Aoes = null,
+                        Aoes = new List<uint> {
+                            36337, // electrowave
+                            36323, // disassembly
+                            36332, // superbolt
+                        },
                         BigAoes = null
                     },
                     new Enemy {
                         Id = 12729,
                         Name = "Eliminator",
-                        TankBusters = new List<uint> {
-                        },
+                        TankBusters = null,
                         SharedTankBusters = null,
                         Aoes = new List<uint> {
+                            36765, // disruption
+                            36779, // overexposure
                         },
                         BigAoes = null
                     }
