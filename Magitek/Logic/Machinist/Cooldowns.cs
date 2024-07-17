@@ -23,7 +23,7 @@ namespace Magitek.Logic.Machinist
             if (!Spells.BarrelStabilizer.IsReady())
                 return false;
 
-         //   if (ActionResourceManager.Machinist.Heat > 50)
+         //   if (ActionResourceManager.Machin\basicaist.Heat > 50)
          //       return false;
 
             if (Spells.Reassemble.IsKnown() && Spells.Reassemble.Charges > 1)

@@ -94,7 +94,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.WildfireBuff))
+            if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             /*
@@ -127,7 +127,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.WildfireBuff))
+            if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             /*
