@@ -73,7 +73,7 @@ namespace Magitek.Models.Pictomancer
         public bool PaletteDuringStarry { get; set; }
 
         [Setting]
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool SwiftcastMotifs { get; set; }
 
         [Setting]

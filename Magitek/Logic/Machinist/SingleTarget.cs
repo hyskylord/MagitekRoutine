@@ -31,7 +31,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Reassembled))
+            if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
                 return false;
 
             return await MachinistRoutine.HeatedSplitShot.Cast(Core.Me.CurrentTarget);
@@ -54,7 +54,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Reassembled))
+            if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
                 return false;
 
             return await MachinistRoutine.HeatedSlugShot.Cast(Core.Me.CurrentTarget);
@@ -77,7 +77,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Reassembled))
+            if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
                 return false;
 
             return await MachinistRoutine.HeatedCleanShot.Cast(Core.Me.CurrentTarget);

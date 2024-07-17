@@ -37,7 +37,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> Hypercharge()
         {
-            if (Core.Me.ClassLevel < 65)
+            if (Core.Me.ClassLevel < Spells.Hypercharge.LevelAcquired)
                 return false;
 
             if (!MachinistSettings.Instance.UseHypercharge)
