@@ -14,6 +14,44 @@ namespace Magitek.Models.Scholar
 
         public static ScholarSettings Instance { get; set; } = new ScholarSettings();
 
+        #region ForcePowers
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceWhispDawn { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceAdlo { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceIndom { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceExcog { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceSeraph { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceSuccor { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceSacredSoil { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceEmergencySuccor { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool ForceDeployAdloWithRecitation { get; set; }
+        #endregion
+
         #region Buffs
         [Setting]
         [DefaultValue(true)]
@@ -26,6 +64,10 @@ namespace Magitek.Models.Scholar
         [Setting]
         [DefaultValue(true)]
         public bool LucidDreamingOnlyWhenNoAetherFlow { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool ChainStrategem { get; set; }
 
         [Setting]
         [DefaultValue(ChainStrategemStrategemStrategy.OnlyBosses)]
@@ -82,26 +124,6 @@ namespace Magitek.Models.Scholar
         public float AoEHealHealthPercent { get; set; }
 
         [Setting]
-        [DefaultValue(false)]
-        public bool ForceWhispDawn { get; set; }
-
-        [Setting]
-        [DefaultValue(false)]
-        public bool ForceAdlo { get; set; }
-
-        [Setting]
-        [DefaultValue(false)]
-        public bool ForceIndom { get; set; }
-
-        [Setting]
-        [DefaultValue(false)]
-        public bool ForceExcog { get; set; }
-
-        [Setting]
-        [DefaultValue(false)]
-        public bool ForceSeraph { get; set; }
-
-        [Setting]
         [DefaultValue(true)]
         public bool Physick { get; set; }
 
@@ -120,6 +142,22 @@ namespace Magitek.Models.Scholar
         [Setting]
         [DefaultValue(60.0f)]
         public float AdloquiumHpPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Manifestation { get; set; }
+
+        [Setting]
+        [DefaultValue(60.0f)]
+        public float ManifestationHpPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Accession { get; set; }
+
+        [Setting]
+        [DefaultValue(60.0f)]
+        public float AccessionHpPercent { get; set; }
 
         [Setting]
         [DefaultValue(true)]

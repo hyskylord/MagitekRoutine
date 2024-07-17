@@ -755,6 +755,8 @@ namespace Magitek.Utilities
         public static readonly SpellData AngelFeathers = DataManager.GetSpellData(4247);
         public static readonly SpellData BanefulImpaction = DataManager.GetSpellData(37012);
         public static readonly SpellData Seraphism = DataManager.GetSpellData(37014);
+        public static readonly SpellData Manifestation = DataManager.GetSpellData(37015);
+        public static readonly SpellData Accession = DataManager.GetSpellData(37016);
         #endregion
 
         // SMN

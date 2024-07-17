@@ -48,8 +48,8 @@ namespace Magitek.Logic.Scholar
         {
             if (!ScholarSettings.Instance.ForceAdlo)
                 return false;
-
-            if (!await Spells.Adloquium.Cast(Core.Me.CurrentTarget)) return false;
+     
+            if (!await Spells.Adloquium.Heal(Core.Me, false)) return false;
             ScholarSettings.Instance.ForceAdlo = false;
             TogglesManager.ResetToggles();
             return true;
@@ -71,10 +71,118 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.ForceExcog)
                 return false;
 
+            if (Core.Me.HasAura(Auras.Galvanize))
+                return false;
+
             if (!await Spells.Excogitation.Cast(Core.Me)) return false;
             ScholarSettings.Instance.ForceExcog = false;
             TogglesManager.ResetToggles();
             return true;
+        }
+
+        public static async Task<bool> ForceSacredSoil()
+        {
+            if (!ScholarSettings.Instance.ForceSacredSoil)
+                return false;
+
+            if (!await Spells.SacredSoil.Cast(Core.Me)) return false;
+            ScholarSettings.Instance.ForceSacredSoil = false;
+            TogglesManager.ResetToggles();
+            return true;
+        }
+
+        public static async Task<bool> ForceSuccor()
+        {
+            if (!ScholarSettings.Instance.ForceSuccor)
+                return false;
+
+            if (!await Spells.Succor.Cast(Core.Me)) return false;
+            ScholarSettings.Instance.ForceSuccor = false;
+            TogglesManager.ResetToggles();
+            return true;
+        }
+
+        public static async Task<bool> ForceEmergencySuccor()
+        {
+            if (!ScholarSettings.Instance.ForceEmergencySuccor)
+                return false;
+
+            if (!Spells.EmergencyTactics.IsKnownAndReady())
+                return false;
+
+            if (!await UsedEmergencyTactics())
+                return false;
+
+            if (!await Spells.Succor.Cast(Core.Me)) return false;
+            ScholarSettings.Instance.ForceEmergencySuccor = false;
+            TogglesManager.ResetToggles();
+            return true;
+        }
+
+        public static async Task<bool> ForceDeployAdloWithRecitation()
+        {
+            if (!ScholarSettings.Instance.ForceDeployAdloWithRecitation)
+                return false;
+
+            if (!Spells.DeploymentTactics.IsKnownAndReady() || !Spells.Recitation.IsKnownAndReady())
+                return false;
+
+            if (!await UsedRecitation())
+                return false;
+
+            if (!await UsedAdloquium())
+                 return false;
+
+           if (!await Spells.DeploymentTactics.Cast(Core.Me))
+                 return false;
+               
+
+            ScholarSettings.Instance.ForceDeployAdloWithRecitation = false;
+            TogglesManager.ResetToggles();
+            return true;
+        }
+
+
+        private static async Task<bool> UsedRecitation()
+        {
+            if (Core.Me.HasAura(Auras.Recitation))
+                return true;
+            if (!await Spells.Recitation.Cast(Core.Me))
+                return false;
+            if (!await Coroutine.Wait(1000, () => Core.Me.HasAura(Auras.Recitation)))
+                 return false;
+            return await Coroutine.Wait(1000, () => ActionManager.CanCast(Spells.Adloquium.Id, Core.Me));
+        }
+
+        private static async Task<bool> UsedEmergencyTactics()
+        {
+            if (Core.Me.HasAura(Auras.EmergencyTactics))
+                return true;
+            if (!await Spells.EmergencyTactics.Cast(Core.Me))
+                return false;
+            if (!await Coroutine.Wait(1000, () => Core.Me.HasAura(Auras.EmergencyTactics)))
+                return false;
+            return await Coroutine.Wait(1000, () => ActionManager.CanCast(Spells.Succor.Id, Core.Me));
+        }
+
+        private static async Task<bool> UsedAdloquium()
+        {
+            if (Core.Me.HasAura(Auras.Galvanize))
+                return true;
+            if (!await Spells.Adloquium.Cast(Core.Me))
+                return false;
+            if (!await Coroutine.Wait(2000, () => Core.Me.HasAura(Auras.Galvanize)))
+                return false;
+            return await Coroutine.Wait(1000, () => ActionManager.CanCast(Spells.DeploymentTactics.Id, Core.Me));
+        }
+
+        private static async Task<bool> UsedSuccor()
+        {
+            if (Core.Me.HasAura(Auras.Galvanize))
+                return true;
+            if (!await Spells.Succor.Cast(Core.Me))
+                return false;
+            return await Coroutine.Wait(2500, () => Core.Me.HasAura(Auras.Galvanize));
         }
 
         #endregion
@@ -245,6 +353,7 @@ namespace Magitek.Logic.Scholar
             }
         }
 
+
         public static async Task<bool> EmergencyTacticsSuccor()
         {
             if (!ScholarSettings.Instance.Succor || !ScholarSettings.Instance.EmergencyTactics || !ScholarSettings.Instance.EmergencyTacticsSuccor)
@@ -292,6 +401,70 @@ namespace Magitek.Logic.Scholar
             }
 
             return false;
+        }
+
+        public static async Task<bool> Accession()
+        {
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!ScholarSettings.Instance.Accession)
+                return false;
+
+            var needAccession = Group.CastableAlliesWithin15.Count(r => r.IsAlive && r.CurrentHealthPercent <= ScholarSettings.Instance.AccessionHpPercent) >= AoeNeedHealing;
+
+            if (!needAccession)
+                return false;
+
+            return await Spells.Accession.Heal(Core.Me);
+ 
+        }
+
+        public static async Task<bool> Manifestation()
+        {
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (!ScholarSettings.Instance.Manifestation)
+                return false;
+
+            if (Group.CastableAlliesWithin15.Count(r => r.CurrentHealthPercent <= ScholarSettings.Instance.IndomitabilityHpPercent) > AoeNeedHealing)
+                return false;
+
+            if (ScholarSettings.Instance.DisableSingleHealWhenNeedAoeHealing && NeedAoEHealing())
+                return false;
+
+            if (Globals.InParty)
+            {
+                var lustrateTarget = Group.CastableAlliesWithin30.FirstOrDefault(CanLustrate);
+
+                if (lustrateTarget == null)
+                    return false;
+
+                return await Spells.Manifestation.Cast(lustrateTarget);
+            }
+
+            if (Core.Me.HasAura(Auras.Excogitation))
+                return false;
+
+            if (Core.Me.CurrentHealthPercent > ScholarSettings.Instance.ManifestationHpPercent)
+                return false;
+
+            return await Spells.Manifestation.Cast(Core.Me);
+
+            bool CanLustrate(Character unit)
+            {
+                if (unit == null)
+                    return false;
+
+                if (unit.HasAura(Auras.Excogitation))
+                    return false;
+
+                if (unit.CurrentHealthPercent > ScholarSettings.Instance.ManifestationHpPercent)
+                    return false;
+
+                return true;
+            }
         }
 
         public static async Task<bool> Excogitation()
@@ -389,6 +562,9 @@ namespace Magitek.Logic.Scholar
                 return false;
 
             if (Group.CastableAlliesWithin15.Count(r => r.CurrentHealthPercent <= ScholarSettings.Instance.IndomitabilityHpPercent) > AoeNeedHealing)
+                return false;
+
+            if (ScholarSettings.Instance.DisableSingleHealWhenNeedAoeHealing && NeedAoEHealing())
                 return false;
 
             if (Globals.InParty)
