@@ -126,14 +126,14 @@ namespace Magitek.Logic.Machinist
 
             if (Core.Me.ClassLevel >= 58 && Core.Me.ClassLevel < 76)
             {
-                if (MachinistSettings.Instance.UseDrill && !Spells.Drill.IsKnownAndReady() && Spells.Drill.Cooldown.TotalMilliseconds - 100 >= MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds)
+                if (MachinistSettings.Instance.UseDrill && !Spells.Drill.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100))
                     return false;
             }
 
             if (Core.Me.ClassLevel >= 76 && Core.Me.ClassLevel < 90)
             {
-                if ((MachinistSettings.Instance.UseDrill && !Spells.Drill.IsKnownAndReady() && Spells.Drill.Cooldown.TotalMilliseconds - 100 >= MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds)
-                    && (MachinistSettings.Instance.UseHotAirAnchor && !Spells.AirAnchor.IsKnownAndReady() && Spells.AirAnchor.Cooldown.TotalMilliseconds - 100 >= MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds))
+                if ((MachinistSettings.Instance.UseDrill && !Spells.Drill.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100))
+                    && (MachinistSettings.Instance.UseHotAirAnchor && !Spells.AirAnchor.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100)))
                     return false;
             }
 

@@ -39,10 +39,10 @@ namespace Magitek.Logic.Machinist
             if (!MachinistSettings.Instance.UseAoe)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Reassembled))
+            if (Core.Me.EnemiesInCone(12) < MachinistSettings.Instance.BioBlasterEnemyCount)
                 return false;
 
-            if (Core.Me.EnemiesInCone(12) < MachinistSettings.Instance.BioBlasterEnemyCount)
+            if (Core.Me.CurrentTarget.HasAura(Auras.Bioblaster, true))
                 return false;
 
             return await Spells.Bioblaster.Cast(Core.Me.CurrentTarget);

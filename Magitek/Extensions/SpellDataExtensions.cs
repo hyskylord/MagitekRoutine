@@ -332,6 +332,23 @@ namespace Magitek.Extensions
 
         public static bool IsReady(this SpellData spell, int remainingTimeInMs = 0)
         {
+            if (spell.MaxCharges > 1)
+            {
+                if (spell.Charges >= 1)
+                    return true;
+
+                var remainingCooldownTime = spell.Cooldown.TotalMilliseconds - (spell.AdjustedCooldown.TotalMilliseconds * spell.MaxCharges - 1);
+
+                if (!BaseSettings.Instance.UseCastOrQueue)
+                {
+                    return remainingCooldownTime <= remainingTimeInMs;
+                }
+                else
+                {
+                    return remainingCooldownTime <= 500;
+                }
+            }
+
             if (!BaseSettings.Instance.UseCastOrQueue)
             {
                 return spell.Cooldown.TotalMilliseconds <= remainingTimeInMs;
@@ -340,7 +357,6 @@ namespace Magitek.Extensions
             {
                 return spell.Cooldown.TotalMilliseconds <= 500;
             }
-
         }
 
         public static bool IsKnownAndReady(this SpellData spell, int remainingTimeInMs = 0)
