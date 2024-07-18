@@ -52,8 +52,8 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            // Force cast if barrel stabilizer is active
-            if (Core.Me.HasAura(Auras.Hypercharged, true))
+            // Force cast if barrel stabilizer is active and about to expire
+            if (Core.Me.HasAura(Auras.Hypercharged, true, 3000))
                 return await Spells.Hypercharge.Cast(Core.Me);
 
             if (Spells.Wildfire.IsKnownAndReady())
@@ -65,13 +65,13 @@ namespace Magitek.Logic.Machinist
 
             if (MachinistSettings.Instance.DelayHypercharge)
             {
-                if (Spells.Drill.IsKnown() && Spells.Drill.Cooldown.Seconds <= MachinistSettings.Instance.DelayHyperchargeSeconds)
+                if (Spells.Drill.IsKnown() && Spells.Drill.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayHyperchargeSeconds)
                     return false;
 
-                if (Spells.AirAnchor.IsKnown() && Spells.AirAnchor.Cooldown.Seconds <= MachinistSettings.Instance.DelayHyperchargeSeconds)
+                if (Spells.AirAnchor.IsKnown() && Spells.AirAnchor.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayHyperchargeSeconds)
                     return false;
 
-                if (Spells.ChainSaw.IsKnown() && Spells.ChainSaw.Cooldown.Seconds <= MachinistSettings.Instance.DelayHyperchargeSeconds)
+                if (Spells.ChainSaw.IsKnown() && Spells.ChainSaw.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayHyperchargeSeconds)
                     return false;
             }
 
@@ -86,24 +86,24 @@ namespace Magitek.Logic.Machinist
             if (Core.Me.HasAura(Auras.WildfireBuff, true) || Casting.SpellCastHistory.Any(x => x.Spell == Spells.Wildfire))
                 return false;
 
-            if (ActionResourceManager.Machinist.Heat < 50 && ActionResourceManager.Machinist.OverheatRemaining == TimeSpan.Zero)
+            if (!Core.Me.HasAura(Auras.Hypercharged, true) && ActionResourceManager.Machinist.Heat < 50 && ActionResourceManager.Machinist.OverheatRemaining == TimeSpan.Zero)
                 return false;
 
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
             if (MachinistSettings.Instance.DelayWildfire) { 
-                if (Spells.Drill.IsKnown() && Spells.Drill.Cooldown.Seconds <= MachinistSettings.Instance.DelayWildfireSeconds)
+                if (Spells.Drill.IsKnown() && Spells.Drill.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayWildfireSeconds)
                     return false;
 
-                if (Spells.AirAnchor.IsKnown() && Spells.AirAnchor.Cooldown.Seconds <= MachinistSettings.Instance.DelayWildfireSeconds)
+                if (Spells.AirAnchor.IsKnown() && Spells.AirAnchor.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayWildfireSeconds)
                     return false;
 
-                if (Spells.ChainSaw.IsKnown() && Spells.ChainSaw.Cooldown.Seconds <= MachinistSettings.Instance.DelayWildfireSeconds)
+                if (Spells.ChainSaw.IsKnown() && Spells.ChainSaw.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayWildfireSeconds)
                     return false;
             }
 
-            return await Spells.Wildfire.Cast(Core.Me.CurrentTarget);
+            return await Spells.Wildfire.CastAura(Core.Me.CurrentTarget, Auras.WildfireBuff, auraTarget: Core.Me);
         }
 
         public static async Task<bool> Reassemble()
@@ -132,14 +132,14 @@ namespace Magitek.Logic.Machinist
 
             if (Core.Me.ClassLevel >= 58 && Core.Me.ClassLevel < 76)
             {
-                if (MachinistSettings.Instance.UseDrill && !Spells.Drill.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100))
+                if (MachinistSettings.Instance.UseDrill && !Spells.Drill.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds - 100))
                     return false;
             }
 
             if (Core.Me.ClassLevel >= 76 && Core.Me.ClassLevel < 90)
             {
-                if ((MachinistSettings.Instance.UseDrill && !Spells.Drill.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100))
-                    && (MachinistSettings.Instance.UseHotAirAnchor && !Spells.AirAnchor.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100)))
+                if ((MachinistSettings.Instance.UseDrill && !Spells.Drill.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds - 100))
+                    && (MachinistSettings.Instance.UseHotAirAnchor && !Spells.AirAnchor.IsKnownAndReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds - 100)))
                     return false;
             }
 
@@ -147,11 +147,12 @@ namespace Magitek.Logic.Machinist
             {
                 if (Spells.Reassemble.Charges >= 1)
                 {
-                    if (MachinistSettings.Instance.UseDrill && Spells.Drill.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100)
-                        || MachinistSettings.Instance.UseHotAirAnchor && Spells.AirAnchor.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100)
-                        || MachinistSettings.Instance.UseChainSaw && Spells.ChainSaw.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds + 100))
+                    if (MachinistSettings.Instance.UseDrill && MachinistSettings.Instance.UseReassembleOnDrill && Spells.Drill.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds - 100)
+                        || MachinistSettings.Instance.UseHotAirAnchor && MachinistSettings.Instance.UseReassembleOnAA && Spells.AirAnchor.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds - 100)
+                        || MachinistSettings.Instance.UseChainSaw && MachinistSettings.Instance.UseReassembleOnChainSaw && Spells.ChainSaw.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds - 100)
+                        || MachinistSettings.Instance.UseChainSaw && MachinistSettings.Instance.UseReassembleOnChainSaw && Spells.Excavator.IsReady((int)MachinistRoutine.HeatedSplitShot.Cooldown.TotalMilliseconds - 100))
                     {
-                        return await Spells.Reassemble.Cast(Core.Me);
+                        return await Spells.Reassemble.CastAura(Core.Me, Auras.Reassembled);
                     }
                     else
                         return false;
@@ -160,7 +161,7 @@ namespace Magitek.Logic.Machinist
                     return false;
             }
 
-            return await Spells.Reassemble.Cast(Core.Me);
+            return await Spells.Reassemble.CastAura(Core.Me, Auras.Reassembled);
         }
 
         public static async Task<bool> UsePotion()

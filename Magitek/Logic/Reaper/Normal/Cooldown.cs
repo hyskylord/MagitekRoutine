@@ -27,11 +27,12 @@ namespace Magitek.Logic.Reaper
                 return false;
             if (Utilities.Routines.Reaper.CheckTTDIsEnemyDyingSoon())
                 return false;            
-            var gluttonyCast = await Spells.Gluttony.Cast(Core.Me.CurrentTarget);
-            // wait for Executioner aura, but CastAura only wants CurrentTarget but in this case we need to wait for the aura on the player
-            if (Spells.ExecutionersGibbet.IsKnown() && gluttonyCast)
-                await Coroutine.Wait(3000, () => Core.Me.HasAura(Auras.Executioner, true));
-            return gluttonyCast;
+            
+            // wait for Executioner aura on self to prevent canceling it with another action
+            if (Spells.ExecutionersGibbet.IsKnown())
+                return await Spells.Gluttony.CastAura(Core.Me.CurrentTarget, Auras.Executioner, auraTarget: Core.Me);
+            else
+                return await Spells.Gluttony.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> Enshroud()

@@ -28,7 +28,7 @@ namespace Magitek.Logic.RedMage
             if (!InAoeCombo())
             {
                 if (Core.Me.ClassLevel >= Spells.Embolden.LevelAcquired
-                    && Spells.Embolden.Cooldown.Seconds <= 10)
+                    && Spells.Embolden.Cooldown.TotalSeconds <= 10)
                     return false;
 
                 if (Core.Me.EnemiesInCone(8) < RedMageSettings.Instance.AoeEnemies)

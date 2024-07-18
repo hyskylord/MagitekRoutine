@@ -24,7 +24,7 @@ namespace Magitek.Logic.Paladin
             if (!PaladinSettings.Instance.UseCircleOfScorn)
                 return false;
 
-            if (PaladinSettings.Instance.SaveCircleOfScorn && Spells.FightorFlight.Cooldown.Seconds <= PaladinSettings.Instance.SaveCircleOfScornMseconds)
+            if (PaladinSettings.Instance.SaveCircleOfScorn && Spells.FightorFlight.Cooldown.TotalSeconds <= PaladinSettings.Instance.SaveCircleOfScornMseconds)
                 return false;
 
             if (Spells.Requiescat.IsKnownAndReady())
@@ -75,7 +75,7 @@ namespace Magitek.Logic.Paladin
             if (!PaladinSettings.Instance.UseExpiacion)
                 return false;
 
-            if (PaladinSettings.Instance.SaveCircleOfScorn && Spells.FightorFlight.Cooldown.Seconds <= PaladinSettings.Instance.SaveCircleOfScornMseconds)
+            if (PaladinSettings.Instance.SaveCircleOfScorn && Spells.FightorFlight.Cooldown.TotalSeconds <= PaladinSettings.Instance.SaveCircleOfScornMseconds)
                 return false;
 
             return await PaladinRoutine.Expiacion.Cast(Core.Me.CurrentTarget);
