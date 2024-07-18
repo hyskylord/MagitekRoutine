@@ -26,7 +26,7 @@ namespace Magitek.Logic.Reaper
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards < ReaperSettings.Instance.WhorlOfDeathTargetCount)
                 return false;
 
-            if (!Combat.Enemies.Any(x => (!x.HasMyAura(Auras.DeathsDesign) || (x.HasMyAura(Auras.DeathsDesign) && !x.HasAura(Auras.DeathsDesign, true, Spells.Slice.AdjustedCooldown.Milliseconds)))
+            if (!Combat.Enemies.Any(x => (!x.HasMyAura(Auras.DeathsDesign) || (x.HasMyAura(Auras.DeathsDesign) && !x.HasAura(Auras.DeathsDesign, true, (int)Spells.Slice.AdjustedCooldown.TotalMilliseconds)))
                                          && x.Distance(Core.Me) <= 5 + Core.Me.CombatReach))
                 return false;
 
@@ -75,7 +75,7 @@ namespace Magitek.Logic.Reaper
             if (Utilities.Routines.Reaper.EnemiesAroundPlayer5Yards < ReaperSettings.Instance.WhorlOfDeathTargetCount)
                 return false;
 
-            if (!Combat.Enemies.Any(x => (!x.HasMyAura(Auras.DeathsDesign) || (x.HasMyAura(Auras.DeathsDesign) && !x.HasAura(Auras.DeathsDesign, true, 30000 - Spells.Slice.AdjustedCooldown.Milliseconds)))
+            if (!Combat.Enemies.Any(x => (!x.HasMyAura(Auras.DeathsDesign) || (x.HasMyAura(Auras.DeathsDesign) && !x.HasAura(Auras.DeathsDesign, true, 30000 - (int)Spells.Slice.AdjustedCooldown.TotalMilliseconds)))
                                          && x.Distance(Core.Me) <= 5 + Core.Me.CombatReach))
                 return false;
 

@@ -1,3 +1,4 @@
+using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Managers;
 using Magitek.Extensions;
@@ -25,8 +26,13 @@ namespace Magitek.Logic.Reaper
             if (ActionResourceManager.Reaper.ShroudGauge > 80)
                 return false;
             if (Utilities.Routines.Reaper.CheckTTDIsEnemyDyingSoon())
-                return false;
-            return await Spells.Gluttony.Cast(Core.Me.CurrentTarget);
+                return false;            
+            
+            // wait for Executioner aura on self to prevent canceling it with another action
+            if (Spells.ExecutionersGibbet.IsKnown())
+                return await Spells.Gluttony.CastAura(Core.Me.CurrentTarget, Auras.Executioner, auraTarget: Core.Me);
+            else
+                return await Spells.Gluttony.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> Enshroud()

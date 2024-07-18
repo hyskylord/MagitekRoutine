@@ -5860,28 +5860,36 @@ namespace Magitek.Utilities
                     new Enemy {
                         Id = 12844,
                         Name = "Antivirus X",
-                        TankBusters = new List<uint> {
-                        },
+                        TankBusters = null,
                         SharedTankBusters = null,
-                        Aoes = null,
+                        Aoes = new List<uint> {
+                            36384, // quarantine
+                            36387, // cytolysis
+                        },
                         BigAoes = null
                     },
                     new Enemy {
                         Id = 12864,
                         Name = "Amalgam",
                         TankBusters = new List<uint> {
+                            36339, // amalgamight
                         },
                         SharedTankBusters = null,
-                        Aoes = null,
+                        Aoes = new List<uint> {
+                            36337, // electrowave
+                            36323, // disassembly
+                            36332, // superbolt
+                        },
                         BigAoes = null
                     },
                     new Enemy {
                         Id = 12729,
                         Name = "Eliminator",
-                        TankBusters = new List<uint> {
-                        },
+                        TankBusters = null,
                         SharedTankBusters = null,
                         Aoes = new List<uint> {
+                            36765, // disruption
+                            36779, // overexposure
                         },
                         BigAoes = null
                     }
@@ -6079,6 +6087,88 @@ namespace Magitek.Utilities
                 }
             },
             #endregion
+
+            #region Dawntrail Normal Raids
+            new Encounter {
+                ZoneId = ZoneId.AacLightHeavyweightM1,
+                Name = "AacLightHeavyweightM1",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 0, // Assuming an ID for Black Cat
+                        Name = "Black Cat",
+                        TankBusters = new List<uint>() {
+                            0x934A, // Biscuit Maker
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x9340, // Bloody Scratch
+                            0x933C, // Clawful
+                            0x9319, // Overshadow
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.AacLightHeavyweightM2,
+                Name = "AacLightHeavyweightM2",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 0, // Assuming an ID for Honey B. Lovely
+                        Name = "Honey B. Lovely",
+                        TankBusters = new List<uint>() {
+                            0x9167, // Honeyed Breeze
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x9164, // Call Me Honey
+                            0x917B, // Honey B. Finale
+                            0x9170, // Drop of Venom
+
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.AacLightHeavyweightM3,
+                Name = "AacLightHeavyweightM3",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 0, // Assuming an ID for Brute Bomber
+                        Name = "Brute Bomber",
+                        TankBusters = new List<uint>() {
+                            0x93D5, // Knuckle Sandwich
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x93D6, // Brutal Impact
+                            0x9429, // Brutal Burn
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    }
+                }
+            },
+
+
+            #endregion
         };
 
         internal class Enemy
@@ -6110,6 +6200,10 @@ namespace Magitek.Utilities
                 ARequiemForHeroes = 830,
                 ASleepDisturbed = 914,
                 ASpectacleForTheAges = 533,
+                AacLightHeavyweightM1 = 1225,
+                AacLightHeavyweightM2 = 1227,
+                AacLightHeavyweightM3 = 1229,
+                AacLightHeavyweightM4 = 1231,
                 AccrueEnmityFromMultipleTargets = 540,
                 Aglaia = 1054,
                 AirForceOne = 832,

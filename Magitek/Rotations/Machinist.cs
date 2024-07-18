@@ -115,26 +115,27 @@ namespace Magitek.Rotations
 
             if (ActionResourceManager.Machinist.OverheatRemaining != TimeSpan.Zero)
             {
-                if (MachinistRoutine.GlobalCooldown.CanWeave(1)) {
+                if (MachinistRoutine.GlobalCooldown.CanWeave(1))
+                {
                     //Utility
                     if (await PhysicalDps.ArmsLength(MachinistSettings.Instance)) return true;
                     if (await PhysicalDps.Interrupt(MachinistSettings.Instance)) return true;
 
                     //Pets
                     if (await Pet.RookQueen()) return true;
+                }
 
-                    //Cooldowns
-                    if (await Cooldowns.BarrelStabilizer()) return true;
-                    //if (await Cooldowns.Reassemble()) return true;
-                    
+                if (MachinistRoutine.GlobalCooldown.CanWeave())
+                {
                     //oGCDs
                     if (await SingleTarget.GaussRound()) return true;
                     if (await MultiTarget.Ricochet()) return true;
                 }
-            } 
+            }
             else
             {
-                if (MachinistRoutine.GlobalCooldown.CanWeave()) {
+                if (MachinistRoutine.GlobalCooldown.CanWeave())
+                {
                     //Utility
                     if (await PhysicalDps.ArmsLength(MachinistSettings.Instance)) return true;
                     if (await Utility.Tactician()) return true;
@@ -148,15 +149,13 @@ namespace Magitek.Rotations
                     if (await Pet.RookQueenOverdrive()) return true;
 
                     //Cooldowns
-                    if (await Cooldowns.Reassemble()) return true;
-                    if (await Cooldowns.Hypercharge()) return true;
                     if (await Cooldowns.Wildfire()) return true;
+                    if (await Cooldowns.Hypercharge()) return true;
                     if (await Cooldowns.BarrelStabilizer()) return true;
 
                     //oGCDs
                     if (await SingleTarget.GaussRound()) return true;
                     if (await MultiTarget.Ricochet()) return true;
-
                 }
             }
 
@@ -166,6 +165,8 @@ namespace Magitek.Rotations
 
             //Use On CD
             if (await MultiTarget.FullMetalField()) return true;
+            // Intentionally leave reassemble outside of weaving to get reliable reassemble usage
+            if (await Cooldowns.Reassemble()) return true;
             if (await MultiTarget.BioBlaster()) return true;
             if (await SingleTarget.HotAirAnchor()) return true;
             if (await SingleTarget.Drill()) return true;

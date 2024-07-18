@@ -98,7 +98,7 @@ namespace Magitek.Extensions
             return await DoAction(spell, target);
         }
 
-        public static async Task<bool> CastAura(this SpellData spell, GameObject target, uint aura, bool useRefreshTime = false, int refreshTime = 0, bool needAura = true, [CallerMemberName] string caller = null, [CallerLineNumber] int sourceLineNumber = 0, [CallerFilePath] string sourceFilePath = null)
+        public static async Task<bool> CastAura(this SpellData spell, GameObject target, uint aura, bool useRefreshTime = false, int refreshTime = 0, bool needAura = true, GameObject auraTarget = null, [CallerMemberName] string caller = null, [CallerLineNumber] int sourceLineNumber = 0, [CallerFilePath] string sourceFilePath = null)
         {
             if (BaseSettings.Instance.DebugCastingCallerMemberName)
             {
@@ -116,7 +116,7 @@ namespace Magitek.Extensions
             if (BotManager.Current.IsAutonomous && !GameSettingsManager.FaceTargetOnAction && !RoutineManager.IsAnyDisallowed(CapabilityFlags.Facing) && !MovementManager.IsMoving)
                 Core.Me.Face(target);
 
-            return await DoAction(spell, target, aura, needAura, useRefreshTime, refreshTime);
+            return await DoAction(spell, target, aura, needAura, useRefreshTime, refreshTime, auraTarget: auraTarget);
         }
 
         public static async Task<bool> Heal(this SpellData spell, GameObject target, bool healthChecks = true, [CallerMemberName] string caller = null, [CallerLineNumber] int sourceLineNumber = 0, [CallerFilePath] string sourceFilePath = null)
@@ -134,7 +134,7 @@ namespace Magitek.Extensions
             return await DoActionHeal(spell, target, healthChecks);
         }
 
-        public static async Task<bool> HealAura(this SpellData spell, GameObject target, uint aura, bool healthChecks = true, bool needAura = true, bool useRefreshTime = false, int refreshTime = 0, [CallerMemberName] string caller = null, [CallerLineNumber] int sourceLineNumber = 0, [CallerFilePath] string sourceFilePath = null)
+        public static async Task<bool> HealAura(this SpellData spell, GameObject target, uint aura, bool healthChecks = true, bool needAura = true, bool useRefreshTime = false, int refreshTime = 0, GameObject auraTarget = null, [CallerMemberName] string caller = null, [CallerLineNumber] int sourceLineNumber = 0, [CallerFilePath] string sourceFilePath = null)
         {
             if (BaseSettings.Instance.DebugCastingCallerMemberName)
             {
@@ -146,7 +146,7 @@ namespace Magitek.Extensions
                 }
             }
 
-            return await DoActionHeal(spell, target, healthChecks, aura, needAura, useRefreshTime, refreshTime);
+            return await DoActionHeal(spell, target, healthChecks, aura, needAura, useRefreshTime, refreshTime, auraTarget: auraTarget);
         }
 
         private static bool Check(SpellData spell, GameObject target)
@@ -231,7 +231,7 @@ namespace Magitek.Extensions
             return ActionManager.GetMaskedAction(spell.Id);
         }
 
-        private static async Task<bool> DoAction(SpellData spell, GameObject target, uint aura = 0, bool needAura = false, bool useRefreshTime = false, int refreshTime = 0, bool canCastCheck = true)
+        private static async Task<bool> DoAction(SpellData spell, GameObject target, uint aura = 0, bool needAura = false, bool useRefreshTime = false, int refreshTime = 0, bool canCastCheck = true, GameObject auraTarget = null)
         {
             if (!Check(spell, target))
                 return false;
@@ -263,6 +263,7 @@ namespace Magitek.Extensions
             Casting.SpellTarget = target;
             Casting.NeedAura = needAura;
             Casting.Aura = aura;
+            Casting.AuraTarget = auraTarget;
             Casting.UseRefreshTime = useRefreshTime;
             Casting.RefreshTime = refreshTime;
             Casting.CastingTime.Restart();
@@ -281,7 +282,7 @@ namespace Magitek.Extensions
             return true;
         }
 
-        private static async Task<bool> DoActionHeal(SpellData spell, GameObject target, bool healthChecks = true, uint aura = 0, bool needAura = false, bool useRefreshTime = false, int refreshTime = 0)
+        private static async Task<bool> DoActionHeal(SpellData spell, GameObject target, bool healthChecks = true, uint aura = 0, bool needAura = false, bool useRefreshTime = false, int refreshTime = 0, GameObject auraTarget = null)
         {
             if (!Check(spell, target))
                 return false;
@@ -305,6 +306,7 @@ namespace Magitek.Extensions
             Casting.SpellTarget = target;
             Casting.NeedAura = needAura;
             Casting.Aura = aura;
+            Casting.AuraTarget = auraTarget;
             Casting.UseRefreshTime = useRefreshTime;
             Casting.DoHealthChecks = healthChecks;
             Casting.RefreshTime = refreshTime;
@@ -332,6 +334,23 @@ namespace Magitek.Extensions
 
         public static bool IsReady(this SpellData spell, int remainingTimeInMs = 0)
         {
+            if (spell.MaxCharges > 1)
+            {
+                if (spell.Charges >= 1)
+                    return true;
+
+                var remainingCooldownTime = spell.Cooldown.TotalMilliseconds - (spell.AdjustedCooldown.TotalMilliseconds * (spell.MaxCharges - (uint)spell.Charges - 1));
+
+                if (!BaseSettings.Instance.UseCastOrQueue)
+                {
+                    return remainingCooldownTime <= remainingTimeInMs;
+                }
+                else
+                {
+                    return remainingCooldownTime <= 500;
+                }
+            }
+
             if (!BaseSettings.Instance.UseCastOrQueue)
             {
                 return spell.Cooldown.TotalMilliseconds <= remainingTimeInMs;
@@ -340,7 +359,6 @@ namespace Magitek.Extensions
             {
                 return spell.Cooldown.TotalMilliseconds <= 500;
             }
-
         }
 
         public static bool IsKnownAndReady(this SpellData spell, int remainingTimeInMs = 0)

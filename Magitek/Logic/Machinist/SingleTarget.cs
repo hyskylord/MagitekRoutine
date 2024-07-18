@@ -31,7 +31,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Reassembled))
+            if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
                 return false;
 
             return await MachinistRoutine.HeatedSplitShot.Cast(Core.Me.CurrentTarget);
@@ -54,7 +54,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Reassembled))
+            if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
                 return false;
 
             return await MachinistRoutine.HeatedSlugShot.Cast(Core.Me.CurrentTarget);
@@ -77,7 +77,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Reassembled))
+            if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
                 return false;
 
             return await MachinistRoutine.HeatedCleanShot.Cast(Core.Me.CurrentTarget);
@@ -94,7 +94,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.WildfireBuff))
+            if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             /*
@@ -127,7 +127,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.WildfireBuff))
+            if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             /*
@@ -162,26 +162,28 @@ namespace Magitek.Logic.Machinist
             if (!MachinistSettings.Instance.UseGaussRound)
                 return false;
 
-            if (Casting.LastSpell == Spells.Wildfire || Casting.LastSpell == Spells.Hypercharge || Casting.LastSpell == Spells.Ricochet)
+            var spell = Spells.GaussRound.Masked();
+
+            if (Casting.LastSpell == Spells.Wildfire || Casting.LastSpell == Spells.Hypercharge || Casting.LastSpell == spell)
                 return false;
 
-            if (Spells.Wildfire.IsKnownAndReady() && Spells.Hypercharge.IsKnownAndReady() && Spells.GaussRound.Charges < 1.5f)
+            if (Spells.Wildfire.IsKnownAndReady() && Spells.Hypercharge.IsKnownAndReady() && spell.Charges < 1.5f)
                 return false;
 
             if (Core.Me.ClassLevel >= 45)
             {
-                if (Spells.GaussRound.Charges < 1.5f && Spells.Wildfire.IsKnownAndReady(2000))
+                if (spell.Charges < 1.5f && Spells.Wildfire.IsKnownAndReady(2000))
                     return false;
 
                 // Do not run Gauss if an hypercharge is almost ready and not enough charges available for Rico and Gauss
                 if (ActionResourceManager.Machinist.Heat > 40 || Spells.Hypercharge.IsKnownAndReady())
                 {
-                    if (Spells.GaussRound.Charges < 1.5f && Spells.Ricochet.Charges < 0.5f)
+                    if (spell.Charges < 1.5f && Spells.Ricochet.Masked().Charges < 0.5f)
                         return false;
                 }
             }
 
-            return await Spells.GaussRound.Cast(Core.Me.CurrentTarget);
+            return await spell.Cast(Core.Me.CurrentTarget);
         }
     }
 }

@@ -318,7 +318,7 @@ namespace Magitek.Extensions
             {
                 if (!unit.HasAura(aura)) return TankImmunityCheck.HealThem;
                 var result = unit.CharacterAuras.Any(
-                    x => x.Id == aura && x.TimespanLeft.Milliseconds <= 2000)
+                    x => x.Id == aura && x.TimespanLeft.TotalMilliseconds <= 2000)
                     ? TankImmunityCheck.HealThem
                     : TankImmunityCheck.DontHealThem;
 

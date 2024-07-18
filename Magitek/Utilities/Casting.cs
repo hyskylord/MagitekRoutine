@@ -33,6 +33,7 @@ namespace Magitek.Utilities
         public static bool DoHealthChecks;
         public static bool NeedAura;
         public static uint Aura;
+        public static GameObject AuraTarget;
         public static bool UseRefreshTime;
         public static int RefreshTime;
         public static readonly Stopwatch CastingTime = new Stopwatch();
@@ -264,15 +265,17 @@ namespace Magitek.Utilities
 
             if (NeedAura)
             {
+                var auraTarget = AuraTarget ?? SpellTarget;
+
                 if (UseRefreshTime)
-                    await Coroutine.Wait(3000, () => SpellTarget.HasAura(Aura, true, RefreshTime) || MovementManager.IsMoving);
+                    await Coroutine.Wait(3000, () => auraTarget.HasAura(Aura, true, RefreshTime) || MovementManager.IsMoving);
                 else
                 {
-                    await Coroutine.Wait(3000, () => SpellTarget.HasAura(Aura, true) || MovementManager.IsMoving);
+                    await Coroutine.Wait(3000, () => auraTarget.HasAura(Aura, true) || MovementManager.IsMoving);
                 }
 
                 if (CastingSpell.AdjustedCastTime == TimeSpan.Zero)
-                    await Coroutine.Wait(3000, () => SpellTarget.HasAura(Aura));
+                    await Coroutine.Wait(3000, () => auraTarget.HasAura(Aura));
             }
 
             #endregion

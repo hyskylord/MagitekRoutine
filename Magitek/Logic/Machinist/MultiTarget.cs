@@ -39,10 +39,10 @@ namespace Magitek.Logic.Machinist
             if (!MachinistSettings.Instance.UseAoe)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Reassembled))
+            if (Core.Me.EnemiesInCone(12) < MachinistSettings.Instance.BioBlasterEnemyCount)
                 return false;
 
-            if (Core.Me.EnemiesInCone(12) < MachinistSettings.Instance.BioBlasterEnemyCount)
+            if (Core.Me.CurrentTarget.HasAura(Auras.Bioblaster, true))
                 return false;
 
             return await Spells.Bioblaster.Cast(Core.Me.CurrentTarget);
@@ -102,26 +102,28 @@ namespace Magitek.Logic.Machinist
             if (!MachinistSettings.Instance.UseRicochet)
                 return false;
 
-            if (Casting.LastSpell == Spells.Wildfire || Casting.LastSpell == Spells.Hypercharge || Casting.LastSpell == Spells.Ricochet)
+            var spell = Spells.Ricochet.Masked();
+
+            if (Casting.LastSpell == Spells.Wildfire || Casting.LastSpell == Spells.Hypercharge || Casting.LastSpell == spell)
                 return false;
 
-            if (Spells.Wildfire.IsKnownAndReady() && Spells.Hypercharge.IsKnownAndReady() && Spells.Ricochet.Charges < 1.5f)
+            if (Spells.Wildfire.IsKnownAndReady() && Spells.Hypercharge.IsKnownAndReady() && spell.Charges < 1.5f)
                 return false;
 
-            if (Core.Me.ClassLevel >= 45)
+            if (Core.Me.ClassLevel >= Spells.Wildfire.LevelAcquired)
             {
-                if (Spells.Ricochet.Charges < 1.5f && Spells.Wildfire.IsKnownAndReady(2000))
+                if (spell.Charges < 1.5f && Spells.Wildfire.IsKnownAndReady(2000))
                     return false;
 
                 // Do not run Rico if an hypercharge is almost ready and not enough charges available for Rico and Gauss
                 if (ActionResourceManager.Machinist.Heat > 40 || Spells.Hypercharge.IsKnownAndReady())
                 {
-                    if (Spells.Ricochet.Charges < 1.5f && Spells.GaussRound.Charges < 0.5f)
+                    if (spell.Charges < 1.5f && Spells.GaussRound.Masked().Charges < 0.5f)
                         return false;
                 }
             }
 
-            return await Spells.Ricochet.Cast(Core.Me.CurrentTarget);
+            return await spell.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> ChainSaw()
@@ -135,7 +137,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.WildfireBuff))
+            if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             /*
@@ -164,7 +166,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.WildfireBuff))
+            if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             return await Spells.Excavator.Cast(Core.Me.CurrentTarget);
@@ -181,7 +183,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
                 return false;
 
-            if (Core.Me.HasAura(Auras.WildfireBuff))
+            if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             return await Spells.FullMetalField.Cast(Core.Me.CurrentTarget);

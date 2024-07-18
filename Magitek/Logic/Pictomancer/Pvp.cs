@@ -88,7 +88,7 @@ namespace Magitek.Logic.Pictomancer
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
                 return false;
 
-            if (MovementManager.IsMoving && Core.Me.HasAura(Auras.PvpSubtractivePalette) && Spells.ReleaseSubtractivePalettePvp.CanCast())
+            if (MovementManager.IsMoving && Core.Me.HasAura(Auras.PvpSubtractivePalette) && Spells.ReleaseSubtractivePalettePvp.CanCast() && Spells.PaintWBPvp.Masked().Charges < 1)
                 return await Spells.ReleaseSubtractivePalettePvp.Cast(Core.Me);
 
             if (!MovementManager.IsMoving && !Core.Me.HasAura(Auras.PvpSubtractivePalette) && Spells.SubtractivePalettePvp.CanCast())
