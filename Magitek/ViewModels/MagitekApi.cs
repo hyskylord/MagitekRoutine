@@ -6,6 +6,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -27,13 +28,13 @@ namespace Magitek.ViewModels
         public MagitekVersion MagitekVersion { get; set; }
         public ICommand RefreshNewsList => new DelegateCommand(UpdateNews);
 
-        private class Root
+        private class Release
         {
+            public string tag_name { get; set; }
+            public string name { get; set; }
             public string body { get; set; }
             public DateTime created_at { get; set; }
-            public DateTime updated_at { get; set; }
-            public DateTime closed_at { get; set; }
-            public DateTime? merged_at { get; set; }
+            public bool prerelease { get; set; }
         }
 
         public MagitekApi()
@@ -54,7 +55,7 @@ namespace Magitek.ViewModels
         {
             var local = "UNKNOWN";
             var distant = "UNKNOWN";
-            
+
             try
             {
                 local = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, $@"Routines\Magitek\Version.txt"));
@@ -89,24 +90,38 @@ namespace Magitek.ViewModels
                     httpClient.DefaultRequestHeaders.Add("User-Agent", "Anything");
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    var response = await httpClient.GetFromJsonAsync<List<Root>>("repos/MagitekRB/MagitekRoutine/pulls?state=closed&page=1&per_page=8");
+                    var response = await httpClient.GetFromJsonAsync<List<Release>>("repos/MagitekRB/MagitekRoutine/releases");
 
                     if (response == null)
                         return;
 
                     response.ForEach(x =>
                     {
-                        if (x?.merged_at == null)
+                        if (x?.prerelease == true)
                             return;
-                        NewsList.Add(new MagitekNews{
-                            Created = x.merged_at?.ToString("d"),
-                            Title = "Changelog",
-                            Message = "" + x.body
+
+                        // Process the body to remove commit hashes and PR links
+                        var bodyLines = x.body.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                        var filteredBodyLines = bodyLines
+                            .Where(line => line.StartsWith("- "))
+                            .Select(line =>
+                            {
+                                var parts = line.Split(':');
+                                return parts.Length > 1 ? parts[1].Split('[')[0].Trim() : line;
+                            });
+
+                        var filteredBody = string.Join("\n", filteredBodyLines);
+
+                        NewsList.Add(new MagitekNews
+                        {
+                            Created = x.created_at.ToString("d"),
+                            Title = x.name,
+                            Message = filteredBody
                         });
                     });
                 };
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.Error(e.Message);
             }
