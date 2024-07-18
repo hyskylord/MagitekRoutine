@@ -18,7 +18,10 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> SteelOrDreadFangs()
         {
-            if (Core.Me.ClassLevel >= 10 && Spells.DreadFangs.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true, 10000))
+            if (Core.Me.ClassLevel < Spells.SteelFangs.LevelAcquired)
+                return false;
+
+            if (Core.Me.ClassLevel >= Spells.DreadFangs.LevelAcquired && Spells.DreadFangs.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true, 10000))
                 return await Spells.DreadFangs.Cast(Core.Me.CurrentTarget);
             else
                 return await Spells.SteelFangs.Cast(Core.Me.CurrentTarget);
@@ -26,10 +29,10 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> HunterOrSwiftSkinSting()
         {
-            if (Core.Me.ClassLevel < 5)
+            if (Core.Me.ClassLevel < Spells.HunterSting.LevelAcquired)
                 return false;
 
-            if (Core.Me.ClassLevel < 20)
+            if (Core.Me.ClassLevel < Spells.SwiftskinSting.LevelAcquired)
                 return await Spells.HunterSting.Cast(Core.Me.CurrentTarget);
 
             if (Core.Me.HasAura(Auras.HindstungVenom, true) || Core.Me.HasAura(Auras.HindsbaneVenom, true))
@@ -45,7 +48,7 @@ namespace Magitek.Logic.Viper
         public static async Task<bool> FankstingOrFlankbane()
         {
 
-            if (Core.Me.ClassLevel < 30)
+            if (Core.Me.ClassLevel < Spells.HindsbaneFang.LevelAcquired || Core.Me.ClassLevel < Spells.FankstingStrike.LevelAcquired)
                 return false;
 
             if ( Core.Me.HasAura(Auras.FlankstungVenom, true))
@@ -66,7 +69,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> Dreadwinder()
         {
-            if (Core.Me.ClassLevel < 65)
+            if (Core.Me.ClassLevel < Spells.Dreadwinder.LevelAcquired)
                 return false;
             
             if (!ViperSettings.Instance.UseDreadwinder)
@@ -77,10 +80,10 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> HunterOrSwiftskinCoil()
         {
-            if (Core.Me.ClassLevel < 65)
+            if (Core.Me.ClassLevel < Spells.SwiftskinCoil.LevelAcquired)
                 return false;
 
-            if (Spells.HunterCoil.CanCast())
+            if (Core.Me.ClassLevel >= Spells.HunterCoil.LevelAcquired && Spells.HunterCoil.CanCast())
                 return await Spells.HunterCoil.Cast(Core.Me.CurrentTarget);
             else
                 return await Spells.SwiftskinCoil.Cast(Core.Me.CurrentTarget);
@@ -88,7 +91,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> UncoiledFury()
         {
-            if (Core.Me.ClassLevel < 82)
+            if (Core.Me.ClassLevel < Spells.UncoiledFury.LevelAcquired)
                 return false;
 
             if (!ViperSettings.Instance.UseUncoiledFury)
@@ -103,7 +106,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> Reawaken()
         {
-            if (Core.Me.ClassLevel < 90)
+            if (Core.Me.ClassLevel < Spells.Reawaken.LevelAcquired)
                 return false;
 
             if (!ViperSettings.Instance.UseReawaken)
@@ -118,7 +121,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> Ouroboros()
         {
-            if (Core.Me.ClassLevel < 100)
+            if (Core.Me.ClassLevel < Spells.Ouroboros.LevelAcquired)
                 return false;
 
             if (!Spells.Ouroboros.CanCast())
@@ -133,7 +136,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> FirstGeneration()
         {
-            if (Core.Me.ClassLevel < 90)
+            if (Core.Me.ClassLevel < Spells.FirstGeneration.LevelAcquired)
                 return false;
 
             if (!Spells.FirstGeneration.CanCast())
@@ -145,7 +148,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> SecondGeneration()
         {
-            if (Core.Me.ClassLevel < 90)
+            if (Core.Me.ClassLevel < Spells.SecondGeneration.LevelAcquired)
                 return false;
 
             if (!Spells.SecondGeneration.CanCast())
@@ -160,7 +163,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> ThirdGeneration()
         {
-            if (Core.Me.ClassLevel < 90)
+            if (Core.Me.ClassLevel < Spells.ThirdGeneration.LevelAcquired)
                 return false;
 
             if (!Spells.ThirdGeneration.CanCast())
@@ -175,7 +178,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> FourthGeneration()
         {
-            if (Core.Me.ClassLevel < 90)
+            if (Core.Me.ClassLevel < Spells.FourthGeneration.LevelAcquired)
                 return false;
 
             if (!Spells.FourthGeneration.CanCast())
@@ -190,7 +193,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> Slither()
         {
-            if (Core.Me.ClassLevel < 15)
+            if (Core.Me.ClassLevel < Spells.Slither.LevelAcquired)
                 return false;
 
             if (MovementManager.IsMoving)

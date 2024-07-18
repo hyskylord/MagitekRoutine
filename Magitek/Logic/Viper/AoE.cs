@@ -14,7 +14,7 @@ namespace Magitek.Logic.Viper
     {
         public static async Task<bool> SteelDreadMaw()
         {
-            if (Core.Me.ClassLevel < 25)
+            if (Core.Me.ClassLevel < Spells.SteelMaw.LevelAcquired)
                 return false;
 
             if (!ViperSettings.Instance.UseAoe)
@@ -23,7 +23,7 @@ namespace Magitek.Logic.Viper
             if (ViperRoutine.EnemiesAroundPlayer5Yards < ViperSettings.Instance.AoeEnemies)
                 return false;
 
-            if (Core.Me.ClassLevel >=35 && Spells.DreadMaw.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true))
+            if (Core.Me.ClassLevel >= Spells.DreadMaw.LevelAcquired && Spells.DreadMaw.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true))
                 return await Spells.DreadMaw.Cast(Core.Me);
             else
                 return await Spells.SteelMaw.Cast(Core.Me);
@@ -31,10 +31,10 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> HunterOrSwiftSkinBite()
         {
-            if (Core.Me.ClassLevel < 40)
+            if (Core.Me.ClassLevel < Spells.HunterBite.LevelAcquired)
                 return false;
 
-            if (Core.Me.ClassLevel < 45)
+            if (Core.Me.ClassLevel < Spells.SwiftskinBite.LevelAcquired)
                 return await Spells.HunterBite.Cast(Core.Me.CurrentTarget);
 
             if (Core.Me.HasAura(Auras.HindstungVenom, true) || Core.Me.HasAura(Auras.GrimskinVenom, true))
@@ -49,13 +49,13 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> JaggedOrBloodiedMaw()
         {
-            if (Core.Me.ClassLevel < 50)
+            if (Core.Me.ClassLevel < Spells.JaggedMaw.LevelAcquired)
                 return false;
 
             if (Core.Me.HasAura(Auras.GrimhunterVenom, true))
                 return await Spells.JaggedMaw.Cast(Core.Me.CurrentTarget);
 
-            if (Core.Me.HasAura(Auras.GrimskinVenom, true))
+            if (Core.Me.ClassLevel >= Spells.BloodiedMaw.LevelAcquired && Core.Me.HasAura(Auras.GrimskinVenom, true))
                 return await Spells.BloodiedMaw.Cast(Core.Me.CurrentTarget);
 
             else
@@ -64,7 +64,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> PitOfDread()
         {
-            if (Core.Me.ClassLevel < 70)
+            if (Core.Me.ClassLevel < Spells.PitOfDread.LevelAcquired)
                 return false;
 
             if (!ViperSettings.Instance.UseAoe)
@@ -81,7 +81,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> HunterOrSwiftskinDen()
         {
-            if (Core.Me.ClassLevel < 70)
+            if (Core.Me.ClassLevel < Spells.HunterDen.LevelAcquired)
                 return false;
 
             if (Spells.HunterDen.CanCast())

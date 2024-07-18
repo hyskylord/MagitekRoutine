@@ -224,10 +224,10 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Content="Manifestation  " IsChecked="{Binding ScholarSettings.Manifestation, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding ScholarSettings.ManifestationHealthPercent, Mode=TwoWay}" />
+                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding ScholarSettings.ManifestationHpPercent, Mode=TwoWay}" />
                     <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Health Percent       " />
                     <CheckBox Content="Accession  " IsChecked="{Binding ScholarSettings.Accession, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding ScholarSettings.AccessionHealthPercent, Mode=TwoWay}" />
+                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding ScholarSettings.AccessionHpPercent, Mode=TwoWay}" />
                     <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
                 </StackPanel>
             </StackPanel>

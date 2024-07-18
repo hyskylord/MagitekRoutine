@@ -48,8 +48,13 @@ namespace Magitek.Logic.Scholar
         {
             if (!ScholarSettings.Instance.ForceAdlo)
                 return false;
-     
-            if (!await Spells.Adloquium.Heal(Core.Me, false)) return false;
+
+            var target = Core.Me.CurrentTarget;
+
+            if (target == null)
+                target = Core.Me;
+
+            if (!await Spells.Adloquium.Heal(target, false)) return false;
             ScholarSettings.Instance.ForceAdlo = false;
             TogglesManager.ResetToggles();
             return true;
@@ -60,7 +65,12 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.ForceIndom)
                 return false;
 
-            if (!await Spells.Indomitability.Cast(Core.Me)) return false;
+            var target = Core.Me.CurrentTarget;
+
+            if (target == null)
+                target = Core.Me;
+
+            if (!await Spells.Indomitability.Cast(target)) return false;
             ScholarSettings.Instance.ForceIndom = false;
             TogglesManager.ResetToggles();
             return true;
@@ -71,10 +81,15 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.ForceExcog)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Galvanize))
+            var target = Core.Me.CurrentTarget;
+
+            if (target == null)
+                target = Core.Me;
+
+            if (target.HasAura(Auras.Galvanize))
                 return false;
 
-            if (!await Spells.Excogitation.Cast(Core.Me)) return false;
+            if (!await Spells.Excogitation.Cast(target)) return false;
             ScholarSettings.Instance.ForceExcog = false;
             TogglesManager.ResetToggles();
             return true;
@@ -405,15 +420,21 @@ namespace Magitek.Logic.Scholar
 
         public static async Task<bool> Accession()
         {
-            if (Core.Me.ClassLevel < 100)
+            if (Core.Me.ClassLevel < Spells.Accession.LevelAcquired)
                 return false;
 
             if (!ScholarSettings.Instance.Accession)
                 return false;
 
+            if(!Core.Me.HasAura(Auras.Seraphism))
+                return false;
+
             var needAccession = Group.CastableAlliesWithin15.Count(r => r.IsAlive && r.CurrentHealthPercent <= ScholarSettings.Instance.AccessionHpPercent) >= AoeNeedHealing;
 
             if (!needAccession)
+                return false;
+
+            if (!await UsedEmergencyTactics())
                 return false;
 
             return await Spells.Accession.Heal(Core.Me);
@@ -428,7 +449,10 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.Manifestation)
                 return false;
 
-            if (Group.CastableAlliesWithin15.Count(r => r.CurrentHealthPercent <= ScholarSettings.Instance.IndomitabilityHpPercent) > AoeNeedHealing)
+            if (!Core.Me.HasAura(Auras.Seraphism))
+                return false;
+
+            if (Group.CastableAlliesWithin15.Count(r => r.CurrentHealthPercent <= ScholarSettings.Instance.ManifestationHpPercent) > AoeNeedHealing)
                 return false;
 
             if (ScholarSettings.Instance.DisableSingleHealWhenNeedAoeHealing && NeedAoEHealing())
@@ -436,18 +460,24 @@ namespace Magitek.Logic.Scholar
 
             if (Globals.InParty)
             {
-                var lustrateTarget = Group.CastableAlliesWithin30.FirstOrDefault(CanLustrate);
+                var ManifestationTarget = Group.CastableAlliesWithin30.FirstOrDefault(CanLustrate);
 
-                if (lustrateTarget == null)
+                if (ManifestationTarget == null)
                     return false;
 
-                return await Spells.Manifestation.Cast(lustrateTarget);
+                if (!await UsedEmergencyTactics())
+                    return false;
+
+                return await Spells.Manifestation.Cast(ManifestationTarget);
             }
 
             if (Core.Me.HasAura(Auras.Excogitation))
                 return false;
 
             if (Core.Me.CurrentHealthPercent > ScholarSettings.Instance.ManifestationHpPercent)
+                return false;
+
+            if (!await UsedEmergencyTactics())
                 return false;
 
             return await Spells.Manifestation.Cast(Core.Me);

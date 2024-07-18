@@ -158,6 +158,7 @@ namespace Magitek.Logic.Scholar
             TogglesManager.ResetToggles();
             return true;
         }
+        
         public static async Task<bool> EmergencyTactics()
         {
             if (!ScholarSettings.Instance.EmergencyTactics)
@@ -180,7 +181,7 @@ namespace Magitek.Logic.Scholar
 
         public static async Task<bool> Aetherflow()
         {
-            if (Core.Me.ClassLevel < 45)
+            if (Core.Me.ClassLevel < Spells.Aetherflow.LevelAcquired)
                 return false;
 
             if (!Core.Me.InCombat)
