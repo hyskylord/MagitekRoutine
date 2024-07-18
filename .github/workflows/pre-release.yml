@@ -50,15 +50,17 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         echo "Fetching releases..."
-        releases=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/releases)
-        prereleases=$(echo "$releases" | jq -r '.[] | select(.prerelease == true) | .id')
+        $releases = Invoke-RestMethod -Headers @{Authorization = "token $env:GITHUB_TOKEN"} -Uri "https://api.github.com/repos/${{ github.repository }}/releases"
+        $prereleases = $releases | Where-Object { $_.prerelease -eq $true }
 
-        for release_id in $prereleases; do
+        foreach ($release in $prereleases) {
+          $release_id = $release.id
           echo "Deleting pre-release with ID: $release_id"
-          curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/releases/$release_id
-        done
+          Invoke-RestMethod -Method Delete -Headers @{Authorization = "token $env:GITHUB_TOKEN"} -Uri "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
+        }
 
         echo "All pre-releases deleted."
+      shell: pwsh
 
     - name: Create GitHub Release
       uses: "marvinpinto/action-automatic-releases@latest"
