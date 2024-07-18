@@ -52,7 +52,7 @@ jobs:
         pre-release-keep-count: 1
         pre-release-drop-tag: true
       env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Create GitHub Release
       uses: "marvinpinto/action-automatic-releases@latest"
