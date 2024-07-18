@@ -119,10 +119,14 @@ namespace Magitek.Rotations
 
             #region Pre-Healing Stuff
 
+            if (await Logic.Scholar.Heal.ForceDeployAdloWithRecitation()) return true;
+            if (await Logic.Scholar.Heal.ForceEmergencySuccor()) return true;
+            if (await Logic.Scholar.Heal.ForceSuccor()) return true;
             if (await Logic.Scholar.Heal.ForceWhispDawn()) return true;
             if (await Logic.Scholar.Heal.ForceAdlo()) return true;
             if (await Logic.Scholar.Heal.ForceIndom()) return true;
             if (await Logic.Scholar.Heal.ForceExcog()) return true;
+            if (await Logic.Scholar.Heal.ForceSacredSoil()) return true;
 
             if (await Dispel.Execute()) return true;
             if (await Buff.Aetherflow()) return true;
@@ -138,6 +142,9 @@ namespace Magitek.Rotations
             if (await Buff.ChainStrategem()) return true;
 
             #endregion
+
+            if (await Logic.Scholar.Heal.Accession()) return true;
+            if (await Logic.Scholar.Heal.Manifestation()) return true;
 
             if (await Logic.Scholar.Heal.Excogitation()) return true;
             if (await Logic.Scholar.Heal.Lustrate()) return true;

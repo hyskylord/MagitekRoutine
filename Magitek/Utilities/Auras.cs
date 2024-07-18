@@ -406,6 +406,9 @@ namespace Magitek.Utilities
             StarcrossReady = 3846,
             DragonsFlight = 3845,
 
+            //SCH
+            Seraphism = 3885,
+
             //To prevent conflict
             Placeholder = 9999;
 

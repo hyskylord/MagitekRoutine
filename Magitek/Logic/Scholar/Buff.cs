@@ -158,6 +158,7 @@ namespace Magitek.Logic.Scholar
             TogglesManager.ResetToggles();
             return true;
         }
+        
         public static async Task<bool> EmergencyTactics()
         {
             if (!ScholarSettings.Instance.EmergencyTactics)
@@ -180,17 +181,17 @@ namespace Magitek.Logic.Scholar
 
         public static async Task<bool> Aetherflow()
         {
+            if (Core.Me.ClassLevel < Spells.Aetherflow.LevelAcquired)
+                return false;
+
             if (!Core.Me.InCombat)
                 return false;
 
             if (Core.Me.HasAetherflow())
                 return false;
 
-            if (Spells.Aetherflow.Cooldown.TotalMilliseconds > 1500)
-            {
-                Logger.Error("Aetherflow on cooldown");
+            if (!Spells.Aetherflow.IsKnownAndReady())
                 return false;
-            }
 
             //if (Casting.LastSpell != Spells.Biolysis || Casting.LastSpell != Spells.ArtOfWar || Casting.LastSpell != Spells.Adloquium || Casting.LastSpell != Spells.Succor)
             //    if (await Spells.Ruin2.Cast(Core.Me.CurrentTarget))
@@ -229,6 +230,9 @@ namespace Magitek.Logic.Scholar
 
         public static async Task<bool> ChainStrategem()
         {
+            if (!ScholarSettings.Instance.ChainStrategem)
+                return false;
+
             if (!Core.Me.InCombat)
                 return false;
 

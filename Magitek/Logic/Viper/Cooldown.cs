@@ -39,13 +39,10 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> TwinBiteCombo()
         {
-            if (Core.Me.ClassLevel < 75)
-                return false;
-
-            if (Core.Me.HasAura(Auras.HunterVenom, true))
+            if (Core.Me.ClassLevel >= Spells.TwinfangBite.LevelAcquired && Core.Me.HasAura(Auras.HunterVenom, true))
                 return await Spells.TwinfangBite.Cast(Core.Me.CurrentTarget);
 
-            if (Core.Me.HasAura(Auras.SwiftskinVenom, true))
+            if (Core.Me.ClassLevel >= Spells.TwinbloodBite.LevelAcquired && Core.Me.HasAura(Auras.SwiftskinVenom, true))
                 return await Spells.TwinbloodBite.Cast(Core.Me.CurrentTarget);
 
             return false;
@@ -53,13 +50,10 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> TwinThreshCombo()
         {
-            if (Core.Me.ClassLevel < 75)
-                return false;
-
-            if (Core.Me.HasAura(Auras.FellhunterVenom, true))
+            if (Core.Me.ClassLevel >= Spells.TwinfangThresh.LevelAcquired && Core.Me.HasAura(Auras.FellhunterVenom, true))
                 return await Spells.TwinfangThresh.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.FellskinVenom, true))
+            if (Core.Me.ClassLevel >= Spells.TwinbloodThresh.LevelAcquired &&  Core.Me.HasAura(Auras.FellskinVenom, true))
                 return await Spells.TwinbloodThresh.Cast(Core.Me);
 
             return false;
@@ -67,7 +61,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> SerpentIre()
         {
-            if (Core.Me.ClassLevel < 86)
+            if (Core.Me.ClassLevel < Spells.SerpentIre.LevelAcquired)
                 return false;
 
             if (!ViperSettings.Instance.UseSerpentIre)
@@ -85,7 +79,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> FirstLegacy()
         {
-            if (Core.Me.ClassLevel < 100)
+            if (Core.Me.ClassLevel < Spells.FirstLegacy.LevelAcquired)
                 return false;
 
             if (!Spells.FirstLegacy.CanCast())
@@ -97,7 +91,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> SecondLegacy()
         {
-            if (Core.Me.ClassLevel < 100)
+            if (Core.Me.ClassLevel < Spells.SecondLegacy.LevelAcquired)
                 return false;
 
             if (!Spells.SecondLegacy.CanCast())
@@ -109,7 +103,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> ThirdLegacy()
         {
-            if (Core.Me.ClassLevel < 100)
+            if (Core.Me.ClassLevel < Spells.ThirdLegacy.LevelAcquired)
                 return false;
 
             if (!Spells.ThirdLegacy.CanCast())
@@ -121,7 +115,7 @@ namespace Magitek.Logic.Viper
 
         public static async Task<bool> FourthLegacy()
         {
-            if (Core.Me.ClassLevel < 100)
+            if (Core.Me.ClassLevel < Spells.FourthLegacy.LevelAcquired)
                 return false;
 
             if (!Spells.FourthLegacy.CanCast())
