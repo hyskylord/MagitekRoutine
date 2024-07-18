@@ -1,3 +1,4 @@
+using Buddy.Coroutines;
 using ff14bot;
 using ff14bot.Managers;
 using Magitek.Extensions;
@@ -25,8 +26,12 @@ namespace Magitek.Logic.Reaper
             if (ActionResourceManager.Reaper.ShroudGauge > 80)
                 return false;
             if (Utilities.Routines.Reaper.CheckTTDIsEnemyDyingSoon())
-                return false;
-            return await Spells.Gluttony.Cast(Core.Me.CurrentTarget);
+                return false;            
+            var gluttonyCast = await Spells.Gluttony.Cast(Core.Me.CurrentTarget);
+            // wait for Executioner aura, but CastAura only wants CurrentTarget but in this case we need to wait for the aura on the player
+            if (Spells.ExecutionersGibbet.IsKnown() && gluttonyCast)
+                await Coroutine.Wait(3000, () => Core.Me.HasAura(Auras.Executioner, true));
+            return gluttonyCast;
         }
 
         public static async Task<bool> Enshroud()
