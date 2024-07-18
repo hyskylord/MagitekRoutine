@@ -45,14 +45,20 @@ jobs:
         name: Version.txt
         path: ./Magitek/bin/release/Version.txt
 
-    - uses: sgpublic/delete-release-action@v1.1
-      with:
-        release-drop: false
-        pre-release-drop: true
-        pre-release-keep-count: 1
-        pre-release-drop-tag: true
+    - name: Delete all pre-releases
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "Fetching releases..."
+        releases=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/releases)
+        prereleases=$(echo "$releases" | jq -r '.[] | select(.prerelease == true) | .id')
+
+        for release_id in $prereleases; do
+          echo "Deleting pre-release with ID: $release_id"
+          curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/releases/$release_id
+        done
+
+        echo "All pre-releases deleted."
 
     - name: Create GitHub Release
       uses: "marvinpinto/action-automatic-releases@latest"
