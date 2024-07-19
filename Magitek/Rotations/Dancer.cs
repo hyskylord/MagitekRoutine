@@ -175,15 +175,15 @@ namespace Magitek.Rotations
                 return false;
 
             // Utilities
-            if (await PhysicalDps.Guard(DancerSettings.Instance)) return true;
-            if (await PhysicalDps.Purify(DancerSettings.Instance)) return true;
-            if (await PhysicalDps.Recuperate(DancerSettings.Instance)) return true;
+            if (await CommonPvp.Guard(DancerSettings.Instance)) return true;
+            if (await CommonPvp.Purify(DancerSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(DancerSettings.Instance)) return true;
             if (await Pvp.CuringWaltz()) return true;
 
             //LB
             if (await Pvp.Contradance()) return true;
 
-            if (!PhysicalDps.GuardCheck())
+            if (!CommonPvp.GuardCheck(DancerSettings.Instance))
             {
                 //oGCD
                 if (await Pvp.HoningDance()) return true;

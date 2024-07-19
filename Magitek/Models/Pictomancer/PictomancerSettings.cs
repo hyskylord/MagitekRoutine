@@ -180,7 +180,61 @@ namespace Magitek.Models.Pictomancer
         #endregion
 
         #region PVP
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UseAdventofChocobastion { get; set; }
 
+        [Setting]
+        [DefaultValue(3)]
+        public int Pvp_AdventofChocobastionCount { get; set; }
+        
+        [Setting]
+        [DefaultValue(10)]
+        public int Pvp_AdventofChocobastionYalms { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UseSubtractivePalette { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UseStarstruck { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_SwapToBlackWhileMoving { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UsePaintRGB { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UsePaintWhite { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UsePaintWhiteOnlyToHeal { get; set; }
+
+        [Setting]
+        [DefaultValue(80.0f)]
+        public float Pvp_UsePaintWhiteOnlyToHealHealth { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UsePaintBlack { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UseMotif { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UseMuse { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UseMog { get; set; }
         #endregion
     }
 }

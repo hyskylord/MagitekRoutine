@@ -125,14 +125,14 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await MagicDps.Guard(SummonerSettings.Instance)) return true;
-            if (await MagicDps.Purify(SummonerSettings.Instance)) return true;
-            if (await MagicDps.Recuperate(SummonerSettings.Instance)) return true;
+            if (await CommonPvp.Guard(SummonerSettings.Instance)) return true;
+            if (await CommonPvp.Purify(SummonerSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(SummonerSettings.Instance)) return true;
 
             if (await Pvp.SummonBahamutPvp()) return true;
             if (await Pvp.SummonPhoenixPvp()) return true;
 
-            if (!MagicDps.GuardCheck())
+            if (!CommonPvp.GuardCheck(SummonerSettings.Instance))
             {
                 if (await Pvp.RadiantAegisPvp()) return true;
 

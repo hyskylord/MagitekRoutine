@@ -144,11 +144,11 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await Tank.Guard(WarriorSettings.Instance)) return true;
-            if (await Tank.Purify(WarriorSettings.Instance)) return true;
-            if (await Tank.Recuperate(WarriorSettings.Instance)) return true;
+            if (await CommonPvp.Guard(WarriorSettings.Instance)) return true;
+            if (await CommonPvp.Purify(WarriorSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(WarriorSettings.Instance)) return true;
 
-            if (!Tank.GuardCheck())
+            if (!CommonPvp.GuardCheck(WarriorSettings.Instance))
             {
 
                 if (await Pvp.PrimalScreamPvp()) return true;

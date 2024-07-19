@@ -187,14 +187,14 @@ namespace Magitek.Rotations
             if(!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await PhysicalDps.Guard(SamuraiSettings.Instance)) return true;
-            if (await PhysicalDps.Purify(SamuraiSettings.Instance)) return true;
-            if (await PhysicalDps.Recuperate(SamuraiSettings.Instance)) return true;
+            if (await CommonPvp.Guard(SamuraiSettings.Instance)) return true;
+            if (await CommonPvp.Purify(SamuraiSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(SamuraiSettings.Instance)) return true;
 
             if (await Pvp.ZantetsukenPvp()) return true;
             if (await Pvp.MineuchiPvp()) return true;
 
-            if (!PhysicalDps.GuardCheck())
+            if (!CommonPvp.GuardCheck(SamuraiSettings.Instance))
             {
                 if (await Pvp.HissatsuChitenPvp()) return true;
                 if (await Pvp.HissatsuSotenPvp()) return true;

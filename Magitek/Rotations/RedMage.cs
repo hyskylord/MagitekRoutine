@@ -172,12 +172,12 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await MagicDps.Guard(BlackMageSettings.Instance)) return true;
-            if (await MagicDps.Purify(BlackMageSettings.Instance)) return true;
-            if (await MagicDps.Recuperate(BlackMageSettings.Instance)) return true;
+            if (await CommonPvp.Guard(RedMageSettings.Instance)) return true;
+            if (await CommonPvp.Purify(RedMageSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(RedMageSettings.Instance)) return true;
 
             if (await Pvp.DisplacementPvp()) return true;
-            if (!MagicDps.GuardCheck())
+            if (!CommonPvp.GuardCheck(RedMageSettings.Instance))
             {
                 if (await Pvp.SouthernCrossWhitePvp()) return true;
                 if (await Pvp.VerHolyPvp()) return true;

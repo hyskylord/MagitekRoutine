@@ -179,11 +179,11 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await PhysicalDps.Guard(DragoonSettings.Instance)) return true;
-            if (await PhysicalDps.Purify(DragoonSettings.Instance)) return true;
-            if (await PhysicalDps.Recuperate(DragoonSettings.Instance)) return true;
+            if (await CommonPvp.Guard(DragoonSettings.Instance)) return true;
+            if (await CommonPvp.Purify(DragoonSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(DragoonSettings.Instance)) return true;
 
-            if (!PhysicalDps.GuardCheck())
+            if (!CommonPvp.GuardCheck(DragoonSettings.Instance))
             {
                 if (await Pvp.SkyHighPvp()) return true;
 

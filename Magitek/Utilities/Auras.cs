@@ -488,6 +488,7 @@ namespace Magitek.Utilities
             PvpDarkArts = 3034,
             PvpSwordOath = 1991, 
             PvpHallowedGround  = 1302,
+            PvpUndeadRedemption = 3039,
             PvpOnslaught = 3029,
             PvpOrogeny = 3256,
             PvpSubtractivePalette = 4102,

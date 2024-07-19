@@ -173,11 +173,11 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await PhysicalDps.Guard(NinjaSettings.Instance)) return true;
-            if (await PhysicalDps.Purify(NinjaSettings.Instance)) return true;
-            if (await PhysicalDps.Recuperate(NinjaSettings.Instance)) return true;
+            if (await CommonPvp.Guard(NinjaSettings.Instance)) return true;
+            if (await CommonPvp.Purify(NinjaSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(NinjaSettings.Instance)) return true;
 
-            if (!PhysicalDps.GuardCheck()) { 
+            if (!CommonPvp.GuardCheck(NinjaSettings.Instance)) { 
                 if (await Pvp.SeitonTenchuPvp()) return true;
                 if (await Pvp.AssassinatePvp()) return true;
                 if (await Pvp.FleetingRaijuPvp()) return true;
