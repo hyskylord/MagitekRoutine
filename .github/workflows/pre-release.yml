@@ -49,38 +49,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        $uri = "https://api.github.com/repos/${{ github.repository }}/releases"
-        $headers = @{ Authorization = "token $env:GITHUB_TOKEN" }
-
-        function Get-Releases {
-          param (
-            [string]$uri
-          )
-          $releases = @()
-          do {
-            $response = Invoke-RestMethod -Headers $headers -Uri $uri
-            $releases += $response
-            $linkHeader = $response.Headers.Link
-            $nextLink = $null
-            if ($linkHeader) {
-              $linkHeader.Split(",") | ForEach-Object {
-                if ($_ -match 'rel="next"') {
-                  $nextLink = ($_ -match '<(.*?)>')[1]
-                }
-              }
-            }
-            $uri = $nextLink
-          } while ($nextLink)
-          return $releases
-        }
-
-        $releases = Get-Releases -uri $uri
+        echo "Fetching releases..."
+        $releases = Invoke-RestMethod -Headers @{Authorization = "token $env:GITHUB_TOKEN"} -Uri "https://api.github.com/repos/${{ github.repository }}/releases"
         $prereleases = $releases | Where-Object { $_.prerelease -eq $true }
 
         foreach ($release in $prereleases) {
           $release_id = $release.id
           echo "Deleting pre-release with ID: $release_id"
-          Invoke-RestMethod -Method Delete -Headers $headers -Uri "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
+          Invoke-RestMethod -Method Delete -Headers @{Authorization = "token $env:GITHUB_TOKEN"} -Uri "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
         }
 
         echo "All pre-releases deleted."
