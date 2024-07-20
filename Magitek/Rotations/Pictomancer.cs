@@ -102,11 +102,12 @@ namespace Magitek.Rotations
             if (Core.Me.CurrentTarget.HasAnyAura(Auras.Invincibility))
                 return false;
 
+            if (await Buff.FightLogic_TemperaGrassa()) return true;
+            if (await Buff.FightLogic_TemperaCoat()) return true;
+            if (await Buff.FightLogic_Addle()) return true;
+
             if (PictomancerRoutine.GlobalCooldown.CanWeave()) 
             {
-                if (await Buff.FightLogic_TemperaGrassa()) return true;
-                if (await Buff.FightLogic_TemperaCoat()) return true;
-                if (await Buff.FightLogic_Addle()) return true;
                 if (await Healer.LucidDreaming(PictomancerSettings.Instance.UseLucidDreaming, PictomancerSettings.Instance.LucidDreamingMinimumManaPercent)) return true;
                 if (await Buff.SubtractivePalette()) return true;
             }
@@ -155,6 +156,8 @@ namespace Magitek.Rotations
             if (await CommonPvp.Purify(PictomancerSettings.Instance)) return true;
             if (await CommonPvp.Recuperate(PictomancerSettings.Instance)) return true;
 
+            if (await Pvp.CreatureMotif()) return true;
+
             if (!CommonPvp.GuardCheck(PictomancerSettings.Instance))
             {
                 if (await Pvp.Starstruck()) return true;
@@ -168,9 +171,7 @@ namespace Magitek.Rotations
                 if (await Pvp.LivingMuse()) return true;
             }
 
-            if (await Pvp.CreatureMotif()) return true;
-
-            if (!CommonPvp.GuardCheck(PictomancerSettings.Instance))
+            if (!CommonPvp.GuardCheck(PictomancerSettings.Instance, checkGuard: false))
             {
                 if (await Pvp.PaintRGB()) return true;
             }

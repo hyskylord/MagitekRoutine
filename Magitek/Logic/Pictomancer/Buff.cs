@@ -58,7 +58,8 @@ namespace Magitek.Logic.Pictomancer
 
             if (FightLogic.EnemyIsCastingAoe() || FightLogic.EnemyIsCastingBigAoe())
             {
-                return await FightLogic.DoAndBuffer(Spells.TemperaCoat.CastAura(Core.Me, Auras.TempuraCoat));             
+                // intentionally don't wait for the grassa aura, it either happens or it doesn't. 
+                return await FightLogic.DoAndBuffer(Spells.TemperaCoat.Cast(Core.Me));             
             }
             return false;
         }
@@ -77,7 +78,8 @@ namespace Magitek.Logic.Pictomancer
             if (!Globals.InParty)
                 return false;
                
-            return await Spells.TemperaGrassa.CastAura(Core.Me, Auras.TempuraGrassa);
+            // intentionally don't wait for the grassa aura, it either happens or it doesn't. 
+            return await Spells.TemperaGrassa.Cast(Core.Me);
         }
 
         public static async Task<bool> FightLogic_Addle()

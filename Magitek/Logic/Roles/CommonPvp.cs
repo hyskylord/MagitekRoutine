@@ -35,10 +35,10 @@ namespace Magitek.Logic.Roles
             return await Coroutine.Wait(1500, () => Core.Me.HasAura(Auras.Guard, true));
         }
 
-        public static bool GuardCheck<T>(T settings) where T : JobSettings
+        public static bool GuardCheck<T>(T settings, bool checkGuard = true, bool checkInvuln = true) where T : JobSettings
         {
-            return (settings.Pvp_GuardCheck && Core.Me.CurrentTarget.HasAura(Auras.Guard))
-                || (settings.Pvp_InvulnCheck && Core.Me.CurrentTarget.HasAnyAura(new uint[] {Auras.PvpHallowedGround, Auras.PvpUndeadRedemption}));
+            return (checkGuard && settings.Pvp_GuardCheck && Core.Me.CurrentTarget.HasAura(Auras.Guard))
+                || (checkInvuln && settings.Pvp_InvulnCheck && Core.Me.CurrentTarget.HasAnyAura(new uint[] {Auras.PvpHallowedGround, Auras.PvpUndeadRedemption}));
         }
 
         public static async Task<bool> Purify<T>(T settings) where T : JobSettings

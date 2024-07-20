@@ -492,7 +492,17 @@ namespace Magitek.Utilities
             PvpOnslaught = 3029,
             PvpOrogeny = 3256,
             PvpSubtractivePalette = 4102,
-            PvpStarstruck = 4118
+            PvpStarstruck = 4118,
+            PvpPomSketch = 4124,
+            PvpWingSketch = 4125,
+            PvpClawSketch = 4126,
+            PvpMawSketch = 4127,
+            PvpPomMotif = 4105,
+            PvpWingMotif = 4106,
+            PvpClawMotif = 4107,
+            PvpMawMotif = 4108,
+            PvpMooglePortrait = 4103,
+            PvpMadeenPortrait = 4104
             ;
 
 

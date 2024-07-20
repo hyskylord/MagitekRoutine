@@ -6095,7 +6095,7 @@ namespace Magitek.Utilities
                 Expansion = FfxivExpansion.Dawntrail,
                 Enemies = new List<Enemy> {
                     new Enemy {
-                        Id = 0, // Assuming an ID for Black Cat
+                        Id = 12686, // Assuming an ID for Black Cat
                         Name = "Black Cat",
                         TankBusters = new List<uint>() {
                             0x934A, // Biscuit Maker
