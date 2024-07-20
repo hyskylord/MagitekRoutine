@@ -22,7 +22,7 @@ namespace Magitek.Logic.RedMage
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -49,7 +49,7 @@ namespace Magitek.Logic.RedMage
             if (RoutineManager.IsAnyDisallowed(CapabilityFlags.Movement))
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.CorpsacorpsPvp.Cast(Core.Me.CurrentTarget);
@@ -67,10 +67,10 @@ namespace Magitek.Logic.RedMage
             if (RoutineManager.IsAnyDisallowed(CapabilityFlags.Movement))
                 return false;
 
-            if (!Core.Me.HasAura(Auras.VermilionRadiance))
+            if (!Core.Me.HasAura(Auras.PvpVermilionRadiance))
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.DisplacementPvp.Cast(Core.Me.CurrentTarget);
@@ -86,10 +86,10 @@ namespace Magitek.Logic.RedMage
             if (!RedMageSettings.Instance.Pvp_UsedOGCD)
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedOGCD && RedMageSettings.Instance.Pvp_UsedMagickBarrier && Core.Me.HasAura(Auras.BlackShift))
+            if (RedMageSettings.Instance.Pvp_UsedOGCD && RedMageSettings.Instance.Pvp_UsedMagickBarrier && Core.Me.HasAura(Auras.PvpBlackShift))
                 return await Spells.WhiteShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.MagickBarrierPvp.Cast(Core.Me);
@@ -104,10 +104,10 @@ namespace Magitek.Logic.RedMage
             if (!RedMageSettings.Instance.Pvp_UsedOGCD)
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedOGCD && RedMageSettings.Instance.Pvp_UsedFazzle && Core.Me.HasAura(Auras.WhiteShift))
+            if (RedMageSettings.Instance.Pvp_UsedOGCD && RedMageSettings.Instance.Pvp_UsedFazzle && Core.Me.HasAura(Auras.PvpWhiteShift))
                 return await Spells.BlackShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.FazzlePvp.Cast(Core.Me);
@@ -122,10 +122,10 @@ namespace Magitek.Logic.RedMage
             if (!RedMageSettings.Instance.Pvp_UsedResolution)
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedResolution && RedMageSettings.Instance.Pvp_UsedResolutionWhite && Core.Me.HasAura(Auras.BlackShift))
+            if (RedMageSettings.Instance.Pvp_UsedResolution && RedMageSettings.Instance.Pvp_UsedResolutionWhite && Core.Me.HasAura(Auras.PvpBlackShift))
                 return await Spells.WhiteShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
@@ -146,10 +146,10 @@ namespace Magitek.Logic.RedMage
             if (!RedMageSettings.Instance.Pvp_UsedResolution)
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedResolution && RedMageSettings.Instance.Pvp_UsedResolutionBlack && Core.Me.HasAura(Auras.WhiteShift))
+            if (RedMageSettings.Instance.Pvp_UsedResolution && RedMageSettings.Instance.Pvp_UsedResolutionBlack && Core.Me.HasAura(Auras.PvpWhiteShift))
                 return await Spells.BlackShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
@@ -173,10 +173,10 @@ namespace Magitek.Logic.RedMage
             if (OutsideComboRange)
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerHoly && Core.Me.HasAura(Auras.BlackShift))
+            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerHoly && Core.Me.HasAura(Auras.PvpBlackShift))
                 return await Spells.WhiteShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.EnchantedRiposteWhitePvp.Cast(Core.Me.CurrentTarget);
@@ -194,10 +194,10 @@ namespace Magitek.Logic.RedMage
             if (OutsideComboRange)
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerHoly && Core.Me.HasAura(Auras.BlackShift))
+            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerHoly && Core.Me.HasAura(Auras.PvpBlackShift))
                 return await Spells.WhiteShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.EnchantedZwerchhauWhitePvp.Cast(Core.Me.CurrentTarget);
@@ -216,10 +216,10 @@ namespace Magitek.Logic.RedMage
                 return false;
 
 
-            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerHoly && Core.Me.HasAura(Auras.BlackShift))
+            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerHoly && Core.Me.HasAura(Auras.PvpBlackShift))
                 return await Spells.WhiteShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.EnchantedRedoublementWhitePvp.Cast(Core.Me.CurrentTarget);
@@ -234,10 +234,10 @@ namespace Magitek.Logic.RedMage
             if (!RedMageSettings.Instance.Pvp_UsedMeleeCombo)
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerHoly && Core.Me.HasAura(Auras.BlackShift))
+            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerHoly && Core.Me.HasAura(Auras.PvpBlackShift))
                 return await Spells.WhiteShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -259,10 +259,10 @@ namespace Magitek.Logic.RedMage
                 return false;
 
 
-            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerflare && Core.Me.HasAura(Auras.WhiteShift))
+            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerflare && Core.Me.HasAura(Auras.PvpWhiteShift))
                 return await Spells.BlackShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.EnchantedRiposteBlackPvp.Cast(Core.Me.CurrentTarget);
@@ -281,10 +281,10 @@ namespace Magitek.Logic.RedMage
                 return false;
 
 
-            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerflare && Core.Me.HasAura(Auras.WhiteShift))
+            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerflare && Core.Me.HasAura(Auras.PvpWhiteShift))
                 return await Spells.BlackShiftPvp.Cast(Core.Me);
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.EnchantedZwerchhauBlackPvp.Cast(Core.Me.CurrentTarget);
@@ -302,10 +302,10 @@ namespace Magitek.Logic.RedMage
             if (OutsideComboRange)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerflare && Core.Me.HasAura(Auras.WhiteShift))
+            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerflare && Core.Me.HasAura(Auras.PvpWhiteShift))
                 return await Spells.BlackShiftPvp.Cast(Core.Me);
 
             return await Spells.EnchantedRedoublementBlackPvp.Cast(Core.Me.CurrentTarget);
@@ -320,10 +320,10 @@ namespace Magitek.Logic.RedMage
             if (!RedMageSettings.Instance.Pvp_UsedMeleeCombo)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerflare && Core.Me.HasAura(Auras.WhiteShift))
+            if (RedMageSettings.Instance.Pvp_UsedMeleeCombo && RedMageSettings.Instance.Pvp_UsedVerflare && Core.Me.HasAura(Auras.PvpWhiteShift))
                 return await Spells.BlackShiftPvp.Cast(Core.Me);
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -341,10 +341,10 @@ namespace Magitek.Logic.RedMage
             if (!RedMageSettings.Instance.Pvp_SouthernCross)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_SouthernCross && RedMageSettings.Instance.Pvp_SouthernCrossBlack && Core.Me.HasAura(Auras.WhiteShift))
+            if (RedMageSettings.Instance.Pvp_SouthernCross && RedMageSettings.Instance.Pvp_SouthernCrossBlack && Core.Me.HasAura(Auras.PvpWhiteShift))
                 return await Spells.BlackShiftPvp.Cast(Core.Me);
 
             return await Spells.SouthernCrossBlackPvp.Cast(Core.Me.CurrentTarget);
@@ -359,10 +359,10 @@ namespace Magitek.Logic.RedMage
             if (!RedMageSettings.Instance.Pvp_SouthernCross)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
-            if (RedMageSettings.Instance.Pvp_SouthernCross && RedMageSettings.Instance.Pvp_SouthernCrossWhite && Core.Me.HasAura(Auras.BlackShift))
+            if (RedMageSettings.Instance.Pvp_SouthernCross && RedMageSettings.Instance.Pvp_SouthernCrossWhite && Core.Me.HasAura(Auras.PvpBlackShift))
                 return await Spells.WhiteShiftPvp.Cast(Core.Me);
 
             return await Spells.SouthernCrossWhitePvp.Cast(Core.Me.CurrentTarget);

@@ -88,7 +88,7 @@ namespace Magitek.Logic.Machinist
             if (Core.Me.HasAura(Auras.WildfireBuff, true) || Casting.SpellCastHistory.Any(x => x.Spell == Spells.Wildfire))
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.EnemiesInCone(8) < MachinistSettings.Instance.FlamethrowerEnemyCount)
@@ -134,13 +134,13 @@ namespace Magitek.Logic.Machinist
             if (!Spells.ChainSaw.IsKnownAndReady())
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
-            if (ActionResourceManager.Machinist.Battery > 80)
+            if (ActionResourceManager.Machinist.Battery >= 100)
                 return false;
 
             /*
@@ -166,13 +166,13 @@ namespace Magitek.Logic.Machinist
             if (!Spells.Excavator.IsKnownAndReady())
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
-            if (ActionResourceManager.Machinist.Battery > 80 && Core.Me.HasAura(Auras.ExcavatorReady, true, 7500))
+            if (ActionResourceManager.Machinist.Battery >= 100 && Core.Me.HasAura(Auras.ExcavatorReady, true, 7500))
                 return false;
 
             return await Spells.Excavator.Cast(Core.Me.CurrentTarget);
@@ -186,7 +186,7 @@ namespace Magitek.Logic.Machinist
             if (!Spells.FullMetalField.IsKnownAndReady())
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))

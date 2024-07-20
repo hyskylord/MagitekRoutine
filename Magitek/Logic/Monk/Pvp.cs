@@ -13,7 +13,7 @@ namespace Magitek.Logic.Monk
     {
         public static async Task<bool> BootshinePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BootshinePvp.CanCast())
@@ -24,7 +24,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> TrueStrikePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.TrueStrikePvp.CanCast())
@@ -35,7 +35,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> SnapPunchPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SnapPunchPvp.CanCast())
@@ -46,7 +46,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> DragonKickPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.DragonKickPvp.CanCast())
@@ -57,7 +57,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> TwinSnakesPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.TwinSnakesPvp.CanCast())
@@ -68,7 +68,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> DemolishPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.DemolishPvp.CanCast())
@@ -79,7 +79,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> PhantomRushPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.PhantomRushPvp.CanCast())
@@ -90,7 +90,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> SixSidedStarPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SixSidedStarPvp.CanCast())
@@ -107,7 +107,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> EnlightenmentPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.EnlightenmentPvp.CanCast())
@@ -127,7 +127,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> ThunderclapPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ThunderclapPvp.CanCast())
@@ -150,7 +150,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> RisingPhoenixPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.RisingPhoenixPvp.CanCast())
@@ -170,7 +170,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> RiddleofEarthPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.RiddleofEarthPvp.CanCast())
@@ -190,7 +190,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> EarthReplyPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.EarthReplyPvp.CanCast())
@@ -213,7 +213,7 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> MeteodrivePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!MonkSettings.Instance.Pvp_Meteodrive)

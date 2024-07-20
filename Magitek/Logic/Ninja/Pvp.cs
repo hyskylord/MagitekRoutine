@@ -13,7 +13,7 @@ namespace Magitek.Logic.Ninja
     {
         public static async Task<bool> SpinningEdgePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SpinningEdgePvp.CanCast())
@@ -24,7 +24,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> GustSlashPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.GustSlashPvp.CanCast())
@@ -35,7 +35,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> AeolianEdgePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.AeolianEdgePvp.CanCast())
@@ -46,7 +46,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> AssassinatePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.AssassinatePvp.CanCast())
@@ -63,7 +63,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> MugPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Spells.MugPvp.CanCast())
@@ -80,7 +80,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> BunshinPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Spells.BunshinPvp.CanCast())
@@ -97,7 +97,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> FumaShurikenPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Spells.FumaShurikenPvp.CanCast() || Spells.FumaShurikenPvp.IsKnownAndReady())
@@ -117,7 +117,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> ShukuchiPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Spells.ShukuchiPvp.CanCast())
@@ -137,7 +137,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> SeitonTenchuPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Spells.SeitonTenchuPvp.CanCast())
@@ -162,7 +162,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> ThreeMudraPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden) || Core.Me.HasAura(Auras.PvpThreeMudra))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden) || Core.Me.HasAura(Auras.PvpThreeMudra))
                 return false;
 
             if (!Spells.ThreeMudraPvp.CanCast())
@@ -176,7 +176,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> HyoshoRanryuPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Core.Me.HasAura(Auras.PvpThreeMudra))
@@ -199,7 +199,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> GokaMekkyakuPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Core.Me.HasAura(Auras.PvpThreeMudra))
@@ -225,7 +225,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> DotonPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Core.Me.HasAura(Auras.PvpThreeMudra))
@@ -245,7 +245,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> HutonPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Core.Me.HasAura(Auras.PvpThreeMudra))
@@ -265,7 +265,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> MeisuiPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Core.Me.HasAura(Auras.PvpThreeMudra))
@@ -285,7 +285,7 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> ForkedRaijuPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
             if (!Core.Me.HasAura(Auras.PvpThreeMudra))
@@ -308,10 +308,10 @@ namespace Magitek.Logic.Ninja
 
         public static async Task<bool> FleetingRaijuPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard) || Core.Me.HasAura(Auras.PvpHidden))
+            if (Core.Me.HasAura(Auras.PvpGuard) || Core.Me.HasAura(Auras.PvpHidden))
                 return false;
 
-            if (!Core.Me.HasAura(Auras.FleetingRaijuReady))
+            if (!Core.Me.HasAura(Auras.PvpFleetingRaijuReady))
                 return false;
 
             if (!Spells.FleetingRaijuPvp.CanCast())

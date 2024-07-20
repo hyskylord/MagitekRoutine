@@ -12,7 +12,7 @@ namespace Magitek.Logic.Machinist
     {
         public static async Task<bool> BlastedCharge()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BlastChargePvp.CanCast())
@@ -29,13 +29,13 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> HeatBlast()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HeatBlast.CanCast())
                 return false;
 
-            if (!Core.Me.HasAura(Auras.Overheated))
+            if (!Core.Me.HasAura(Auras.PvpOverheated))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
@@ -49,7 +49,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> WildFire()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!MachinistSettings.Instance.Pvp_Wildfire)
@@ -69,7 +69,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> Scattergun()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!MachinistSettings.Instance.Pvp_Scattergun)
@@ -92,7 +92,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> Analysis()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.AnalysisPvp.CanCast())
@@ -101,19 +101,19 @@ namespace Magitek.Logic.Machinist
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
                 return false;
 
-            if (Core.Me.HasAura(Auras.Analysis))
+            if (Core.Me.HasAura(Auras.PvpAnalysis))
                 return false;
 
-            if (!MachinistSettings.Instance.Pvp_UsedAnalysisOnDrill && Core.Me.HasAura(Auras.DrillPrimed))
+            if (!MachinistSettings.Instance.Pvp_UsedAnalysisOnDrill && Core.Me.HasAura(Auras.PvpDrillPrimed))
                 return false;
 
-            if (!MachinistSettings.Instance.Pvp_UsedAnalysisOnBio && Core.Me.HasAura(Auras.BioPrimed))
+            if (!MachinistSettings.Instance.Pvp_UsedAnalysisOnBio && Core.Me.HasAura(Auras.PvpBioPrimed))
                 return false;
 
-            if (!MachinistSettings.Instance.Pvp_UsedAnalysisOnAA && Core.Me.HasAura(Auras.AirAnchorPrimed))
+            if (!MachinistSettings.Instance.Pvp_UsedAnalysisOnAA && Core.Me.HasAura(Auras.PvpAirAnchorPrimed))
                 return false;
 
-            if (!MachinistSettings.Instance.Pvp_UsedAnalysisOnChainSaw && Core.Me.HasAura(Auras.ChainSawPrimed))
+            if (!MachinistSettings.Instance.Pvp_UsedAnalysisOnChainSaw && Core.Me.HasAura(Auras.PvpChainSawPrimed))
                 return false;
 
             return await Spells.AnalysisPvp.Cast(Core.Me);
@@ -121,7 +121,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> Drill()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.DrillPvp.CanCast())
@@ -138,7 +138,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> BioBlaster()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BioblasterPvp.CanCast())
@@ -155,7 +155,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> AirAnchor()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.AirAnchorPvp.CanCast())
@@ -172,7 +172,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> ChainSaw()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ChainSawPvp.CanCast())
@@ -189,7 +189,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> BishopAutoturret()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!MachinistSettings.Instance.Pvp_BishopAutoturret)
@@ -209,7 +209,7 @@ namespace Magitek.Logic.Machinist
 
         public static async Task<bool> MarksmansSpite()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!MachinistSettings.Instance.Pvp_UseMarksmansSpite)

@@ -13,7 +13,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> FastBladePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.FastBladePvp.CanCast())
@@ -24,7 +24,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> RiotBladePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.RiotBladePvp.CanCast())
@@ -35,7 +35,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> RoyalAuthorityPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.RoyalAuthorityPvp.CanCast())
@@ -46,7 +46,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> ConfiteorPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ConfiteorPvp.CanCast())
@@ -60,7 +60,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> AtonementPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.AtonementPvp.CanCast())
@@ -80,7 +80,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> ShieldBashPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ShieldBashPvp.CanCast())
@@ -97,7 +97,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> HolySheltronPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HolySheltronPvp.CanCast())
@@ -114,7 +114,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> IntervenePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.IntervenePvp.CanCast())
@@ -137,7 +137,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> PhalanxPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.PhalanxPvp.CanCast())
@@ -154,7 +154,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> BladeofFaithPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BladeofFaithPvp.CanCast())
@@ -165,7 +165,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> BladeofTruthPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BladeofTruthPvp.CanCast())
@@ -176,7 +176,7 @@ namespace Magitek.Logic.Paladin
 
         public static async Task<bool> BladeofValorPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BladeofValorPvp.CanCast())

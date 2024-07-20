@@ -125,7 +125,8 @@ namespace Magitek.Rotations
                     if (await Pet.RookQueen()) return true;
                 }
 
-                if (MachinistRoutine.GlobalCooldown.CanWeave())
+                // Intentionally only weave 1 guass or richochet to hit 6 gcd's during wildfire. 
+                if (MachinistRoutine.GlobalCooldown.CanWeave(Core.Me.HasAura(Auras.WildfireBuff) ? 1 : 2))
                 {
                     //oGCDs
                     if (await SingleTarget.GaussRound()) return true;
@@ -149,6 +150,7 @@ namespace Magitek.Rotations
                     if (await Pet.RookQueenOverdrive()) return true;
 
                     //Cooldowns
+                    if (await Cooldowns.Reassemble()) return true;
                     if (await Cooldowns.Wildfire()) return true;
                     if (await Cooldowns.Hypercharge()) return true;
                     if (await Cooldowns.BarrelStabilizer()) return true;
@@ -165,9 +167,6 @@ namespace Magitek.Rotations
 
             //Use On CD
             if (await MultiTarget.FullMetalField()) return true;
-
-            // Intentionally leave reassemble outside of weaving to get reliable reassemble usage
-            if (await Cooldowns.Reassemble()) return true;
 
             if (await MultiTarget.Excavator()) return true;
             if (await MultiTarget.ChainSaw()) return true;

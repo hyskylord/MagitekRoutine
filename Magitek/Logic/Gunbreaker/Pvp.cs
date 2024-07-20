@@ -13,7 +13,7 @@ namespace Magitek.Logic.Gunbreaker
     {
         public static async Task<bool> KeenEdgePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.KeenEdgePvp.CanCast())
@@ -24,7 +24,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> BrutalShelPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BrutalShelPvp.CanCast())
@@ -35,7 +35,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> SolidBarrelPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SolidBarrelPvp.CanCast())
@@ -46,7 +46,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> GnashingFangPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.GnashingFangPvp.CanCast())
@@ -69,7 +69,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> SavageClawPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SavageClawPvp.CanCast())
@@ -92,7 +92,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> WickedTalonPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.WickedTalonPvp.CanCast())
@@ -115,7 +115,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> ContinuationPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ContinuationPvp.CanCast())
@@ -135,7 +135,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> DoubleDownPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.DoubleDownPvp.CanCast())
@@ -158,7 +158,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> BurstStrikePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BurstStrikePvp.CanCast())
@@ -178,7 +178,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> RoughDividePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.RoughDividePvp.CanCast())
@@ -207,7 +207,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> DrawandJunctionPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.DrawandJunctionPvp.CanCast())
@@ -239,7 +239,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> BlastingZonePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BlastingZonePvp.CanCast())
@@ -259,7 +259,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> NebulaPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.NebulaPvp.CanCast())
@@ -276,7 +276,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> AuroraPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.AuroraPvp.CanCast())
@@ -293,7 +293,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> RelentlessRushPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.RelentlessRushPvp.CanCast())

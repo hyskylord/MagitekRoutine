@@ -14,7 +14,7 @@ namespace Magitek.Logic.DarkKnight
     {
         public static async Task<bool> HardSlashPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HardSlashPvp.CanCast())
@@ -25,7 +25,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> SyphonStrikePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SyphonStrikePvp.CanCast())
@@ -36,7 +36,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> SouleaterPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SouleaterPvp.CanCast())
@@ -47,7 +47,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> BloodspillerPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BloodspillerPvp.CanCast())
@@ -67,7 +67,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> PlungePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.PlungePvp.CanCast())
@@ -94,7 +94,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> QuietusPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.QuietusPvp.CanCast())
@@ -111,7 +111,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> BlackestNightPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BlackestNightPvp.CanCast())
@@ -128,7 +128,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> SaltedEarthPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SaltedEarthPvp.CanCast())
@@ -145,7 +145,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> ShadowbringerPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ShadowbringerPvp.CanCast())
@@ -165,7 +165,7 @@ namespace Magitek.Logic.DarkKnight
 
         public static async Task<bool> EventidePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.EventidePvp.CanCast())
