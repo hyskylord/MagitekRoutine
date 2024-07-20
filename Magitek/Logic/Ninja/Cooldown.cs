@@ -69,5 +69,39 @@ namespace Magitek.Logic.Ninja
 
             return await Spells.DreamWithinaDream.Cast(Core.Me.CurrentTarget);
         }
+        public static async Task<bool> ZeshoMeppo()
+        {
+
+            if (Core.Me.ClassLevel < 96)
+                return false;
+
+            if (Spells.TrickAttack.Cooldown <= new TimeSpan(0, 0, 20))
+                return false;
+
+            if (Casting.SpellCastHistory.First().Spell == Spells.TrickAttack)
+                return false;
+
+            if (NinjaRoutine.AoeEnemies6Yards > 1) 
+                return false;
+
+            return await Spells.ZeshoMeppo.Cast(Core.Me.CurrentTarget);
+
+        }
+
+        public static async Task<bool> TenriJindo()
+        {
+
+            if (Core.Me.ClassLevel < 100)
+                return false;
+
+            if (Spells.TrickAttack.Cooldown <= new TimeSpan(0, 0, 20))
+                return false;
+
+            if (Casting.SpellCastHistory.First().Spell == Spells.TrickAttack)
+                return false;
+
+            return await Spells.TenriJindo.Cast(Core.Me.CurrentTarget);
+
+        }
     }
 }

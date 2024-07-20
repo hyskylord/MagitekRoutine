@@ -17,7 +17,7 @@ namespace Magitek.Logic.Ninja
             if (!GamelogManagerCountdown.IsCountdownRunning())
                 return false;
 
-            if (ActionResourceManager.Ninja.HutonTimer.TotalSeconds <= 0)
+            if (GamelogManagerCountdown.GetCurrentCooldown() <= 6)
                 return false;
 
             if ((uint)Spells.Ten.Charges == Spells.Ten.MaxCharges)

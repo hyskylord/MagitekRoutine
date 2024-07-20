@@ -1,0 +1,29 @@
+name: Clean Pre-Release Tags
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clean-pre-release-tags:
+    name: "Clean Pre-Release Tags"
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Delete Pre-Release Tags
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "Fetching tags..."
+        tags=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/tags | jq -r '.[].name')
+        
+        for tag in $tags; do
+          if [[ $tag == pre-* ]]; then
+            echo "Deleting tag: $tag"
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$tag
+          fi
+        done
+
+        echo "All pre-release tags deleted."

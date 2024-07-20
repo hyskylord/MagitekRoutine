@@ -374,7 +374,7 @@ namespace Magitek.Utilities
             GrimskinVenom = 3650,
             FellhunterVenom = 3659,
             FellskinVenom = 3660,
-            NoxiousGnash =  3667,
+            NoxiousGnash = 3667,
 
             //PCT
             Aetherhues = 3675,
@@ -397,7 +397,7 @@ namespace Magitek.Utilities
             ExcavatorReady = 3865,
 
             //WHM
-            Medica3 =  3880,
+            Medica3 = 3880,
 
             //SAM
             ZanshinReady = 3855,
@@ -409,6 +409,11 @@ namespace Magitek.Utilities
 
             //SCH
             Seraphism = 3885,
+
+            //NIN
+            ShadowWalker = 3848,
+            Higi = 3850,
+            TenriJindoReady = 3851,
 
             //To prevent conflict
             Placeholder = 9999;

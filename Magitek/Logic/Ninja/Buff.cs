@@ -70,21 +70,6 @@ namespace Magitek.Logic.Ninja
 
         }
 
-        public static async Task<bool> Huraijin()
-        {
-
-            if (Core.Me.ClassLevel < 60)
-                return false;
-
-            if (!Spells.Huraijin.IsKnown())
-                return false;
-
-            if (ActionResourceManager.Ninja.HutonTimer > new TimeSpan(0))
-                return false;
-
-            return await Spells.Huraijin.Cast(Core.Me.CurrentTarget);
-
-        }
 
     }
 }

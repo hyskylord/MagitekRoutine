@@ -535,6 +535,14 @@ namespace Magitek.Utilities
         public static readonly SpellData Chimatsuri = DataManager.GetSpellData(4243);
         #endregion
 
+        //NIN
+        #region NIN
+
+        public static readonly SpellData ZeshoMeppo = DataManager.GetSpellData(36960);
+        public static readonly SpellData TenriJindo = DataManager.GetSpellData(36961);
+
+        #endregion
+
         // PLD
         #region PLD
         public static readonly SpellData Sentinel = DataManager.GetSpellData(17);

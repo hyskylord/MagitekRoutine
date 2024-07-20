@@ -55,11 +55,13 @@ jobs:
 
         foreach ($release in $prereleases) {
           $release_id = $release.id
-          echo "Deleting pre-release with ID: $release_id"
+          $tag_name = $release.tag_name
+          echo "Deleting pre-release with ID: $release_id and tag: $tag_name"
           Invoke-RestMethod -Method Delete -Headers @{Authorization = "token $env:GITHUB_TOKEN"} -Uri "https://api.github.com/repos/${{ github.repository }}/releases/$release_id"
+          Invoke-RestMethod -Method Delete -Headers @{Authorization = "token $env:GITHUB_TOKEN"} -Uri "https://api.github.com/repos/${{ github.repository }}/git/refs/tags/$tag_name"
         }
 
-        echo "All pre-releases deleted."
+        echo "All pre-releases and associated tags deleted."
       shell: pwsh
 
     - name: Create GitHub Release
