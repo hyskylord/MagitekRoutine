@@ -63,7 +63,12 @@ namespace Magitek.Logic.Ninja
             if (MagitekActionResourceManager.Ninja.NinkiGauge < 90)
                 return false;
 
-            if (NinjaRoutine.AoeEnemies6Yards < 3)
+            if (Core.Me.HasAura(Auras.Higi))
+            {
+                if (NinjaRoutine.AoeEnemies6Yards < 2)
+                    return false;
+            }
+            else if (NinjaRoutine.AoeEnemies6Yards < 3)
                 return false;
 
             //Smart Target Logic needs to be addded
