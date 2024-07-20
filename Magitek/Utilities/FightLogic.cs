@@ -6148,7 +6148,7 @@ namespace Magitek.Utilities
                 Expansion = FfxivExpansion.Dawntrail,
                 Enemies = new List<Enemy> {
                     new Enemy {
-                        Id = 0, // Assuming an ID for Brute Bomber
+                        Id = 13356, // Assuming an ID for Brute Bomber
                         Name = "Brute Bomber",
                         TankBusters = new List<uint>() {
                             0x93D5, // Knuckle Sandwich
@@ -6159,6 +6159,8 @@ namespace Magitek.Utilities
                         Aoes = new List<uint>() {
                             0x93D6, // Brutal Impact
                             0x9429, // Brutal Burn
+                            37928, // brutal burn 2
+                            37846, // brutal impact 2
                         },
                         BigAoes = new List<uint>() {
                             // No big Aoes mentioned in the TypeScript data
@@ -6173,7 +6175,7 @@ namespace Magitek.Utilities
                 Expansion = FfxivExpansion.Dawntrail,
                 Enemies = new List<Enemy> {
                     new Enemy {
-                        Id = 0, // Assuming an ID for Wicked Thunder
+                        Id = 13057, // Assuming an ID for Wicked Thunder
                         Name = "Wicked Thunder",
                         TankBusters = new List<uint>() {
                             0x01D7
