@@ -32,6 +32,9 @@ namespace Magitek.Logic.Machinist
             if (Spells.Wildfire.Cooldown.TotalMilliseconds > 0 && Spells.Wildfire.Cooldown.TotalMilliseconds <= 6000)
                 return false;
 
+            if (Utilities.Routines.Common.CheckTTDIsEnemyDyingSoon(MachinistSettings.Instance))
+                return false;
+
             return await Spells.BarrelStabilizer.Cast(Core.Me);
         }
 
@@ -102,6 +105,9 @@ namespace Magitek.Logic.Machinist
                 if (Spells.ChainSaw.IsKnown() && Spells.ChainSaw.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayWildfireSeconds)
                     return false;
             }
+
+            if (Utilities.Routines.Common.CheckTTDIsEnemyDyingSoon(MachinistSettings.Instance))
+                return false;
 
             return await Spells.Wildfire.CastAura(Core.Me.CurrentTarget, Auras.WildfireBuff, auraTarget: Core.Me);
         }

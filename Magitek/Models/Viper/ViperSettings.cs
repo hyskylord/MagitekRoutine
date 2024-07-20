@@ -14,14 +14,6 @@ namespace Magitek.Models.Viper
 
         #region General-Stuff
         [Setting]
-        [DefaultValue(false)]
-        public bool EnemyIsOmni { get; set; }
-
-        [Setting]
-        [DefaultValue(13)]
-        public int SaveIfEnemyDyingWithin { get; set; }
-
-        [Setting]
         [DefaultValue(70.0f)]
         public float RestHealthPercent { get; set; }
 

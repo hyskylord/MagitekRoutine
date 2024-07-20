@@ -13,19 +13,6 @@ namespace Magitek.Models.Reaper
         public static ReaperSettings Instance { get; set; } = new ReaperSettings();
 
         #region General-Stuff
-        // MOve Omni Setting to General Settings
-        [Setting]
-        [DefaultValue(false)]
-        public bool EnemyIsOmni { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
-        public bool UseTTD { get; set; }
-
-        [Setting]
-        [DefaultValue(13)]
-        public int SaveIfEnemyDyingWithin { get; set; }
-
         [Setting]
         [DefaultValue(false)]
         public bool BurnEverything { get; set; }

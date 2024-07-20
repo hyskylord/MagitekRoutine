@@ -14,6 +14,20 @@ namespace Magitek.Models.Roles
     {
         protected JobSettings(string path) : base(path) { }
 
+        #region General
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseTTD { get; set; }
+
+        [Setting]
+        [DefaultValue(13)]
+        public int SaveIfEnemyDyingWithin { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool EnemyIsOmni { get; set; }
+        #endregion
+
         #region pvp
         [Setting]
         [DefaultValue(true)]

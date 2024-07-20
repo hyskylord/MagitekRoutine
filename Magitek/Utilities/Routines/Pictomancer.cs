@@ -56,9 +56,7 @@ namespace Magitek.Utilities.Routines
 
         public static bool CheckTTDIsEnemyDyingSoon()
         {
-            return PictomancerSettings.Instance.UseTTD
-                && Combat.CurrentTargetCombatTimeLeft < PictomancerSettings.Instance.SaveIfEnemyDyingWithin
-                && !Core.Me.CurrentTarget.IsBoss();
+            return Common.CheckTTDIsEnemyDyingSoon(PictomancerSettings.Instance);
         }
     }
 }
