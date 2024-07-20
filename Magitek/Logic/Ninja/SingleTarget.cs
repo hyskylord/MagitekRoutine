@@ -39,6 +39,27 @@ namespace Magitek.Logic.Ninja
 
         }
 
+        //Flank Modifier
+        //should be used over aeolian edge if no true north or not in rear
+        public static async Task<bool> ArmorCrush()
+        {
+
+            if (Core.Me.ClassLevel < 54 || !Spells.ArmorCrush.IsKnown())
+                return false;
+
+            if (ActionManager.LastSpell != Spells.GustSlash)
+                return false;
+
+            if (!Spells.ArmorCrush.CanCast(Core.Me.CurrentTarget))
+                return false;
+
+            if (ActionResourceManager.Ninja.Kazematoi >= 1)
+                return false;
+
+            return await Spells.ArmorCrush.Cast(Core.Me.CurrentTarget);
+
+        }
+
         //Rear Modifier
         public static async Task<bool> AeolianEdge()
         {
@@ -53,31 +74,6 @@ namespace Magitek.Logic.Ninja
                 return false;
 
             return await Spells.AeolianEdge.Cast(Core.Me.CurrentTarget);
-
-        }
-
-        //Flank Modifier
-        //should be used over aeolian edge if no true north or not in rear
-        public static async Task<bool> ArmorCrush()
-        {
-
-            if (Core.Me.ClassLevel < 54 || !Spells.ArmorCrush.IsKnown())
-                return false;
-
-            if (ActionManager.LastSpell != Spells.GustSlash)
-                return false;
-            
-            //Dont cast if current huton timer plus 30 seconds is greater than 60 seconds
-            if (ActionResourceManager.Ninja.HutonTimer.Add(new TimeSpan(0, 0, 30)) > new TimeSpan(0,1,0) )
-                return false;
-
-            if (ActionResourceManager.Ninja.HutonTimer > new TimeSpan(0, 16, 0) && Spells.TrickAttack.Cooldown > new TimeSpan(0, 0, 45))
-                return false;
-
-            if (!Spells.ArmorCrush.CanCast(Core.Me.CurrentTarget))
-                return false;
-
-            return await Spells.ArmorCrush.Cast(Core.Me.CurrentTarget);
 
         }
 

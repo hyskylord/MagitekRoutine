@@ -41,8 +41,6 @@ namespace Magitek.Rotations
 
             Utilities.Routines.Ninja.RefreshVars();
 
-            if (await Ninjutsu.PrePullHutonRamp()) return true;
-            if (await Ninjutsu.PrePullHutonUse()) return true;
             if (await Utility.PrePullHide()) return true;
             
             if (await Ninjutsu.PrePullSuitonRamp()) return true;
@@ -126,6 +124,8 @@ namespace Magitek.Rotations
                 if (!usedOGCD && await Buff.Meisui()) usedOGCD = true;
                 if (!usedOGCD && await SingleTarget.Bhavacakra()) usedOGCD = true;
                 if (!usedOGCD && await Aoe.HellfrogMedium()) usedOGCD = true;
+                if (!usedOGCD && await Cooldown.ZeshoMeppo()) usedOGCD = true;
+                if (!usedOGCD && await Cooldown.TenriJindo()) usedOGCD = true;
                 if (!usedOGCD && await Buff.Bunshin()) usedOGCD = true;
 
                 if (usedOGCD)
@@ -141,9 +141,9 @@ namespace Magitek.Rotations
             if (await Ninjutsu.TenChiJin_Raiton()) return true;
             if (await Ninjutsu.TenChiJin_Suiton()) return true;
 
-            if (await Ninjutsu.Huton()) return true;
             if (await Ninjutsu.GokaMekkyaku()) return true;
             if (await Ninjutsu.HyoshoRanryu()) return true;
+            if (await Ninjutsu.Huton()) return true;
             if (await Ninjutsu.Suiton()) return true;
             if (await Ninjutsu.Katon()) return true;
             if (await Ninjutsu.Raiton()) return true;
@@ -153,8 +153,6 @@ namespace Magitek.Rotations
             if (await SingleTarget.ForkedRaiju()) return true;
 
             if (await Aoe.PhantomKamaitachi()) return true;
-
-            if (await Buff.Huraijin()) return true;
 
             if (await Aoe.HakkeMujinsatsu()) return true;
             if (await Aoe.DeathBlossom()) return true;

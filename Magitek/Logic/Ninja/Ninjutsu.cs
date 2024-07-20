@@ -26,7 +26,13 @@ namespace Magitek.Logic.Ninja
             if (Core.Me.HasAura(Auras.TenChiJin) || Core.Me.HasAura(Auras.Kassatsu))
                 return false;
 
-            if (ActionResourceManager.Ninja.HutonTimer > new TimeSpan(0))
+            if (Spells.TrickAttack.Cooldown >= new TimeSpan(0, 0, 15))
+                return false;
+
+            if (Core.Me.HasMyAura(Auras.ShadowWalker))
+                return false;
+
+            if (NinjaRoutine.AoeEnemies5Yards <= 2)
                 return false;
 
             return await NinjaRoutine.PrepareNinjutsu(Spells.Huton, Core.Me);
@@ -48,7 +54,10 @@ namespace Magitek.Logic.Ninja
             if (Spells.TrickAttack.Cooldown >= new TimeSpan(0, 0, 15))
                 return false;
 
-            if (Core.Me.HasMyAura(Auras.Suiton))
+            if (Core.Me.HasMyAura(Auras.ShadowWalker))
+                return false;
+
+            if (NinjaRoutine.AoeEnemies5Yards > 2)
                 return false;
 
             return await NinjaRoutine.PrepareNinjutsu(Spells.Suiton, Core.Me.CurrentTarget);
@@ -56,56 +65,6 @@ namespace Magitek.Logic.Ninja
         }
 
         #region PrePull
-
-        public static async Task<bool> PrePullHutonRamp()
-        {
-
-            if (Core.Me.ClassLevel < 45)
-                return false;
-
-            if (!Spells.Jin.IsKnown())
-                return false;
-
-            if (ActionResourceManager.Ninja.HutonTimer > new TimeSpan(0))
-                return false;
-
-            if (!GamelogManagerCountdown.IsCountdownRunning())
-                return false;
-
-            if (GamelogManagerCountdown.GetCurrentCooldown() > 11)
-                return false;
-
-            if (NinjaRoutine.UsedMudras.Count >= 3)
-                return false;
-
-            return await NinjaRoutine.PrepareNinjutsu(Spells.Huton, Core.Me);
-
-        }
-
-        public static async Task<bool> PrePullHutonUse()
-        {
-
-            if (Core.Me.ClassLevel < 45)
-                return false;
-
-            if (!Spells.Jin.IsKnown())
-                return false;
-
-            if (ActionResourceManager.Ninja.HutonTimer > new TimeSpan(0))
-                return false;
-
-            if (!GamelogManagerCountdown.IsCountdownRunning())
-                return false;
-
-            if (GamelogManagerCountdown.GetCurrentCooldown() > 11)
-                return false;
-
-            if (NinjaRoutine.UsedMudras.Count != 3)
-                return false;
-
-            return await NinjaRoutine.PrepareNinjutsu(Spells.Huton, Core.Me);
-
-        }
 
         public static async Task<bool> PrePullSuitonRamp()
         {
@@ -158,6 +117,9 @@ namespace Magitek.Logic.Ninja
         {
 
             if (Core.Me.ClassLevel < 70)
+                return false;
+
+            if (Core.Me.HasAura(Auras.TenriJindoReady))
                 return false;
 
             //Dont use TCJ when under the affect of kassatsu or in process building a ninjutsu
