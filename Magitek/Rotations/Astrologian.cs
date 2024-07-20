@@ -255,9 +255,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await Healer.Guard(AstrologianSettings.Instance)) return true;
-            if (await Healer.Purify(AstrologianSettings.Instance)) return true;
-            if (await Healer.Recuperate(AstrologianSettings.Instance)) return true;
+            if (await CommonPvp.Guard(AstrologianSettings.Instance)) return true;
+            if (await CommonPvp.Purify(AstrologianSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(AstrologianSettings.Instance)) return true;
 
             if (await Pvp.CelestialRiverPvp()) return true;
 
@@ -268,7 +268,7 @@ namespace Magitek.Rotations
             if (await Pvp.AspectedBeneficPvp()) return true;
             if (await Pvp.DoubleAspectedBeneficPvp()) return true;
 
-            if (!Healer.GuardCheck())
+            if (!CommonPvp.GuardCheck(AstrologianSettings.Instance))
             {
                 if (await Pvp.DoubleGravityIIPvp()) return true;
                 if (await Pvp.DoubleFallMaleficPvp()) return true;

@@ -195,13 +195,13 @@ namespace Magitek.Rotations
 
             MonkRoutine.RefreshVars();
 
-            if (await PhysicalDps.Guard(MonkSettings.Instance)) return true;
-            if (await PhysicalDps.Purify(MonkSettings.Instance)) return true;
-            if (await PhysicalDps.Recuperate(MonkSettings.Instance)) return true;
+            if (await CommonPvp.Guard(MonkSettings.Instance)) return true;
+            if (await CommonPvp.Purify(MonkSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(MonkSettings.Instance)) return true;
 
             if (await Pvp.MeteodrivePvp()) return true;
 
-            if (!PhysicalDps.GuardCheck())
+            if (!CommonPvp.GuardCheck(MonkSettings.Instance))
             {
                 if (await Pvp.SixSidedStarPvp()) return true;
                 if (await Pvp.EarthReplyPvp()) return true;

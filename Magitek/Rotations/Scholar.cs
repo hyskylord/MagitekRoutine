@@ -264,9 +264,9 @@ namespace Magitek.Rotations
 
             ScholarRoutine.RefreshVars();
 
-            if (await Healer.Guard(ScholarSettings.Instance)) return true;
-            if (await Healer.Purify(ScholarSettings.Instance)) return true;
-            if (await Healer.Recuperate(ScholarSettings.Instance)) return true;
+            if (await CommonPvp.Guard(ScholarSettings.Instance)) return true;
+            if (await CommonPvp.Purify(ScholarSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(ScholarSettings.Instance)) return true;
 
             if (await Pvp.SummonSeraphPvp()) return true;
 
@@ -276,7 +276,7 @@ namespace Magitek.Rotations
             if (await Pvp.AdloquiumPvp()) return true;
             if (await Pvp.ExpedientPvp()) return true;
 
-            if (!Healer.GuardCheck())
+            if (!CommonPvp.GuardCheck(ScholarSettings.Instance))
             {
                 if (await Pvp.MummificationPvp()) return true;
                 if (await Pvp.BiolysisPvp()) return true;

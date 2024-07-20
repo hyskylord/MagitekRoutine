@@ -172,15 +172,15 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await Tank.Guard(GunbreakerSettings.Instance)) return true;
-            if (await Tank.Purify(GunbreakerSettings.Instance)) return true;
-            if (await Tank.Recuperate(GunbreakerSettings.Instance)) return true;
+            if (await CommonPvp.Guard(GunbreakerSettings.Instance)) return true;
+            if (await CommonPvp.Purify(GunbreakerSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(GunbreakerSettings.Instance)) return true;
 
             if (await Pvp.RelentlessRushPvp()) return true;
             if (await Pvp.NebulaPvp()) return true;
             if (await Pvp.AuroraPvp()) return true;
 
-            if (!Tank.GuardCheck())
+            if (!CommonPvp.GuardCheck(GunbreakerSettings.Instance))
             {
                 if (await Pvp.RoughDividePvp()) return true;
                 if (await Pvp.BlastingZonePvp()) return true;

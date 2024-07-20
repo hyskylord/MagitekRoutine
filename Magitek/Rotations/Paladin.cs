@@ -160,9 +160,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await Tank.Guard(PaladinSettings.Instance)) return true;
-            if (await Tank.Purify(PaladinSettings.Instance)) return true;
-            if (await Tank.Recuperate(PaladinSettings.Instance)) return true;
+            if (await CommonPvp.Guard(PaladinSettings.Instance)) return true;
+            if (await CommonPvp.Purify(PaladinSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(PaladinSettings.Instance)) return true;
 
             if (await Pvp.PhalanxPvp()) return true;
             if (await Pvp.BladeofValorPvp()) return true;
@@ -170,7 +170,7 @@ namespace Magitek.Rotations
             if (await Pvp.BladeofFaithPvp()) return true;
             if (await Pvp.HolySheltronPvp()) return true;
 
-            if (!Tank.GuardCheck())
+            if (!CommonPvp.GuardCheck(PaladinSettings.Instance))
             {
                 if (await Pvp.IntervenePvp()) return true;
                 if (await Pvp.AtonementPvp()) return true;

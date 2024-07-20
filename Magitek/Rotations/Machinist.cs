@@ -189,11 +189,11 @@ namespace Magitek.Rotations
                 return await Combat();
 
             // Utilities
-            if (await PhysicalDps.Guard(MachinistSettings.Instance)) return true;
-            if (await PhysicalDps.Purify(MachinistSettings.Instance)) return true;
-            if (await PhysicalDps.Recuperate(MachinistSettings.Instance)) return true;
+            if (await CommonPvp.Guard(MachinistSettings.Instance)) return true;
+            if (await CommonPvp.Purify(MachinistSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(MachinistSettings.Instance)) return true;
 
-            if (!PhysicalDps.GuardCheck())
+            if (!CommonPvp.GuardCheck(MachinistSettings.Instance))
             {
                 //LB
                 if (await Pvp.MarksmansSpite()) return true;

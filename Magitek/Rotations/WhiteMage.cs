@@ -233,9 +233,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await Healer.Guard(WhiteMageSettings.Instance)) return true;
-            if (await Healer.Purify(WhiteMageSettings.Instance)) return true;
-            if (await Healer.Recuperate(WhiteMageSettings.Instance)) return true;
+            if (await CommonPvp.Guard(WhiteMageSettings.Instance)) return true;
+            if (await CommonPvp.Purify(WhiteMageSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(WhiteMageSettings.Instance)) return true;
 
             if (await Pvp.AfflatusPurgationPvp()) return true;
 
@@ -243,7 +243,7 @@ namespace Magitek.Rotations
             if (await Pvp.AquaveilPvp()) return true;
             if (await Pvp.CureIIPvp()) return true;
 
-            if (!Healer.GuardCheck())
+            if (!CommonPvp.GuardCheck(WhiteMageSettings.Instance))
             {
                 if (await Pvp.AfflatusMiseryPvp()) return true;
                 if (await Pvp.MiracleOfNaturePvp()) return true;

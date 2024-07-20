@@ -241,9 +241,9 @@ namespace Magitek.Rotations
 
             SageRoutine.RefreshVars();
 
-            if (await Healer.Guard(SageSettings.Instance)) return true;
-            if (await Healer.Purify(SageSettings.Instance)) return true;
-            if (await Healer.Recuperate(SageSettings.Instance)) return true;
+            if (await CommonPvp.Guard(SageSettings.Instance)) return true;
+            if (await CommonPvp.Purify(SageSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(SageSettings.Instance)) return true;
 
             if (await Pvp.MesotesPvp()) return true;
 
@@ -251,7 +251,7 @@ namespace Magitek.Rotations
             if (await Pvp.PneumaPvp()) return true;
             if (await Pvp.EukrasiaPvp()) return true;
 
-            if (!Healer.GuardCheck())
+            if (!CommonPvp.GuardCheck(SageSettings.Instance))
             {
                 if (await Pvp.PhlegmaIIIPvp()) return true;
                 if (await Pvp.ToxikonPvp()) return true;

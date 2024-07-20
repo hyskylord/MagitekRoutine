@@ -7,7 +7,7 @@ using System.Configuration;
 namespace Magitek.Models.Roles
 {
     [AddINotifyPropertyChangedInterface]
-    public abstract class HealerSettings : JsonSettings
+    public abstract class HealerSettings : JobSettings
     {
         protected HealerSettings(string path) : base(path) { }
 
@@ -50,27 +50,5 @@ namespace Magitek.Models.Roles
         [Setting]
         [DefaultValue(true)]
         public bool ResOutOfCombat { get; set; }
-
-        #region pvp
-        [Setting]
-        [DefaultValue(true)]
-        public bool Pvp_UseRecuperate { get; set; }
-
-        [Setting]
-        [DefaultValue(70.0f)]
-        public float Pvp_RecuperateHealthPercent { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
-        public bool Pvp_UsePurify { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
-        public bool Pvp_UseGuard { get; set; }
-
-        [Setting]
-        [DefaultValue(40.0f)]
-        public float Pvp_GuardHealthPercent { get; set; }
-        #endregion
     }
 }

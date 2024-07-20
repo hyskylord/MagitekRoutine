@@ -181,13 +181,13 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await PhysicalDps.Guard(ReaperSettings.Instance)) return true;
-            if (await PhysicalDps.Purify(ReaperSettings.Instance)) return true;
-            if (await PhysicalDps.Recuperate(ReaperSettings.Instance)) return true;
+            if (await CommonPvp.Guard(ReaperSettings.Instance)) return true;
+            if (await CommonPvp.Purify(ReaperSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(ReaperSettings.Instance)) return true;
 
             if (await Pvp.ArcaneCrestPvp()) return true;
 
-            if (!PhysicalDps.GuardCheck())
+            if (!CommonPvp.GuardCheck(ReaperSettings.Instance))
             {
                 if (await Pvp.TenebraeLemurumPvp()) return true;
                 if (await Pvp.LemureSlicePvp()) return true;

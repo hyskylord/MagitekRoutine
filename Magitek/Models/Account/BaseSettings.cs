@@ -211,7 +211,7 @@ namespace Magitek.Models.Account
         public bool UseAdvancedSpellHistory { get; set; }
 
         [Setting]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool UseAutoFaceChecks { get; set; }
 
         #region chocobo

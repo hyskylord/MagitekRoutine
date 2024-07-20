@@ -115,15 +115,15 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await Tank.Guard(DarkKnightSettings.Instance)) return true;
-            if (await Tank.Purify(DarkKnightSettings.Instance)) return true;
-            if (await Tank.Recuperate(DarkKnightSettings.Instance)) return true;
+            if (await CommonPvp.Guard(DarkKnightSettings.Instance)) return true;
+            if (await CommonPvp.Purify(DarkKnightSettings.Instance)) return true;
+            if (await CommonPvp.Recuperate(DarkKnightSettings.Instance)) return true;
 
             if (await Pvp.EventidePvp()) return true;
             if (await Pvp.BlackestNightPvp()) return true;
             if (await Pvp.SaltedEarthPvp()) return true;
 
-            if (!Tank.GuardCheck())
+            if (!CommonPvp.GuardCheck(DarkKnightSettings.Instance))
             {
                 if (await Pvp.PlungePvp()) return true;
                 if (await Pvp.QuietusPvp()) return true;

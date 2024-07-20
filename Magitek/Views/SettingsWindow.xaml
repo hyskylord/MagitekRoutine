@@ -883,6 +883,9 @@
                         <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
                             <pictomancer:Utility />
                         </TabItem>
+                        <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
+                            <pictomancer:Pvp />
+                        </TabItem>
                         <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
                             <customControls:TogglesSettings />
                         </TabItem>
