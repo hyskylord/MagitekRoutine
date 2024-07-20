@@ -140,6 +140,9 @@ namespace Magitek.Logic.Machinist
             if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
+            if (ActionResourceManager.Machinist.Battery > 80)
+                return false;
+
             /*
             if (MachinistSettings.Instance.UseReassembleOnChainSaw && Spells.Reassemble.Charges >= 1 && Spells.Reassemble.IsKnown() && !Core.Me.HasAura(Auras.Reassembled))
             {
@@ -167,6 +170,9 @@ namespace Magitek.Logic.Machinist
                 return false;
 
             if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
+                return false;
+
+            if (ActionResourceManager.Machinist.Battery > 80 && Core.Me.HasAura(Auras.ExcavatorReady, true, 7500))
                 return false;
 
             return await Spells.Excavator.Cast(Core.Me.CurrentTarget);

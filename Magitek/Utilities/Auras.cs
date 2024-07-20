@@ -394,6 +394,7 @@ namespace Magitek.Utilities
             //MCH
             Hypercharged = 3864,
             FullMetalMachinist = 3866,
+            ExcavatorReady = 3865,
 
             //WHM
             Medica3 =  3880,

@@ -5986,7 +5986,6 @@ namespace Magitek.Utilities
                         Aoes = new List<uint>() {
                             36556, // carbonaceous combustion
                             36554, // burning coals
-                            36542, // anthrabomb
                         },
                         BigAoes = new List<uint>() {
                             // Add BigAoes here if available

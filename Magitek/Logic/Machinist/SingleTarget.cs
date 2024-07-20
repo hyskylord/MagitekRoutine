@@ -130,6 +130,9 @@ namespace Magitek.Logic.Machinist
             if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
                 return false;
 
+            if (ActionResourceManager.Machinist.Battery > 80)
+                return false;
+
             /*
             if (MachinistSettings.Instance.UseReassembleOnAA && !Core.Me.HasAura(Auras.Reassembled) && Core.Me.ClassLevel >= 10)
             {
