@@ -6167,7 +6167,31 @@ namespace Magitek.Utilities
                 }
             },
 
-
+            new Encounter {
+                ZoneId = ZoneId.AacLightHeavyweightM4,
+                Name = "AacLightHeavyweightM4",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 0, // Assuming an ID for Wicked Thunder
+                        Name = "Wicked Thunder",
+                        TankBusters = new List<uint>() {
+                            0x01D7
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x92C7, // Wrath of Zeus
+                            0x013C,
+                            0x00A1
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    }
+                }
+            },
             #endregion
         };
 
