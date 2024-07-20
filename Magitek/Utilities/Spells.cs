@@ -7,6 +7,7 @@ using static Microsoft.CodeAnalysis.CSharp.DecisionDagBuilder;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Windows;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using System.Windows.Documents;
 
 namespace Magitek.Utilities
 {
@@ -157,6 +158,9 @@ namespace Magitek.Utilities
         public static readonly SpellData FallMalefic = DataManager.GetSpellData(25871);
         public static readonly SpellData GravityII = DataManager.GetSpellData(25872);
         public static readonly SpellData AstralStasis = DataManager.GetSpellData(4248);
+        public static readonly SpellData Oracle = DataManager.GetSpellData(37029);
+        public static readonly SpellData HeliosConjunction = DataManager.GetSpellData(37030);
+        public static readonly SpellData SunSign = DataManager.GetSpellData(37031);
         #endregion
 
         // BLM

@@ -26,27 +26,8 @@
 
     <StackPanel Margin="10">
 
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="5" Orientation="Horizontal">
-                <CheckBox Margin="0,0,7,0" Content="Lightspeed" IsChecked="{Binding AstrologianSettings.Lightspeed, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                <controls:Numeric Margin="0,4" MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.LightspeedHealthPercent, Mode=TwoWay}" />
-                <TextBlock Margin="2,0,3,0" Style="{DynamicResource TextBlockDefault}" Text="Health Percent" />
-                <CheckBox Margin="0,0,7,0" Content="Tank Only" IsChecked="{Binding AstrologianSettings.LightspeedTankOnly, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-            </StackPanel>
-        </controls:SettingsBlock>
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="5" Orientation="Horizontal">
-                <!--CheckBox Margin="0,0,7,0" Content="Lightspeed While Moving" IsChecked="{Binding AstrologianSettings.LightspeedWhileMoving, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" /-->
-                <TextBlock Margin="2,0,3,0" Style="{DynamicResource TextBlockDefault}" Text="Lightspeed When Under " />
-                <controls:Numeric Margin="0,4" MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.LightspeedManaPercent, Mode=TwoWay}" />
-                <TextBlock Margin="2,0,3,0" Style="{DynamicResource TextBlockDefault}" Text=" Mana Percent " />
-                
-            </StackPanel>
-        </controls:SettingsBlock>
-
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5">
-
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Margin="0,0,7,0" Content="Lucid Dreaming When Under" IsChecked="{Binding AstrologianSettings.LucidDreaming, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.LucidDreamingManaPercent, Mode=TwoWay}" />
@@ -54,21 +35,47 @@
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>
-
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
+        
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5">
-
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox Margin="0,0,7,0" Content="Neutral Sect at " IsChecked="{Binding AstrologianSettings.NeutralSect, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.NeutralSectHealthPercent, Mode=TwoWay}" />
+                <StackPanel Margin="0,2" Orientation="Horizontal">
+                    <CheckBox Margin="0,0,7,0" Content="Lightspeed    " IsChecked="{Binding AstrologianSettings.Lightspeed, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.LightspeedHealthPercent, Mode=TwoWay}" />
                     <TextBlock Margin="2,0,3,0" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent " />
-                    <CheckBox Margin="0,0,7,0" Content="Tank Only" IsChecked="{Binding AstrologianSettings.NeutralSectHealthPercent, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                </StackPanel>
+                <StackPanel Margin="0,2" Orientation="Horizontal">
+                    <CheckBox Margin="0,0,7,0" Content="Lightspeed with Divination " IsChecked="{Binding AstrologianSettings.LightspeedWithDivination, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Margin="0,0,7,0" Content="Lightspeed with Neutral Sect " IsChecked="{Binding AstrologianSettings.LightspeedWithNeutralSect, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>
 
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <CheckBox Margin="5" Content="Use Divination" IsChecked="{Binding AstrologianSettings.Divination, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="0,5" Content="Neutral Sect at " IsChecked="{Binding AstrologianSettings.NeutralSect, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.NeutralSectHealthPercent, Mode=TwoWay}" />
+                    <TextBlock Margin="2,0,3,0" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent " />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="0,5" Content="SunSign" IsChecked="{Binding AstrologianSettings.SunSign, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                </StackPanel>
+            </StackPanel>
+        </controls:SettingsBlock>
+
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5" Content="Use Divination at least " IsChecked="{Binding AstrologianSettings.Divination, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric MaxValue="8" MinValue="0" Value="{Binding AstrologianSettings.DivinationAllies, Mode=TwoWay}" />
+                    <TextBlock Margin="2,0,3,0" Style="{DynamicResource TextBlockDefault}" Text=" Allies " />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5" Content="Use Oracle at least " IsChecked="{Binding AstrologianSettings.Oracle, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.OracleEnemies, Mode=TwoWay}" />
+                    <TextBlock Margin="2,0,3,0" Style="{DynamicResource TextBlockDefault}" Text=" Enemies " />
+                </StackPanel>
+            </StackPanel>
         </controls:SettingsBlock>
 
 

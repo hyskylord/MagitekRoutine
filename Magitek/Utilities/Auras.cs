@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.Operations;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Shapes;
 
 namespace Magitek.Utilities
@@ -413,6 +414,12 @@ namespace Magitek.Utilities
             ShadowWalker = 3848,
             Higi = 3850,
             TenriJindoReady = 3851,
+
+            //AST
+            Divining = 3893,
+            Suntouched = 3895,
+            SunSign = 3896,
+            HeliosConjunction = 3894,
 
             //To prevent conflict
             Placeholder = 9999;

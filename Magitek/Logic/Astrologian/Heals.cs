@@ -349,10 +349,13 @@ namespace Magitek.Logic.Astrologian
 
         public static async Task<bool> LadyOfCrowns()
         {
-            if (ActionResourceManager.Astrologian.CurrentDraw != ActionResourceManager.Astrologian.AstrologianDraw.Umbral)
-                return false;
+            //if (ActionResourceManager.Astrologian.CurrentDraw != ActionResourceManager.Astrologian.AstrologianDraw.Umbral)
+            //    return false;
 
             if (!AstrologianSettings.Instance.LadyOfCrowns)
+                return false;
+
+            if (!Spells.LadyofCrowns.IsKnownAndReady())
                 return false;
 
             if (!Globals.InParty && Core.Me.CurrentHealthPercent <= Core.Me.AdjustHealthThresholdByRegen(AstrologianSettings.Instance.LadyOfCrownsHealthPercent))

@@ -79,6 +79,14 @@ namespace Magitek.Models.Astrologian
         [DefaultValue(false)]
         public bool AggroAst { get; set; }
 
+        [Setting]
+        [DefaultValue(false)]
+        public bool Oracle { get; set; }
+
+        [Setting]
+        [DefaultValue(1)]
+        public int OracleEnemies { get; set; }
+
         #endregion
 
         #region Buffs
@@ -88,21 +96,16 @@ namespace Magitek.Models.Astrologian
         public bool Lightspeed { get; set; }
 
         [Setting]
-        [DefaultValue(70.0f)]
-        public float LightspeedManaPercent { get; set; }
-
-        //Work in Progress
-        [Setting]
-        [DefaultValue(true)]
-        public bool LightspeedWhileMoving { get; set; }
-
-        [Setting]
-        [DefaultValue(40.0f)]
+        [DefaultValue(40f)]
         public float LightspeedHealthPercent { get; set; }
 
         [Setting]
         [DefaultValue(true)]
-        public bool LightspeedTankOnly { get; set; }
+        public bool LightspeedWithDivination { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool LightspeedWithNeutralSect { get; set; }
 
         [Setting]
         [DefaultValue(true)]
@@ -119,6 +122,26 @@ namespace Magitek.Models.Astrologian
         [Setting]
         [DefaultValue(40f)]
         public float ExaltationHealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Divination { get; set; }
+
+        [Setting]
+        [DefaultValue(2)]
+        public int DivinationAllies { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool NeutralSect { get; set; }
+
+        [Setting]
+        [DefaultValue(60.0f)]
+        public float NeutralSectHealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool SunSign { get; set; }
 
         #endregion
 
@@ -158,14 +181,6 @@ namespace Magitek.Models.Astrologian
 
         [Setting]
         [DefaultValue(true)]
-        public bool NeutralSect { get; set; }
-
-        [Setting]
-        [DefaultValue(60.0f)]
-        public float NeutralSectHealthPercent { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
         public bool EssentialDignity { get; set; }
 
         [Setting]
@@ -199,18 +214,6 @@ namespace Magitek.Models.Astrologian
         [Setting]
         [DefaultValue(30.0f)]
         public float DiurnalHeliosMinManaPercent { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
-        public bool LadyOfCrowns { get; set; }
-
-        [Setting]
-        [DefaultValue(80.0f)]
-        public float LadyOfCrownsHealthPercent { get; set; }
-
-        [Setting]
-        [DefaultValue(3)]
-        public int LordOfCrownsEnemies { get; set; }
 
         [Setting]
         [DefaultValue(true)]
@@ -471,11 +474,11 @@ namespace Magitek.Models.Astrologian
 
         [Setting]
         [DefaultValue(true)]
-        public bool UseDraw { get; set; }
+        public bool AstralDraw { get; set; }
 
         [Setting]
         [DefaultValue(true)]
-        public bool UseReDraw { get; set; }
+        public bool UmbralDraw { get; set; }
 
         [Setting]
         [DefaultValue(true)]
@@ -486,24 +489,28 @@ namespace Magitek.Models.Astrologian
         public bool Play { get; set; }
 
         [Setting]
-        [DefaultValue(true)]
-        public bool Divination { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
-        public bool AstroDyne { get; set; }
-
-        [Setting]
-        [DefaultValue(2)]
-        public int DivinationAllies { get; set; }
-
-        [Setting]
         [DefaultValue(25)]
         public int DontPlayWhenCombatTimeIsLessThan { get; set; }
 
         [Setting]
         [DefaultValue(true)]
         public bool CardRuleDefaultToMinorArcana { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool LadyOfCrowns { get; set; }
+
+        [Setting]
+        [DefaultValue(80.0f)]
+        public float LadyOfCrownsHealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool LordOfCrowns { get; set; }
+
+        [Setting]
+        [DefaultValue(1)]
+        public int LordOfCrownsEnemies { get; set; }
         #endregion
 
         #region Card Weights

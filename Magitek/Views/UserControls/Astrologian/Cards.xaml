@@ -19,23 +19,30 @@
 
     <StackPanel Margin="10">
 
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <CheckBox Margin="5" Content="Use Draw" IsChecked="{Binding AstrologianSettings.UseDraw, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="5" Content="Use Astral Draw     " IsChecked="{Binding AstrologianSettings.AstralDraw, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                <CheckBox Margin="5" Content="Use Umbral Draw" IsChecked="{Binding AstrologianSettings.UmbralDraw, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+            </StackPanel>
         </controls:SettingsBlock>
 
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <CheckBox Margin="5" Content="Use Redraw" IsChecked="{Binding AstrologianSettings.UseReDraw, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5,0">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="0,5" Content="Lord Of Crowns at least " IsChecked="{Binding AstrologianSettings.LordOfCrowns, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric Grid.Column="1" Margin="3,0" Value="{Binding AstrologianSettings.LordOfCrownsEnemies, Mode=TwoWay}" />
+                    <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="11" Foreground="White" Text="Enemies" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="0,5" Content="Lady Of Crowns             " IsChecked="{Binding AstrologianSettings.LadyOfCrowns, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric Grid.Column="1" Margin="3,0" Value="{Binding AstrologianSettings.LadyOfCrownsHealthPercent, Mode=TwoWay}" />
+                    <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="11" Foreground="White" Text="Health Percent" />
+                </StackPanel>
+ 
+            </StackPanel>
         </controls:SettingsBlock>
 
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <CheckBox Margin="5" Content="Use MinorArcana" IsChecked="{Binding AstrologianSettings.UseMinorArcana, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-        </controls:SettingsBlock>
-
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <CheckBox Margin="5" Content="Use AstroDyne" IsChecked="{Binding AstrologianSettings.AstroDyne, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-        </controls:SettingsBlock>
-
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5,0">
                 <CheckBox Margin="0,5" Content="Play Cards" IsChecked="{Binding AstrologianSettings.Play, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 <StackPanel Orientation="Horizontal">
