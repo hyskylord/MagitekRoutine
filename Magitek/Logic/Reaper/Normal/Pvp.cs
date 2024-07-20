@@ -12,7 +12,7 @@ namespace Magitek.Logic.Reaper
     {
         public static async Task<bool> SlicePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SlicePvp.CanCast())
@@ -23,7 +23,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> WaxingSlicePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.WaxingSlicePvp.CanCast())
@@ -34,7 +34,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> InfernalSlicePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.InfernalSlicePvp.CanCast())
@@ -45,7 +45,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> GrimSwathePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.GrimSwathePvp.CanCast())
@@ -65,7 +65,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> LemureSlicePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.LemureSlicePvp.CanCast())
@@ -85,7 +85,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> ArcaneCrestPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ArcaneCrestPvp.CanCast())
@@ -102,7 +102,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> DeathWarrantPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.DeathWarrantPvp.CanCast())
@@ -122,7 +122,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> HarvestMoonPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HarvestMoonPvp.CanCast())
@@ -145,7 +145,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> SoulSlicePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SoulSlicePvp.CanCast())
@@ -162,7 +162,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> PlentifulHarvestPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.PlentifulHarvestPvp.CanCast())
@@ -185,7 +185,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> GuillotinePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.GuillotinePvp.CanCast())
@@ -202,7 +202,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> VoidReapingPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.VoidReapingPvp.CanCast())
@@ -231,7 +231,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> CrossReapingePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.CrossReapingePvp.CanCast())
@@ -260,7 +260,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> CommunioPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.CommunioPvp.CanCast())
@@ -286,7 +286,7 @@ namespace Magitek.Logic.Reaper
 
         public static async Task<bool> TenebraeLemurumPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.TenebraeLemurumPvp.CanCast())

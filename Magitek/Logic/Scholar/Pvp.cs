@@ -24,7 +24,7 @@ namespace Magitek.Logic.Scholar
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -43,7 +43,7 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.Pvp_Biolysis)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -64,7 +64,7 @@ namespace Magitek.Logic.Scholar
             if (ScholarRoutine.EnemiesInCone < 1)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.MummificationPvp.Cast(Core.Me.CurrentTarget);
@@ -80,7 +80,7 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.Pvp_Adloquium)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (ScholarSettings.Instance.Pvp_HealSelfOnly)
@@ -112,7 +112,7 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.Pvp_DeploymentTacticsOnSelf)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.HasAura(Auras.PvpCatalyze))
@@ -133,7 +133,7 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.Pvp_DeploymentTacticsOnAllies)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             var deploymentTacticsTarget = Group.CastableAlliesWithin30.FirstOrDefault(r =>
@@ -159,7 +159,7 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.Pvp_DeploymentTacticsOnEnemy)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.HasAura(Auras.PvpBiolytic))
@@ -180,7 +180,7 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.Pvp_Expedient)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.ExpedientPvp.Cast(Core.Me);
@@ -194,7 +194,7 @@ namespace Magitek.Logic.Scholar
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Group.CastableAlliesWithin30.Count(x => x.IsValid && x.IsAlive) < ScholarSettings.Instance.Pvp_SummonSeraphNearbyAllies)

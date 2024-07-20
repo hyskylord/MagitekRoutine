@@ -19,7 +19,7 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.SummonRemaining > TimeSpan.Zero)
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (ActionResourceManager.Machinist.Battery < MachinistSettings.Instance.UseRookQueenBattery)

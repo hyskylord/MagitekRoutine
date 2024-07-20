@@ -23,7 +23,7 @@ namespace Magitek.Logic.Sage
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -43,7 +43,7 @@ namespace Magitek.Logic.Sage
             if (SageRoutine.AoeEnemies5Yards < 1)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -60,7 +60,7 @@ namespace Magitek.Logic.Sage
             if (!SageSettings.Instance.Pvp_Toxikon)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -77,7 +77,7 @@ namespace Magitek.Logic.Sage
             if (!SageSettings.Instance.Pvp_Pneuma)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -97,7 +97,7 @@ namespace Magitek.Logic.Sage
             if (Core.Me.HasAura(Auras.PvpEukrasias))
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.EukrasiaPvp.Cast(Core.Me.CurrentTarget);
@@ -111,7 +111,7 @@ namespace Magitek.Logic.Sage
             if (!SageSettings.Instance.Pvp_Kardia)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.HasAura(Auras.PvpKardia, true))
@@ -165,7 +165,7 @@ namespace Magitek.Logic.Sage
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Group.CastableAlliesWithin10.Count(x => x.IsValid && x.IsAlive) < SageSettings.Instance.Pvp_MesoteNearbyAllies)

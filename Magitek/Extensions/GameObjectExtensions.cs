@@ -372,7 +372,11 @@ namespace Magitek.Extensions
 
         public static bool IsBoss(this GameObject unit)
         {
-            return unit != null && (XivDataHelper.BossDictionary.ContainsKey(unit.NpcId) || unit.EnglishName.Contains("Dummy"));
+            return unit != null && (
+                XivDataHelper.BossDictionary.ContainsKey(unit.NpcId)
+                || XivDataHelper.BossNames.Contains(unit.EnglishName)
+                || unit.EnglishName.Contains("Dummy")
+            );
         }
 
         public static float GetResurrectionWeight(this GameObject c)

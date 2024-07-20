@@ -13,6 +13,34 @@ namespace Magitek.Logic.Pictomancer
 {
     internal static class Pvp
     {
+        private static readonly uint[] sketches =
+        {
+            Auras.PvpPomSketch,
+            Auras.PvpWingSketch,
+            Auras.PvpClawSketch,
+            Auras.PvpMawSketch
+        };
+
+        private static readonly uint[] motifs =
+        {
+            Auras.PvpPomMotif,
+            Auras.PvpWingMotif,
+            Auras.PvpClawMotif,
+            Auras.PvpMawMotif
+        };
+
+        private static readonly uint[] hodlMotifs =
+        {
+            Auras.PvpWingMotif,
+            Auras.PvpMawMotif
+        };
+
+        private static readonly uint[] mogs =
+        {
+            Auras.PvpMooglePortrait,
+            Auras.PvpMadeenPortrait
+        };
+
         public static async Task<bool> PaintRGB()
         {
             if (!PictomancerSettings.Instance.Pvp_UsePaintRGB)
@@ -75,6 +103,9 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.Pvp_UseMotif)
                 return false;
 
+            if (!Core.Me.HasAnyAura(sketches))
+                return false;
+
             var spell = Spells.CreatureMotifPvp.Masked();
 
             if (!spell.CanCast())
@@ -89,6 +120,12 @@ namespace Magitek.Logic.Pictomancer
         public static async Task<bool> LivingMuse()
         {
             if (!PictomancerSettings.Instance.Pvp_UseMuse)
+                return false;
+
+            if (!Core.Me.HasAnyAura(motifs))
+                return false;
+
+            if (Core.Me.HasAnyAura(hodlMotifs) && Core.Me.HasAnyAura(mogs))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())

@@ -49,11 +49,26 @@ namespace Magitek.Utilities
             }
 
             BossDictionary = new Dictionary<uint, string>(JsonConvert.DeserializeObject<Dictionary<uint, string>>(bosses));
+
+            const string bossNameFile = "Magitek.Resources.BossNames.json";
+
+            string bossesNames;
+
+            using (var stream = assembly.GetManifestResourceStream(bossNameFile))
+
+            using (var reader = new StreamReader(stream))
+            {
+                bossesNames = reader.ReadToEnd();
+            }
+
+            BossNames = new HashSet<string>(BossDictionary.Values);
+            BossNames.UnionWith(JsonConvert.DeserializeObject<List<string>>(bossesNames));
         }
 
 
         public static readonly List<XivDbItem> XivDbStatuses;
         public static readonly List<XivDbItem> XivDbActions;
         public static Dictionary<uint, string> BossDictionary;
+        public static HashSet<string> BossNames;
     }
 }

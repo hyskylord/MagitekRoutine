@@ -12,7 +12,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> HeavySwingPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HeavySwingPvp.CanCast())
@@ -23,7 +23,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> MaimPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.MaimPvp.CanCast())
@@ -34,7 +34,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> StormPathPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.StormPathPvp.CanCast())
@@ -45,7 +45,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> FellCleavePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.FellCleavePvp.CanCast())
@@ -62,7 +62,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> BlotaPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BlotaPvp.CanCast())
@@ -79,7 +79,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> OrogenyPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.OrogenyPvp.CanCast())
@@ -102,7 +102,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> BloodwhettingPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.BloodwhettingPvp.CanCast())
@@ -119,7 +119,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> ChaoticCyclonePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ChaoticCyclonePvp.CanCast())
@@ -136,7 +136,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> PrimalRendPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.PrimalRendPvp.CanCast())
@@ -159,7 +159,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> OnslaughtPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.OnslaughtPvp.CanCast())
@@ -188,7 +188,7 @@ namespace Magitek.Logic.Warrior
 
         public static async Task<bool> PrimalScreamPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.PrimalScreamPvp.CanCast())

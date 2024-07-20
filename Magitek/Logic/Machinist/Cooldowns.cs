@@ -32,6 +32,9 @@ namespace Magitek.Logic.Machinist
             if (Spells.Wildfire.Cooldown.TotalMilliseconds > 0 && Spells.Wildfire.Cooldown.TotalMilliseconds <= 6000)
                 return false;
 
+            if (Utilities.Routines.Common.CheckTTDIsEnemyDyingSoon(MachinistSettings.Instance))
+                return false;
+
             return await Spells.BarrelStabilizer.Cast(Core.Me);
         }
 
@@ -49,19 +52,19 @@ namespace Magitek.Logic.Machinist
             if (ActionResourceManager.Machinist.Heat < 50 && !Core.Me.HasAura(Auras.Hypercharged, true))
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             // Force cast if barrel stabilizer is active and about to expire
             if (Core.Me.HasAura(Auras.Hypercharged, true, 3000))
-                return await Spells.Hypercharge.Cast(Core.Me);
+                return await Spells.Hypercharge.CastAura(Core.Me, Auras.Overheated);
 
             if (Spells.Wildfire.IsKnownAndReady())
                 return false;
 
             // Force cast during wildfire
             if (Spells.Wildfire.IsKnown() && (Casting.LastSpell == Spells.Wildfire || Core.Me.HasAura(Auras.WildfireBuff, true)))
-                return await Spells.Hypercharge.Cast(Core.Me);
+                return await Spells.Hypercharge.CastAura(Core.Me, Auras.Overheated);
 
             if (MachinistSettings.Instance.DelayHypercharge)
             {
@@ -75,7 +78,7 @@ namespace Magitek.Logic.Machinist
                     return false;
             }
 
-            return await Spells.Hypercharge.Cast(Core.Me);
+            return await Spells.Hypercharge.CastAura(Core.Me, Auras.Overheated);
         }
 
         public static async Task<bool> Wildfire()
@@ -89,10 +92,10 @@ namespace Magitek.Logic.Machinist
             if (!Core.Me.HasAura(Auras.Hypercharged, true) && ActionResourceManager.Machinist.Heat < 50 && ActionResourceManager.Machinist.OverheatRemaining == TimeSpan.Zero)
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
-            if (MachinistSettings.Instance.DelayWildfire) { 
+            if (MachinistSettings.Instance.DelayWildfire && !Core.Me.HasAura(Auras.Hypercharged)) { 
                 if (Spells.Drill.IsKnown() && Spells.Drill.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayWildfireSeconds)
                     return false;
 
@@ -102,6 +105,9 @@ namespace Magitek.Logic.Machinist
                 if (Spells.ChainSaw.IsKnown() && Spells.ChainSaw.Cooldown.TotalSeconds <= MachinistSettings.Instance.DelayWildfireSeconds)
                     return false;
             }
+
+            if (Utilities.Routines.Common.CheckTTDIsEnemyDyingSoon(MachinistSettings.Instance))
+                return false;
 
             return await Spells.Wildfire.CastAura(Core.Me.CurrentTarget, Auras.WildfireBuff, auraTarget: Core.Me);
         }
@@ -117,7 +123,10 @@ namespace Magitek.Logic.Machinist
             if (Core.Me.HasAura(Auras.Reassembled))
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
+                return false;
+
+            if (Core.Me.HasAura(Auras.Overheated, true) && Core.Me.HasAura(Auras.WildfireBuff, true))
                 return false;
 
             // Added check for cooldown, gets stuck at lower levels otherwise.

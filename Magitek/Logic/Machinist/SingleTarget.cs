@@ -28,7 +28,7 @@ namespace Magitek.Logic.Machinist
             if (MachinistSettings.Instance.UseChainSaw && Spells.ChainSaw.IsKnownAndReady(200) && ActionResourceManager.Machinist.Battery <= 80)
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
@@ -51,7 +51,7 @@ namespace Magitek.Logic.Machinist
             if (MachinistSettings.Instance.UseChainSaw && Spells.ChainSaw.IsKnownAndReady(200))
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
@@ -74,7 +74,7 @@ namespace Magitek.Logic.Machinist
             if (MachinistSettings.Instance.UseChainSaw && Spells.ChainSaw.IsKnownAndReady(200))
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.HasAura(Auras.Reassembled) && Spells.Drill.IsKnown())
@@ -91,7 +91,7 @@ namespace Magitek.Logic.Machinist
             if (!Spells.Drill.IsKnownAndReady())
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
@@ -124,10 +124,13 @@ namespace Magitek.Logic.Machinist
             if (!Spells.AirAnchor.IsKnownAndReady() && !Spells.HotShot.IsKnownAndReady())
                 return false;
 
-            if (ActionResourceManager.Machinist.OverheatRemaining > TimeSpan.Zero)
+            if (Core.Me.HasAura(Auras.Overheated))
                 return false;
 
             if (Core.Me.HasAura(Auras.WildfireBuff) && Core.Me.HasAura(Auras.Overheated))
+                return false;
+
+            if (ActionResourceManager.Machinist.Battery >= 100)
                 return false;
 
             /*
