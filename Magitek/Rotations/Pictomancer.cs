@@ -156,8 +156,6 @@ namespace Magitek.Rotations
             if (await CommonPvp.Purify(PictomancerSettings.Instance)) return true;
             if (await CommonPvp.Recuperate(PictomancerSettings.Instance)) return true;
 
-            if (await Pvp.CreatureMotif()) return true;
-
             if (!CommonPvp.GuardCheck(PictomancerSettings.Instance))
             {
                 if (await Pvp.Starstruck()) return true;
@@ -170,6 +168,8 @@ namespace Magitek.Rotations
                 if (await Pvp.MogoftheAges()) return true;
                 if (await Pvp.LivingMuse()) return true;
             }
+
+            if (await Pvp.CreatureMotif()) return true;
 
             if (!CommonPvp.GuardCheck(PictomancerSettings.Instance, checkGuard: false))
             {
