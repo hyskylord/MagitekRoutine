@@ -157,5 +157,69 @@ namespace Magitek.Logic.Roles
             }
             return false;
         }
-    }
+
+        #region pvp
+        public static async Task<bool> Recuperate<T>(T settings) where T : PhysicalDpsSettings
+        {
+            if (!settings.Pvp_UseRecuperate)
+                return false;
+
+            if (Core.Me.HasAura(Auras.PvpGuard))
+                return false; 
+
+            if (!Spells.Recuperate.CanCast())
+                return false;
+
+            if (Core.Me.CurrentHealthPercent > settings.Pvp_RecuperateHealthPercent)
+                return false;
+
+            return await Spells.Recuperate.Cast(Core.Me);
+        }
+
+        public static async Task<bool> Purify<T>(T settings) where T : PhysicalDpsSettings
+        {
+            if (!settings.Pvp_UsePurify)
+                return false;
+
+            if (Core.Me.HasAura(Auras.PvpGuard))
+                return false;
+
+            if (!Spells.Purify.CanCast())
+                return false;
+
+            if (!Core.Me.HasAura("Stun") && !Core.Me.HasAura("Heavy") && !Core.Me.HasAura("Bind") && !Core.Me.HasAura("Silence") && !Core.Me.HasAura("Half-asleep") && !Core.Me.HasAura("Sleep") && !Core.Me.HasAura("Deep Freeze"))
+                return false;
+
+            return await Spells.Purify.Cast(Core.Me);
+        }
+
+        public static async Task<bool> Guard<T>(T settings) where T : PhysicalDpsSettings
+        {
+            if (!settings.Pvp_UseGuard)
+                return false;
+
+            if (Core.Me.HasAura(Auras.PvpGuard))
+                return false;
+
+            if (Spells.Guard.IsKnown() && !Spells.Guard.IsReady())
+                return false;
+
+            if (!Core.Me.IsAlive)
+                return false;
+
+            if (Core.Me.CurrentHealthPercent > settings.Pvp_GuardHealthPercent)
+                return false;
+
+            if (!await Spells.Guard.CastAura(Core.Me, Auras.PvpGuard))
+                return false;
+
+            return await Coroutine.Wait(1500, () => Core.Me.HasAura(Auras.PvpGuard, true));
+        }
+
+        public static bool GuardCheck()
+        {
+            return Core.Me.CurrentTarget.HasAura(Auras.PvpGuard);
+        }
+            #endregion
+        }
 }

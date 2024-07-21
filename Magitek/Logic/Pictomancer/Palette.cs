@@ -75,7 +75,7 @@ namespace Magitek.Logic.Pictomancer
             return false;
         }
 
-        public static bool MotifCanCast(SpellData motif, SpellData muse)
+        public static bool MotifCanCast(SpellData motif, SpellData muse, bool swiftcast)
         {
             //if ((muse.Cooldown - muse.AdjustedCooldown).TotalMilliseconds > (motif.AdjustedCastTime.TotalMilliseconds + 500))
             //    return false;
@@ -85,7 +85,7 @@ namespace Magitek.Logic.Pictomancer
             // hack since muse.Cooldown doesn't seem to be accurate, as it's doubling 
             // the Cooldown time for some reason with a single cast of the Muse.
             // The same information can be derived from Charges, so I used that instead.
-            if (SwiftcastMotifCheck())
+            if (swiftcast && SwiftcastMotifCheck())
                 return muse.Charges >= 1;
             else
             {
@@ -115,13 +115,19 @@ namespace Magitek.Logic.Pictomancer
             var motif = Spells.CreatureMotif.Masked();
             var muse = Spells.LivingMuse.Masked();
 
-            if (!MotifCanCast(motif, muse))
+            bool swiftcast = false;
+
+            if (motif == Spells.WingMotif || motif == Spells.MawMotif)
+                swiftcast = true;
+
+            if (!MotifCanCast(motif, muse, swiftcast))
                 return false;
 
             // PomMotif -> WingMotif -> ClawMotif -> MawMotif
             if (motif.IsKnownAndReady() && motif.CanCast())
             {
-                await SwitfcastMotif();
+                if (swiftcast)
+                    await SwitfcastMotif();
                 return await motif.Cast(Core.Me);
             }
 
@@ -189,12 +195,12 @@ namespace Magitek.Logic.Pictomancer
             var motif = Spells.WeaponMotif.Masked();
             var muse = Spells.SteelMuse.Masked();
 
-            if (!MotifCanCast(motif, muse))
+            if (!MotifCanCast(motif, muse, false))
                 return false;
 
             if (motif.IsKnownAndReady() && motif.CanCast())
             {
-                await SwitfcastMotif();
+                //await SwitfcastMotif();
                 return await motif.Cast(Core.Me);
             }
 
@@ -271,7 +277,7 @@ namespace Magitek.Logic.Pictomancer
             var motif = Spells.LandscapeMotif.Masked();
             var muse = Spells.ScenicMuse.Masked();
 
-            if (!MotifCanCast(motif, muse))
+            if (!MotifCanCast(motif, muse, false))
                 return false;
 
             if (motif.IsKnownAndReady() && motif.CanCast())

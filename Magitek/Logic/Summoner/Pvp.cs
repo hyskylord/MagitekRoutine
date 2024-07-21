@@ -20,7 +20,7 @@ namespace Magitek.Logic.Summoner
             if (MovementManager.IsMoving)
                 return false;
 
-            if(Core.Me.HasAura(Auras.Guard))
+            if(Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -41,7 +41,7 @@ namespace Magitek.Logic.Summoner
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -62,7 +62,7 @@ namespace Magitek.Logic.Summoner
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -81,7 +81,7 @@ namespace Magitek.Logic.Summoner
             if (Core.Me.CurrentTarget.CurrentHealthPercent > 50)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -102,7 +102,7 @@ namespace Magitek.Logic.Summoner
             if (Core.Me.CurrentHealthPercent > SummonerSettings.Instance.Pvp_UseRadiantAegisHealthPercent)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -121,7 +121,7 @@ namespace Magitek.Logic.Summoner
             if (!SummonerSettings.Instance.Pvp_UsedCrimsonStrike)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -136,7 +136,7 @@ namespace Magitek.Logic.Summoner
             if (!Spells.EnkindleBahamutPvp.CanCast())
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.EnkindleBahamutPvp.Cast(Core.Me.CurrentTarget);
@@ -148,7 +148,7 @@ namespace Magitek.Logic.Summoner
             if (!Spells.EnkindlePhoenixPvp.CanCast())
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.EnkindlePhoenixPvp.Cast(Core.Me.CurrentTarget);
@@ -160,7 +160,7 @@ namespace Magitek.Logic.Summoner
             if (!Spells.SummonBahamutPvp.CanCast())
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!SummonerSettings.Instance.Pvp_Summon || !SummonerSettings.Instance.Pvp_SummonBahamut)
@@ -178,7 +178,7 @@ namespace Magitek.Logic.Summoner
             if (!Spells.SummonPhoenixPvp.CanCast())
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!SummonerSettings.Instance.Pvp_Summon || !SummonerSettings.Instance.Pvp_SummonPhoenix)

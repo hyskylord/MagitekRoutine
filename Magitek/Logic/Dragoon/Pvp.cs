@@ -13,7 +13,7 @@ namespace Magitek.Logic.Dragoon
     {
         public static async Task<bool> RaidenThrustPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.RaidenThrustPvp.CanCast())
@@ -24,7 +24,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> FangandClawPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.FangandClawPvp.CanCast())
@@ -35,7 +35,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> WheelingThrustPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.WheelingThrustPvp.CanCast())
@@ -46,7 +46,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> HeavensThrustPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HeavensThrustPvp.CanCast())
@@ -63,7 +63,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> ChaoticSpringPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ChaoticSpringPvp.CanCast())
@@ -80,7 +80,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> GeirskogulPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.GeirskogulPvp.CanCast())
@@ -100,7 +100,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> NastrondPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.NastrondPvp.CanCast())
@@ -123,7 +123,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> HighJumpPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HighJumpPvp.CanCast())
@@ -152,7 +152,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> ElusiveJumpPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.ElusiveJumpPvp.CanCast())
@@ -169,7 +169,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> WyrmwindThrustPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.WyrmwindThrustPvp.CanCast())
@@ -189,7 +189,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> HorridRoarPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HorridRoarPvp.CanCast())
@@ -206,7 +206,7 @@ namespace Magitek.Logic.Dragoon
 
         public static async Task<bool> SkyHighPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.SkyHighPvp.CanCast())

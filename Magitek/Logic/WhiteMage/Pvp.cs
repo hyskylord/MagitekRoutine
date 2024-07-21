@@ -21,7 +21,7 @@ namespace Magitek.Logic.WhiteMage
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -38,7 +38,7 @@ namespace Magitek.Logic.WhiteMage
             if (!WhiteMageSettings.Instance.Pvp_UseAfflatusMisery)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -55,10 +55,10 @@ namespace Magitek.Logic.WhiteMage
             if (!WhiteMageSettings.Instance.Pvp_UseMiracleOfNature)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
-            if (Core.Me.CurrentTarget.HasAura(Auras.Guard))
+            if (Core.Me.CurrentTarget.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 15)
@@ -82,7 +82,7 @@ namespace Magitek.Logic.WhiteMage
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (WhiteMageSettings.Instance.Pvp_HealSelfOnly)
@@ -118,10 +118,10 @@ namespace Magitek.Logic.WhiteMage
             if (!WhiteMageSettings.Instance.Pvp_Cure)
                 return false;
 
-            if(!Core.Me.HasAura(Auras.CureIIIReady))
+            if(!Core.Me.HasAura(Auras.PvpCureIIIReady))
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (WhiteMageSettings.Instance.Pvp_HealSelfOnly)
@@ -157,7 +157,7 @@ namespace Magitek.Logic.WhiteMage
             if (!WhiteMageSettings.Instance.Pvp_Aquaveil)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (WhiteMageSettings.Instance.Pvp_HealSelfOnly)
@@ -199,7 +199,7 @@ namespace Magitek.Logic.WhiteMage
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())

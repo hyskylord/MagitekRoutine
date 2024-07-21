@@ -24,7 +24,7 @@ namespace Magitek.Logic.Astrologian
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -42,7 +42,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Pvp_DoubleCastFallMalefic)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -60,7 +60,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Pvp_GravityII)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -78,7 +78,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Pvp_DoubleCastMaleficII)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
@@ -96,7 +96,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Pvp_AspectedBenefic)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (AstrologianSettings.Instance.Pvp_HealSelfOnly)
@@ -132,7 +132,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Pvp_DoubleCastAspectedBenefic)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (AstrologianSettings.Instance.Pvp_HealSelfOnly)
@@ -169,7 +169,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Pvp_Draw)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             return await Spells.DrawPvp.Cast(Core.Me);
@@ -184,7 +184,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Pvp_Macrocosmos)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.HasAura(Auras.PvpMacrocosmos))
@@ -202,7 +202,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Pvp_Microcosmos)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if(Core.Me.CurrentHealthPercent > AstrologianSettings.Instance.Pvp_MicrocosmosHealthPercent)
@@ -219,7 +219,7 @@ namespace Magitek.Logic.Astrologian
             if (MovementManager.IsMoving)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Group.CastableAlliesWithin10.Count(x => x.IsValid && x.IsAlive) < AstrologianSettings.Instance.Pvp_CelestialRiverNearbyAllies)

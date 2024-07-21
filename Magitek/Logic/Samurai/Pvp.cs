@@ -13,7 +13,7 @@ namespace Magitek.Logic.Samurai
     {
         public static async Task<bool> YukikazePvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.YukikazePvp.CanCast())
@@ -24,7 +24,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> GekkoPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.GekkoPvp.CanCast())
@@ -35,7 +35,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> KashaPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.KashaPvp.CanCast())
@@ -46,7 +46,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> HyosetsuPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HyosetsuPvp.CanCast())
@@ -57,7 +57,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> MangetsuPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.MangetsuPvp.CanCast())
@@ -68,7 +68,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> OkaPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.OkaPvp.CanCast())
@@ -79,7 +79,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> HissatsuSotenPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HissatsuSotenPvp.CanCast())
@@ -93,7 +93,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> HissatsuChitenPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.HissatsuChitenPvp.CanCast())
@@ -110,7 +110,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> MineuchiPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.MineuchiPvp.CanCast())
@@ -127,7 +127,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> OgiNamikiriPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (MovementManager.IsMoving)
@@ -147,7 +147,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> KaeshiNamikiriPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.KaeshiNamikiriPvp.CanCast())
@@ -164,7 +164,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> MeikyoShisuiPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!Spells.MeikyoShisuiPvp.CanCast())
@@ -181,7 +181,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> MidareSetsugekkaPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (MovementManager.IsMoving)
@@ -204,7 +204,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> ZantetsukenPvp()
         {
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (!SamuraiSettings.Instance.Pvp_Zantetsuken)

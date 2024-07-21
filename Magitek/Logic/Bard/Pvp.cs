@@ -18,7 +18,10 @@ namespace Magitek.Logic.Bard
             if(!Spells.PowerfulShotPvp.CanCast())
                 return false;
 
-            if(Core.Me.HasAura(Auras.Guard))
+            if (MovementManager.IsMoving)
+                return false;
+
+            if(Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
@@ -35,7 +38,7 @@ namespace Magitek.Logic.Bard
             if (!Spells.ApexArrowPvp.CanCast())
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
@@ -52,7 +55,7 @@ namespace Magitek.Logic.Bard
             if (!Spells.BlastArrowPvp.CanCast())
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
@@ -69,7 +72,7 @@ namespace Magitek.Logic.Bard
             if (!Spells.SilentNocturnePvp.CanCast())
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
@@ -86,7 +89,7 @@ namespace Magitek.Logic.Bard
             if (!BardSettings.Instance.Pvp_UseEmpyrealArrow)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
@@ -126,7 +129,7 @@ namespace Magitek.Logic.Bard
             if (!BardSettings.Instance.Pvp_UseFinalFantasia)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Guard))
+            if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
             if (Group.CastableAlliesWithin30.Count(AlliesInRange) < BardSettings.Instance.Pvp_UseFinalFantasiaAlliesCount)

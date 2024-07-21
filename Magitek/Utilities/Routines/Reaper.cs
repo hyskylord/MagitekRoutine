@@ -18,9 +18,7 @@ namespace Magitek.Utilities.Routines
 
         public static bool CheckTTDIsEnemyDyingSoon()
         {
-            return ReaperSettings.Instance.UseTTD
-                && Combat.CurrentTargetCombatTimeLeft < ReaperSettings.Instance.SaveIfEnemyDyingWithin
-                && !Core.Me.CurrentTarget.IsBoss();
+            return Common.CheckTTDIsEnemyDyingSoon(ReaperSettings.Instance);
         }
 
         // Reaper uses an 8x8 square in front for its "cone". So it can hit something 90* to the side 8y away.

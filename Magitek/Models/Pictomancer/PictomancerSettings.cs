@@ -17,15 +17,7 @@ namespace Magitek.Models.Pictomancer
 
         public static PictomancerSettings Instance { get; set; } = new PictomancerSettings();
 
-        #region General-Stuff
-        [Setting]
-        [DefaultValue(true)]
-        public bool UseTTD { get; set; }
-
-        [Setting]
-        [DefaultValue(13)]
-        public int SaveIfEnemyDyingWithin { get; set; }
-
+        #region General-Stuff       
         [Setting]
         [DefaultValue(false)]
         public bool UseHammerDuringStarry { get; set; }
