@@ -25,7 +25,7 @@
 
     <StackPanel Margin="10">
 
-        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -58,7 +58,7 @@
             </Grid>
         </controls:SettingsBlock>
 
-        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -82,7 +82,7 @@
             </Grid>
         </controls:SettingsBlock>
 
-        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -92,17 +92,13 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Margin="5">
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="Use Aoe" IsChecked="{Binding GunbreakerSettings.UseAoe, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                        <CheckBox Content="Use Aoe when at least " IsChecked="{Binding GunbreakerSettings.UseAoe, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                        <controls:Numeric Margin="0,3" MaxValue="50" MinValue="1" Value="{Binding GunbreakerSettings.UseAoeEnemies, Mode=TwoWay}" />
+                        <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Margin="5">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{DynamicResource TextBlockDefault}" Text="Demon Slice / Demon Slaughter When There Are At Least " />
-                        <controls:Numeric Margin="0,3" MaxValue="50" MinValue="1" Value="{Binding GunbreakerSettings.DemonSliceSlaughterEnemies, Mode=TwoWay}" />
-                        <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
-                    </StackPanel>
-
                     <StackPanel Grid.Row="2" Margin="0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{DynamicResource TextBlockDefault}" Text="BowShock When There Are At Least " />
@@ -110,23 +106,11 @@
                             <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
                         </StackPanel>
                     </StackPanel>
-                    
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{DynamicResource TextBlockDefault}" Text="Prioritize Fated Circle over Gnashing Fang from " />
-                        <controls:Numeric Margin="0,3" MaxValue="50" MinValue="1" Value="{Binding GunbreakerSettings.PrioritizeFatedCircleOverGnashingFangEnemies, Mode=TwoWay}" />
-                        <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{DynamicResource TextBlockDefault}" Text="Prioritize Fated Circle over Burst Strike from " />
-                        <controls:Numeric Margin="0,3" MaxValue="50" MinValue="1" Value="{Binding GunbreakerSettings.PrioritizeFatedCircleOverBurstStrikeEnemies, Mode=TwoWay}" />
-                        <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
-                    </StackPanel>
                 </StackPanel>
             </Grid>
         </controls:SettingsBlock>
 
-        <controls:SettingsBlock Margin="0,5,0,0" Background="{DynamicResource ClassSelectorBackground}">
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5" Orientation="Horizontal">
                 <CheckBox Content="Use Interrupt and Stun. If activated, use strategy: " IsChecked="{Binding GunbreakerSettings.UseStunOrInterrupt, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 <ComboBox Width="170" ItemsSource="{Binding Source={StaticResource InterruptStrategy}}" SelectedValue="{Binding GunbreakerSettings.Strategy, Mode=TwoWay}" Style="{DynamicResource ComboBox}" />

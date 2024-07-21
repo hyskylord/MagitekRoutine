@@ -67,16 +67,16 @@ namespace Magitek.Models.Gunbreaker
         public bool UseAoe { get; set; }
 
         [Setting]
-        [DefaultValue(2)]
-        public int DemonSliceSlaughterEnemies { get; set; }
-
-        [Setting]
         [DefaultValue(true)]
         public bool UseFatedCircle { get; set; }
 
         [Setting]
         [DefaultValue(true)]
         public bool UseFatedBrand { get; set; }
+
+        [Setting]
+        [DefaultValue(2)]
+        public int UseAoeEnemies { get; set; }
 
         [Setting]
         [DefaultValue(3)]

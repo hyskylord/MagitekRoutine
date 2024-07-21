@@ -539,7 +539,7 @@ namespace Magitek.Utilities
         public static readonly SpellData Chimatsuri = DataManager.GetSpellData(4243);
         #endregion
 
-        //NIN
+        // NIN
         #region NIN
 
         public static readonly SpellData ZeshoMeppo = DataManager.GetSpellData(36960);

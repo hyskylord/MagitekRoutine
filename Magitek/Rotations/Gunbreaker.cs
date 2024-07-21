@@ -113,6 +113,7 @@ namespace Magitek.Rotations
             }
 
             //oGCD to use with BurstStrike
+            if (await Aoe.FatedBrand()) return true;
             if (await SingleTarget.Hypervelocity()) return true;
 
             //GCD to use when No Mercy

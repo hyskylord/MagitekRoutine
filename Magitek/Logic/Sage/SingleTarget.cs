@@ -72,9 +72,6 @@ namespace Magitek.Logic.Sage
             if (!SageSettings.Instance.EukrasianDosis)
                 return false;
 
-            if (!SageSettings.Instance.EukrasianDyskrasia)
-                return false;
-
             if (!Heal.IsEukrasiaReady())
                 return false;
 
@@ -91,6 +88,8 @@ namespace Magitek.Logic.Sage
 
             return await UseEukrasianDosis(Core.Me.CurrentTarget);
         }
+
+        //No longer in used
         public static async Task<bool> DotMultipleTargets()
         {
             if (!SageSettings.Instance.DoDamage)
