@@ -110,8 +110,6 @@ namespace Magitek.Rotations
             if (await Buff.Meditate()) 
                 return true;
 
-            if (!Core.Me.HasAura(Auras.Anatman))
-            {
                 if (MonkRoutine.GlobalCooldown.CountOGCDs() < 2 && Spells.Bootshine.Cooldown.TotalMilliseconds > 750 + BaseSettings.Instance.UserLatencyOffset)
                 {
                     if (await PhysicalDps.Interrupt(MonkSettings.Instance)) return true;
@@ -120,37 +118,33 @@ namespace Magitek.Rotations
                     if (await PhysicalDps.Feint(MonkSettings.Instance)) return true;
                     if (await Buff.UsePotion()) return true;
 
-                    if (await Buff.RiddleOfFire()) return true;
+                    if (await Buff.EarthReply()) return true;
+                    if (await Buff.Brotherhood()) return true;
                     if (await Buff.RiddleOfWind()) return true;
+                    if (await Buff.RiddleOfFire()) return true;
+      
                     if (await Aoe.Enlightenment()) return true;
                     if (await SingleTarget.TheForbiddenChakra()) return true;
-                    if (await Buff.Brotherhood()) return true;
                     if (await Buff.PerfectBalance()) return true;
-                    if (await Buff.RiddleOfWind()) return true;
                     if (await Buff.Mantra()) return true;
                 }
 
+                if (await Aoe.FireReply()) return true;
+                if (await Aoe.WindReply()) return true;
                 if (await Aoe.MasterfulBlitz()) return true;
-                if (await SingleTarget.PerfectBalancePhoenix()) return true;
-                if (await SingleTarget.PerfectBalanceElixir()) return true;
-                if (await SingleTarget.PerfectBalanceRoT()) return true;
-                if (await SingleTarget.PerfectBalance()) return true;
-
-                if (await Aoe.FourPointStrike()) return true;
+                if (await Aoe.PerfectBalance()) return true;
                 if (await Aoe.Rockbreaker()) return true;
+                if (await Aoe.FourPointStrike()) return true;
                 if (await Aoe.ArmOfDestroyer()) return true;
 
+                if (await SingleTarget.PerfectBalance()) return true;
                 if (await SingleTarget.DragonKick()) return true;
                 if (await SingleTarget.TwinSnakes()) return true;
                 if (await SingleTarget.Demolish()) return true;
+                if (await SingleTarget.Bootshine()) return true;
                 if (await SingleTarget.TrueStrike()) return true;
                 if (await SingleTarget.SnapPunch()) return true;
-                if (await SingleTarget.Bootshine()) return true;
-
                 return await Buff.FormShiftIC();
-            }
-
-            return false;
         }
 
         public static void RegisterCombatMessages()
@@ -168,24 +162,23 @@ namespace Magitek.Rotations
                                           "",
                                           () => MonkSettings.Instance.HidePositionalMessage && Core.Me.HasAura(Auras.TrueNorth) || MonkSettings.Instance.EnemyIsOmni));
 
-            //Third priority (tie): Snap punch
+            //third priority (tie): Demolish
             CombatMessageManager.RegisterMessageStrategy(
                 new CombatMessageStrategy(300,
-                                          "Snap punch: Side of Enemy", "/Magitek;component/Resources/Images/General/ArrowSidesHighlighted.png",
-                                          () => Core.Me.HasAura(Auras.CoeurlForm) && !Core.Me.HasAura(Auras.PerfectBalance) && MonkRoutine.AoeEnemies5Yards < MonkSettings.Instance.AoeEnemies && MonkSettings.Instance.DemolishUseTtd && Core.Me.CurrentTarget.CombatTimeLeft() <= MonkSettings.Instance.DemolishMinimumTtd));
+                                          "Demolish: Get behind Enemy", "/Magitek;component/Resources/Images/General/ArrowDownHighlighted.png",
+                                          () => Core.Me.HasAura(Auras.CoeurlForm) && ActionResourceManager.Monk.CoeurlFury == 0 && !Core.Me.HasAura(Auras.PerfectBalance) && MonkRoutine.AoeEnemies5Yards < MonkSettings.Instance.AoeEnemies));
 
-            //fourth priority (tie): Demolish
+            //fourth priority (tie): Snap punch
             CombatMessageManager.RegisterMessageStrategy(
                 new CombatMessageStrategy(400,
-                                          "Demolish: Get behind Enemy", "/Magitek;component/Resources/Images/General/ArrowDownHighlighted.png",
-                                          () => Core.Me.HasAura(Auras.CoeurlForm) && !(Core.Me.CurrentTarget.HasAura(Auras.Demolish, true, MonkSettings.Instance.DemolishRefresh * 1000)) && !Core.Me.HasAura(Auras.PerfectBalance) && MonkRoutine.AoeEnemies5Yards < MonkSettings.Instance.AoeEnemies));
+                                          "Pouncing Coeurl: Side of Enemy", "/Magitek;component/Resources/Images/General/ArrowSidesHighlighted.png",
+                                          () => Core.Me.ClassLevel >= Spells.PouncingCoeurl.LevelAcquired && Core.Me.HasAura(Auras.CoeurlForm) && ActionResourceManager.Monk.CoeurlFury >= 0 && !Core.Me.HasAura(Auras.PerfectBalance) && MonkRoutine.AoeEnemies5Yards < MonkSettings.Instance.AoeEnemies));
 
             //fourth priority (tie): Snap punch
             CombatMessageManager.RegisterMessageStrategy(
                 new CombatMessageStrategy(400,
                                           "Snap punch: Side of Enemy", "/Magitek;component/Resources/Images/General/ArrowSidesHighlighted.png",
-                                          () => Core.Me.HasAura(Auras.CoeurlForm) && (Core.Me.CurrentTarget.HasAura(Auras.Demolish, true, MonkSettings.Instance.DemolishRefresh * 1000)) && !Core.Me.HasAura(Auras.PerfectBalance) && MonkRoutine.AoeEnemies5Yards < MonkSettings.Instance.AoeEnemies));
-
+                                          () => Core.Me.HasAura(Auras.CoeurlForm) && ActionResourceManager.Monk.CoeurlFury >= 1 && !Core.Me.HasAura(Auras.PerfectBalance) && MonkRoutine.AoeEnemies5Yards < MonkSettings.Instance.AoeEnemies));
         }
 
         public static async Task<bool> PvP()

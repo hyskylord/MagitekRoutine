@@ -43,6 +43,14 @@
                 <StackPanel  Margin="0,3">
                     <CheckBox Content="Masterful Blitz " IsChecked="{Binding MonkSettings.UseMasterfulBlitz, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
+
+                <StackPanel  Margin="0,3">
+                    <CheckBox Content="Wind Reply " IsChecked="{Binding MonkSettings.UseWindReply, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                </StackPanel>
+
+                <StackPanel  Margin="0,3">
+                    <CheckBox Content="Fire Reply " IsChecked="{Binding MonkSettings.UseFireReply, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>
 

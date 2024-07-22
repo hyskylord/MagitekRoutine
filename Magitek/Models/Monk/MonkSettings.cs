@@ -54,6 +54,14 @@ namespace Magitek.Models.Monk
         public int MantraAllies { get; set; }
 
         [Setting]
+        [DefaultValue(true)]
+        public bool UseEarthReply { get; set; }
+
+        [Setting]
+        [DefaultValue(3)]
+        public int EarthReplyAllies { get; set; }
+
+        [Setting]
         [DefaultValue(false)]
         public bool UseAutoMeditate { get; set; }
 
@@ -64,6 +72,10 @@ namespace Magitek.Models.Monk
         [Setting]
         [DefaultValue(60.0f)]
         public float MantraHealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(80.0f)]
+        public float EarthReplyHealthPercent { get; set; }
 
         [Setting]
         [DefaultValue(8)]
@@ -124,6 +136,14 @@ namespace Magitek.Models.Monk
         [Setting]
         [DefaultValue(true)]
         public bool UseMasterfulBlitz { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseWindReply { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool UseFireReply { get; set; }
 
         #region PVP
 
