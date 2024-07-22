@@ -180,7 +180,7 @@ namespace Magitek.Logic.Warrior
             if (Core.Me.ClassLevel > 54)
             {
 
-                if (Core.Me.HasAura(Auras.NascentChaos))
+                if (Core.Me.HasAura(Auras.NascentChaos) && Spells.InnerChaos.IsKnown())
                     return false;
 
                 if (!Core.Me.HasAura(Auras.SurgingTempest))
