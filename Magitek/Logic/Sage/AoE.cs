@@ -1,5 +1,6 @@
 ﻿using ff14bot;
 using ff14bot.Managers;
+using ff14bot.Objects;
 using Magitek.Extensions;
 using Magitek.Models.Sage;
 using Magitek.Utilities;
@@ -7,6 +8,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using static ff14bot.Managers.ActionResourceManager.Sage;
+using Auras = Magitek.Utilities.Auras;
 
 namespace Magitek.Logic.Sage
 {
@@ -57,11 +59,6 @@ namespace Magitek.Logic.Sage
             if (Core.Me.CurrentTarget == null)
                 return false;
 
-            //Prioritize Toxikon over Dyskrasia
-            if (Addersting > 0
-                && Core.Me.ClassLevel >= Spells.Toxikon.LevelAcquired)
-                return false;
-
             if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= Spells.Dyskrasia.Radius + r.CombatReach) < SageSettings.Instance.AoEEnemies)
                 return false;
 
@@ -73,6 +70,53 @@ namespace Magitek.Logic.Sage
             }
 
             return await spell.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> EukrasianDyskrasia()
+        {
+            if (!SageSettings.Instance.DoDamage)
+                return false;
+
+            if (SageSettings.Instance.UseTTDForDots && Combat.CurrentTargetCombatTimeLeft <= SageSettings.Instance.DontDotIfEnemyDyingWithin)
+                return false;
+
+            if (!SageSettings.Instance.EukrasianDyskrasia)
+                return false;
+
+            if (!Heal.IsEukrasiaReady())
+                return false;
+
+            var targetChar = Core.Me.CurrentTarget as Character;
+
+            if (targetChar != null && targetChar.CharacterAuras.Count() >= 25)
+                return false;
+
+            if (Core.Me.CurrentTarget.HasAnyAura(DotAuras, true, msLeft: SageSettings.Instance.DotRefreshMSeconds))
+                return false;
+
+            if (Core.Me.CurrentTarget.Distance(Core.Me) > 25 + Core.Me.CurrentTarget.CombatReach)
+                return false;
+
+            return await UseEukrasianDyskrasia(Core.Me.CurrentTarget);
+        }
+
+            private static readonly uint[] DotAuras =
+            {
+                Auras.EukrasianDosis,
+                Auras.EukrasianDosisII,
+                Auras.EukrasianDosisIII,
+                Auras.EukrasianDyskrasia
+            };
+
+        private static async Task<bool> UseEukrasianDyskrasia(GameObject target)
+        {
+            var spell = Spells.EukrasianDyskrasia;
+            var aura = Auras.EukrasianDyskrasia;
+
+            if (!await Heal.UseEukrasia(spell.Id, target))
+                return false;
+
+            return await spell.CastAura(target, (uint)aura);
         }
 
         public static async Task<bool> Toxikon()

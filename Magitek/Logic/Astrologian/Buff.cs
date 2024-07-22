@@ -36,44 +36,43 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Lightspeed)
                 return false;
 
-            if (!Core.Me.InCombat)
+            if(Core.Me.HasAura(Auras.Lightspeed, true))
                 return false;
 
-            if (Combat.CombatTotalTimeLeft <= 25)
+            if (!Core.Me.InCombat)
                 return false;
 
             if (!Spells.Lightspeed.IsKnownAndReady())
                 return false;
 
+            if (AstrologianSettings.Instance.LightspeedWithDivination && Core.Me.HasAura(Auras.Divination, true))
+                return await Spells.Lightspeed.CastAura(Core.Me, Auras.Lightspeed);
+
+            if (AstrologianSettings.Instance.LightspeedWithDivination && Core.Me.HasAura(Auras.NeutralSect, true))
+                return await Spells.Lightspeed.CastAura(Core.Me, Auras.Lightspeed);
+
             if (Globals.InParty)
             {
                 if (AstrologianSettings.Instance.FightLogic_Lightspeed && FightLogic.EnemyIsCastingBigAoe() && !Spells.NeutralSect.IsKnownAndReady() && !Spells.Macrocosmos.IsKnownAndReady())
-                    return await FightLogic.DoAndBuffer(Spells.Lightspeed.CastAura(Core.Me,Auras.Lightspeed));
-
-                             if (AstrologianSettings.Instance.LightspeedTankOnly && Group.CastableTanks.All(r => r.CurrentHealthPercent >= AstrologianSettings.Instance.LightspeedHealthPercent))
-                    return false;
+                    return await FightLogic.DoAndBuffer(Spells.Lightspeed.CastAura(Core.Me, Auras.Lightspeed));
 
                 if (Group.CastableAlliesWithin15.Count(r => r.CurrentHealthPercent <= AstrologianSettings.Instance.LightspeedHealthPercent) > Heals.AoeThreshold)
                     return await Spells.Lightspeed.CastAura(Core.Me, Auras.Lightspeed);
             }
 
-
-            return await Spells.Lightspeed.CastAura(Core.Me, Auras.Lightspeed);
+            return false;
         }
 
         public static async Task<bool> Divination()
         {
             if (!AstrologianSettings.Instance.Divination)
-               
                 return false;
 
-            
             if (!Spells.Divination.IsKnownAndReady())
                 return false;
 
 
             // Added check to see if more than configured allies are around
-
             var divinationTargets = Group.CastableAlliesWithin30.Count(r => r.IsAlive);
 
             if (divinationTargets >= AstrologianSettings.Instance.DivinationAllies)
@@ -120,15 +119,15 @@ namespace Magitek.Logic.Astrologian
         {
             if (!AstrologianSettings.Instance.NeutralSect)
                 return false;
-            
+
             if (!Core.Me.InCombat)
                 return false;
 
             if (!Spells.NeutralSect.IsKnownAndReady())
                 return false;
-            
-            if (AstrologianSettings.Instance.FightLogic_NeutralSectAspectedHelios && FightLogic.EnemyIsCastingBigAoe() && (AstrologianSettings.Instance.FightLogic_Macrocosmos && !Spells.Macrocosmos.IsKnownAndReady()) && !Core.Me.HasAnyAura(AstroUtils.ScholarAndSageShieldsNotToOverwrite)) 
-                return await FightLogic.DoAndBuffer(Spells.NeutralSect.CastAura(Core.Me,Auras.NeutralSect));
+
+            if (AstrologianSettings.Instance.FightLogic_NeutralSectAspectedHelios && FightLogic.EnemyIsCastingBigAoe() && (AstrologianSettings.Instance.FightLogic_Macrocosmos && !Spells.Macrocosmos.IsKnownAndReady()) && !Core.Me.HasAnyAura(AstroUtils.ScholarAndSageShieldsNotToOverwrite))
+                return await FightLogic.DoAndBuffer(Spells.NeutralSect.CastAura(Core.Me, Auras.NeutralSect));
 
             var neutral = Group.CastableAlliesWithin15.Count(r => r.CurrentHealth > 0
             && r.CurrentHealthPercent <= AstrologianSettings.Instance.NeutralSectHealthPercent);
@@ -136,7 +135,24 @@ namespace Magitek.Logic.Astrologian
             if (neutral < AoeThreshold)
                 return false;
 
-            return await Spells.NeutralSect.CastAura(Core.Me,Auras.NeutralSect);
+            return await Spells.NeutralSect.CastAura(Core.Me, Auras.NeutralSect);
+        }
+
+        public static async Task<bool> SunSign()
+        {
+            if (!AstrologianSettings.Instance.SunSign)
+                return false;
+
+            if (!Core.Me.InCombat)
+                return false;
+
+            if (!Spells.SunSign.IsKnownAndReady())
+                return false;
+
+            if (!Core.Me.HasAura(Auras.Suntouched, true))
+                return false;
+
+            return await Spells.SunSign.CastAura(Core.Me, Auras.SunSign);
         }
     }
 }

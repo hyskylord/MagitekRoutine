@@ -80,16 +80,35 @@ namespace Magitek.Logic.Astrologian
 
         public static async Task<bool> LordOfCrown()
         {
-            if (ActionResourceManager.Astrologian.CurrentDraw != ActionResourceManager.Astrologian.AstrologianDraw.Astral)
+            //if (ActionResourceManager.Astrologian.CurrentDraw != ActionResourceManager.Astrologian.AstrologianDraw.Astral)
+            //    return false;
+
+            if (!AstrologianSettings.Instance.LordOfCrowns)
                 return false;
 
-            if (Combat.Enemies.Count(r => r.Distance(Core.Me.Location) <= Spells.LordofCrowns.Radius) >= AstrologianSettings.Instance.LordOfCrownsEnemies)
-                return await Spells.LordofCrowns.Cast(Core.Me);
+            if (!Spells.LordofCrowns.IsKnownAndReady())
+                return false;
 
-            if (Spells.MinorArcana.IsReady())
-                return await Spells.LordofCrowns.Cast(Core.Me);
+            if (Core.Me.CurrentTarget.EnemiesNearby(20).Count() < AstrologianSettings.Instance.LordOfCrownsEnemies && AstrologianSettings.Instance.LordOfCrownsEnemies > 1)
+                return false;
 
-            return false;
+            return await Spells.LordofCrowns.Cast(Core.Me);
+
+        }
+
+        public static async Task<bool> Oracle()
+        {
+            if (!AstrologianSettings.Instance.Oracle)
+                return false;
+
+            if(!Spells.Oracle.IsKnownAndReady())
+                return false;
+
+            if (Combat.Enemies.Count(r => r.Distance(Core.Me.CurrentTarget) <= Spells.Oracle.Radius) < AstrologianSettings.Instance.OracleEnemies)
+                return false;
+
+            return await Spells.Oracle.Cast(Core.Me.CurrentTarget);
+
         }
 
     }

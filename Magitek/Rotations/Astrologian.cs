@@ -171,11 +171,12 @@ namespace Magitek.Rotations
             if (AstrologianSettings.Instance.WeaveOGCDHeals && GlobalCooldown.CanWeave(1)) 
                 
             {
-                
-                if (await Buff.Divination()) return true;
                 if (await Buff.LucidDreaming()) return true;
                 if (await Buff.Lightspeed()) return true;
+                if (await Buff.SunSign()) return true;
+                if (await Buff.Divination()) return true;
                 if (await Buff.NeutralSect()) return true;
+                if (await Aoe.Oracle()) return true;
                 if (await Cards.Draw()) return true;
                 if (await Cards.PlayCards()) return true;
 

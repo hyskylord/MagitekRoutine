@@ -66,9 +66,6 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-
-                <CheckBox Grid.Row="0" Content="DoT Multiple Targets" IsChecked="{Binding SageSettings.DotMultipleTargets, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-
                 <CheckBox Grid.Row="1" Content="Dosis" IsChecked="{Binding SageSettings.Dosis , Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 <CheckBox Grid.Row="2" Content="Eukrasian Dosis " IsChecked="{Binding SageSettings.EukrasianDosis, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
 
@@ -123,6 +120,9 @@
                     <CheckBox Content="AoE When There Are " IsChecked="{Binding SageSettings.AoE, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding SageSettings.AoEEnemies, Mode=TwoWay}" />
                     <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies In Range" />
+                </StackPanel>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <CheckBox Content="Eukrasian Dyskrasia " IsChecked="{Binding SageSettings.EukrasianDyskrasia, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <CheckBox Content="Psyche When There Are " IsChecked="{Binding SageSettings.UsedPsyche, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
