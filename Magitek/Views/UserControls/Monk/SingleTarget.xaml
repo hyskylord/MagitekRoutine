@@ -29,34 +29,6 @@
     </UserControl.DataContext>
 
     <StackPanel Margin="10">
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="3">
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Refresh Leaden Fist When It Has " />
-                    <controls:Numeric MaxValue="15" MinValue="1" Value="{Binding MonkSettings.DragonKickRefresh, Mode=TwoWay}" />
-                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Seconds Left" />
-                </StackPanel>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Refresh Disciplined Fist When It Has " />
-                    <controls:Numeric MaxValue="15" MinValue="1" Value="{Binding MonkSettings.TwinSnakesRefresh, Mode=TwoWay}" />
-                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Seconds Left" />
-                </StackPanel>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Refresh Demolish When It Has " />
-                    <controls:Numeric MaxValue="17" MinValue="1" Value="{Binding MonkSettings.DemolishRefresh, Mode=TwoWay}" />
-                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Seconds Left" />
-                </StackPanel>
-            </StackPanel>
-        </controls:SettingsBlock>
-        
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <CheckBox Margin="5" Content="Do Not Demolish If Our Current Target Is Dying Within " IsChecked="{Binding MonkSettings.DemolishUseTtd, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-            <controls:Numeric MaxValue="30" MinValue="1" Value="{Binding MonkSettings.DemolishMinimumTtd, Mode=TwoWay}" />
-            <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Seconds" />
-        </StackPanel>
-        </controls:SettingsBlock>
-        
         <controls:SettingsBlock  Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5" Orientation="Vertical">
                 <CheckBox Margin="0,3,0,0" Content="The Forbidden Chakra" IsChecked="{Binding MonkSettings.UseTheForbiddenChakra, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />

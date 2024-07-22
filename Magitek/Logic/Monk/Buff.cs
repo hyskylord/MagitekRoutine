@@ -34,13 +34,10 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> PerfectBalance()
         {
-            if (Core.Me.ClassLevel < 50)
+            if (Core.Me.ClassLevel < Spells.PerfectBalance.LevelAcquired)
                 return false;
 
             if (!MonkSettings.Instance.UsePerfectBalance)
-                return false;
-
-            if (!Core.Me.HasAura(Auras.DisciplinedFist))
                 return false;
 
             if (MonkRoutine.AoeEnemies5Yards >= MonkSettings.Instance.AoeEnemies)
@@ -50,13 +47,8 @@ namespace Magitek.Logic.Monk
             }
             else
             {
-
-                if (!Core.Me.CurrentTarget.HasAura(Auras.Demolish))
-                    return false;
-
                 if (Casting.LastSpell != Spells.Bootshine)
                     return false;
-
             }
 
             return await Spells.PerfectBalance.Cast(Core.Me);
@@ -64,10 +56,10 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> RiddleOfEarth()
         {
-            if (!MonkSettings.Instance.UseRiddleOfEarth)
+            if (Core.Me.ClassLevel < Spells.RiddleofEarth.LevelAcquired)
                 return false;
 
-            if (Core.Me.ClassLevel < 50)
+            if (!MonkSettings.Instance.UseRiddleOfEarth)
                 return false;
 
             return await Spells.RiddleofEarth.Cast(Core.Me);
@@ -76,16 +68,13 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> RiddleOfFire()
         {
+            if (Core.Me.ClassLevel < Spells.RiddleofFire.LevelAcquired)
+                return false;
+
             if (!MonkSettings.Instance.UseRiddleOfFire)
                 return false;
 
-            if (Core.Me.ClassLevel < 68)
-                return false;
-
-            if (!Core.Me.HasAura(Auras.DisciplinedFist))
-                return false;
-
-            if (Core.Me.HasMyAura(Auras.Brotherhood))
+            if (Spells.PerfectBalance.IsKnownAndReady() && !Core.Me.HasAura(Auras.PerfectBalance,true))
                 return false;
 
             return await Spells.RiddleofFire.Cast(Core.Me);
@@ -93,16 +82,13 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> RiddleOfWind()
         {
+            if (Core.Me.ClassLevel < Spells.RiddleofWind.LevelAcquired)
+                return false;
+
             if (!MonkSettings.Instance.UseRiddleOfWind)
                 return false;
 
-            if (Core.Me.ClassLevel < 72)
-                return false;
-
-            if (!Core.Me.HasAura(Auras.DisciplinedFist))
-                return false;
-
-            if (Core.Me.HasMyAura(Auras.Brotherhood))
+            if (Spells.PerfectBalance.IsKnownAndReady() && !Core.Me.HasAura(Auras.PerfectBalance, true))
                 return false;
 
             return await Spells.RiddleofWind.Cast(Core.Me);
@@ -110,15 +96,13 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> Brotherhood()
         {
-            // Off GCD
+            if (Core.Me.ClassLevel < Spells.Brotherhood.LevelAcquired)
+                return false;
 
             if (!MonkSettings.Instance.UseBrotherhood)
                 return false;
 
-            if (!Core.Me.HasAura(Auras.DisciplinedFist))
-                return false;
-
-            if (MonkSettings.Instance.UseRiddleOfFire && Spells.RiddleofFire.Cooldown.TotalMilliseconds == 0)
+            if (Spells.PerfectBalance.IsKnownAndReady() && !Core.Me.HasAura(Auras.PerfectBalance, true))
                 return false;
 
             return await Spells.Brotherhood.Cast(Core.Me);
@@ -126,6 +110,9 @@ namespace Magitek.Logic.Monk
 
         public static async Task<bool> Mantra()
         {
+            if (Core.Me.ClassLevel < Spells.Mantra.LevelAcquired)
+                return false;
+
             if (CustomOpenerLogic.InOpener)
                 return false;
 
@@ -144,13 +131,42 @@ namespace Magitek.Logic.Monk
             return await Spells.Mantra.Cast(Core.Me);
         }
 
+        public static async Task<bool> EarthReply()
+        {
+            if (Core.Me.ClassLevel < Spells.EarthReply.LevelAcquired)
+                return false;
+
+            if (CustomOpenerLogic.InOpener)
+                return false;
+
+            if (!MonkSettings.Instance.UseEarthReply)
+                return false;
+
+            if(!Core.Me.HasAura(Auras.EarthRumination,true))
+                return false;
+
+            if (!ActionManager.CanCast(Spells.EarthReply.Id, Core.Me))
+                return false;
+
+            if (Group.CastableAlliesWithin30.Count(r => r.CurrentHealthPercent <= MonkSettings.Instance.EarthReplyHealthPercent) < MonkSettings.Instance.EarthReplyAllies)
+                return false;
+
+            return await Spells.EarthReply.Cast(Core.Me);
+        }
+
 
         public static async Task<bool> FormShiftIC()
         {
+            if (Core.Me.ClassLevel < Spells.FormShift.LevelAcquired)
+                return await Spells.Bootshine.Cast(Core.Me.CurrentTarget);
+
             if (!Spells.FormShift.CanCast())
                 return false;
 
             if (Core.Me.HasAura(Auras.PerfectBalance))
+                return false;
+
+            if (Core.Me.HasAura(Auras.FormlessFist))
                 return false;
 
             if (Core.Me.HasAura(Auras.OpoOpoForm))
@@ -161,12 +177,6 @@ namespace Magitek.Logic.Monk
 
             if (Core.Me.HasAura(Auras.CoeurlForm))
                 return false;
-
-            if (Core.Me.HasAura(Auras.FormlessFist))
-                return await Spells.DragonKick.Cast(Core.Me.CurrentTarget);
-
-            if (Core.Me.HasAura(Auras.LeadenFist))
-                return await Spells.Bootshine.Cast(Core.Me.CurrentTarget);
 
             return await Spells.FormShift.Cast(Core.Me);
         }

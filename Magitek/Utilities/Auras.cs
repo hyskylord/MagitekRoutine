@@ -423,6 +423,11 @@ namespace Magitek.Utilities
             SunSign = 3896,
             HeliosConjunction = 3894,
 
+            //MNK
+            EarthRumination = 3841,
+            WindRumination = 3842,
+            FireRumination = 3843,
+
             //To prevent conflict
             Placeholder = 9999;
 

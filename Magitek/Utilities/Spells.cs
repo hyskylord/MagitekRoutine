@@ -8,6 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Windows;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using System.Windows.Documents;
+using System.Reflection;
 
 namespace Magitek.Utilities
 {
@@ -493,6 +494,17 @@ namespace Magitek.Utilities
         public static readonly SpellData RisingPhoenix = DataManager.GetSpellData(25768);
         public static readonly SpellData PhantomRush = DataManager.GetSpellData(25769);
         public static readonly SpellData FlintStrike = DataManager.GetSpellData(25882);
+        public static readonly SpellData SteeledMeditation = DataManager.GetSpellData(36940);
+        public static readonly SpellData InspiritedMeditation = DataManager.GetSpellData(36941);
+        public static readonly SpellData ForbiddenMeditation = DataManager.GetSpellData(36942);
+        public static readonly SpellData EnlightenedMeditation = DataManager.GetSpellData(36943);
+        public static readonly SpellData EarthReply = DataManager.GetSpellData(36944);
+        public static readonly SpellData LeapingOpo = DataManager.GetSpellData(36945);
+        public static readonly SpellData RisingRaptor = DataManager.GetSpellData(36946);
+        public static readonly SpellData PouncingCoeurl = DataManager.GetSpellData(36947);
+        public static readonly SpellData ElixirBurst = DataManager.GetSpellData(36948);
+        public static readonly SpellData WindReply = DataManager.GetSpellData(36949);
+        public static readonly SpellData FireReply = DataManager.GetSpellData(36950);
         #endregion
 
         // NIN
