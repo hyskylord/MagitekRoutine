@@ -114,6 +114,9 @@ namespace Magitek.Logic.Pictomancer
             if (Spells.LivingMusePvp.Masked().Charges < 1 && Core.Me.HasTarget)
                 return false;
 
+            if (WorldManager.ZoneId == 250 && !Core.Me.HasTarget)
+                return false;
+
             return await spell.Cast(Core.Me);
         }
 
