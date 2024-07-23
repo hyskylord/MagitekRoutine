@@ -11,6 +11,7 @@ using Magitek.Utilities.CombatMessages;
 using ViperRoutine = Magitek.Utilities.Routines.Viper;
 using System.Threading.Tasks;
 using ff14bot.Enums;
+using System.Linq;
 
 namespace Magitek.Rotations
 {
@@ -104,55 +105,74 @@ namespace Magitek.Rotations
                 }
             }
 
+            if (!SpellQueueLogic.SpellQueue.Any())
+            {
+                SpellQueueLogic.InSpellQueue = false;
+            }
+
+            if (SpellQueueLogic.SpellQueue.Any())
+            {
+                if (await SpellQueueLogic.SpellQueueMethod())
+                    return true;
+            }
+
+            if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.ThoroughCanAttack())
+                return false;
+
+            if (await CustomOpenerLogic.Opener())
+                return true;
+
             if (SingleTarget.ForceLimitBreak()) return true;
 
 
-                if (ViperRoutine.GlobalCooldown.CanWeave())
-                {
-                    if (await PhysicalDps.Interrupt(ViperSettings.Instance)) return true;
-                    if (await PhysicalDps.SecondWind(ViperSettings.Instance)) return true;
-                    if (await PhysicalDps.Bloodbath(ViperSettings.Instance)) return true;
+            if (ViperRoutine.GlobalCooldown.CanWeave())
+            {
+                if (await PhysicalDps.Interrupt(ViperSettings.Instance)) return true;
+                if (await PhysicalDps.SecondWind(ViperSettings.Instance)) return true;
+                if (await PhysicalDps.Bloodbath(ViperSettings.Instance)) return true;
 
-                //if (await Utility.TrueNorth()) return true;
-                    if (await SingleTarget.Slither()) return true;
+                if (await Utility.TrueNorth()) return true;
+                if (await SingleTarget.Slither()) return true;
 
-                    if (await Cooldown.FourthLegacy()) return true;
-                    if (await Cooldown.ThirdLegacy()) return true;
-                    if (await Cooldown.SecondLegacy()) return true;
-                    if (await Cooldown.FirstLegacy()) return true;
-                    if (await Cooldown.SerpentIre()) return true;
-                }
+                if (await Cooldown.FourthLegacy()) return true;
+                if (await Cooldown.ThirdLegacy()) return true;
+                if (await Cooldown.SecondLegacy()) return true;
+                if (await Cooldown.FirstLegacy()) return true;
 
-                if (await SingleTarget.Ouroboros()) return true;
-
-                if (await SingleTarget.FourthGeneration()) return true;
-                if (await SingleTarget.ThirdGeneration()) return true;
-                if (await SingleTarget.SecondGeneration()) return true;
-                if (await SingleTarget.FirstGeneration()) return true;
-
-                if (await SingleTarget.Reawaken()) return true;
-                if (await SingleTarget.UncoiledFury()) return true;
-
-
-                if (await Cooldown.TwinThreshCombo()) return true;
-                if (await AoE.HunterOrSwiftskinDen()) return true;
-                if (await AoE.PitOfDread()) return true;
-
-                if (await Cooldown.TwinBiteCombo()) return true;
-                if (await SingleTarget.HunterOrSwiftskinCoil()) return true;
-                if (await SingleTarget.Dreadwinder()) return true;
-
+                if (await Cooldown.SerpentIre()) return true;
                 if (await Cooldown.LastLash()) return true;
-                if (await AoE.JaggedOrBloodiedMaw()) return true;
-                if (await AoE.HunterOrSwiftSkinBite()) return true;
-                if (await AoE.SteelDreadMaw()) return true;
+            }
 
-                if (await Cooldown.DeathRattle()) return true;
-                if (await SingleTarget.FankstingOrFlankbane()) return true;
-                if (await SingleTarget.HunterOrSwiftSkinSting()) return true;
-                return await SingleTarget.SteelOrDreadFangs();
-     
-            
+            if (await SingleTarget.Ouroboros()) return true;
+
+            if (await SingleTarget.FourthGeneration()) return true;
+            if (await SingleTarget.ThirdGeneration()) return true;
+            if (await SingleTarget.SecondGeneration()) return true;
+            if (await SingleTarget.FirstGeneration()) return true;
+
+            if (await SingleTarget.Reawaken()) return true;
+
+            if (await Cooldown.UncoiledTwinCombo()) return true;
+            if (await Cooldown.TwinThreshCombo()) return true;
+            if (await Cooldown.TwinBiteCombo()) return true;
+
+            if (await AoE.HunterOrSwiftskinDen()) return true;
+            if (await AoE.PitOfDread()) return true;
+
+            if (await SingleTarget.HunterOrSwiftskinCoil()) return true;
+            if (await SingleTarget.UncoiledFury()) return true;
+            if (await SingleTarget.Dreadwinder()) return true;
+
+            if (await AoE.JaggedOrBloodiedMaw()) return true;
+            if (await AoE.HunterOrSwiftSkinBite()) return true;
+            if (await AoE.SteelDreadMaw()) return true;
+
+            if (await Cooldown.DeathRattle()) return true;
+            if (await SingleTarget.FankstingOrFlankbane()) return true;
+            if (await SingleTarget.HunterOrSwiftSkinSting()) return true;
+            return await SingleTarget.SteelOrDreadFangs();
+
+
         }
 
         public static async Task<bool> PvP()
@@ -176,9 +196,33 @@ namespace Magitek.Rotations
             CombatMessageManager.RegisterMessageStrategy(
                 new CombatMessageStrategy(200,
                                           "",
-                                          () => ViperSettings.Instance.HidePositionalMessage || Core.Me.HasAura(Auras.TrueNorth) || ViperSettings.Instance.EnemyIsOmni || Core.Me.HasAura(Auras.Enshrouded))
+                                          () => ViperSettings.Instance.HidePositionalMessage || Core.Me.HasAura(Auras.TrueNorth) || Core.Me.HasAura(Auras.Reawakened) || ViperSettings.Instance.EnemyIsOmni)
                 );
 
+            CombatMessageManager.RegisterMessageStrategy(
+                new CombatMessageStrategy(300,
+                                          "Fanksting Strike: Side of Enemy", "/Magitek;component/Resources/Images/General/ArrowSidesHighlighted.png",
+                                          () => Core.Me.HasAura(Auras.FlankstungVenom) && (Casting.LastSpell == Spells.HunterSting || Casting.LastSpell == Spells.SwiftskinSting)
+            ) );
+
+            CombatMessageManager.RegisterMessageStrategy(
+               new CombatMessageStrategy(300,
+                                         "Fanksbane Fang: Side of Enemy", "/Magitek;component/Resources/Images/General/ArrowSidesHighlighted.png",
+                                         () => Core.Me.HasAura(Auras.FlanksbaneVenom) && (Casting.LastSpell == Spells.HunterSting || Casting.LastSpell == Spells.SwiftskinSting)
+           ));
+
+            CombatMessageManager.RegisterMessageStrategy(
+                new CombatMessageStrategy(300,
+                                          "Hindsting Strike: Get behind Enemy", "/Magitek;component/Resources/Images/General/ArrowDownHighlighted.png",
+                                          () => Core.Me.HasAura(Auras.HindstungVenom) && (Casting.LastSpell == Spells.HunterSting || Casting.LastSpell == Spells.SwiftskinSting)
+            ));
+
+            CombatMessageManager.RegisterMessageStrategy(
+               new CombatMessageStrategy(300,
+                                         "Hindsbane Fang: Get behind Enemy", "/Magitek;component/Resources/Images/General/ArrowDownHighlighted.png",
+                                         () => Core.Me.HasAura(Auras.HindsbaneVenom) && (Casting.LastSpell == Spells.HunterSting || Casting.LastSpell == Spells.SwiftskinSting)
+           ));
+            
         }
     }
 }

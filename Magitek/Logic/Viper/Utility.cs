@@ -1,6 +1,8 @@
 ﻿using ff14bot;
 using ff14bot.Managers;
 using Magitek.Extensions;
+using Magitek.Logic.Roles;
+using Magitek.Models.Samurai;
 using Magitek.Models.Viper;
 using Magitek.Utilities;
 using System.Threading.Tasks;
@@ -20,8 +22,22 @@ namespace Magitek.Logic.Viper
             if (Core.Me.CurrentTarget.IsBehind)
                 return false;
 
-            return await Spells.TrueNorth.CastAura(Core.Me, Auras.TrueNorth);
+            if(!Core.Me.HasAura(Auras.HindstungVenom) && !Core.Me.HasAura(Auras.HindsbaneVenom))
+                return false;
+
+            if((Casting.LastSpell == Spells.HunterSting || Casting.LastSpell == Spells.SwiftskinSting))
+                return await Spells.TrueNorth.CastAura(Core.Me, Auras.TrueNorth);
+
+            return false;
  
+        }
+
+        public static async Task<bool> UsePotion()
+        {
+            if (!Core.Me.HasAura(Auras.Swiftscaled,true))
+                return false;
+
+            return await PhysicalDps.UsePotion(ViperSettings.Instance);
         }
 
     }

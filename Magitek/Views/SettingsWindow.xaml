@@ -863,6 +863,9 @@
                         <TabItem Header="AoE " Style="{DynamicResource MainTabAoe}">
                             <viper:AoE />
                         </TabItem>
+                        <TabItem Header="Buff " Style="{DynamicResource MainTabBuffs}">
+                            <viper:Buffs />
+                        </TabItem>
                         <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
                             <viper:Utility />
                         </TabItem>

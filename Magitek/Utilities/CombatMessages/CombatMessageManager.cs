@@ -135,6 +135,11 @@ namespace Magitek.Utilities.CombatMessages
                 case ClassJobType.Reaper:
                     Rotations.Reaper.RegisterCombatMessages();
                     break;
+
+                case ClassJobType.Viper:
+                    Rotations.Viper.RegisterCombatMessages();
+                    break;
+
             }
         }
     }

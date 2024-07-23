@@ -34,6 +34,9 @@ namespace Magitek.Logic.Viper
             if (!ViperSettings.Instance.UseLastLash)
                 return false;
 
+            if(!Spells.LastLash.CanCast())
+                return false;
+
             return await Spells.LastLash.Cast(Core.Me);
         }
 
@@ -55,6 +58,17 @@ namespace Magitek.Logic.Viper
 
             if (Core.Me.ClassLevel >= Spells.TwinbloodThresh.LevelAcquired &&  Core.Me.HasAura(Auras.FellskinVenom, true))
                 return await Spells.TwinbloodThresh.Cast(Core.Me);
+
+            return false;
+        }
+
+        public static async Task<bool> UncoiledTwinCombo()
+        {
+            if (Core.Me.ClassLevel >= Spells.UncoiledTwinfang.LevelAcquired && Core.Me.HasAura(Auras.PoisedforTwinfang, true))
+                return await Spells.UncoiledTwinfang.Cast(Core.Me.CurrentTarget);
+
+            if (Core.Me.ClassLevel >= Spells.UncoiledTwinblood.LevelAcquired && Core.Me.HasAura(Auras.PoisedforTwinblood, true))
+                return await Spells.UncoiledTwinblood.Cast(Core.Me.CurrentTarget);
 
             return false;
         }
