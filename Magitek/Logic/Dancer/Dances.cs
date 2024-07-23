@@ -59,6 +59,9 @@ namespace Magitek.Logic.Dancer
             if (!Spells.StandardStep.IsReady(400))
                 return false;
 
+            if (Core.Me.HasAura(Auras.TechnicalFinish) && Spells.Devilment.IsKnownAndReady(6000))
+                return false;
+
             //Do not Standard Step if there 3+ Ennemies unless StandardStep Auras is finishing
             if (DancerSettings.Instance.UseAoe && Combat.Enemies.Count(r => r.Distance(Core.Me) <= Spells.StandardFinish.Radius + r.CombatReach) >= 3)
             {
