@@ -114,6 +114,9 @@ namespace Magitek.Rotations
             //LimitBreak
             if (Aoe.ForceLimitBreak()) return true;
 
+            if (await CommonFightLogic.FightLogic_SelfShield(BlackMageSettings.Instance.FightLogicManaward, Spells.Manaward)) return true;
+            if (await MagicDps.FightLogic_Addle(BlackMageSettings.Instance)) return true;
+
             //DON'T CHANGE THE ORDER OF THESE
             if (await Buff.Amplifier()) return true;
             if (await Buff.Triplecast()) return true;

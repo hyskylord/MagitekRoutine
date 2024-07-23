@@ -11,7 +11,6 @@ using Magitek.Utilities.CombatMessages;
 using MonkRoutine = Magitek.Utilities.Routines.Monk;
 using System.Linq;
 using System.Threading.Tasks;
-using Magitek.Models.Scholar;
 
 namespace Magitek.Rotations
 {
@@ -105,6 +104,9 @@ namespace Magitek.Rotations
             //Limit Break
             if (SingleTarget.ForceLimitBreak())
                 return true;
+
+            if (await CommonFightLogic.FightLogic_PartyShield(MonkSettings.Instance.FightLogicMantra, Spells.Mantra, true, aura: Auras.Mantra)) return true;
+            if (await CommonFightLogic.FightLogic_Debuff(MonkSettings.Instance.FightLogicFeint, Spells.Feint, true, Auras.Feint)) return true;
 
             //Buff
             if (await Buff.Meditate()) 

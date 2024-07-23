@@ -326,7 +326,7 @@ namespace Magitek.Utilities
             HeartOfCorundum = 2683,
             CatharsisOfCorundum = 2685,
             ClarityOfCorundum = 2684,
-            ShakeItOff = 1993,
+            ShakeItOff = 1457,
             ReadytoBlast = 2686,
             SonicBreak = 1837,
             BowShock = 1838,
@@ -354,6 +354,15 @@ namespace Magitek.Utilities
             DivineGrace = 3881,
             LastDanceReady = 3867,
             Damnation = 3832,
+            Addle = 1203,
+
+            //PLD
+            HolySheltron = 2674,
+            Sheltron = 1856,
+            DivineVeil = 1362,
+
+            //BRD
+            NaturesMinne = 1202,
 
             //SMN
             RubysGlimmer = 3873,
@@ -381,8 +390,8 @@ namespace Magitek.Utilities
             Aetherhues = 3675,
             Aetherhues2 = 3676,
             SubtractivePalette = 3674,
-            TempuraCoat = 3686,
-            TempuraGrassa = 3687,
+            TemperaCoat = 3686,
+            TemperaGrassa = 3687,
             StarryMuse = 3685,
             SubtractiveSpectrum = 3690,
             Hyperphantasia = 3688,
@@ -397,6 +406,8 @@ namespace Magitek.Utilities
             FullMetalMachinist = 3866,
             ExcavatorReady = 3865,
             Overheated = 2688,
+            Dismantled = 860,
+            Tactician = 1951,
 
             //WHM
             Medica3 = 3880,
@@ -427,6 +438,7 @@ namespace Magitek.Utilities
             EarthRumination = 3841,
             WindRumination = 3842,
             FireRumination = 3843,
+            Mantra = 102,
 
             //To prevent conflict
             Placeholder = 9999;

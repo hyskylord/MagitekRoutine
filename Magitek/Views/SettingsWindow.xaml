@@ -338,6 +338,9 @@
                         <TabItem Header="Defensives" Style="{DynamicResource MainTabDefensives}">
                             <paladin:Defensives />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <paladin:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <paladin:Pvp />
                         </TabItem>
@@ -367,6 +370,9 @@
                         <TabItem Header="Healing" Style="{DynamicResource MainTabHealing}">
                             <warrior:Healing />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <warrior:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <warrior:Pvp />
                         </TabItem>
@@ -394,6 +400,9 @@
                         <TabItem Header="Defensives" Style="{DynamicResource MainTabDefensives}">
                             <darkknight:Defensives />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <darkknight:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <darkknight:Pvp />
                         </TabItem>
@@ -419,6 +428,9 @@
                         </TabItem>
                         <TabItem Header="Defensives" Style="{DynamicResource MainTabDefensives}">
                             <gunbreaker:Defensives />
+                        </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <gunbreaker:FightLogic />
                         </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <gunbreaker:Pvp />
@@ -461,6 +473,9 @@
                         <TabItem Header="Alliance" Style="{DynamicResource MainTabAlliance}">
                             <scholar:Alliance />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <scholar:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <scholar:Pvp />
                         </TabItem>
@@ -499,6 +514,9 @@
                         <TabItem Header="Alliance" Style="{DynamicResource MainTabAlliance}">
                             <whitemage:Alliance />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <whitemage:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <whitemage:Pvp />
                         </TabItem>
@@ -533,6 +551,9 @@
                         </TabItem>
                         <TabItem Header="Alliance" Style="{DynamicResource MainTabAlliance}">
                             <astrologian:Alliance />
+                        </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <astrologian:FightLogic />
                         </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <astrologian:Pvp />
@@ -569,6 +590,9 @@
                         <TabItem Header="Alliance" Style="{DynamicResource MainTabAlliance}">
                             <sage:Alliance />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <sage:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <sage:Pvp />
                         </TabItem>
@@ -592,6 +616,9 @@
                         <TabItem Header="Buffs" Style="{DynamicResource MainTabBuffs}">
                             <blackMage:Buffs />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <blackMage:FightLogic />
+                        </TabItem>
                         <TabItem Header="PVP" Style="{DynamicResource MainTabCombat}">
                             <blackMage:Pvp />
                         </TabItem>
@@ -605,6 +632,9 @@
                     <TabControl Style="{DynamicResource JobOptionsTabControl}">
                         <TabItem Header="General" Style="{DynamicResource MainTabCombat}">
                             <summoner:General />
+                        </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <summoner:FightLogic />
                         </TabItem>
                         <TabItem Header="PVP" Style="{DynamicResource MainTabCombat}">
                             <summoner:Pvp />
@@ -632,6 +662,9 @@
                         <TabItem Header="Healing" Style="{DynamicResource MainTabHealing}">
                             <redMage:Heal />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <redMage:FightLogic />
+                        </TabItem>
                         <TabItem Header="PVP" Style="{DynamicResource MainTabCombat}">
                             <redMage:Pvp />
                         </TabItem>
@@ -657,6 +690,9 @@
                         </TabItem>
                         <TabItem Header="Utilities " Style="{DynamicResource MainTabCombat}">
                             <machinist:Utilities />
+                        </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <machinist:FightLogic />
                         </TabItem>
                         <TabItem Header="PVP " Style="{DynamicResource MainTabCombat}">
                             <machinist:Pvp />
@@ -693,6 +729,9 @@
                         <TabItem Header="Utilities" Style="{DynamicResource MainTabUtilities}">
                             <bard:Utilities />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <bard:FightLogic />
+                        </TabItem>
                         <TabItem Header="PVP" Style="{DynamicResource MainTabCombat}">
                             <bard:Pvp />
                         </TabItem>
@@ -722,6 +761,9 @@
                         <TabItem Header="Buffs" Style="{DynamicResource MainTabBuffs}">
                             <dancer:Buffs />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <dancer:FightLogic />
+                        </TabItem>
                         <TabItem Header="PVP" Style="{DynamicResource MainTabCombat}">
                             <dancer:Pvp />
                         </TabItem>
@@ -748,6 +790,9 @@
                         <TabItem Header="Defensives" Style="{DynamicResource MainTabDefensives}">
                             <dragoon:Defensives />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <dragoon:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <dragoon:Pvp />
                         </TabItem>
@@ -770,6 +815,9 @@
                         </TabItem>
                         <TabItem Header="Buffs" Style="{DynamicResource MainTabBuffs}">
                             <monk:Buffs />
+                        </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <monk:FightLogic />
                         </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <monk:Pvp />
@@ -797,6 +845,9 @@
                         <TabItem Header="Ninjutsu" Style="{DynamicResource MainTabBuffs}">
                             <ninja:Ninjutsu />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <ninja:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <ninja:Pvp />
                         </TabItem>
@@ -823,6 +874,9 @@
                         <TabItem Header="Utilities" Style="{DynamicResource MainTabUtilities}">
                             <samurai:Utility />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <samurai:FightLogic />
+                        </TabItem>
                         <TabItem Header="PVP" Style="{DynamicResource MainTabCombat}">
                             <samurai:Pvp />
                         </TabItem>
@@ -846,6 +900,9 @@
                         <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
                             <reaper:Utility />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <reaper:FightLogic />
+                        </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <reaper:Pvp />
                         </TabItem>
@@ -866,6 +923,9 @@
                         <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
                             <viper:Utility />
                         </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <viper:FightLogic />
+                        </TabItem>
                         <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
                             <customControls:TogglesSettings />
                         </TabItem>
@@ -882,6 +942,9 @@
                         </TabItem>
                         <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
                             <pictomancer:Utility />
+                        </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <pictomancer:FightLogic />
                         </TabItem>
                         <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
                             <pictomancer:Pvp />

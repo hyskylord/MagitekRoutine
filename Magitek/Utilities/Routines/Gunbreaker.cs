@@ -3,6 +3,7 @@ using ff14bot.Enums;
 using ff14bot.Managers;
 using ff14bot.Objects;
 using Magitek.Extensions;
+using System;
 using System.Collections.Generic;
 
 namespace Magitek.Utilities.Routines
@@ -12,7 +13,17 @@ namespace Magitek.Utilities.Routines
     {
         public static WeaveWindow GlobalCooldown = new WeaveWindow(ClassJobType.Gunbreaker, Spells.KeenEdge);
 
-        public static readonly List<uint> Defensives = new List<uint>()
+        public static readonly SpellData[] DefensiveSpells = new SpellData[]
+        {
+            Spells.Rampart,
+            Spells.Camouflage,
+            Spells.Nebula,
+            Spells.GreatNebula,
+            Spells.HeartOfCorundum,
+            Spells.HeartofStone
+        };
+
+        public static readonly uint[] Defensives = new uint[]
         {
             Auras.Camouflage,
             Auras.Nebula,

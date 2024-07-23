@@ -19,11 +19,23 @@ namespace Magitek.Utilities.Routines
                                             ? Spells.SpiritsWithin
                                             : Spells.Expiacion;
 
-        public static readonly List<uint> Defensives = new List<uint>()
+        public static readonly SpellData[] DefensiveSpells = new SpellData[]
+        {
+            Spells.HolySheltron,
+            Spells.Sheltron,
+            Spells.Rampart,
+            Spells.Sentinel,
+            Spells.Guardian,
+        };
+
+        public static readonly uint[] Defensives = new uint[]
         {
             Auras.HallowedGround,
             Auras.Rampart,
-            Auras.Sentinel
+            Auras.Sentinel,
+            Auras.Guardian,
+            Auras.HolySheltron,
+            Auras.Sheltron
         };
 
         public static int RequiescatStackCount => Core.Me.CharacterAuras.GetAuraStacksById(Auras.Requiescat);

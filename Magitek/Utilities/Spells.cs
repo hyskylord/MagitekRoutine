@@ -175,6 +175,7 @@ namespace Magitek.Utilities
         public static readonly SpellData Thunder3 = DataManager.GetSpellData(153);
         public static readonly SpellData Blizzard3 = DataManager.GetSpellData(154);
         public static readonly SpellData Scathe = DataManager.GetSpellData(156);
+        public static readonly SpellData Manaward = DataManager.GetSpellData(157);
         public static readonly SpellData ManaFont = DataManager.GetSpellData(158);
         public static readonly SpellData Flare = DataManager.GetSpellData(162);
         public static readonly SpellData FlareStar = DataManager.GetSpellData(36989);
@@ -692,6 +693,7 @@ namespace Magitek.Utilities
         public static readonly SpellData KaeshiNamikiri = DataManager.GetSpellData(25782);
         public static readonly SpellData DoomoftheLiving = DataManager.GetSpellData(7861);
         public static readonly SpellData Zanshin = DataManager.GetSpellData(36964);
+        public static readonly SpellData Tengentsu = DataManager.GetSpellData(36962);
         #endregion
 
         // SGE
@@ -1163,6 +1165,7 @@ namespace Magitek.Utilities
         public static readonly SpellData FangedMuse = DataManager.GetSpellData(34673);
         public static readonly SpellData RetributionoftheMadeen = DataManager.GetSpellData(34677);
         public static readonly SpellData StarPrism = DataManager.GetSpellData(34681);
+        public static readonly SpellData ChromaticFantasy = DataManager.GetSpellData(34867);
         #endregion
 
         //PVP

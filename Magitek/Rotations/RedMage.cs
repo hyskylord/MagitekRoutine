@@ -5,7 +5,6 @@ using Magitek.Logic;
 using Magitek.Logic.RedMage;
 using Magitek.Logic.Roles;
 using Magitek.Models.Account;
-using Magitek.Models.BlackMage;
 using Magitek.Models.RedMage;
 using Magitek.Utilities;
 using RedMageRoutine = Magitek.Utilities.Routines.RedMage;
@@ -111,6 +110,9 @@ namespace Magitek.Rotations
 
             //LimitBreak
             if (Aoe.ForceLimitBreak()) return true;
+
+            if (await CommonFightLogic.FightLogic_SelfShield(RedMageSettings.Instance.FightLogicMagickBarrier, Spells.MagickBarrier)) return true;
+            if (await MagicDps.FightLogic_Addle(RedMageSettings.Instance)) return true;
 
             if (RedMageRoutine.GlobalCooldown.CanWeave())
             {

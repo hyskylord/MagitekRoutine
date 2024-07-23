@@ -169,7 +169,6 @@
                 <CheckBox Margin="0,3,0,0" Content="Use intervention on party member every time Setinel or Rampart is Active" IsChecked="{Binding PaladinSettings.InterventionPartyAlwaysWithCD, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
             </StackPanel>
         </controls:SettingsBlock>
-
     </StackPanel>
 
 </UserControl>

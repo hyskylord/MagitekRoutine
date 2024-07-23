@@ -6,7 +6,6 @@ using Magitek.Logic.Dragoon;
 using Magitek.Logic.Roles;
 using Magitek.Models.Account;
 using Magitek.Models.Dragoon;
-using Magitek.Models.Monk;
 using Magitek.Utilities;
 using Magitek.Utilities.CombatMessages;
 using System;
@@ -115,6 +114,8 @@ namespace Magitek.Rotations
 
             //LimitBreak
             if (SingleTarget.ForceLimitBreak()) return true;
+
+            if (await CommonFightLogic.FightLogic_Debuff(DragoonSettings.Instance.FightLogicFeint, Spells.Feint, true, Auras.Feint)) return true;
 
             //Utility
             if (await PhysicalDps.Interrupt(DragoonSettings.Instance)) return true;

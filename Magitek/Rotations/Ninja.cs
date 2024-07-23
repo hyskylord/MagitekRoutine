@@ -110,6 +110,9 @@ namespace Magitek.Rotations
             if (!Core.Me.HasTarget || !Core.Me.CurrentTarget.ThoroughCanAttack())
                 return false;
 
+            if (await CommonFightLogic.FightLogic_SelfShield(NinjaSettings.Instance.FightLogicShadeShift, Spells.ShadeShift)) return true;
+            if (await CommonFightLogic.FightLogic_Debuff(NinjaSettings.Instance.FightLogicFeint, Spells.Feint, true, Auras.Feint)) return true;
+
             if (NinjaRoutine.GlobalCooldown.CountOGCDs() < 2 && Spells.SpinningEdge.Cooldown.TotalMilliseconds >= 770
                 && DateTime.Now >= NinjaRoutine.oGCD)
             {

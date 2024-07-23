@@ -101,6 +101,9 @@ namespace Magitek.Rotations
             //LimitBreak
             if (Aoe.ForceLimitBreak()) return true;
 
+            if (await CommonFightLogic.FightLogic_PartyShield(BardSettings.Instance.FightLogicTroubadour, Spells.Troubadour, true, PhysicalDps.partyShieldAuras)) return true;
+            if (await CommonFightLogic.FightLogic_PartyShield(BardSettings.Instance.FightLogicNaturesMinne, Spells.NaturesMinne, true, aura: Auras.NaturesMinne)) return true;
+
             if (BardRoutine.GlobalCooldown.CanWeave())
             {
                 // Utility

@@ -90,6 +90,10 @@ namespace Magitek.Rotations
             //LimitBreak
             if (Defensive.ForceLimitBreak()) return true;
 
+            if (await CommonFightLogic.FightLogic_TankDefensive(PaladinSettings.Instance.FightLogicDefensives, PaladinRoutine.DefensiveSpells, PaladinRoutine.Defensives)) return true;
+            if (await CommonFightLogic.FightLogic_PartyShield(PaladinSettings.Instance.FightLogicPartyShield, Spells.DivineVeil, true, aura: Auras.DivineVeil)) return true;
+            if (await CommonFightLogic.FightLogic_Debuff(PaladinSettings.Instance.FightLogicReprisal, Spells.Reprisal, true, aura: Auras.Reprisal)) return true;
+
             if (!Core.Me.HasAura(Auras.PassageOfArms))
             {
                 //Utility

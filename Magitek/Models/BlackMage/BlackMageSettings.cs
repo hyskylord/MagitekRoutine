@@ -23,6 +23,10 @@ namespace Magitek.Models.BlackMage
 
         [Setting]
         [DefaultValue(true)]
+        public bool FightLogicManaward { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
         public bool ThunderSingle { get; set; }
 
         [Setting]

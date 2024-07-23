@@ -129,6 +129,10 @@ namespace Magitek.Models.Dancer
         [Setting]
         [DefaultValue(true)]
         public bool UseImprovisation { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicShieldSamba { get; set; }
         #endregion
 
         #region partner

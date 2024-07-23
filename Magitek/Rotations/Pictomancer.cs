@@ -96,6 +96,8 @@ namespace Magitek.Rotations
             if (await CustomOpenerLogic.Opener())
                 return true;
 
+            if (MagicDps.ForceLimitBreak(Spells.Skyshard, Spells.Starstorm, Spells.ChromaticFantasy, Spells.FireinRed)) return true;
+
             if (Core.Me.CurrentTarget.HasAura(Auras.MagicResistance))
                 return false;
 
@@ -104,7 +106,7 @@ namespace Magitek.Rotations
 
             if (await Buff.FightLogic_TemperaGrassa()) return true;
             if (await Buff.FightLogic_TemperaCoat()) return true;
-            if (await Buff.FightLogic_Addle()) return true;
+            if (await MagicDps.FightLogic_Addle(PictomancerSettings.Instance)) return true;
 
             if (PictomancerRoutine.GlobalCooldown.CanWeave()) 
             {

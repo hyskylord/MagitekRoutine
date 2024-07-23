@@ -131,6 +131,5 @@
                 <CheckBox Content="Reprisal" IsChecked="{Binding DarkKnightSettings.UseReprisal, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
             </StackPanel>
         </controls:SettingsBlock>
-
     </StackPanel>
 </UserControl>

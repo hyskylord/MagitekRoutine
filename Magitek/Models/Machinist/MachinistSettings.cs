@@ -159,6 +159,14 @@ namespace Magitek.Models.Machinist
 
         [Setting]
         [DefaultValue(true)]
+        public bool FightLogicTactician { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicDismantle { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
         public bool ForceTactician { get; internal set; }
 
         [Setting]

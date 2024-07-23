@@ -195,12 +195,13 @@ namespace Magitek.Logic.Pictomancer
             var motif = Spells.WeaponMotif.Masked();
             var muse = Spells.SteelMuse.Masked();
 
-            if (!MotifCanCast(motif, muse, false))
+            if (!MotifCanCast(motif, muse, MovementManager.IsMoving))
                 return false;
 
             if (motif.IsKnownAndReady() && motif.CanCast())
             {
-                //await SwitfcastMotif();
+                if (MovementManager.IsMoving)
+                    await SwitfcastMotif();
                 return await motif.Cast(Core.Me);
             }
 
@@ -305,6 +306,9 @@ namespace Magitek.Logic.Pictomancer
             if (muse.IsKnown/*AndReady*/() && muse.CanCast(Core.Me)){
                 if (Globals.InParty)
                 {
+                    if (Core.Me.HasAura(Auras.StarryMuse))
+                        return false;
+
                     var couldStar = Group.CastableAlliesWithin30.Count(r => !r.HasAura(Auras.StarryMuse));
                     var starNeededCount = PictomancerSettings.Instance.StarrySkyCount;
 

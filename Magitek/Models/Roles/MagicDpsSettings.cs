@@ -19,7 +19,6 @@ namespace Magitek.Models.Roles
         [DefaultValue(60.0f)]
         public float LucidDreamingMinimumManaPercent { get; set; }
 
-
         [Setting]
         [DefaultValue(false)]
         public bool UseStunOrInterrupt { get; set; }
@@ -35,5 +34,9 @@ namespace Magitek.Models.Roles
         [Setting]
         [DefaultValue(PotionEnum.None)]
         public PotionEnum PotionTypeAndGradeLevel { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicAddle { get; set; }
     }
 }

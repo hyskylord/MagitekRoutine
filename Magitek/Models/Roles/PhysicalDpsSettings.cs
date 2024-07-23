@@ -66,5 +66,9 @@ namespace Magitek.Models.Roles
         [Setting]
         [DefaultValue(false)]
         public bool ForceArmsLength { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicFeint { get; set; }
     }
 }

@@ -114,8 +114,9 @@ namespace Magitek.Rotations
                 }
             }
 
-            if (await Buff.FightLogic_ArcaneCrest()) return true;
-            if (await Buff.FightLogic_Feint()) return true;
+            if (await CommonFightLogic.FightLogic_SelfShield(ReaperSettings.Instance.FightLogicArcaneCrest, Spells.ArcaneCrest, false)) return true;
+            if (await CommonFightLogic.FightLogic_Debuff(ReaperSettings.Instance.FightLogicFeint, Spells.Feint, true, Auras.Feint)) return true;
+
             if (SingleTarget.ForceLimitBreak()) return true;
 
             if (Core.Me.HasAura(Auras.Enshrouded)) //Enshroud Mode

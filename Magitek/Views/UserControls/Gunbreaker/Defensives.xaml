@@ -106,6 +106,5 @@
                 <TextBlock Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
             </StackPanel>
         </controls:SettingsBlock>
-
     </StackPanel>
 </UserControl>

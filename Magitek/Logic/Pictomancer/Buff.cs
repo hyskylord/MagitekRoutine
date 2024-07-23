@@ -2,6 +2,7 @@
 using ff14bot;
 using ff14bot.Managers;
 using Magitek.Extensions;
+using Magitek.Logic.Roles;
 using Magitek.Models.Pictomancer;
 using Magitek.Utilities;
 using Magitek.Utilities.Routines;
@@ -47,21 +48,14 @@ namespace Magitek.Logic.Pictomancer
 
         public static async Task<bool> FightLogic_TemperaCoat()
         {
-            if (!PictomancerSettings.Instance.FightLogicTemperaCoat)
-                return false;
-
-            if (!Spells.TemperaCoat.IsKnownAndReady())
-                return false;
-
-            if (!FightLogic.ZoneHasFightLogic() || !FightLogic.EnemyHasAnyAoeLogic())
-                return false;
-
-            if (FightLogic.EnemyIsCastingAoe() || FightLogic.EnemyIsCastingBigAoe())
-            {
-                // intentionally don't wait for the grassa aura, it either happens or it doesn't. 
-                return await FightLogic.DoAndBuffer(Spells.TemperaCoat.Cast(Core.Me));             
-            }
-            return false;
+            // intentionally don't wait for the grassa aura, it either happens as a automatic follow-on or it doesn't. 
+            // tempera grassa has a 1.5 second cooldown before it can be cast, so we can't cast it immediately after coat.
+            return await CommonFightLogic.FightLogic_PartyShield(
+                PictomancerSettings.Instance.FightLogicTemperaCoat, 
+                Spells.TemperaCoat, 
+                true, 
+                new uint[] { Auras.TemperaCoat, Auras.TemperaGrassa }
+                );
         }
 
         public static async Task<bool> FightLogic_TemperaGrassa()
@@ -72,7 +66,7 @@ namespace Magitek.Logic.Pictomancer
             if (!Spells.TemperaGrassa.IsKnownAndReady())
                 return false;
 
-            if (!Core.Me.HasAura(Auras.TempuraCoat))
+            if (!Core.Me.HasAura(Auras.TemperaCoat))
                 return false;
 
             if (!Globals.InParty)
@@ -80,25 +74,6 @@ namespace Magitek.Logic.Pictomancer
                
             // intentionally don't wait for the grassa aura, it either happens or it doesn't. 
             return await Spells.TemperaGrassa.Cast(Core.Me);
-        }
-
-        public static async Task<bool> FightLogic_Addle()
-        {
-            if (!PictomancerSettings.Instance.FightLogicAddle)
-                return false;
-
-            if (!Spells.Addle.IsKnownAndReady())
-                return false;
-
-            if (!FightLogic.ZoneHasFightLogic())
-                return false;
-
-            if (FightLogic.EnemyIsCastingAoe() || FightLogic.EnemyIsCastingBigAoe() || FightLogic.EnemyIsCastingTankBuster() != null)
-            {
-                return await FightLogic.DoAndBuffer(Spells.Addle.Cast(Core.Me.CurrentTarget));
-            }
-
-            return false;
         }
     }
 }

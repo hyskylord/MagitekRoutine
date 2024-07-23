@@ -16,6 +16,13 @@ namespace Magitek.Logic.Roles
 {
     internal static class PhysicalDps
     {
+        public static uint[] partyShieldAuras = new uint[]
+        {
+            Auras.Tactician,
+            Auras.Troubadour,
+            Auras.ShieldSamba
+        };
+
         public static async Task<bool> SecondWind<T>(T settings) where T : PhysicalDpsSettings
         {
             if (!settings.UseSecondWind)
