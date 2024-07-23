@@ -19,6 +19,8 @@ using Magitek.Models.Scholar;
 using Magitek.Models.Summoner;
 using Magitek.Models.Warrior;
 using Magitek.Models.WhiteMage;
+using Magitek.Models.Viper;
+using Magitek.Models.Pictomancer;
 
 namespace Magitek.Extensions
 {
@@ -84,6 +86,12 @@ namespace Magitek.Extensions
 
                 case "Sage":
                     return SageSettings.Instance;
+
+                case "Viper":
+                    return ViperSettings.Instance;
+
+                case "Pictomancer":
+                    return PictomancerSettings.Instance;
 
                 case "BlueMage":
                     return BlueMageSettings.Instance;

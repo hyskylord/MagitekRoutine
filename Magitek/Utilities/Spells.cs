@@ -1113,6 +1113,8 @@ namespace Magitek.Utilities
         public static readonly SpellData SecondLegacy = DataManager.GetSpellData(34641);
         public static readonly SpellData ThirdLegacy = DataManager.GetSpellData(34642);
         public static readonly SpellData FourthLegacy = DataManager.GetSpellData(34643);
+        public static readonly SpellData UncoiledTwinfang = DataManager.GetSpellData(34644);
+        public static readonly SpellData UncoiledTwinblood = DataManager.GetSpellData(34645);
         public static readonly SpellData Slither = DataManager.GetSpellData(34646);
         public static readonly SpellData SerpentIre = DataManager.GetSpellData(34647);
         public static readonly SpellData SerpentTail = DataManager.GetSpellData(35920);
