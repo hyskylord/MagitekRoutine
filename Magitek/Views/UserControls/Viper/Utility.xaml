@@ -21,7 +21,7 @@
 
     <StackPanel Margin="10">
 
-        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5">
                 <StackPanel Orientation="Horizontal">
                     <CheckBox Margin="5" Content=" Enable Slither " IsChecked="{Binding ViperSettings.UseSlither, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />

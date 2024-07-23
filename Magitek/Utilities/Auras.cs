@@ -363,20 +363,24 @@ namespace Magitek.Utilities
             ReadyToReign = 3840,
 
             //VPR
-            Swiftscaled = 3669,
-            HindstungVenom = 3647,
-            HindsbaneVenom = 3648,
             FlankstungVenom = 3645,
             FlanksbaneVenom = 3646,
-            HunterInstinct = 3668,
-            HunterVenom = 3657,
-            SwiftskinVenom = 3658,
+            HindstungVenom = 3647,
+            HindsbaneVenom = 3648,
             GrimhunterVenom = 3649,
             GrimskinVenom = 3650,
+            HunterVenom = 3657,
+            SwiftskinVenom = 3658,
             FellhunterVenom = 3659,
             FellskinVenom = 3660,
+            PoisedforTwinfang = 3665,
+            PoisedforTwinblood = 3666,
             NoxiousGnash = 3667,
-
+            HunterInstinct = 3668,
+            Swiftscaled = 3669,
+            Reawakened = 3670,
+            ReadytoReawaken = 3671,
+            
             //PCT
             Aetherhues = 3675,
             Aetherhues2 = 3676,

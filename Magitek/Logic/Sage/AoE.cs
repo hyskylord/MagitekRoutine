@@ -77,10 +77,16 @@ namespace Magitek.Logic.Sage
             if (!SageSettings.Instance.DoDamage)
                 return false;
 
-            if (SageSettings.Instance.UseTTDForDots && Combat.CurrentTargetCombatTimeLeft <= SageSettings.Instance.DontDotIfEnemyDyingWithin)
+            if (!SageSettings.Instance.AoE)
+                return false;
+
+            if (Combat.CurrentTargetCombatTimeLeft <= SageSettings.Instance.DontDotIfEnemyDyingWithin)
                 return false;
 
             if (!SageSettings.Instance.EukrasianDyskrasia)
+                return false;
+
+            if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= Spells.Dyskrasia.Radius + r.CombatReach) < SageSettings.Instance.AoEEnemies)
                 return false;
 
             if (!Heal.IsEukrasiaReady())
