@@ -22,7 +22,12 @@
 
         <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5" Orientation="Vertical">
-                <TextBlock Style="{DynamicResource TextBlockDefault}" TextWrapping="Wrap" Text="Fight Logic: Automatically casts abilities based on fight content. Only works on certain Endwalker bosses and dungeons. If a spell is denoted with (save) it will only be cast when the fight logic conditions are satisfied, otherwise the spell may also continue to trigger if other conditions like HealthPercentage are met." />
+                <TextBlock Margin="3" Style="{DynamicResource TextBlockDefault}" TextWrapping="Wrap">
+        Fight Logic: <LineBreak/>       
+        This allows Routines to automatically respond to TankBusters and AoE attacks by pre-shielding, using cooldowns, or applying debuffs. <LineBreak/>
+        <LineBreak/>
+        Only works on supported bosses and dungeons and limited to only boss-cast-bar detectable actions.
+                </TextBlock>
                 <TextBlock Margin="0,5"  Style="{DynamicResource TextBlockDefault}" TextWrapping="Wrap" Text="Tankbusters" />
                 <StackPanel Orientation="Vertical">
                     <CheckBox Content="Haima (saved)" IsChecked="{Binding SageSettings.FightLogic_Haima, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />

@@ -364,6 +364,15 @@ namespace Magitek.Logic.WhiteMage
                                                                        r.CurrentHealthPercent <= WhiteMageSettings.Instance.AsylumHealthPercent &&
                                                                        Group.CastableAlliesWithin30.Count(x => x.CurrentHealth > 0 && x.Distance(r) <= 15 && x.CurrentHealthPercent <= WhiteMageSettings.Instance.AsylumHealthPercent) >= AoeNeedHealing - 1);
 
+            if (WhiteMageSettings.Instance.AsylumCenterParty)
+            {
+                var targets = Group.CastableAlliesWithin30.OrderBy(r =>
+                    Group.CastableAlliesWithin30.Sum(ot => r.Distance(ot.Location))
+                ).ThenBy(t => Core.Me.Distance(t.Location));
+
+                asylumTarget = targets.FirstOrDefault(asylumTarget);
+            }
+
             if (asylumTarget == null)
                 return false;
 

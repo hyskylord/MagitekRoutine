@@ -35,6 +35,12 @@
 
         <controls:SettingsBlock Margin="0,5,0,0" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5">
+                <TextBlock Margin="3" Style="{DynamicResource TextBlockDefault}" TextWrapping="Wrap">
+        Fight Logic: <LineBreak/>       
+        This allows Routines to automatically respond to TankBusters and AoE attacks by pre-shielding, using cooldowns, or applying debuffs. <LineBreak/>
+        <LineBreak/>
+        Only works on supported bosses and dungeons and limited to only boss-cast-bar detectable actions.
+                </TextBlock>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <CheckBox Margin="5" Content=" FightLogic Use Shield Samba " IsChecked="{Binding DancerSettings.FightLogicShieldSamba, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
