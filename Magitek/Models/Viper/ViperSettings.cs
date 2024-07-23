@@ -21,6 +21,10 @@ namespace Magitek.Models.Viper
         [DefaultValue(false)]
         public bool HidePositionalMessage { get; set; }
 
+        [Setting]
+        [DefaultValue(false)]
+        public bool EnemyIsOmni { get; set; }
+
         #endregion
 
         #region SingleTarget-Abilities

@@ -29,17 +29,25 @@
     </UserControl.DataContext>
 
     <StackPanel Margin="10">
-        <controls:SettingsBlock  Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="5" Orientation="Vertical">
-                <CheckBox Margin="0,3,0,0" Content="The Forbidden Chakra" IsChecked="{Binding MonkSettings.UseTheForbiddenChakra, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-            </StackPanel>
-        </controls:SettingsBlock>
-
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5" Orientation="Horizontal">
                 <CheckBox Content="Use Interrupt and Stun. If activated, use strategy: " IsChecked="{Binding MonkSettings.UseStunOrInterrupt, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 <ComboBox Width="170" ItemsSource="{Binding Source={StaticResource InterruptStrategy}}" SelectedValue="{Binding MonkSettings.Strategy, Mode=TwoWay}" Style="{DynamicResource ComboBox}" />
             </StackPanel>
         </controls:SettingsBlock>
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="0,3" Content=" Hide Positional Message " IsChecked="{Binding MonkSettings.HidePositionalMessage, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                </StackPanel>
+            </StackPanel>
+        </controls:SettingsBlock>
+
+        <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5" Orientation="Vertical">
+                <CheckBox Margin="0,3" Content="The Forbidden Chakra" IsChecked="{Binding MonkSettings.UseTheForbiddenChakra, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+            </StackPanel>
+        </controls:SettingsBlock>
+
     </StackPanel>
 </UserControl>

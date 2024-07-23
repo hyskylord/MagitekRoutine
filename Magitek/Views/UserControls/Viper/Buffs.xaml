@@ -46,8 +46,9 @@
         </controls:SettingsBlock>
 
         <controls:SettingsBlock Margin="0,5,0,0" Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="5">
-                <CheckBox Content="Use Feint" IsChecked="{Binding ViperSettings.UseFeint, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <CheckBox Content="Use Feint          " IsChecked="{Binding ViperSettings.UseFeint, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                <CheckBox Content="Use True North" IsChecked="{Binding ViperSettings.UseTrueNorth, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
             </StackPanel>
         </controls:SettingsBlock>
 

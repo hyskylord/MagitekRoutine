@@ -21,6 +21,12 @@ namespace Magitek.Logic.Viper
             if (Core.Me.ClassLevel < Spells.SteelFangs.LevelAcquired)
                 return false;
 
+            if (Core.Me.HasAura(Auras.HunterVenom, true) || Core.Me.HasAura(Auras.SwiftskinVenom, true))
+                return false;
+
+            if (Core.Me.HasAura(Auras.PoisedforTwinfang, true) || Core.Me.HasAura(Auras.PoisedforTwinblood, true))
+                return false;
+
             if (Core.Me.ClassLevel >= Spells.DreadFangs.LevelAcquired && Spells.DreadFangs.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true, 10000))
                 return await Spells.DreadFangs.Cast(Core.Me.CurrentTarget);
             else
@@ -75,6 +81,12 @@ namespace Magitek.Logic.Viper
             if (!ViperSettings.Instance.UseDreadwinder)
                 return false;
 
+            if (Core.Me.HasAura(Auras.HunterVenom, true) || Core.Me.HasAura(Auras.SwiftskinVenom, true))
+                return false;
+
+            if (Core.Me.HasAura(Auras.PoisedforTwinfang, true) || Core.Me.HasAura(Auras.PoisedforTwinblood, true))
+                return false;
+
             return await Spells.Dreadwinder.Cast(Core.Me.CurrentTarget);
         }
 
@@ -85,8 +97,14 @@ namespace Magitek.Logic.Viper
 
             if (Core.Me.ClassLevel >= Spells.HunterCoil.LevelAcquired && Spells.HunterCoil.CanCast())
                 return await Spells.HunterCoil.Cast(Core.Me.CurrentTarget);
-            else
-                return await Spells.SwiftskinCoil.Cast(Core.Me.CurrentTarget);
+            
+            if(Core.Me.HasAura(Auras.SwiftskinVenom, true))
+                return false;
+
+            if(!Spells.SwiftskinCoil.CanCast())
+                return false;
+
+            return await Spells.SwiftskinCoil.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> UncoiledFury()
@@ -99,6 +117,10 @@ namespace Magitek.Logic.Viper
 
             if (!Spells.UncoiledFury.CanCast())
                 return false;
+
+            if (Core.Me.HasAura(Auras.HunterVenom, true) || Core.Me.HasAura(Auras.SwiftskinVenom, true) )
+                return false;
+
 
             return await Spells.UncoiledFury.Cast(Core.Me.CurrentTarget);
 
