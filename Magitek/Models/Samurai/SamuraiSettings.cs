@@ -64,6 +64,10 @@ namespace Magitek.Models.Samurai
         [DefaultValue(50.0f)]
         public float BloodbathHealthPercent { get; set; }
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicTengentsu { get; set; }
+
         #endregion
 
         #region Buff

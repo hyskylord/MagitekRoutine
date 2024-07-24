@@ -91,6 +91,10 @@ namespace Magitek.Rotations
             //LimitBreak
             if (Defensive.ForceLimitBreak()) return true;
 
+            if (await CommonFightLogic.FightLogic_TankDefensive(GunbreakerSettings.Instance.FightLogicDefensives, GunbreakerRoutine.DefensiveSpells, GunbreakerRoutine.Defensives)) return true;
+            if (await CommonFightLogic.FightLogic_PartyShield(GunbreakerSettings.Instance.FightLogicPartyShield, Spells.HeartofLight, true, aura: Auras.HeartofLight)) return true;
+            if (await CommonFightLogic.FightLogic_Debuff(GunbreakerSettings.Instance.FightLogicReprisal, Spells.Reprisal, true, aura: Auras.Reprisal)) return true;
+
             //Utility
             if (await Buff.RoyalGuard()) return true;
             if (await Tank.Interrupt(GunbreakerSettings.Instance)) return true;

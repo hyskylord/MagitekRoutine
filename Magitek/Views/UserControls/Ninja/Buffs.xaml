@@ -26,8 +26,6 @@
     </UserControl.Resources>
 
     <StackPanel Margin="10">
-        <controls:SettingsBlock Background="{DynamicResource ClassSelectorBackground}">
-
-        </controls:SettingsBlock>
+        
     </StackPanel>
 </UserControl>

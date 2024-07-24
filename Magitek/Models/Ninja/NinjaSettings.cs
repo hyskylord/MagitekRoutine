@@ -14,6 +14,10 @@ namespace Magitek.Models.Ninja
 
         public static NinjaSettings Instance { get; set; } = new NinjaSettings();
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicShadeShift { get; set; }
+
         #region PVP
 
         [Setting]

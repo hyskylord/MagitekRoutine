@@ -207,6 +207,10 @@ namespace Magitek.Models.Summoner
         public bool LucidDreaming { get; set; }
 
         [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicRadiantAegis { get; set; }
+
+        [Setting]
         [DefaultValue(60.0f)]
         public float LucidDreamingManaPercent { get; set; }
 

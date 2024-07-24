@@ -224,6 +224,9 @@ namespace Magitek.Models.Reaper
         [DefaultValue(true)]
         public bool UseSoulsow { get; set; }
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicArcaneCrest { get; set; }
         #endregion
 
         #region PVP

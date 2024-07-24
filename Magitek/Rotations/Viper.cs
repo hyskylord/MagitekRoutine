@@ -110,6 +110,7 @@ namespace Magitek.Rotations
                 SpellQueueLogic.InSpellQueue = false;
             }
 
+
             if (SpellQueueLogic.SpellQueue.Any())
             {
                 if (await SpellQueueLogic.SpellQueueMethod())
@@ -124,6 +125,7 @@ namespace Magitek.Rotations
 
             if (SingleTarget.ForceLimitBreak()) return true;
 
+            if (await CommonFightLogic.FightLogic_Debuff(ViperSettings.Instance.FightLogicFeint, Spells.Feint, true, Auras.Feint)) return true;
 
             if (ViperRoutine.GlobalCooldown.CanWeave())
             {

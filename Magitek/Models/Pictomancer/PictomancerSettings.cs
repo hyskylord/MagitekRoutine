@@ -161,10 +161,6 @@ namespace Magitek.Models.Pictomancer
         [Setting]
         [DefaultValue(true)]
         public bool FightLogicTemperaCoat { get; set; }
-
-        [Setting]
-        [DefaultValue(true)]
-        public bool FightLogicAddle { get; set; }
         #endregion
 
         #region Paint

@@ -288,6 +288,14 @@ namespace Magitek.Models.Bard
         [DefaultValue(false)]
         public bool RepellingShotOnlyWhenTargeted { get; set; }
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicNaturesMinne { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicTroubadour { get; set; }
+
         #endregion
 
         [Setting]

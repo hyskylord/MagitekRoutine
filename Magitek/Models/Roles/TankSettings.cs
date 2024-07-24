@@ -64,6 +64,18 @@ namespace Magitek.Models.Roles
         [Setting]
         [DefaultValue(true)]
         public bool UseProvoke { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicDefensives { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicPartyShield { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicReprisal { get; set; }
         #endregion
 
         #region interrupt

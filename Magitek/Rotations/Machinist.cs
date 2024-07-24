@@ -113,6 +113,9 @@ namespace Magitek.Rotations
             //LimitBreak
             if (MultiTarget.ForceLimitBreak()) return true;
 
+            if (await CommonFightLogic.FightLogic_Debuff(MachinistSettings.Instance.FightLogicDismantle, Spells.Dismantle, true, Auras.Dismantled)) return true;
+            if (await CommonFightLogic.FightLogic_PartyShield(MachinistSettings.Instance.FightLogicTactician, Spells.Tactician, true, PhysicalDps.partyShieldAuras)) return true;
+
             if (ActionResourceManager.Machinist.OverheatRemaining != TimeSpan.Zero)
             {
                 if (MachinistRoutine.GlobalCooldown.CanWeave(1))

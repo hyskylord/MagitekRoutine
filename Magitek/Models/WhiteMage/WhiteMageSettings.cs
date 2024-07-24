@@ -86,6 +86,10 @@ namespace Magitek.Models.WhiteMage
         public bool Asylum { get; set; }
 
         [Setting]
+        [DefaultValue(true)]
+        public bool AsylumCenterParty { get; set; }
+
+        [Setting]
         [DefaultValue(85.0f)]
         public float AsylumHealthPercent { get; set; }
 
@@ -512,6 +516,38 @@ namespace Magitek.Models.WhiteMage
         [Setting]
         [DefaultValue(false)]
         public bool CureOnRest { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicDivineCaress { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicTemperance { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicLiturgyoftheBell { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicAsylum { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicPlenaryIndulgence { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicMedica2 { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicDivineBenison { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicAquaveil { get; set; }
 
         public void Load(string path)
         {

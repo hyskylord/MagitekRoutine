@@ -100,7 +100,8 @@ namespace Magitek.Logic.RedMage
                 return await Spells.Manafication.Cast(Core.Me.CurrentTarget);
 
             return false;
-        }
+        }        
+
         public static async Task<bool> MagickBarrier()
         {
             if (!RedMageSettings.Instance.MagickBarrier)

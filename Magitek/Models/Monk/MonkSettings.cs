@@ -145,6 +145,10 @@ namespace Magitek.Models.Monk
         [DefaultValue(true)]
         public bool UseFireReply { get; set; }
 
+        [Setting]
+        [DefaultValue(true)]
+        public bool FightLogicMantra { get; set; }
+
         #region PVP
 
         [Setting]

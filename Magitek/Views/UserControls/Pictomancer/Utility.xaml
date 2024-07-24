@@ -26,12 +26,6 @@
                     <StackPanel Orientation="Horizontal">
                         <CheckBox Margin="5" Content=" Use Subtractive Palette " IsChecked="{Binding PictomancerSettings.UseSubtractivePalette, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Margin="5" Content=" FightLogic Use Tempera Coat/Grassa " IsChecked="{Binding PictomancerSettings.FightLogicTemperaCoat, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Margin="5" Content=" FightLogic Use Addle " IsChecked="{Binding PictomancerSettings.FightLogicAddle, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>
@@ -45,15 +39,6 @@
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>
-
-        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="5">
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox Margin="5" Content=" Use Weaving (Only cast Instant Abilities after spell casts)" IsChecked="{Binding PictomancerSettings.UseWeaving, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                </StackPanel>
-            </StackPanel>
-        </controls:SettingsBlock>
-
     </StackPanel>
 </UserControl>
 

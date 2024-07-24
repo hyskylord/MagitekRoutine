@@ -37,7 +37,17 @@ namespace Magitek.Utilities.Routines
             return true;
         }
 
-        public static readonly List<uint> Defensives = new List<uint>()
+        public static readonly SpellData[] DefensiveSpells = new SpellData[]
+        {
+            Spells.Rampart,
+            Spells.Bloodwhetting,
+            Spells.RawIntuition,
+            Spells.Vengeance,
+            Spells.ThrillofBattle,
+            Spells.Damnation
+        };
+
+        public static readonly uint[] Defensives = new uint[]
         {
             Auras.Rampart,
             Auras.RawIntuition,

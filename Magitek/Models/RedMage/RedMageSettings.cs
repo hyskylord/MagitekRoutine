@@ -16,6 +16,10 @@ namespace Magitek.Models.RedMage
 
         [Setting]
         [DefaultValue(true)]
+        public bool FightLogicMagickBarrier { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
         public bool UseAoe { get; set; }
 
         [Setting]

@@ -73,6 +73,11 @@ namespace Magitek.Logic.Roles
                 return false;
 
             return await Potion.UsePotion((int)settings.PotionTypeAndGradeLevel);
-        }        
+        }
+
+        public static async Task<bool> FightLogic_Addle(MagicDpsSettings settings)
+        {
+            return await CommonFightLogic.FightLogic_Debuff(settings.FightLogicAddle, Spells.Addle, true, Auras.Addle);
+        }
     }
 }

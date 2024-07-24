@@ -167,7 +167,7 @@ namespace Magitek.Logic.Reaper
                 return false;
             if (Utilities.Routines.Reaper.CheckTTDIsEnemyDyingSoon())
                 return false;
-            return await Spells.GrimSwathe.Cast(Core.Me.CurrentTarget);
+            return await Spells.GrimSwathe.CastAura(Core.Me.CurrentTarget, Auras.SoulReaver, auraTarget: Core.Me);
         }
 
         #endregion

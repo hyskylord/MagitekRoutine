@@ -11,7 +11,6 @@ using Magitek.Utilities.CombatMessages;
 using SamuraiRoutine = Magitek.Utilities.Routines.Samurai;
 using System.Linq;
 using System.Threading.Tasks;
-using Magitek.Models.Monk;
 
 namespace Magitek.Rotations
 {
@@ -89,6 +88,9 @@ namespace Magitek.Rotations
 
             //Buff for opener
             if (await Buff.MeikyoShisuiNotInCombat()) return true;
+
+            if (await CommonFightLogic.FightLogic_SelfShield(SamuraiSettings.Instance.FightLogicTengentsu, Spells.Tengentsu)) return true;
+            if (await CommonFightLogic.FightLogic_Debuff(SamuraiSettings.Instance.FightLogicFeint, Spells.Feint, true, Auras.Feint)) return true;
 
             //Utility
             if (await PhysicalDps.Interrupt(SamuraiSettings.Instance)) return true;

@@ -133,7 +133,7 @@
                        Value="{Binding WarriorSettings.ArmsLengthEnemies, Mode=TwoWay}" />
                     <TextBlock Grid.Row="8" Grid.Column="4" Style="{DynamicResource TextBlockDefault}" Text=" Enemies" />
                 </Grid>
-            </StackPanel>            
+            </StackPanel>
         </controls:SettingsBlock>
 
     </StackPanel>

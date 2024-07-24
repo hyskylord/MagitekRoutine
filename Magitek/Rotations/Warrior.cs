@@ -10,7 +10,6 @@ using Magitek.Models.Warrior;
 using Magitek.Utilities;
 using WarriorRoutine = Magitek.Utilities.Routines.Warrior;
 using System.Threading.Tasks;
-using Magitek.Models.Paladin;
 
 namespace Magitek.Rotations
 {
@@ -84,6 +83,10 @@ namespace Magitek.Rotations
 
             //LimitBreak
             if (Defensive.ForceLimitBreak()) return true;
+
+            if (await CommonFightLogic.FightLogic_TankDefensive(WarriorSettings.Instance.FightLogicDefensives, WarriorRoutine.DefensiveSpells, WarriorRoutine.Defensives)) return true;
+            if (await CommonFightLogic.FightLogic_PartyShield(WarriorSettings.Instance.FightLogicPartyShield, Spells.ShakeItOff, true, aura: Auras.ShakeItOff)) return true;
+            if (await CommonFightLogic.FightLogic_Debuff(WarriorSettings.Instance.FightLogicReprisal, Spells.Reprisal, true, aura: Auras.Reprisal)) return true;
 
             //Utility
             if (await Buff.Defiance()) return true;
