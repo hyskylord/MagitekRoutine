@@ -100,6 +100,9 @@ namespace Magitek.Rotations
             if (await SingleTarget.ForceAfflatusMisery()) return true;
             if (await Logic.WhiteMage.Heal.Raise()) return true;
 
+            if (await HealFightLogic.Aoe()) return true;
+            if (await HealFightLogic.Tankbuster()) return true;
+
             // Scalebound Extreme Rathalos
             if (Core.Me.HasAura(1495))
             {
