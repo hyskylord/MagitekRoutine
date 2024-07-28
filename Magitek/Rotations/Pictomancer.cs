@@ -110,9 +110,10 @@ namespace Magitek.Rotations
 
             if (PictomancerRoutine.GlobalCooldown.CanWeave()) 
             {
-                if (await Healer.LucidDreaming(PictomancerSettings.Instance.UseLucidDreaming, PictomancerSettings.Instance.LucidDreamingMinimumManaPercent)) return true;
-                if (await Buff.SubtractivePalette()) return true;
+                if (await Healer.LucidDreaming(PictomancerSettings.Instance.UseLucidDreaming, PictomancerSettings.Instance.LucidDreamingMinimumManaPercent)) return true;   
             }
+
+            if (await Buff.SubtractivePalette()) return true;
 
             // palettes
             if (await Palette.StarPrism()) return true;
