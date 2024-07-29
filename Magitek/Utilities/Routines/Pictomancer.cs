@@ -19,10 +19,10 @@ namespace Magitek.Utilities.Routines
             if (!Spells.StarryMuse.IsKnown())
                 return false;
 
-            if (Core.Me.HasAura(Auras.StarryMuse))
+            if (Core.Me.HasAura(Auras.StarryMuse, true))
                 return false;
 
-            if (Spells.StarryMuse.Cooldown == TimeSpan.Zero && !Core.Me.HasAura(Auras.StarryMuse))
+            if (Spells.StarryMuse.Cooldown == TimeSpan.Zero && !Core.Me.HasAura(Auras.StarryMuse, true))
                 return true;
 
             if (Spells.StarryMuse.Cooldown > TimeSpan.Zero && 
@@ -37,10 +37,10 @@ namespace Magitek.Utilities.Routines
             if (!Spells.StarryMuse.IsKnown())
                 return 0;
 
-            if (Core.Me.HasAura(Auras.StarryMuse))
+            if (Core.Me.HasAura(Auras.StarryMuse, true))
                 return 0;
 
-            if (Spells.StarryMuse.Cooldown == TimeSpan.Zero && !Core.Me.HasAura(Auras.StarryMuse))
+            if (Spells.StarryMuse.Cooldown == TimeSpan.Zero && !Core.Me.HasAura(Auras.StarryMuse, true))
                 return 0;
 
             if (Spells.StarryMuse.Cooldown > TimeSpan.Zero)

@@ -244,7 +244,7 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (muse.IsKnown/*AndReady*/() && muse.CanCast(Core.Me.CurrentTarget))
-                return await muse.Cast(Core.Me.CurrentTarget);
+                return await muse.CastAura(Core.Me, Auras.HammerTime);
 
             return false;
         }

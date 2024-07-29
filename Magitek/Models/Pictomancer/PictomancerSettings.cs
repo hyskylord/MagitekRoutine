@@ -23,7 +23,7 @@ namespace Magitek.Models.Pictomancer
         public bool UseHammerDuringStarry { get; set; }
 
         [Setting]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool SaveHammerForStarry { get; set; }
 
         [Setting]
@@ -39,7 +39,7 @@ namespace Magitek.Models.Pictomancer
         public bool UseMogDuringStarry { get; set; }
 
         [Setting]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool SaveMogForStarry { get; set; }
 
         [Setting]
