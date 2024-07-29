@@ -110,9 +110,10 @@ namespace Magitek.Rotations
 
             if (PictomancerRoutine.GlobalCooldown.CanWeave()) 
             {
-                if (await Healer.LucidDreaming(PictomancerSettings.Instance.UseLucidDreaming, PictomancerSettings.Instance.LucidDreamingMinimumManaPercent)) return true;
-                if (await Buff.SubtractivePalette()) return true;
+                if (await Healer.LucidDreaming(PictomancerSettings.Instance.UseLucidDreaming, PictomancerSettings.Instance.LucidDreamingMinimumManaPercent)) return true;   
             }
+
+            if (await Buff.SubtractivePalette()) return true;
 
             // palettes
             if (await Palette.StarPrism()) return true;
@@ -123,7 +124,9 @@ namespace Magitek.Rotations
             if (await Palette.HammerStamp()) return true;
 
             if (await Palette.CreatureMuse()) return true;
-            if (await Palette.StrikingMuse()) return true;   
+            if (await Palette.StrikingMuse()) return true;
+
+            if (await SingleTarget.CometinBlack()) return true;
 
             // inspiration is on a timer, need to consume those stacks first.
             // don't waste time painting more palettes
@@ -140,7 +143,6 @@ namespace Magitek.Rotations
             if (await AOE.CometinBlack()) return true;
             if (await AOE.HolyinWhite()) return true;
             if (await AOE.Paint()) return true;
-            if (await SingleTarget.CometinBlack()) return true;
             if (await SingleTarget.HolyinWhite()) return true;
             if (await SingleTarget.Paint()) return true;
             return false;

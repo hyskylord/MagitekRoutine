@@ -77,6 +77,14 @@ namespace Magitek.Logic.Pictomancer
             if (PictomancerSettings.Instance.SaveCometInBlackForStarry
                 && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
                 return false;
+            else if (PictomancerSettings.Instance.SaveCometInBlackForStarry
+                && !Core.Me.HasAura(Auras.StarryMuse, true)
+                && !Spells.SubtractivePalette.CanCast())
+                return false;
+
+            if (PictomancerSettings.Instance.CometInBlackOnlyDuringStarry
+                && !Core.Me.HasAura(Auras.StarryMuse, true))
+                return false;
 
             if (!Spells.CometinBlack.IsKnownAndReady())
                 return false;

@@ -23,23 +23,27 @@ namespace Magitek.Models.Pictomancer
         public bool UseHammerDuringStarry { get; set; }
 
         [Setting]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool SaveHammerForStarry { get; set; }
 
         [Setting]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool SaveCometInBlackForStarry { get; set; }
 
         [Setting]
-        [DefaultValue(true)]
-        public bool UseMogDuringStarry { get; set; }
+        [DefaultValue(false)]
+        public bool CometInBlackOnlyDuringStarry { get; set; }
 
         [Setting]
         [DefaultValue(false)]
+        public bool UseMogDuringStarry { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
         public bool SaveMogForStarry { get; set; }
 
         [Setting]
-        [DefaultValue(15)]
+        [DefaultValue(20)]
         public int SaveForStarryMSeconds { get; set; }
 
         [Setting]
@@ -65,8 +69,24 @@ namespace Magitek.Models.Pictomancer
         public bool PaletteDuringStarry { get; set; }
 
         [Setting]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool SwiftcastMotifs { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool SwiftcastMotifsOnlyWhenMoving { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool SwiftcastCreatureMotifs { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool SwiftcastWeaponMotifs { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool SwiftcastLandscapeMotifs { get; set; }
 
         [Setting]
         [DefaultValue(true)]
@@ -79,6 +99,14 @@ namespace Magitek.Models.Pictomancer
         [Setting]
         [DefaultValue(true)]
         public bool UseHammers { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool SaveHammerForMovement { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool SaveHammerForMovementOnlyBoss { get; set; }
 
         [Setting]
         [DefaultValue(true)]

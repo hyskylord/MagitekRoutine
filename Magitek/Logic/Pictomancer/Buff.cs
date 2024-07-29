@@ -43,7 +43,7 @@ namespace Magitek.Logic.Pictomancer
             if (Core.Me.HasAura(Auras.MonochromeTones))
                 return false;
 
-            return await Spells.SubtractivePalette.Cast(Core.Me);
+            return await Spells.SubtractivePalette.CastAura(Core.Me, Auras.SubtractivePalette);
         }
 
         public static async Task<bool> FightLogic_TemperaCoat()

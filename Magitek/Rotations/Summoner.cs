@@ -106,6 +106,7 @@ namespace Magitek.Rotations
             if (await MagicDps.FightLogic_Addle(SummonerSettings.Instance)) return true;
             if (await CommonFightLogic.FightLogic_SelfShield(SummonerSettings.Instance.FightLogicRadiantAegis, Spells.RadiantAegis, true, Auras.RadiantAegis)) return true;
 
+            if (await Aoe.CrimsonStrike()) return true;
             if (await Buff.LucidDreaming()) return true;
             if (await Pets.SummonCarbuncleOrEgi()) return true;
             if (await Aoe.EnergySiphon()) return true;
@@ -113,7 +114,6 @@ namespace Magitek.Rotations
             if (await SingleTarget.EnergyDrain()) return true;
             if (await SingleTarget.Enkindle()) return true;
             if (await Aoe.AstralFlow()) return true;
-            if (await Aoe.CrimsonStrike()) return true;
             if (await Aoe.Painflare()) return true;
             if (await SingleTarget.Fester()) return true;
             if (await Buff.Aethercharge()) return true;

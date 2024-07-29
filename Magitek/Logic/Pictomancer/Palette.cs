@@ -90,7 +90,7 @@ namespace Magitek.Logic.Pictomancer
             else
             {
                 var castTime = motif.AdjustedCastTime.TotalMilliseconds;
-                var precastCooldown = (castTime + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset + 500) / (muse.AdjustedCooldown.TotalMilliseconds);
+                var precastCooldown = (castTime + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset) / (muse.AdjustedCooldown.TotalMilliseconds);
                 var precastThreshold = 1 - precastCooldown;
                 if (muse.Charges < precastThreshold) return false;
                 return true;
@@ -117,8 +117,12 @@ namespace Magitek.Logic.Pictomancer
 
             bool swiftcast = false;
 
-            if (motif == Spells.WingMotif || motif == Spells.MawMotif)
+            if (PictomancerSettings.Instance.SwiftcastCreatureMotifs 
+                && (motif == Spells.WingMotif || motif == Spells.MawMotif))
                 swiftcast = true;
+
+            if (PictomancerSettings.Instance.SwiftcastMotifsOnlyWhenMoving && !MovementManager.IsMoving)
+                swiftcast = false;
 
             if (!MotifCanCast(motif, muse, swiftcast))
                 return false;
@@ -165,7 +169,7 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseMogDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
                 return false;
 
-            if (PictomancerSettings.Instance.SaveMogForStarry && PictomancerSettings.Instance.UseMogDuringStarry
+            if (PictomancerSettings.Instance.SaveMogForStarry
                 && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
                 return false;
 
@@ -195,12 +199,20 @@ namespace Magitek.Logic.Pictomancer
             var motif = Spells.WeaponMotif.Masked();
             var muse = Spells.SteelMuse.Masked();
 
-            if (!MotifCanCast(motif, muse, MovementManager.IsMoving))
+            bool swiftcast = false;
+
+            if (PictomancerSettings.Instance.SwiftcastWeaponMotifs)
+                swiftcast = true;
+
+            if (PictomancerSettings.Instance.SwiftcastMotifsOnlyWhenMoving && !MovementManager.IsMoving)
+                swiftcast = false;
+
+            if (!MotifCanCast(motif, muse, swiftcast))
                 return false;
 
             if (motif.IsKnownAndReady() && motif.CanCast())
             {
-                if (MovementManager.IsMoving)
+                if (swiftcast)
                     await SwitfcastMotif();
                 return await motif.Cast(Core.Me);
             }
@@ -224,8 +236,15 @@ namespace Magitek.Logic.Pictomancer
 
             var muse = Spells.SteelMuse.Masked();
 
+            if (PictomancerSettings.Instance.SaveHammerForMovement 
+                && (!PictomancerSettings.Instance.SaveHammerForMovementOnlyBoss || PictomancerSettings.Instance.SaveHammerForMovementOnlyBoss && Core.Me.CurrentTarget.IsBoss())
+                && muse.MaxCharges >= 2 
+                && !MovementManager.IsMoving 
+                && muse.Charges < 1.90)
+                return false;
+
             if (muse.IsKnown/*AndReady*/() && muse.CanCast(Core.Me.CurrentTarget))
-                return await muse.Cast(Core.Me.CurrentTarget);
+                return await muse.CastAura(Core.Me, Auras.HammerTime);
 
             return false;
         }
@@ -248,7 +267,7 @@ namespace Magitek.Logic.Pictomancer
             var hammerCastTime = Spells.HammerStamp.AdjustedCastTime.TotalMilliseconds + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset;
             var totalHammerCastTime = hammerCastTime * hammersLeft;
 
-            if (PictomancerSettings.Instance.SaveHammerForStarry && PictomancerSettings.Instance.UseHammerDuringStarry
+            if (PictomancerSettings.Instance.SaveHammerForStarry
                 && Utilities.Routines.Pictomancer.StarryOffCooldownSoon()
                 && totalHammerCastTime > Utilities.Routines.Pictomancer.StarryCooldownRemaining())
                 return false;
@@ -278,11 +297,23 @@ namespace Magitek.Logic.Pictomancer
             var motif = Spells.LandscapeMotif.Masked();
             var muse = Spells.ScenicMuse.Masked();
 
-            if (!MotifCanCast(motif, muse, false))
+            bool swiftcast = false;
+
+            if (PictomancerSettings.Instance.SwiftcastLandscapeMotifs)
+                swiftcast = true;
+
+            if (PictomancerSettings.Instance.SwiftcastMotifsOnlyWhenMoving && !MovementManager.IsMoving)
+                swiftcast = false;
+
+            if (!MotifCanCast(motif, muse, swiftcast))
                 return false;
 
             if (motif.IsKnownAndReady() && motif.CanCast())
+            {
+                if (swiftcast)
+                    await SwitfcastMotif();
                 return await motif.Cast(Core.Me);
+            }
 
             return false;
         }
@@ -355,9 +386,6 @@ namespace Magitek.Logic.Pictomancer
                 return false;
 
             if (!Core.Me.HasAura(Auras.Starstruck))
-                return false;
-
-            if (Utilities.Routines.Pictomancer.CheckTTDIsEnemyDyingSoon())
                 return false;
 
             return await Spells.StarPrism.Cast(Core.Me.CurrentTarget);
