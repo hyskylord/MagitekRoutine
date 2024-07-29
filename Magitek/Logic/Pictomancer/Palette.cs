@@ -169,7 +169,7 @@ namespace Magitek.Logic.Pictomancer
             if (!PictomancerSettings.Instance.UseMogDuringStarry && Core.Me.HasAura(Auras.Hyperphantasia))
                 return false;
 
-            if (PictomancerSettings.Instance.SaveMogForStarry && PictomancerSettings.Instance.UseMogDuringStarry
+            if (PictomancerSettings.Instance.SaveMogForStarry
                 && Utilities.Routines.Pictomancer.StarryOffCooldownSoon())
                 return false;
 
@@ -267,7 +267,7 @@ namespace Magitek.Logic.Pictomancer
             var hammerCastTime = Spells.HammerStamp.AdjustedCastTime.TotalMilliseconds + Globals.AnimationLockMs + BaseSettings.Instance.UserLatencyOffset;
             var totalHammerCastTime = hammerCastTime * hammersLeft;
 
-            if (PictomancerSettings.Instance.SaveHammerForStarry && PictomancerSettings.Instance.UseHammerDuringStarry
+            if (PictomancerSettings.Instance.SaveHammerForStarry
                 && Utilities.Routines.Pictomancer.StarryOffCooldownSoon()
                 && totalHammerCastTime > Utilities.Routines.Pictomancer.StarryCooldownRemaining())
                 return false;
