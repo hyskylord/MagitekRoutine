@@ -7,6 +7,7 @@ using Magitek.Gambits;
 using Magitek.Gambits.Actions;
 using Magitek.Models.Account;
 using Magitek.Utilities;
+using Roslyn.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,6 +22,7 @@ namespace Magitek.Logic
         public static bool InOpener;
         private static OpenerGroup _executingOpener = null;
         private static Queue<Gambit> _currentOpenerQueue = null;
+        public static HashSet<OpenerGroup> _executedOpeners = new HashSet<OpenerGroup>();
         private static Gambit _executingGambit = null;
         private static Stopwatch GambitTimer { get; set; }
 
@@ -34,6 +36,7 @@ namespace Magitek.Logic
                 InOpener = false;
                 _executingOpener = null;
                 _executingGambit = null;
+                _executedOpeners.Clear();
                 BaseSettings.Instance.ResetOpeners = false;
                 Logger.WriteInfo(@"Opener Reset");
                 return true;
@@ -193,8 +196,7 @@ namespace Magitek.Logic
                 // Check to see if we should only use the opener once per combat
                 if (opener.OnlyUseOncePerCombat)
                 {
-                    // If we've been in combat for more than 25 seconds (some bosses put us in combat but don't let us attack them instantly - Demon Chadarnook o6s for example) then we find a different opener
-                    if (Combat.CombatTime.ElapsedMilliseconds > 25000)
+                    if (_executedOpeners.Contains(opener))
                         continue;
                 }
 
@@ -202,6 +204,7 @@ namespace Magitek.Logic
                     continue;
 
                 _executingOpener = opener;
+                _executedOpeners.Add(opener);
                 break;
             }
 

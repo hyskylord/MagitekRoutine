@@ -44,6 +44,7 @@ using BaseSettings = Magitek.Models.Account.BaseSettings;
 using Debug = Magitek.ViewModels.Debug;
 using Regexp = System.Text.RegularExpressions;
 using System.IO;
+using Magitek.Logic;
 
 namespace Magitek
 {
@@ -237,6 +238,12 @@ namespace Magitek
                     Debug.Instance.IsBoss = XivDataHelper.BossDictionary.ContainsKey(Core.Me.CurrentTarget.NpcId) ? "True" : "False";
                     Debug.Instance.TargetCombatTimeLeft = Core.Me.CurrentTarget.CombatTimeLeft();
                 }
+            }
+
+            if (Combat.OutOfCombatTime.ElapsedMilliseconds >= 10500 && CustomOpenerLogic._executedOpeners.Count > 0)
+            {
+                Logger.WriteInfo(@"Resetting Openers Because We're Out Of Combat");
+                CustomOpenerLogic._executedOpeners.Clear();
             }
 
             var time = DateTime.Now;

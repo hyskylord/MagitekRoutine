@@ -20,10 +20,12 @@ namespace Magitek.Gambits.Conditions
         public bool IsSmn { get; set; } = false;
         public bool IsBlm { get; set; } = false;
         public bool IsRdm { get; set; } = false;
+        public bool IsPct { get; set; } = false;
         public bool IsNin { get; set; } = false;
         public bool IsMnk { get; set; } = false;
         public bool IsDrg { get; set; } = false;
         public bool IsSam { get; set; } = false;
+        public bool IsVpr { get; set; } = false;
         public bool IsBlu { get; set; } = false;
 
         public override bool Check(GameObject gameObject = null)
@@ -66,6 +68,9 @@ namespace Magitek.Gambits.Conditions
             if (IsRdm && currentJob == ClassJobType.RedMage)
                 return true;
 
+            if (IsPct && currentJob == ClassJobType.Pictomancer)
+                return true;
+
             if (IsNin && currentJob == ClassJobType.Ninja)
                 return true;
 
@@ -73,6 +78,9 @@ namespace Magitek.Gambits.Conditions
                 return true;
 
             if (IsSam && currentJob == ClassJobType.Samurai)
+                return true;
+
+            if (IsVpr && currentJob == ClassJobType.Viper)
                 return true;
 
             if (IsBlu && currentJob == ClassJobType.BlueMage)
