@@ -82,6 +82,10 @@ namespace Magitek.Logic.Pictomancer
                 && !Core.Me.HasAura(Auras.StarryMuse, true))
                 return false;
 
+            if (PictomancerSettings.Instance.SaveCometInBlackForStarry
+                && ActionResourceManager.Pictomancer.Paint < 50)
+                return false;
+
             if (!Spells.CometinBlack.IsKnownAndReady())
                 return false;
 
