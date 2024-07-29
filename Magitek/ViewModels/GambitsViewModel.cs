@@ -492,7 +492,7 @@ namespace Magitek.ViewModels
 
         #endregion
 
-        private const string ApiAddress = "https://api.magitek.io";
+        private const string ApiAddress = "https://88x8paere5.execute-api.us-east-1.amazonaws.com/magitek/";
 
         #region Share Gambit
 

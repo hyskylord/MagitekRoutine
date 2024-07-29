@@ -31,7 +31,7 @@ namespace Magitek.ViewModels
         public string SelectedJob { get; set; }
         public bool SpinnerVisible { get; set; }
         private readonly HttpClient _webClient = new HttpClient();
-        private const string ApiAddress = "https://api.magitek.io";
+        private const string ApiAddress = "https://88x8paere5.execute-api.us-east-1.amazonaws.com/magitek/";
         #endregion
 
         public AsyncObservableCollection<SharedOpener> Openers { get; set; } = new AsyncObservableCollection<SharedOpener>();

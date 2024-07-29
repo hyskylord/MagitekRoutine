@@ -68,6 +68,10 @@ namespace Magitek.Controls
                     RedMage.IsChecked = true;
                     break;
 
+                case ClassJobType.Pictomancer:
+                    Pictomancer.IsChecked = true;
+                    break;
+
                 case ClassJobType.Ninja:
                     Ninja.IsChecked = true;
                     break;
@@ -86,6 +90,10 @@ namespace Magitek.Controls
 
                 case ClassJobType.Reaper:
                     Reaper.IsChecked = true;
+                    break;
+
+                case ClassJobType.Viper:
+                    Viper.IsChecked = true;
                     break;
 
                 case ClassJobType.BlueMage:
