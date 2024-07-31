@@ -39,11 +39,11 @@
         <controls:SettingsBlock Margin="0,3,0,0" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="3">
                 <StackPanel  Margin="0,3">
-                    <CheckBox Content="Steel/Dread Maw" IsChecked="{Binding ViperSettings.UseSteelDreadMaw, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Content="Steel/Reaving Maw" IsChecked="{Binding ViperSettings.UseSteelReavingMaw, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
 
                 <StackPanel  Margin="0,3">
-                    <CheckBox Content="Pit Of Dread " IsChecked="{Binding ViperSettings.UsePitOfDread, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Content="Vicepit " IsChecked="{Binding ViperSettings.UseVicepit, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>

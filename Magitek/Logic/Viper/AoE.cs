@@ -12,7 +12,7 @@ namespace Magitek.Logic.Viper
 {
     internal static class AoE
     {
-        public static async Task<bool> SteelDreadMaw()
+        public static async Task<bool> SteelReavingMaw()
         {
             if (Core.Me.ClassLevel < Spells.SteelMaw.LevelAcquired)
                 return false;
@@ -23,8 +23,8 @@ namespace Magitek.Logic.Viper
             if (ViperRoutine.EnemiesAroundPlayer5Yards < ViperSettings.Instance.AoeEnemies)
                 return false;
 
-            if (Core.Me.ClassLevel >= Spells.DreadMaw.LevelAcquired && Spells.DreadMaw.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true))
-                return await Spells.DreadMaw.Cast(Core.Me);
+            if (Core.Me.ClassLevel >= Spells.ReavingMaw.LevelAcquired && Core.Me.HasAura(Auras.HonedReavers, true))
+                return await Spells.ReavingMaw.Cast(Core.Me);
             else
                 return await Spells.SteelMaw.Cast(Core.Me);
         }
@@ -62,9 +62,9 @@ namespace Magitek.Logic.Viper
                 return await Spells.JaggedMaw.Cast(Core.Me.CurrentTarget);
         }
 
-        public static async Task<bool> PitOfDread()
+        public static async Task<bool> Vicepit()
         {
-            if (Core.Me.ClassLevel < Spells.PitOfDread.LevelAcquired)
+            if (Core.Me.ClassLevel < Spells.Vicepit.LevelAcquired)
                 return false;
 
             if (!ViperSettings.Instance.UseAoe)
@@ -73,10 +73,10 @@ namespace Magitek.Logic.Viper
             if (ViperRoutine.EnemiesAroundPlayer5Yards < ViperSettings.Instance.AoeEnemies)
                 return false;
 
-            if (!ViperSettings.Instance.UsePitOfDread)
+            if (!ViperSettings.Instance.UseVicepit)
                 return false;
 
-            return await Spells.PitOfDread.Cast(Core.Me);
+            return await Spells.Vicepit.Cast(Core.Me);
         }
 
         public static async Task<bool> HunterOrSwiftskinDen()

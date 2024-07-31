@@ -159,20 +159,20 @@ namespace Magitek.Rotations
             if (await Cooldown.TwinBiteCombo()) return true;
 
             if (await AoE.HunterOrSwiftskinDen()) return true;
-            if (await AoE.PitOfDread()) return true;
+            if (await AoE.Vicepit()) return true;
 
             if (await SingleTarget.HunterOrSwiftskinCoil()) return true;
             if (await SingleTarget.UncoiledFury()) return true;
-            if (await SingleTarget.Dreadwinder()) return true;
+            if (await SingleTarget.Vicewinder()) return true;
 
             if (await AoE.JaggedOrBloodiedMaw()) return true;
             if (await AoE.HunterOrSwiftSkinBite()) return true;
-            if (await AoE.SteelDreadMaw()) return true;
+            if (await AoE.SteelReavingMaw()) return true;
 
             if (await Cooldown.DeathRattle()) return true;
             if (await SingleTarget.FankstingOrFlankbane()) return true;
             if (await SingleTarget.HunterOrSwiftSkinSting()) return true;
-            return await SingleTarget.SteelOrDreadFangs();
+            return await SingleTarget.SteelOrReavingFangs();
 
 
         }

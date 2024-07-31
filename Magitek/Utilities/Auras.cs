@@ -385,11 +385,13 @@ namespace Magitek.Utilities
             FellskinVenom = 3660,
             PoisedforTwinfang = 3665,
             PoisedforTwinblood = 3666,
-            NoxiousGnash = 3667,
+            //NoxiousGnash = 3667,
             HunterInstinct = 3668,
             Swiftscaled = 3669,
             Reawakened = 3670,
             ReadytoReawaken = 3671,
+            HonedSteel = 3672,
+            HonedReavers = 3772,
             
             //PCT
             Aetherhues = 3675,
