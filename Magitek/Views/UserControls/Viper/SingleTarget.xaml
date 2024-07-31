@@ -48,7 +48,7 @@
         <controls:SettingsBlock Margin="0,2" Background="{DynamicResource ClassSelectorBackground}">
             <StackPanel Margin="5">
                 <StackPanel Orientation="Horizontal">
-                    <CheckBox Margin="5" Content=" Enable Dreadwinder   " IsChecked="{Binding ViperSettings.UseDreadwinder, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Margin="5" Content=" Enable Dreadwinder   " IsChecked="{Binding ViperSettings.UseVicewinder, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     <CheckBox Margin="5" Content=" Enable UncoiledFury   " IsChecked="{Binding ViperSettings.UseUncoiledFury, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     <CheckBox Margin="5" Content=" Enable Reawaken   " IsChecked="{Binding ViperSettings.UseReawaken, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>

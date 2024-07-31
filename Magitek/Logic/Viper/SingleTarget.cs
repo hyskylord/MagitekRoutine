@@ -16,7 +16,7 @@ namespace Magitek.Logic.Viper
     internal static class SingleTarget
     {
 
-        public static async Task<bool> SteelOrDreadFangs()
+        public static async Task<bool> SteelOrReavingFangs()
         {
             if (Core.Me.ClassLevel < Spells.SteelFangs.LevelAcquired)
                 return false;
@@ -27,9 +27,9 @@ namespace Magitek.Logic.Viper
             if (Core.Me.HasAura(Auras.PoisedforTwinfang, true) || Core.Me.HasAura(Auras.PoisedforTwinblood, true))
                 return false;
 
-            if (Core.Me.ClassLevel >= Spells.DreadFangs.LevelAcquired && Spells.DreadFangs.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.NoxiousGnash, true, 10000))
-                return await Spells.DreadFangs.Cast(Core.Me.CurrentTarget);
-            else
+            if (Core.Me.ClassLevel >= Spells.ReavingFangs.LevelAcquired && Core.Me.HasAura(Auras.HonedReavers, true))
+                return await Spells.ReavingFangs.Cast(Core.Me.CurrentTarget);
+            
                 return await Spells.SteelFangs.Cast(Core.Me.CurrentTarget);
         }
 
@@ -73,12 +73,12 @@ namespace Magitek.Logic.Viper
                 return await Spells.FankstingStrike.Cast(Core.Me.CurrentTarget);
         }
 
-        public static async Task<bool> Dreadwinder()
+        public static async Task<bool> Vicewinder()
         {
-            if (Core.Me.ClassLevel < Spells.Dreadwinder.LevelAcquired)
+            if (Core.Me.ClassLevel < Spells.Vicewinder.LevelAcquired)
                 return false;
             
-            if (!ViperSettings.Instance.UseDreadwinder)
+            if (!ViperSettings.Instance.UseVicewinder)
                 return false;
 
             if (Core.Me.HasAura(Auras.HunterVenom, true) || Core.Me.HasAura(Auras.SwiftskinVenom, true))
@@ -87,7 +87,7 @@ namespace Magitek.Logic.Viper
             if (Core.Me.HasAura(Auras.PoisedforTwinfang, true) || Core.Me.HasAura(Auras.PoisedforTwinblood, true))
                 return false;
 
-            return await Spells.Dreadwinder.Cast(Core.Me.CurrentTarget);
+            return await Spells.Vicewinder.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> HunterOrSwiftskinCoil()
@@ -112,10 +112,10 @@ namespace Magitek.Logic.Viper
             if (Core.Me.ClassLevel < Spells.UncoiledFury.LevelAcquired)
                 return false;
 
-            if (!ViperSettings.Instance.UseUncoiledFury)
+            if (!ViperSettings.Instance.UseUncoiledFury) 
                 return false;
 
-            if (!Spells.UncoiledFury.CanCast())
+            if (!Spells.UncoiledFury.CanCast() || ActionResourceManager.Viper.RattlingCoils < 1)
                 return false;
 
             if (Core.Me.HasAura(Auras.HunterVenom, true) || Core.Me.HasAura(Auras.SwiftskinVenom, true) )

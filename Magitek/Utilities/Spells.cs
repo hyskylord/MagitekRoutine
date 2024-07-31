@@ -1078,7 +1078,7 @@ namespace Magitek.Utilities
         // VPR
         #region VPR
         public static readonly SpellData SteelFangs = DataManager.GetSpellData(34606);
-        public static readonly SpellData DreadFangs = DataManager.GetSpellData(34607);
+        public static readonly SpellData ReavingFangs = DataManager.GetSpellData(34607);
         public static readonly SpellData HunterSting = DataManager.GetSpellData(34608);
         public static readonly SpellData SwiftskinSting = DataManager.GetSpellData(34609);
         public static readonly SpellData FankstingStrike = DataManager.GetSpellData(34610);
@@ -1086,15 +1086,15 @@ namespace Magitek.Utilities
         public static readonly SpellData HindstingStrike = DataManager.GetSpellData(34612);
         public static readonly SpellData HindsbaneFang = DataManager.GetSpellData(34613);
         public static readonly SpellData SteelMaw = DataManager.GetSpellData(34614);
-        public static readonly SpellData DreadMaw = DataManager.GetSpellData(34615);
+        public static readonly SpellData ReavingMaw = DataManager.GetSpellData(34615);
         public static readonly SpellData HunterBite = DataManager.GetSpellData(34616);
         public static readonly SpellData SwiftskinBite = DataManager.GetSpellData(34617);
         public static readonly SpellData JaggedMaw = DataManager.GetSpellData(34618);
         public static readonly SpellData BloodiedMaw = DataManager.GetSpellData(34619);
-        public static readonly SpellData Dreadwinder = DataManager.GetSpellData(34620);
+        public static readonly SpellData Vicewinder = DataManager.GetSpellData(34620);
         public static readonly SpellData HunterCoil = DataManager.GetSpellData(34621);
         public static readonly SpellData SwiftskinCoil = DataManager.GetSpellData(34622);
-        public static readonly SpellData PitOfDread = DataManager.GetSpellData(34623);
+        public static readonly SpellData Vicepit = DataManager.GetSpellData(34623);
         public static readonly SpellData HunterDen = DataManager.GetSpellData(34624);
         public static readonly SpellData SwiftskinDen = DataManager.GetSpellData(34625);
         public static readonly SpellData Reawaken = DataManager.GetSpellData(34626);

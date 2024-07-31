@@ -31,7 +31,7 @@ namespace Magitek.Models.Viper
 
         [Setting]
         [DefaultValue(true)]
-        public bool UseDreadwinder { get; set; }
+        public bool UseVicewinder { get; set; }
 
         [Setting]
         [DefaultValue(true)]
@@ -59,11 +59,11 @@ namespace Magitek.Models.Viper
 
         [Setting]
         [DefaultValue(true)]
-        public bool UseSteelDreadMaw { get; set; }
+        public bool UseSteelReavingMaw { get; set; }
 
         [Setting]
         [DefaultValue(true)]
-        public bool UsePitOfDread { get; set; }
+        public bool UseVicepit { get; set; }
 
         #endregion
 
