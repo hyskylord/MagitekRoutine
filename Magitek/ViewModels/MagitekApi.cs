@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace Magitek.ViewModels
 {
@@ -101,16 +102,18 @@ namespace Magitek.ViewModels
                             return;
 
                         // Process the body to remove commit hashes and PR links
-                        var bodyLines = x.body.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                        var bodyLines = x.body.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
                         var filteredBodyLines = bodyLines
-                            .Where(line => line.StartsWith("- "))
+                            .Where(line => !line.StartsWith("## Commits"))
                             .Select(line =>
                             {
-                                var parts = line.Split(':');
-                                return parts.Length > 1 ? parts[1].Split('[')[0].Trim() : line;
+                                // Remove commit hash and PR links
+                                var lineWithoutCommitHash = Regex.Replace(line, @"^- [a-f0-9]{7}: ", "");
+                                var lineWithoutPRLink = Regex.Replace(lineWithoutCommitHash, @"\[#\d+\]\(https:\/\/github.com\/MagitekRB\/MagitekRoutine\/pull\/\d+\)", "");
+                                return lineWithoutPRLink.Trim();
                             });
 
-                        var filteredBody = string.Join("\n", filteredBodyLines);
+                        var filteredBody = string.Join(Environment.NewLine, filteredBodyLines);
 
                         NewsList.Add(new MagitekNews
                         {
