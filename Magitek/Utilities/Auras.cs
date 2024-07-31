@@ -218,6 +218,7 @@ namespace Magitek.Utilities
             AssassinateReady = 1955,
             Camouflage = 1832,
             Nebula = 1834,
+            GreatNebula = 3838,
             Aurora = 1835,
             Superbolide = 1836,
             HeartofLight = 1839,
@@ -405,6 +406,12 @@ namespace Magitek.Utilities
             Inspiration = 3689,
             HammerTime = 3680,
 
+            //RDM
+            MagickedSwordplay = 3875,
+            PrefulgenceReady = 3878,
+            ThornedFlourish = 3876,
+            GrandImpactReady = 3877,
+
             //MCH
             Hypercharged = 3864,
             FullMetalMachinist = 3866,
@@ -457,7 +464,8 @@ namespace Magitek.Utilities
             Invincibility5 = 671,
             Invincibility6 = 656,
             Invincibility7 = 529,
-            Invincibility8 = 325;
+            Invincibility8 = 325,
+            Invincibility9 = 394;
 
         public const int
 
@@ -537,7 +545,9 @@ namespace Magitek.Utilities
             PvpClawMotif = 4107,
             PvpMawMotif = 4108,
             PvpMooglePortrait = 4103,
-            PvpMadeenPortrait = 4104
+            PvpMadeenPortrait = 4104,
+            PvpSprint = 1342,
+            PvpTemperaCoat = 4114
             ;
 
 
@@ -553,7 +563,8 @@ namespace Magitek.Utilities
             Invincibility5,
             Invincibility6,
             Invincibility7,
-            Invincibility8
+            Invincibility8,
+            Invincibility9
         };
     }
 }

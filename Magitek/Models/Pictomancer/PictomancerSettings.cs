@@ -251,6 +251,18 @@ namespace Magitek.Models.Pictomancer
         [Setting]
         [DefaultValue(true)]
         public bool Pvp_UseMog { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UseTemperaCoat { get; set; }
+
+        [Setting]
+        [DefaultValue(80.0f)]
+        public float Pvp_TemperaCoatHealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_UseTemperaGrassa { get; set; }
         #endregion
     }
 }

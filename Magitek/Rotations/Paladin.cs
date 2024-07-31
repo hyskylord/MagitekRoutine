@@ -164,9 +164,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(PaladinSettings.Instance)) return true;
-            if (await CommonPvp.Purify(PaladinSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(PaladinSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(PaladinSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.PhalanxPvp()) return true;
             if (await Pvp.BladeofValorPvp()) return true;

@@ -25,6 +25,10 @@ namespace Magitek.Utilities.Routines
                                             ? Spells.ChaosThrust
                                             : Spells.ChaoticSpring;
 
+        public static SpellData Disembowel => Core.Me.ClassLevel < Spells.SpiralBlow.LevelAcquired
+                                            ? Spells.Disembowel
+                                            : Spells.SpiralBlow;
+
         public static bool CanContinueComboAfter(SpellData LastSpellExecuted)
         {
             if (ActionManager.ComboTimeLeft <= 0)

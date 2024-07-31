@@ -182,9 +182,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(ReaperSettings.Instance)) return true;
-            if (await CommonPvp.Purify(ReaperSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(ReaperSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(ReaperSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.ArcaneCrestPvp()) return true;
 

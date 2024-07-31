@@ -147,9 +147,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(WarriorSettings.Instance)) return true;
-            if (await CommonPvp.Purify(WarriorSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(WarriorSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(WarriorSettings.Instance)) return true;
+            
+            
 
             if (!CommonPvp.GuardCheck(WarriorSettings.Instance))
             {

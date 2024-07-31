@@ -177,9 +177,9 @@ namespace Magitek.Rotations
                 return false;
 
             // Utilities
-            if (await CommonPvp.Guard(DancerSettings.Instance)) return true;
-            if (await CommonPvp.Purify(DancerSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(DancerSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(DancerSettings.Instance)) return true;
+            
+            
             if (await Pvp.CuringWaltz()) return true;
 
             //LB

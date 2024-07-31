@@ -68,16 +68,39 @@ namespace Magitek.Logic.Dragoon
                 return false;
 
             //Life surge only for HeavensThrust / FangAndClaw for SingleTarget or DraconianFury / CoerthanTorment for AOE 
-            if (
-                (ActionManager.LastSpell.Id != Spells.WheelingThrust.Id || !Core.Me.HasAura(Auras.SharperFangandClaw))
-                && (ActionManager.LastSpell.Id != Spells.HeavensThrust.Id || !Core.Me.HasAura(Auras.SharperFangandClaw))
-                && ActionManager.LastSpell.Id != Spells.VorpalThrust.Id
-                && (!Spells.CoerthanTorment.IsKnown() || ActionManager.LastSpell.Id != Spells.SonicThrust.Id)
-                && (!Spells.CoerthanTorment.IsKnown() || ActionManager.LastSpell.Id != Spells.CoerthanTorment.Id)
-                && (Spells.CoerthanTorment.IsKnown() || !Spells.SonicThrust.IsKnown() || ActionManager.LastSpell.Id != Spells.DoomSpike.Id))
-                return false;
+            if (!Spells.FullThrust.IsKnown() 
+                ||                
+                (Spells.FullThrust.IsKnown()
+                    &&
+                    (
+                        ActionManager.LastSpell == Spells.VorpalThrust
+                        || ActionManager.LastSpell == DragoonRoutine.Disembowel
+                        || ActionManager.LastSpell == DragoonRoutine.HeavensThrust
+                        || ActionManager.LastSpell == DragoonRoutine.ChaoticSpring
+                        || ActionManager.LastSpell == Spells.WheelingThrust
+                        || ActionManager.LastSpell == Spells.FangAndClaw
+                    )
+                )
+                ||
+                (Spells.CoerthanTorment.IsKnown()
+                    &&
+                    (
+                        ActionManager.LastSpell == Spells.SonicThrust
+                    )
+                )
+                ||
+                (!Spells.CoerthanTorment.IsKnown()
+                    &&
+                    (
+                        ActionManager.LastSpell == Spells.DoomSpike
+                    )
+                )
+                || 
+                Core.Me.HasAura(Auras.DraconianFire, true)
+            )
+                return await Spells.LifeSurge.Cast(Core.Me);
 
-            return await Spells.LifeSurge.Cast(Core.Me);
+            return false;
         }
 
         public static async Task<bool> UsePotion()

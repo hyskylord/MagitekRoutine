@@ -646,6 +646,8 @@ namespace Magitek.Utilities
         public static readonly SpellData MagickBarrier = DataManager.GetSpellData(25857);
         public static readonly SpellData VermillionScourge = DataManager.GetSpellData(7862);
         public static readonly SpellData ViceofThorns = DataManager.GetSpellData(37005);
+        public static readonly SpellData GrandImpact = DataManager.GetSpellData(37006);
+        public static readonly SpellData Prefulgence = DataManager.GetSpellData(37007);
         #endregion
 
         // SAM
@@ -1182,6 +1184,7 @@ namespace Magitek.Utilities
         public static readonly SpellData Recuperate = DataManager.GetSpellData(29711);
         public static readonly SpellData Purify = DataManager.GetSpellData(29056);
         public static readonly SpellData Guard = DataManager.GetSpellData(29054);
+        public static readonly SpellData SprintPvp = DataManager.GetSpellData(29057);
 
         //PCT
         public static readonly SpellData PaintRGBPvp = DataManager.GetSpellData(39191); // fire in red base
@@ -1192,6 +1195,8 @@ namespace Magitek.Utilities
         public static readonly SpellData SubtractivePalettePvp = DataManager.GetSpellData(39213);
         public static readonly SpellData ReleaseSubtractivePalettePvp = DataManager.GetSpellData(39214);
         public static readonly SpellData AdventofChocobastionPvp = DataManager.GetSpellData(39215); // star prism
+        public static readonly SpellData TemperaCoatPvp = DataManager.GetSpellData(39211);
+        public static readonly SpellData TemperaGrassaPvp = DataManager.GetSpellData(39212);
 
         //WHM
         public static readonly SpellData GlareIIIPvp = DataManager.GetSpellData(29223);

@@ -52,10 +52,7 @@ namespace Magitek.Logic.Dragoon
             if (!DragoonRoutine.CanContinueComboAfter(Spells.TrueThrust) && !DragoonRoutine.CanContinueComboAfter(Spells.RaidenThrust))
                 return false;
 
-            if (Spells.SpiralBlow.IsKnown())
-                return await Spells.SpiralBlow.Cast(Core.Me.CurrentTarget);
-            else
-                return await Spells.Disembowel.Cast(Core.Me.CurrentTarget);
+            return await DragoonRoutine.Disembowel.Cast(Core.Me.CurrentTarget);
         }
 
         public static async Task<bool> ChaoticSpring()

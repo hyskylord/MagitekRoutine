@@ -190,9 +190,9 @@ namespace Magitek.Rotations
 
             MonkRoutine.RefreshVars();
 
-            if (await CommonPvp.Guard(MonkSettings.Instance)) return true;
-            if (await CommonPvp.Purify(MonkSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(MonkSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(MonkSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.MeteodrivePvp()) return true;
 

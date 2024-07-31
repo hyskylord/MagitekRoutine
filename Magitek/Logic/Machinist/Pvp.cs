@@ -18,10 +18,10 @@ namespace Magitek.Logic.Machinist
             if (!Spells.BlastChargePvp.CanCast())
                 return false;
 
-            if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
+            if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
                 return false;
 
-            if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
+            if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
                 return false;
 
             return await Spells.BlastChargePvp.Cast(Core.Me.CurrentTarget);
@@ -78,10 +78,10 @@ namespace Magitek.Logic.Machinist
             if (!Spells.ScattergunPvp.CanCast())
                 return false;
 
-            if (Core.Me.CurrentTarget.Distance(Core.Me) > 12)
+            if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
                 return false;
 
-            if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
+            if (Core.Me.CurrentTarget.Distance(Core.Me) > 12)
                 return false;
 
             if (Combat.Enemies.Count(x => x.Distance(Core.Me) < 12) < 1)

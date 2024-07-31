@@ -169,9 +169,9 @@ namespace Magitek.Rotations
 
             BlackMageRoutine.RefreshVars();
 
-            if (await CommonPvp.Guard(BlackMageSettings.Instance)) return true;
-            if (await CommonPvp.Purify(BlackMageSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(BlackMageSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(BlackMageSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.SoulResonancePvp()) return true;
             if (await Pvp.FoulPvp()) return true;

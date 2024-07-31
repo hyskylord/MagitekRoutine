@@ -674,6 +674,29 @@
                     </TabControl>
                 </TabItem>
 
+                <TabItem Name="Pictomancer" Style="{DynamicResource TabItemPictomancer}">
+                    <TabControl Style="{DynamicResource JobOptionsTabControl}">
+                        <TabItem Header="Paint " Style="{DynamicResource MainTabCombat}">
+                            <pictomancer:Paint />
+                        </TabItem>
+                        <TabItem Header="Palettes " Style="{DynamicResource MainTabAoe}">
+                            <pictomancer:Palettes />
+                        </TabItem>
+                        <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
+                            <pictomancer:Utility />
+                        </TabItem>
+                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
+                            <pictomancer:FightLogic />
+                        </TabItem>
+                        <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
+                            <pictomancer:Pvp />
+                        </TabItem>
+                        <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
+                            <customControls:TogglesSettings />
+                        </TabItem>
+                    </TabControl>
+                </TabItem>
+
                 <TabItem Name="Machinist" Style="{DynamicResource TabItemMachinist}">
                     <TabControl Style="{DynamicResource JobOptionsTabControl}">
                         <TabItem Header="Single Target " Style="{DynamicResource MainTabCombat}">
@@ -928,29 +951,6 @@
                         </TabItem>
                         <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
                             <viper:FightLogic />
-                        </TabItem>
-                        <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
-                            <customControls:TogglesSettings />
-                        </TabItem>
-                    </TabControl>
-                </TabItem>
-
-                <TabItem Name="Pictomancer" Style="{DynamicResource TabItemPictomancer}">
-                    <TabControl Style="{DynamicResource JobOptionsTabControl}">
-                        <TabItem Header="Paint " Style="{DynamicResource MainTabCombat}">
-                            <pictomancer:Paint />
-                        </TabItem>
-                        <TabItem Header="Palettes " Style="{DynamicResource MainTabAoe}">
-                            <pictomancer:Palettes />
-                        </TabItem>
-                        <TabItem Header="Utilities " Style="{DynamicResource MainTabUtilities}">
-                            <pictomancer:Utility />
-                        </TabItem>
-                        <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
-                            <pictomancer:FightLogic />
-                        </TabItem>
-                        <TabItem Header="Pvp" Style="{DynamicResource MainTabCombat}">
-                            <pictomancer:Pvp />
                         </TabItem>
                         <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
                             <customControls:TogglesSettings />

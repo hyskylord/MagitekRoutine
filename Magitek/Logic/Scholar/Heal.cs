@@ -430,11 +430,12 @@ namespace Magitek.Logic.Scholar
                 return false;
 
             var needAccession = Group.CastableAlliesWithin15.Count(r => r.IsAlive && r.CurrentHealthPercent <= ScholarSettings.Instance.AccessionHpPercent) >= AoeNeedHealing;
+            var needShields = Group.CastableAlliesWithin15.Count(r => r.IsAlive && r.CurrentHealthPercent <= ScholarSettings.Instance.AccessionHpPercent && !r.HasAura(Auras.Galvanize)) > 0;
 
             if (!needAccession)
                 return false;
 
-            if (!await UsedEmergencyTactics())
+            if (!needShields && !await UsedEmergencyTactics())
                 return false;
 
             return await Spells.Accession.Heal(Core.Me);
@@ -465,7 +466,9 @@ namespace Magitek.Logic.Scholar
                 if (ManifestationTarget == null)
                     return false;
 
-                if (!await UsedEmergencyTactics())
+                var needsShields = !ManifestationTarget.HasAura(Auras.Galvanize);
+
+                if (!needsShields && !await UsedEmergencyTactics())
                     return false;
 
                 return await Spells.Manifestation.Cast(ManifestationTarget);
@@ -477,7 +480,9 @@ namespace Magitek.Logic.Scholar
             if (Core.Me.CurrentHealthPercent > ScholarSettings.Instance.ManifestationHpPercent)
                 return false;
 
-            if (!await UsedEmergencyTactics())
+            var needsShieldsMe = !Core.Me.HasAura(Auras.Galvanize);
+
+            if (!needsShieldsMe && !await UsedEmergencyTactics())
                 return false;
 
             return await Spells.Manifestation.Cast(Core.Me);

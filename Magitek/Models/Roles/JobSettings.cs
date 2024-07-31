@@ -56,6 +56,10 @@ namespace Magitek.Models.Roles
         [Setting]
         [DefaultValue(true)]
         public bool Pvp_InvulnCheck { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_SprintWithoutTarget { get; set; }
         #endregion
     }
 }

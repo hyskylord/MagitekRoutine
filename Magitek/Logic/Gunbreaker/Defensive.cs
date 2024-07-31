@@ -95,7 +95,10 @@ namespace Magitek.Logic.Gunbreaker
             if (Core.Me.CurrentHealthPercent > GunbreakerSettings.Instance.NebulaHealthPercent)
                 return false;
 
-            return await Spells.Nebula.CastAura(Core.Me, Auras.Nebula);
+            if (Spells.GreatNebula.IsKnown())
+                return await Spells.GreatNebula.CastAura(Core.Me, Auras.GreatNebula);
+            else
+                return await Spells.Nebula.CastAura(Core.Me, Auras.Nebula);
         }
 
         public static async Task<bool> HeartofLight()

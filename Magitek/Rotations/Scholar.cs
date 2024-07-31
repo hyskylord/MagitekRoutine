@@ -264,9 +264,9 @@ namespace Magitek.Rotations
 
             ScholarRoutine.RefreshVars();
 
-            if (await CommonPvp.Guard(ScholarSettings.Instance)) return true;
-            if (await CommonPvp.Purify(ScholarSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(ScholarSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(ScholarSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.SummonSeraphPvp()) return true;
 
