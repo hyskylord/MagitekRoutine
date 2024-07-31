@@ -1,5 +1,6 @@
 ﻿using Buddy.Coroutines;
 using ff14bot;
+using ff14bot.Managers;
 using Magitek.Extensions;
 using Magitek.Models.Roles;
 using Magitek.Utilities;
@@ -51,6 +52,9 @@ namespace Magitek.Logic.Roles
                 return false;
 
             if (!Spells.SprintPvp.CanCast())
+                return false;
+
+            if (WorldManager.ZoneId == 250)
                 return false;
 
             return await Spells.SprintPvp.CastAura(Core.Me, Auras.PvpSprint);
