@@ -156,12 +156,13 @@ namespace Magitek.Rotations
             if (Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
-            if (await CommonPvp.Guard(PictomancerSettings.Instance)) return true;
-            if (await CommonPvp.Purify(PictomancerSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(PictomancerSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(PictomancerSettings.Instance)) return true;
 
             if (!CommonPvp.GuardCheck(PictomancerSettings.Instance))
             {
+                if (await Pvp.TemperaCoat()) return true;
+                if (await Pvp.TemperaGrassa()) return true;
+
                 if (await Pvp.Starstruck()) return true;
                 if (await Pvp.AdventofChocobastion()) return true;
                 if (await Pvp.SubtractivePalette()) return true;

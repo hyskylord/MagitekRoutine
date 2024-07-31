@@ -174,9 +174,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(NinjaSettings.Instance)) return true;
-            if (await CommonPvp.Purify(NinjaSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(NinjaSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(NinjaSettings.Instance)) return true;
+            
+            
 
             if (!CommonPvp.GuardCheck(NinjaSettings.Instance)) { 
                 if (await Pvp.SeitonTenchuPvp()) return true;

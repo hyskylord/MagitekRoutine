@@ -125,6 +125,7 @@ namespace Magitek.Rotations
                 if (await Buff.LucidDreaming()) return true;
 
                 //oGCD Abilities
+                if (await SingleTarget.Prefulgence()) return true;
                 if (await Aoe.ContreSixte()) return true;
                 if (await SingleTarget.Fleche()) return true;
 
@@ -137,6 +138,8 @@ namespace Magitek.Rotations
 
             //Combo
             if (await SingleTarget.ScorchResolutionCombo()) return true;
+            if (await SingleTarget.Verflare()) return true;
+            if (await SingleTarget.Verholy()) return true;
             if (await Aoe.Moulinet()) return true;      
             if (await SingleTarget.Reprise()) return true;
             if (await SingleTarget.Redoublement()) return true;
@@ -144,9 +147,9 @@ namespace Magitek.Rotations
             if (await SingleTarget.Riposte()) return true;
 
             //Combo procs
-            if (await SingleTarget.Verflare()) return true;
-            if (await SingleTarget.Verholy()) return true;
             if (await SingleTarget.ViceofThorns()) return true;
+
+            if (await Aoe.GrandImpact()) return true;
             
             //AoE
             if (RedMageSettings.Instance.UseAoe && Core.Me.CurrentTarget.EnemiesNearby(8).Count() >= RedMageSettings.Instance.AoeEnemies)
@@ -174,9 +177,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(RedMageSettings.Instance)) return true;
-            if (await CommonPvp.Purify(RedMageSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(RedMageSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(RedMageSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.DisplacementPvp()) return true;
             if (!CommonPvp.GuardCheck(RedMageSettings.Instance))

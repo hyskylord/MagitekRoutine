@@ -244,10 +244,10 @@ namespace Magitek.Extensions
             return gameObject != null && Dps.Contains(gameObject.CurrentJob);
         }
 
-        public static bool IsRangedDps(this GameObject unit)
+        public static bool IsRangedPhysicalDps(this GameObject unit)
         {
             var gameObject = unit as Character;
-            return gameObject != null && RangedDps.Contains(gameObject.CurrentJob);
+            return gameObject != null && RangedPhysicalDps.Contains(gameObject.CurrentJob);
         }
 
         public static bool IsBlueMage(this GameObject unit)
@@ -552,9 +552,11 @@ namespace Magitek.Extensions
             ClassJobType.Dancer,
             ClassJobType.BlueMage,
             ClassJobType.Reaper,
+            ClassJobType.Pictomancer,
+            ClassJobType.Viper
         };
 
-        private static readonly List<ClassJobType> RangedDps = new List<ClassJobType>()
+        private static readonly List<ClassJobType> RangedPhysicalDps = new List<ClassJobType>()
         {
             ClassJobType.Archer,
             ClassJobType.Bard,
@@ -574,6 +576,7 @@ namespace Magitek.Extensions
             ClassJobType.Samurai,
             ClassJobType.BlueMage,
             ClassJobType.Reaper,
+            ClassJobType.Viper
         };
 
         private static readonly List<ClassJobType> RangedDpsCard = new List<ClassJobType>()
@@ -588,6 +591,7 @@ namespace Magitek.Extensions
             ClassJobType.RedMage,
             ClassJobType.Summoner,
             ClassJobType.BlueMage,
+            ClassJobType.Pictomancer
         };
     }
 }

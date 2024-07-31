@@ -256,9 +256,7 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(AstrologianSettings.Instance)) return true;
-            if (await CommonPvp.Purify(AstrologianSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(AstrologianSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(AstrologianSettings.Instance)) return true;
 
             if (await Pvp.CelestialRiverPvp()) return true;
 

@@ -86,6 +86,24 @@ namespace Magitek.Logic.RedMage
 
             return await Spells.Scatter.Cast(Core.Me.CurrentTarget);
         }
+
+        public static async Task<bool> GrandImpact()
+        {
+            if (Core.Me.ClassLevel < Spells.GrandImpact.LevelAcquired)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.GrandImpactReady))
+                return false;
+
+            if (InAoeCombo())
+                return false;
+
+            if (InCombo())
+                return false;
+                
+            return await Spells.GrandImpact.Cast(Core.Me.CurrentTarget);
+        }
+
         public static async Task<bool> Impact()
         {
             if (!RedMageSettings.Instance.UseAoe)

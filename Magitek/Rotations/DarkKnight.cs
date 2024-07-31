@@ -119,9 +119,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(DarkKnightSettings.Instance)) return true;
-            if (await CommonPvp.Purify(DarkKnightSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(DarkKnightSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(DarkKnightSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.EventidePvp()) return true;
             if (await Pvp.BlackestNightPvp()) return true;

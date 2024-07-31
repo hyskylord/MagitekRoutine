@@ -189,9 +189,9 @@ namespace Magitek.Rotations
             if(!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(SamuraiSettings.Instance)) return true;
-            if (await CommonPvp.Purify(SamuraiSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(SamuraiSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(SamuraiSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.ZantetsukenPvp()) return true;
             if (await Pvp.MineuchiPvp()) return true;

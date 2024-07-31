@@ -35,6 +35,9 @@ namespace Magitek.Logic.RedMage
             if (!MovementManager.IsMoving && Spells.Acceleration.Charges <= RedMageSettings.Instance.SaveAccelChargesForMovement)
                 return false;
 
+            if (Core.Me.HasAura(Auras.MagickedSwordplay))
+                return false;
+
             if (InComboEnder())
                 return false;
 
@@ -90,13 +93,7 @@ namespace Magitek.Logic.RedMage
             if (Spells.Embolden.Cooldown.TotalMilliseconds <= 13000) //trying a little more leeway
                 return false;
 
-
-
-            if (WhiteMana >= RedMageSettings.Instance.ManaficationMinimumBlackAndWhiteMana
-                && WhiteMana <= RedMageSettings.Instance.ManaficationMaximumBlackAndWhiteMana
-                &&
-                BlackMana >= RedMageSettings.Instance.ManaficationMinimumBlackAndWhiteMana
-                && BlackMana <= RedMageSettings.Instance.ManaficationMaximumBlackAndWhiteMana)
+            if (Spells.Manafication.IsKnownAndReady())
                 return await Spells.Manafication.Cast(Core.Me.CurrentTarget);
 
             return false;

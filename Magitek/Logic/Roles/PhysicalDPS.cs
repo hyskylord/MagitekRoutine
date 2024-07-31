@@ -91,7 +91,7 @@ namespace Magitek.Logic.Roles
                 stuns.Add(Spells.LegSweep);
             }
 
-            if (Core.Me.IsRangedDps())
+            if (Core.Me.IsRangedPhysicalDps())
             {
                 interrupts.Add(Spells.HeadGraze);
             }

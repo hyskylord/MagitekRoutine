@@ -236,9 +236,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(WhiteMageSettings.Instance)) return true;
-            if (await CommonPvp.Purify(WhiteMageSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(WhiteMageSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(WhiteMageSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.AfflatusPurgationPvp()) return true;
 

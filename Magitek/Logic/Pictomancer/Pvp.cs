@@ -41,6 +41,43 @@ namespace Magitek.Logic.Pictomancer
             Auras.PvpMadeenPortrait
         };
 
+        public static async Task<bool> TemperaCoat()
+        {                
+            if (!PictomancerSettings.Instance.Pvp_UseTemperaCoat)
+                return false;
+
+            if (!Spells.TemperaCoatPvp.CanCast())
+                return false;
+
+            if (Core.Me.HasAura(Auras.PvpGuard))
+                return false;
+
+            if (Core.Me.CurrentHealthPercent > PictomancerSettings.Instance.Pvp_TemperaCoatHealthPercent)
+                return false;
+
+            return await Spells.TemperaCoatPvp.Cast(Core.Me);
+        }
+
+        public static async Task<bool> TemperaGrassa()
+        {
+            if (!PictomancerSettings.Instance.Pvp_UseTemperaGrassa)
+                return false;
+
+            if (!Spells.TemperaGrassaPvp.CanCast())
+                return false;
+
+            if (Core.Me.HasAura(Auras.PvpGuard))
+                return false;
+
+            if (!Core.Me.HasAura(Auras.PvpTemperaCoat))
+                return false;
+
+            if (Group.CastableAlliesWithin30.Count(r => r.CurrentHealth > 0 && r.CurrentHealthPercent <= PictomancerSettings.Instance.Pvp_TemperaCoatHealthPercent) < 3)
+                return false;
+
+            return await Spells.TemperaGrassaPvp.Cast(Core.Me);
+        }
+
         public static async Task<bool> PaintRGB()
         {
             if (!PictomancerSettings.Instance.Pvp_UsePaintRGB)

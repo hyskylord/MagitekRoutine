@@ -180,9 +180,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(DragoonSettings.Instance)) return true;
-            if (await CommonPvp.Purify(DragoonSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(DragoonSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(DragoonSettings.Instance)) return true;
+            
+            
 
             if (!CommonPvp.GuardCheck(DragoonSettings.Instance))
             {
@@ -225,19 +225,19 @@ namespace Magitek.Rotations
                 new CombatMessageStrategy(300,
                                           "Chaotic Spring => BEHIND !!",
                                           "/Magitek;component/Resources/Images/General/ArrowDownHighlighted.png",
-                                          () => !Core.Me.CurrentTarget.IsBehind && ActionManager.LastSpell == Spells.Disembowel));
+                                          () => !Core.Me.CurrentTarget.IsBehind && (ActionManager.LastSpell == DragoonRoutine.Disembowel)));
 
             CombatMessageManager.RegisterMessageStrategy(
                 new CombatMessageStrategy(300,
                                           "Wheeling Thrust => BEHIND !!",
                                           "/Magitek;component/Resources/Images/General/ArrowDownHighlighted.png",
-                                          () => !Core.Me.CurrentTarget.IsBehind && Core.Me.HasAura(Auras.EnhancedWheelingThrust)));
+                                          () => !Core.Me.CurrentTarget.IsBehind && (ActionManager.LastSpell == DragoonRoutine.ChaoticSpring)));
 
             CombatMessageManager.RegisterMessageStrategy(
                 new CombatMessageStrategy(300,
                                           "Fang & Claw => SIDE !!!",
                                           "/Magitek;component/Resources/Images/General/ArrowSidesHighlighted.png",
-                                          () => !Core.Me.CurrentTarget.IsFlanking && Core.Me.HasAura(Auras.SharperFangandClaw)));
+                                          () => !Core.Me.CurrentTarget.IsFlanking && (ActionManager.LastSpell == DragoonRoutine.HeavensThrust)));
         }
     }
 }

@@ -24,10 +24,10 @@ namespace Magitek.Logic.Bard
             if(Core.Me.HasAura(Auras.PvpGuard))
                 return false;
 
-            if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
+            if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
                 return false;
 
-            if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
+            if (Core.Me.CurrentTarget.Distance(Core.Me) > 25)
                 return false;
 
             return await Spells.PowerfulShotPvp.Cast(Core.Me.CurrentTarget);

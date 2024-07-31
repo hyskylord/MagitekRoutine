@@ -156,9 +156,7 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(BardSettings.Instance)) return true;
-            if (await CommonPvp.Purify(BardSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(BardSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(BardSettings.Instance)) return true;
 
             if (await Pvp.FinalFantasiaPvp()) return true;
 

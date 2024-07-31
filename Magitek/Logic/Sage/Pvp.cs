@@ -149,7 +149,7 @@ namespace Magitek.Logic.Sage
                     return 100;
                 if (unit.IsMeleeDps())
                     return 90;
-                if (unit.IsRangedDps())
+                if (unit.IsRangedPhysicalDps())
                     return 80;
                 if (unit.IsHealer())
                     return 70;

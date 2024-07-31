@@ -241,9 +241,9 @@ namespace Magitek.Rotations
 
             SageRoutine.RefreshVars();
 
-            if (await CommonPvp.Guard(SageSettings.Instance)) return true;
-            if (await CommonPvp.Purify(SageSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(SageSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(SageSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.MesotesPvp()) return true;
 

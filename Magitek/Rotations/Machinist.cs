@@ -195,9 +195,7 @@ namespace Magitek.Rotations
                 return await Combat();
 
             // Utilities
-            if (await CommonPvp.Guard(MachinistSettings.Instance)) return true;
-            if (await CommonPvp.Purify(MachinistSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(MachinistSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(MachinistSettings.Instance)) return true;
 
             if (!CommonPvp.GuardCheck(MachinistSettings.Instance))
             {

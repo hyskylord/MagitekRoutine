@@ -177,9 +177,9 @@ namespace Magitek.Rotations
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
                 return await Combat();
 
-            if (await CommonPvp.Guard(GunbreakerSettings.Instance)) return true;
-            if (await CommonPvp.Purify(GunbreakerSettings.Instance)) return true;
-            if (await CommonPvp.Recuperate(GunbreakerSettings.Instance)) return true;
+            if (await CommonPvp.CommonTasks(GunbreakerSettings.Instance)) return true;
+            
+            
 
             if (await Pvp.RelentlessRushPvp()) return true;
             if (await Pvp.NebulaPvp()) return true;

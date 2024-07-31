@@ -36,37 +36,31 @@ namespace Magitek.Logic.RedMage
             if (InAoeCombo() || Core.Me.EnemiesInCone(8) >= RedMageSettings.Instance.AoeEnemies)
                 return false;
 
-            if (Core.Me.ClassLevel >= 10)
-
+            if (!Core.Me.HasAura(Auras.MagickedSwordplay))
             {
+                if (Core.Me.ClassLevel >= 10)
+                {
+                    if (BlackMana < 20
+                        || WhiteMana < 20)
+                        return false;
+                }
 
-                if (BlackMana < 20
-                    || WhiteMana < 20)
-                    return false;
-            }
+                if (Core.Me.ClassLevel >= 35
+                    && Core.Me.ClassLevel < 50)
+                {
+                    if (BlackMana < 35
+                        || WhiteMana < 35)
+                        return false;
+                }
 
-            if (Core.Me.ClassLevel >= 35
-                && Core.Me.ClassLevel < 50)
-
-            {
-
-                if (BlackMana < 35
-                    || WhiteMana < 35)
-                    return false;
-
-            }
-
-            if (Core.Me.ClassLevel >= 50)
-
-            {
-
-                if (BlackMana < 50 || WhiteMana < 50)
-                    return false;
-
+                if (Core.Me.ClassLevel >= 50)
+                {
+                    if (BlackMana < 50 || WhiteMana < 50)
+                        return false;
+                }
             }
 
             return await Spells.Riposte.Cast(Core.Me.CurrentTarget);
-
         }
         public static async Task<bool> Zwerchhau()
         {
@@ -79,7 +73,7 @@ namespace Magitek.Logic.RedMage
             if (InAoeCombo())
                 return false;
 
-            if (BlackMana >= 15 && WhiteMana >= 15)
+            if ((BlackMana >= 15 && WhiteMana >= 15) || Core.Me.HasAura(Auras.MagickedSwordplay))
             {
                 if (RedMageRoutine.CanContinueComboAfter(Spells.Riposte))
                     return await Spells.Zwerchhau.Cast(Core.Me.CurrentTarget);
@@ -99,7 +93,7 @@ namespace Magitek.Logic.RedMage
             if (InAoeCombo())
                 return false;
 
-            if (BlackMana >= 15 && WhiteMana >= 15)
+            if ((BlackMana >= 15 && WhiteMana >= 15) || Core.Me.HasAura(Auras.MagickedSwordplay))
             {
                 if (RedMageRoutine.CanContinueComboAfter(Spells.Zwerchhau))
                     return await Spells.Redoublement.Cast(Core.Me.CurrentTarget);
@@ -168,8 +162,12 @@ namespace Magitek.Logic.RedMage
             if (Core.Me.ClassLevel < 80)
                 return false;
 
+            if (Spells.Resolution.IsKnownAndReady() && RedMageRoutine.CanContinueComboAfter(Spells.Scorch)) { 
+               return await Spells.Resolution.Cast(Core.Me.CurrentTarget);
+            }
+
             if (!Spells.Scorch.CanCast())
-                return false;
+                return false;            
 
             if (Casting.SpellCastHistory.Take(6).Any(s => s.Spell == Spells.Verholy)
                 || Casting.SpellCastHistory.Take(6).Any(s => s.Spell == Spells.Verflare))
@@ -217,22 +215,11 @@ namespace Magitek.Logic.RedMage
             return await Spells.Verflare.Cast(Core.Me.CurrentTarget);
 
         }
-        public static async Task<bool> ViceofThorns()
-        {
-            if (Core.Me.ClassLevel < Spells.ViceofThorns.LevelAcquired)
-                return false;
-
-            if (!ActionManager.CanCast(Spells.ViceofThorns, Core.Me.CurrentTarget))
-                return false;
-
-            return await Spells.Verholy.Cast(Core.Me.CurrentTarget);
-
-        }
         public static async Task<bool> Verholy()
         {
             if (Core.Me.ClassLevel < Spells.Verholy.LevelAcquired)
                 return false;
-                        
+
             if (!ActionManager.CanCast(Spells.Verholy, Core.Me.CurrentTarget))
                 return false;
 
@@ -245,6 +232,36 @@ namespace Magitek.Logic.RedMage
             return await Spells.Verholy.Cast(Core.Me.CurrentTarget);
 
         }
+
+        public static async Task<bool> Prefulgence()
+        {
+            if (Core.Me.ClassLevel < Spells.Prefulgence.LevelAcquired)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.PrefulgenceReady))
+                return false;
+
+            if (!ActionManager.CanCast(Spells.Prefulgence, Core.Me.CurrentTarget))
+                return false;
+
+            return await Spells.Prefulgence.Cast(Core.Me.CurrentTarget);
+        }
+
+        public static async Task<bool> ViceofThorns()
+        {
+            if (Core.Me.ClassLevel < Spells.ViceofThorns.LevelAcquired)
+                return false;
+
+            if (!Core.Me.HasAura(Auras.ThornedFlourish))
+                return false;
+
+            if (!ActionManager.CanCast(Spells.ViceofThorns, Core.Me.CurrentTarget))
+                return false;
+
+            return await Spells.ViceofThorns.Cast(Core.Me.CurrentTarget);
+
+        }
+        
         public static async Task<bool> Verthunder()
         {
             if (Core.Me.ClassLevel < Spells.Verthunder.LevelAcquired)
