@@ -9,9 +9,13 @@
     </UserControl.Resources>
 
     <StackPanel Margin="5">
-        <CheckBox Margin="0,0,0,3" Content="Use Cast Or Queue" IsChecked="{Binding Settings.UseCastOrQueue, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        <TextBlock Margin="3" Style="{DynamicResource TextBlockDefault}" TextWrapping="Wrap">Routine Behavior Settings</TextBlock>
         <CheckBox Margin="0,0,0,3" Content="Use AutoFace for InView checks" IsChecked="{Binding Settings.UseAutoFaceChecks, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
         <CheckBox Margin="0,0,0,3" Content="Allow Magitek to move in autonomous mode" IsChecked="{Binding Settings.MagitekMovement, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        <CheckBox Margin="0,0,0,3" Content="(Experimental) Wait for animation lock" IsChecked="{Binding Settings.DebugActionLockWait, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        <CheckBox Margin="0,0,0,3" Content="Use Cast Or Queue" IsChecked="{Binding Settings.UseCastOrQueue, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        
+        <TextBlock Margin="3" Style="{DynamicResource TextBlockDefault}" TextWrapping="Wrap">Debugging Settings</TextBlock>
         <CheckBox Margin="0,0,0,3" Content="CallerMemberName When Casting (Very Spammy)" IsChecked="{Binding Settings.DebugCastingCallerMemberName, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
         <CheckBox Margin="20,0,0,3" Content="Include File Path" IsChecked="{Binding Settings.DebugCastingCallerMemberNameIncludePath, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
         <CheckBox Margin="0,0,0,3" Content="Debug Enemy Info (Prints Removes/Adds in Log)" IsChecked="{Binding Settings.DebugEnemyInfo, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
@@ -32,6 +36,8 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
@@ -78,6 +84,12 @@
 
                     <TextBlock Grid.Row="11" Grid.Column="0" Style="{DynamicResource TextBlockDefault}" Text="Casting Gambit: " />
                     <TextBlock Grid.Row="11" Grid.Column="1" Style="{DynamicResource TextBlockDefault}" Text="{Binding CastingGambit}" />
+                    
+                    <TextBlock Grid.Row="12" Grid.Column="0" Style="{DynamicResource TextBlockDefault}" Text="Action Lock: " />
+                    <TextBlock Grid.Row="12" Grid.Column="1" Style="{DynamicResource TextBlockDefault}" Text="{Binding ActionLock}" />
+
+                    <TextBlock Grid.Row="13" Grid.Column="0" Style="{DynamicResource TextBlockDefault}" Text="Action Queued: " />
+                    <TextBlock Grid.Row="13" Grid.Column="1" Style="{DynamicResource TextBlockDefault}" Text="{Binding ActionQueued}" />
 
                 </Grid>
 
