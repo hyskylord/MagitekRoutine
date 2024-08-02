@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: release
 
 on:
@@ -15,18 +12,46 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
+      uses: microsoft/setup-msbuild@v1.1.0
+
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.5
+      uses: NuGet/setup-nuget@v1.1.0
+
     - name: Restore NuGet packages
       run: |
         cd Magitek
         nuget restore Magitek.sln
+
+    - name: Extract version from tag
+      id: extract_version
+      run: |
+        version=${GITHUB_REF_NAME}
+        version=${version#v}
+        echo "VERSION=${version}.0" >> $env:GITHUB_ENV
+
+    - name: Verify version string
+      run: echo "Version is $env:VERSION"
+
+    - name: Update AssemblyInfo
+      run: |
+        $version = $env:VERSION
+        Write-Host "Updating AssemblyInfo.cs with version $version"
+        $assemblyInfoPath = "Magitek/Properties/AssemblyInfo.cs"
+        (Get-Content $assemblyInfoPath) -replace '(\[assembly: AssemblyVersion\(")[^"]*("\)\])', "[assembly: AssemblyVersion(`"$version`")]" | Set-Content $assemblyInfoPath
+        (Get-Content $assemblyInfoPath) -replace '(\[assembly: AssemblyFileVersion\(")[^"]*("\)\])', "[assembly: AssemblyFileVersion(`"$version`")]" | Set-Content $assemblyInfoPath
+
+    - name: Verify AssemblyInfo
+      run: |
+        Write-Host "Contents of AssemblyInfo.cs after replacement:"
+        Get-Content "Magitek/Properties/AssemblyInfo.cs"
+
     - name: Build solution
       run: |
         cd Magitek
         msbuild Magitek.sln /p:Configuration=Release
+
     - name: Generate Version.txt
       run: echo "${{ github.ref_name }}" > ./Magitek/bin/release/Version.txt
 
@@ -35,19 +60,19 @@ jobs:
         powershell Compress-Archive -Path ./Magitek/bin/release/Magitek.dll, ./Magitek/bin/release/Version.txt, ./MagitekLoader/MagitekLoader.cs -DestinationPath ./Magitek/bin/release/Magitek.zip
 
     - name: Upload Artifacts for Release
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: Magitek.zip
         path: ./Magitek/bin/release/Magitek.zip
 
     - name: Upload Version.txt for Release
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: Version.txt
         path: ./Magitek/bin/release/Version.txt
 
     - name: Create GitHub Release
-      uses: "marvinpinto/action-automatic-releases@latest"
+      uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
