@@ -13,7 +13,7 @@ namespace Magitek.Utilities.Routines
 {
     internal static class Samurai
     {
-        public static WeaveWindow GlobalCooldown = new WeaveWindow(ClassJobType.Samurai, Spells.Hakaze, new List<SpellData>() { Spells.KaeshiGoken, Spells.KaeshiHiganbana, Spells.KaeshiNamikiri, Spells.KaeshiSetsugekka, });
+        public static WeaveWindow GlobalCooldown = new WeaveWindow(ClassJobType.Samurai, Spells.Hakaze, new List<SpellData>() { Spells.KaeshiGoken, Spells.KaeshiNamikiri, Spells.KaeshiSetsugekka, });
 
 
         public static SpellData Fuko => Core.Me.ClassLevel < 86

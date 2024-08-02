@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:Magitek.ViewModels"
-             d:DesignHeight="400"
+             d:DesignHeight="474.004"
              d:DesignWidth="500"
              mc:Ignorable="d">
 
@@ -78,6 +78,9 @@
                     <CheckBox Content="MarksmansSpite / LB target at " IsChecked="{Binding MachinistSettings.Pvp_UseMarksmansSpite, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     <controls:Numeric Grid.Row="2" Grid.Column="1" MaxValue="100" MinValue="1" Value="{Binding MachinistSettings.Pvp_UseMarksmansSpiteHealthPercent, Mode=TwoWay}" />
                     <TextBlock Grid.Row="2" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
+                </StackPanel>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <CheckBox Content="LB Any Enemy below the threshold not just current target" Margin="10,0" IsChecked="{Binding MachinistSettings.Pvp_UseMarksmansSpiteAnyTarget, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>

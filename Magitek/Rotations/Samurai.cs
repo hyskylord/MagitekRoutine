@@ -131,7 +131,6 @@ namespace Magitek.Rotations
             //Tsubame Gaeshi
             if (await SingleTarget.KaeshiSetsugekka()) return true;
             if (await Aoe.KaeshiGoken()) return true;
-            if (await SingleTarget.KaeshiHiganbana()) return true;
 
             //Iaijutsu
             if (await SingleTarget.MidareSetsugekka()) return true;

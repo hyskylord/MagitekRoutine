@@ -12,7 +12,8 @@
         <TextBlock Margin="3" Style="{DynamicResource TextBlockDefault}" TextWrapping="Wrap">Routine Behavior Settings</TextBlock>
         <CheckBox Margin="0,0,0,3" Content="Use AutoFace for InView checks" IsChecked="{Binding Settings.UseAutoFaceChecks, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
         <CheckBox Margin="0,0,0,3" Content="Allow Magitek to move in autonomous mode" IsChecked="{Binding Settings.MagitekMovement, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-        <CheckBox Margin="0,0,0,3" Content="(Experimental) Wait for animation lock" IsChecked="{Binding Settings.DebugActionLockWait, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        <CheckBox Margin="0,0,0,3" Content="(Experimental) Use Advanced SpellHistory [Verify spell casting succeeded serverside]" IsChecked="{Binding Settings.UseAdvancedSpellHistory, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+        <CheckBox Margin="0,0,0,3" Content="(Experimental) Use Animation Lock [Waits for game client to release animation locks]" IsChecked="{Binding Settings.DebugActionLockWait, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
         <CheckBox Margin="0,0,0,3" Content="Use Cast Or Queue" IsChecked="{Binding Settings.UseCastOrQueue, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
         
         <TextBlock Margin="3" Style="{DynamicResource TextBlockDefault}" TextWrapping="Wrap">Debugging Settings</TextBlock>
@@ -20,7 +21,6 @@
         <CheckBox Margin="20,0,0,3" Content="Include File Path" IsChecked="{Binding Settings.DebugCastingCallerMemberNameIncludePath, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
         <CheckBox Margin="0,0,0,3" Content="Debug Enemy Info (Prints Removes/Adds in Log)" IsChecked="{Binding Settings.DebugEnemyInfo, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
         <CheckBox Margin="0,0,0,3" Content="Enable Casting Debugging" IsChecked="{Binding Settings.DebugPlayerCasting, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-        <CheckBox Margin="0,0,0,3" Content="(Experimental) Use Advanced SpellHistory" IsChecked="{Binding Settings.UseAdvancedSpellHistory, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
 
         
 

@@ -673,7 +673,7 @@ namespace Magitek.Utilities
         public static readonly SpellData KaeshiGoken = DataManager.GetSpellData(16485);
         public static readonly SpellData TendoKaeshiGoken = DataManager.GetSpellData(36967);
         public static readonly SpellData Higanbana = DataManager.GetSpellData(7489);
-        public static readonly SpellData KaeshiHiganbana = DataManager.GetSpellData(16484);
+        //public static readonly SpellData KaeshiHiganbana = DataManager.GetSpellData(16484);
         public static readonly SpellData HissatsuShinten = DataManager.GetSpellData(7490);
         public static readonly SpellData HissatsuKyuten = DataManager.GetSpellData(7491);
         //public static readonly SpellData HissatsuKaiten = DataManager.GetSpellData(7492);
@@ -1197,6 +1197,28 @@ namespace Magitek.Utilities
         public static readonly SpellData AdventofChocobastionPvp = DataManager.GetSpellData(39215); // star prism
         public static readonly SpellData TemperaCoatPvp = DataManager.GetSpellData(39211);
         public static readonly SpellData TemperaGrassaPvp = DataManager.GetSpellData(39212);
+
+        //VPR
+        public static readonly uint DualFangPvpCombo = 65;
+        public static readonly SpellData SteelFangsPvp = DataManager.GetSpellData(39157);
+        public static readonly SpellData HuntersStringPvp = DataManager.GetSpellData(39159);
+        public static readonly SpellData BarbarousBitePvp = DataManager.GetSpellData(39161);
+        public static readonly SpellData PiercingFangsPvp = DataManager.GetSpellData(39158);
+        public static readonly SpellData SwiftskinsStingPvp = DataManager.GetSpellData(39160);
+        public static readonly SpellData RavenousBitePvp = DataManager.GetSpellData(39163);
+        public static readonly SpellData SerpentsTailPvp = DataManager.GetSpellData(39183); 
+        public static readonly SpellData HuntersSnapPvp = DataManager.GetSpellData(39166);        
+        public static readonly SpellData UncoiledFuryPvp = DataManager.GetSpellData(39168); 
+        public static readonly SpellData SnakeScalesPvp = DataManager.GetSpellData(39185); 
+        public static readonly SpellData RattlingCoilPvp = DataManager.GetSpellData(39189); 
+        public static readonly SpellData WorldswallowerPvp = DataManager.GetSpellData(39190);
+        public static readonly SpellData FirstGenerationPvp = DataManager.GetSpellData(39169);
+        public static readonly SpellData SecondGenerationPvp = DataManager.GetSpellData(39170);
+        public static readonly SpellData ThirdGenerationPvp = DataManager.GetSpellData(39171);
+        public static readonly SpellData FourthGenerationPvp = DataManager.GetSpellData(39172);
+        public static readonly SpellData OuroborosPvp = DataManager.GetSpellData(39173);
+        public static readonly SpellData SlitherPvp = DataManager.GetSpellData(39184);
+
 
         //WHM
         public static readonly SpellData GlareIIIPvp = DataManager.GetSpellData(29223);

@@ -259,7 +259,7 @@ namespace Magitek.Logic.Samurai
             if (Core.Me.CurrentTarget.HasAura(Auras.Higanbana, true, 8000))
                 return false;
 
-            if (Spells.KaeshiHiganbana.CanCast() || Spells.KaeshiGoken.CanCast() || Spells.KaeshiSetsugekka.CanCast())
+            if (Spells.KaeshiGoken.CanCast() || Spells.KaeshiSetsugekka.CanCast())
                 return false;
 
             if (SamuraiRoutine.AoeEnemies5Yards >= SamuraiSettings.Instance.AoeEnemies)
@@ -273,13 +273,6 @@ namespace Magitek.Logic.Samurai
         /**********************************************************************************************
         *                              Tsubamegaeshi (after Iaijutsu)
         * ********************************************************************************************/
-        public static async Task<bool> KaeshiHiganbana()
-        {
-            if (!SamuraiSettings.Instance.UseKaeshiHiganbana)
-                return false;
-
-            return await Spells.KaeshiHiganbana.Cast(Core.Me.CurrentTarget);
-        }
 
 
         public static async Task<bool> KaeshiSetsugekka()

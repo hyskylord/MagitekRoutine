@@ -292,12 +292,6 @@ namespace Magitek.Extensions
 
             Logger.WriteCastExecuted($@"Cast: {spell}");
 
-            if (BaseSettings.Instance.DebugActionLockWait)
-            {
-                await Coroutine.Wait(Globals.AnimationLockMs / 2, () => ActionManager.ActionLock != 0);
-                await Coroutine.Wait(Globals.AnimationLockMs / 2, () => ActionManager.ActionLock == 0);
-            }
-
             if (spell.AdjustedCastTime != TimeSpan.Zero)
             {
                 if (!await Coroutine.Wait(3000, () => Core.Me.IsCasting))

@@ -64,7 +64,7 @@ namespace Magitek.Logic.Samurai
                 if (SamuraiRoutine.SenCount == 3)
                     return false;
 
-                if (Casting.LastSpell != Spells.KaeshiSetsugekka && Casting.LastSpell != Spells.KaeshiHiganbana && Casting.LastSpell != null)
+                if (Casting.LastSpell != Spells.KaeshiSetsugekka && Casting.LastSpell != null)
                     return false;
             } 
             else

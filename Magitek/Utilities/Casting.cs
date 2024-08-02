@@ -214,6 +214,10 @@ namespace Magitek.Utilities
                 if (CastingSpell.AdjustedCastTime.TotalMilliseconds == 0 && CastingSpell.Cooldown.TotalMilliseconds == 0)
                     return;
 
+            if (BaseSettings.Instance.DebugActionLockWait)
+                if (ActionManager.ActionLock != 0)
+                    await Coroutine.Wait(Math.Max(Globals.AnimationLockMs, (int)(ActionManager.ActionLock * 1000)), () => ActionManager.ActionLock == 0);
+
             // Compare Times
             Logger.WriteCast($@"Time Casting: {CastingTime.ElapsedMilliseconds} - Expected: {SpellCastTime.TotalMilliseconds}");
             var buffer = SpellCastTime.TotalMilliseconds - CastingTime.ElapsedMilliseconds;
