@@ -27,9 +27,9 @@ jobs:
     - name: Extract version from tag
       id: extract_version
       run: |
-        version="${{ github.ref_name }}"
-        version="${version#v}"
-        echo "VERSION=${version}.0" >> $env:GITHUB_ENV
+        $version="${{ github.ref_name }}"
+        $version="${version#v}"
+        echo "VERSION=$version.0" >> $env:GITHUB_ENV
 
     - name: Verify version string
       run: echo "Version is $env:VERSION"
