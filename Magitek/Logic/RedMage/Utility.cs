@@ -2,6 +2,7 @@
 using ff14bot.Managers;
 using Magitek.Models.RedMage;
 using Magitek.Utilities;
+using Magitek.Extensions;
 using System.Linq;
 using static ff14bot.Managers.ActionResourceManager.RedMage;
 using RedMageRoutine = Magitek.Utilities.Routines.RedMage;
@@ -83,9 +84,11 @@ namespace Magitek.Logic.RedMage
 
         public static bool ShouldApproachForCombo()
         {
+            if (!Core.Me.HasTarget)
+                return false;
 
-            if (InAoeCombo() || InCombo() || !(WhiteMana < 50 || BlackMana < 50))
-                return true;
+            if (Core.Me.HasAura(Auras.MagickedSwordplay, true) || InAoeCombo() || InCombo() || !(WhiteMana < 50 || BlackMana < 50))
+                return (Core.Me.CurrentTarget.Distance() > (3 + Core.Me.CurrentTarget.CombatReach));
 
             return false;
 

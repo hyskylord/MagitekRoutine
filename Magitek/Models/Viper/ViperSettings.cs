@@ -89,7 +89,21 @@ namespace Magitek.Models.Viper
         #endregion
 
         #region PVP
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_SnakeScales { get; set; }
 
+        [Setting]
+        [DefaultValue(50.0f)]
+        public float Pvp_SnakeScalesHealthPercent { get; set; }
+
+        [Setting]
+        [DefaultValue(true)]
+        public bool Pvp_WorldSwallower { get; set; }
+
+        [Setting]
+        [DefaultValue(50.0f)]
+        public float Pvp_WorldSwallowerHealthPercent { get; set; }
         #endregion
     }
 }

@@ -145,7 +145,21 @@ namespace Magitek.Logic.Machinist
                 return false;
 
             if (Core.Me.CurrentTarget.Distance(Core.Me) > 12)
+            {
+                var nearby = Combat.Enemies
+                    .Where(e => e.Distance(Core.Me) < 10 
+                            && e.ValidAttackUnit() 
+                            && e.InLineOfSight())
+                    .OrderBy(e => e.Distance(Core.Me));
+                var nearbyTarget = nearby.FirstOrDefault();
+
+                if (nearbyTarget != null)
+                {
+                    return await Spells.BioblasterPvp.Cast(nearbyTarget);
+                }
+
                 return false;
+            }
 
             if (!Core.Me.CurrentTarget.ValidAttackUnit() || !Core.Me.CurrentTarget.InLineOfSight())
                 return false;
@@ -219,11 +233,26 @@ namespace Magitek.Logic.Machinist
                 return false;
 
             if(Core.Me.CurrentTarget.CurrentHealthPercent > MachinistSettings.Instance.Pvp_UseMarksmansSpiteHealthPercent)
+            {
+                if (MachinistSettings.Instance.Pvp_UseMarksmansSpiteAnyTarget)
+                {
+                    var nearby = Combat.Enemies
+                        .Where(e => e.Distance(Core.Me) <= 50
+                                && e.ValidAttackUnit()
+                                && e.InLineOfSight()
+                                && e.CurrentHealthPercent <= MachinistSettings.Instance.Pvp_UseMarksmansSpiteHealthPercent)
+                        .OrderBy(e => e.Distance(Core.Me));
+
+                    var nearbyTarget = nearby.FirstOrDefault();
+
+                    if (nearbyTarget != null)
+                        return await Spells.MarksmansSpitePvp.Cast(nearbyTarget);
+                }
+
                 return false;
+            }
 
             return await Spells.MarksmansSpitePvp.Cast(Core.Me.CurrentTarget);
-        }
-
-        
+        }        
     }
 }

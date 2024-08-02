@@ -18,6 +18,10 @@ namespace Magitek.ViewModels
 
         public Models.Account.BaseSettings Settings => Models.Account.BaseSettings.Instance;
 
+        public float ActionLock { get; set; }
+
+        public bool ActionQueued { get; set; }
+
         public bool CastingHeal { get; set; }
         public SpellData CastingSpell { get; set; }
         public SpellData LastSpell { get; set; }

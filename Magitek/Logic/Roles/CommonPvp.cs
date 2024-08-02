@@ -22,6 +22,9 @@ namespace Magitek.Logic.Roles
 
         public static async Task<bool> CommonTasks<T>(T settings) where T : JobSettings
         {
+            if (Core.Me.HasAura(Auras.PvpGuard))
+                return true;
+
             if (await Sprint(settings))
                 return true;
 

@@ -186,6 +186,9 @@ namespace Magitek.Logic.Machinist
                 }
             }
 
+            if (MachinistSettings.Instance.UseRicochet && Spells.Ricochet.Masked().Charges > spell.Charges)
+                return false;
+
             return await spell.Cast(Core.Me.CurrentTarget);
         }
     }

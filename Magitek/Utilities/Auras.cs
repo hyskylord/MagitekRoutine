@@ -549,7 +549,8 @@ namespace Magitek.Utilities
             PvpMooglePortrait = 4103,
             PvpMadeenPortrait = 4104,
             PvpSprint = 1342,
-            PvpTemperaCoat = 4114
+            PvpTemperaCoat = 4114,
+            PvpReawakened = 4094
             ;
 
 

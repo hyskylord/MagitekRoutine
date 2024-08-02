@@ -216,6 +216,10 @@ namespace Magitek.Models.Machinist
         public bool Pvp_UseMarksmansSpite { get; set; }
 
         [Setting]
+        [DefaultValue(false)]
+        public bool Pvp_UseMarksmansSpiteAnyTarget { get; set; }
+
+        [Setting]
         [DefaultValue(60.0f)]
         public float Pvp_UseMarksmansSpiteHealthPercent { get; set; }
         #endregion

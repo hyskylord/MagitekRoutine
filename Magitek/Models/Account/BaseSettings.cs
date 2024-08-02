@@ -138,6 +138,10 @@ namespace Magitek.Models.Account
         [Setting]
         [DefaultValue(false)]
         public bool DebugFightLogicFound { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
+        public bool DebugActionLockWait { get; set; }
         #endregion
 
         #region Overlay

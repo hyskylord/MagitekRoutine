@@ -34,11 +34,11 @@ namespace Magitek.Logic.RedMage
                 if (Core.Me.EnemiesInCone(8) < RedMageSettings.Instance.AoeEnemies)
                     return false;
 
-                if (WhiteMana < 60 || BlackMana < 60)
+                if (!Core.Me.HasAura(Auras.MagickedSwordplay) && (WhiteMana < 60 || BlackMana < 60))
                     return false;
             }
         
-            if (WhiteMana < 20 || BlackMana < 20)
+            if (!Core.Me.HasAura(Auras.MagickedSwordplay) && (WhiteMana < 20 || BlackMana < 20))
                 return false;
             
             if (ManaStacks() == 3)

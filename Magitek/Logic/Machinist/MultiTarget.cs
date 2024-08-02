@@ -123,6 +123,9 @@ namespace Magitek.Logic.Machinist
                 }
             }
 
+            if (MachinistSettings.Instance.UseGaussRound && Spells.GaussRound.Masked().Charges > spell.Charges)
+                return false;
+
             return await spell.Cast(Core.Me.CurrentTarget);
         }
 

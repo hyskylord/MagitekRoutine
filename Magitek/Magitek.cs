@@ -210,6 +210,8 @@ namespace Magitek
             Combat.AdjustCombatTime();
             Combat.AdjustDutyTime();
 
+            Debug.Instance.ActionLock = ActionManager.ActionLock;
+            Debug.Instance.ActionQueued = ActionManager.ActionQueued;
             Debug.Instance.InCombatTime = (long)Combat.CombatTime.Elapsed.TotalSeconds;
             Debug.Instance.OutOfCombatTime = (int)Combat.OutOfCombatTime.Elapsed.TotalSeconds;
             Debug.Instance.InCombatMovingTime = (int)Combat.MovingInCombatTime.Elapsed.TotalSeconds;

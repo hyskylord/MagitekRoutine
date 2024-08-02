@@ -12,6 +12,7 @@ using static Magitek.Logic.RedMage.Utility;
 using System.Linq;
 using System.Threading.Tasks;
 using Buddy.Coroutines;
+using Magitek.Utilities.CombatMessages;
 
 namespace Magitek.Rotations
 {
@@ -211,7 +212,24 @@ namespace Magitek.Rotations
         public static void RegisterCombatMessages()
         {
             if (!BaseSettings.Instance.ActivePvpCombatRoutine)
-                CombatMessages.RegisterCombatMessages(RdmStateMachine.StateMachine);
+            {
+                CombatMessageManager.RegisterMessageStrategy(
+                    new CombatMessageStrategy(100,
+                                          "",
+                                          () => !Core.Me.InCombat || !Core.Me.HasTarget));
+
+                CombatMessageManager.RegisterMessageStrategy(
+                    new CombatMessageStrategy(200,
+                                              "Melee Combo!", "/Magitek;component/Resources/Images/General/ArowNoneHighlighted.png",
+                                              () => ShouldApproachForCombo()
+                ));
+
+                CombatMessageManager.RegisterMessageStrategy(
+                    new CombatMessageStrategy(300,
+                                              "Melee Combo Soon", 
+                                              () => RedMageRoutine.WithinManaOf(6, 50) || Spells.Manafication.IsKnownAndReady()
+                ));                
+            }
         } 
     }
 }

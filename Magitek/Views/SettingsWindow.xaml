@@ -952,6 +952,9 @@
                         <TabItem Header="FightLogic" Style="{DynamicResource MainTabInterruptsAndStuns}">
                             <viper:FightLogic />
                         </TabItem>
+                        <TabItem Header="PVP" Style="{DynamicResource MainTabCombat}">
+                            <viper:Pvp />
+                        </TabItem>
                         <TabItem Header="Toggles" Style="{DynamicResource MainTabHotkeys}">
                             <customControls:TogglesSettings />
                         </TabItem>
