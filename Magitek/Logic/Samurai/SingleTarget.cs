@@ -265,6 +265,9 @@ namespace Magitek.Logic.Samurai
             if (SamuraiRoutine.AoeEnemies5Yards >= SamuraiSettings.Instance.AoeEnemies)
                 return false;
 
+            if (Utilities.Routines.Common.CheckTTDIsEnemyDyingSoon(SamuraiSettings.Instance))
+                return false;
+
             await Spells.Higanbana.Cast(Core.Me.CurrentTarget);
 
             return true;
