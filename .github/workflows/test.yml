@@ -18,6 +18,13 @@ jobs:
       uses: microsoft/setup-msbuild@v1
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.5
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install zipfile36
     - name: Restore NuGet packages
       run: |
         cd Magitek
@@ -31,7 +38,20 @@ jobs:
 
     - name: Create Magitek.zip
       run: |
-        powershell Compress-Archive -Path ./Magitek/bin/release/Magitek.dll, ./Magitek/bin/release/Version.txt, ./MagitekLoader/MagitekLoader.cs -DestinationPath ./Magitek/bin/release/Magitek.zip
+        python -c "
+        import os
+        import zipfile
+
+        # Define paths
+        zip_path = './Magitek/bin/release/Magitek.zip'
+
+        # Step 1: Create initial zip archive with the specified files
+        with zipfile.ZipFile(zip_path, 'w') as zipf:
+            zipf.write('./Magitek/bin/release/Magitek.dll', arcname='Magitek.dll')
+            zipf.write('./Magitek/bin/release/Version.txt', arcname='Version.txt')
+            zipf.write('./MagitekLoader/MagitekLoader.cs', arcname='MagitekLoader.cs')
+            zipf.write('./Magitek/Properties/AssemblyInfo.cs', arcname='Properties/AssemblyInfo.cs')
+        "
 
     - name: Upload Artifacts for Release
       uses: actions/upload-artifact@v2
