@@ -248,6 +248,14 @@ namespace Magitek
                 CustomOpenerLogic._executedOpeners.Clear();
             }
 
+            if (WorldManager.InPvP && !BaseSettings.Instance.ActivePvpCombatRoutine)
+            {
+                BaseSettings.Instance.ActivePvpCombatRoutine = true;
+            } else if (!WorldManager.InPvP && BaseSettings.Instance.ActivePvpCombatRoutine)
+            {
+                BaseSettings.Instance.ActivePvpCombatRoutine = false;
+            }
+
             var time = DateTime.Now;
             if (time < _pulseLimiter) return;
             _pulseLimiter = time.AddSeconds(1);
