@@ -94,6 +94,9 @@ namespace Magitek.Logic.Machinist
             if (Core.Me.EnemiesInCone(8) < MachinistSettings.Instance.FlamethrowerEnemyCount)
                 return false;
 
+            if (Spells.FlameThrower.CanCast())
+                Core.Me.CurrentTarget.Face();
+
             return await Spells.Flamethrower.CastAura(Core.Me, Auras.Flamethrower);
         }
 
