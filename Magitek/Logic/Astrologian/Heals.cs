@@ -574,6 +574,9 @@ namespace Magitek.Logic.Astrologian
             if (!Spells.Swiftcast.IsKnownAndReady())
                 return false;
 
+            if (AstrologianSettings.Instance.DiurnalHeliosNoSwiftcast)
+                return false;
+
             if (!await Buff.Swiftcast())
                 return false;
 
@@ -709,6 +712,9 @@ namespace Magitek.Logic.Astrologian
             if (Group.CastableAlliesWithin20.Count(r => r.CurrentHealthPercent <= AstrologianSettings.Instance.HoroscopeHealthPercent) < AoeThreshold)
                 return false;
 
+            if (Group.CastableAlliesWithin20.Count(r => r.HasMyAura(Auras.Horoscope)) >= AoeThreshold)
+                return await AspectedHelios() ? true : await Spells.Helios.Cast(Core.Me);
+
             if (await Spells.Horoscope.Cast(Core.Me))
                 if (!await AspectedHelios())
                     return await Spells.Helios.Cast(Core.Me);
@@ -721,7 +727,7 @@ namespace Magitek.Logic.Astrologian
             if (!AstrologianSettings.Instance.Horoscope)
                 return false;
                         
-            if (Group.CastableAlliesWithin20.Count(r => r.HasAura(Auras.HoroscopeHelios) && r.CurrentHealthPercent <= AstrologianSettings.Instance.HoroscopeHealthPercent) < AoeThreshold)
+            if (Group.CastableAlliesWithin20.Count(r => r.HasMyAura(Auras.HoroscopeHelios) && r.CurrentHealthPercent <= AstrologianSettings.Instance.HoroscopeHealthPercent) < AoeThreshold)
                 return false;
 
             return await Spells.Horoscope.Cast(Core.Me);
