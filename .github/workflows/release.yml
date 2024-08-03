@@ -19,20 +19,19 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.1.0
 
-    - name: Restore NuGet packages
-      run: |
-        cd Magitek
-        nuget restore Magitek.sln
-
     - name: Extract version from tag
       id: extract_version
       run: |
         $version="${{ github.ref_name }}"
-        $version="${version#v}"
-        echo "VERSION=$version.0" >> $env:GITHUB_ENV
+        echo "VERSION=${version#v}.0" >> $env:GITHUB_ENV
 
     - name: Verify version string
       run: echo "Version is $env:VERSION"
+
+    - name: Restore NuGet packages
+      run: |
+        cd Magitek
+        nuget restore Magitek.sln
 
     - name: Update AssemblyInfo
       run: |
