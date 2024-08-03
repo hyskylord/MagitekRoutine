@@ -74,12 +74,18 @@
         </controls:SettingsBlock>
 
         <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
-            <StackPanel Margin="5" Orientation="Horizontal">
-                <CheckBox Content="Aspected Helios " IsChecked="{Binding AstrologianSettings.DiurnalHelios, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.DiurnalHeliosHealthPercent, Mode=TwoWay}" />
-                <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Health Percent and " />
-                <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.DiurnalHeliosMinManaPercent, Mode=TwoWay}" />
-                <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Minimum Mana To Use" />
+            <StackPanel Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="Aspected Helios " IsChecked="{Binding AstrologianSettings.DiurnalHelios, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.DiurnalHeliosHealthPercent, Mode=TwoWay}" />
+                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Health Percent and " />
+                    <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding AstrologianSettings.DiurnalHeliosMinManaPercent, Mode=TwoWay}" />
+                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Minimum Mana To Use" />
+                </StackPanel>
+
+                <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                    <CheckBox Content="Prevent Usage of Swiftcast Alongside Aspected Helios "  IsChecked="{Binding AstrologianSettings.DiurnalHeliosNoSwiftcast, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>
 
