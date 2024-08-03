@@ -13,7 +13,7 @@ namespace Magitek.Logic.Roles
 {
     internal class CommonFightLogic
     {
-        public static async Task<bool> FightLogic_TankDefensive(bool useDefensive, SpellData[] defensiveSpells, uint[] defensiveAuras)
+        public static async Task<bool> FightLogic_TankDefensive(bool useDefensive, SpellData[] defensiveSpells, uint[] defensiveAuras, int castTimeRemainingMs = 0)
         {
             if (!useDefensive)
                 return false;
@@ -27,6 +27,9 @@ namespace Magitek.Logic.Roles
                 if (Core.Me.HasAnyAura(defensiveAuras))
                     return false;
 
+                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs))
+                    return false;
+
                 foreach (var defensiveSpell in defensiveSpells)
                 {
                     if (defensiveSpell.IsKnownAndReady())
@@ -38,7 +41,7 @@ namespace Magitek.Logic.Roles
             return false;
         }
 
-        public static async Task<bool> FightLogic_SelfShield(bool useShield, SpellData spell, bool selfAuraCheck = false, uint aura = 0)
+        public static async Task<bool> FightLogic_SelfShield(bool useShield, SpellData spell, bool selfAuraCheck = false, uint aura = 0, int castTimeRemainingMs = 0)
         {
             if (!useShield)
                 return false;
@@ -54,12 +57,15 @@ namespace Magitek.Logic.Roles
                 if (selfAuraCheck && Core.Me.HasAura(aura))
                     return false;
 
+                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs))
+                    return false;
+
                 return await FightLogic.DoAndBuffer(spell.Cast(Core.Me));
             }
             return false;
         }
 
-        public static async Task<bool> FightLogic_PartyShield(bool useShield, SpellData spell, bool selfAuraCheck = false, uint[] auras = null, uint aura = 0)
+        public static async Task<bool> FightLogic_PartyShield(bool useShield, SpellData spell, bool selfAuraCheck = false, uint[] auras = null, uint aura = 0, int castTimeRemainingMs = 0)
         {
             if (!useShield)
                 return false;
@@ -78,12 +84,15 @@ namespace Magitek.Logic.Roles
                 if (selfAuraCheck && aura != 0 && Core.Me.HasAura(aura))
                     return false;
 
+                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs))
+                    return false;
+
                 return await FightLogic.DoAndBuffer(spell.Cast(Core.Me));
             }
             return false;
         }
 
-        public static async Task<bool> FightLogic_Debuff(bool useDebuff, SpellData spell, bool targetAuraCheck = false, uint aura = 0)
+        public static async Task<bool> FightLogic_Debuff(bool useDebuff, SpellData spell, bool targetAuraCheck = false, uint aura = 0, int castTimeRemainingMs = 0)
         {
             if (!useDebuff)
                 return false;
@@ -100,6 +109,9 @@ namespace Magitek.Logic.Roles
                 || FightLogic.EnemyIsCastingSharedTankBuster() != null)
             {
                 if (targetAuraCheck && Core.Me.CurrentTarget.HasAura(aura))
+                    return false;
+
+                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs))
                     return false;
 
                 return await FightLogic.DoAndBuffer(spell.Cast(Core.Me.CurrentTarget));

@@ -4,6 +4,7 @@ using ff14bot.Managers;
 using ff14bot.Objects;
 using Magitek.Utilities.Collections;
 using System;
+using Generic = System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace Magitek.Utilities
 
         private static readonly Stopwatch GetEnemyLogicAndEnemyCacheAge = new Stopwatch();
 
+        private static Generic.HashSet<uint> FlHandledCastingSpellId = new Generic.HashSet<uint>();
+
         private static TimeSpan FlCooldown
         {
             get
@@ -50,6 +53,14 @@ namespace Magitek.Utilities
 
         public static async Task<bool> DoAndBuffer(Task<bool> task)
         {
+            var (encounter, enemyLogic, enemy) = GetEnemyLogicAndEnemy();
+
+            // prevent running duplicate fightlogic responses to the same spell when it's a long cast. 
+            if (FlHandledCastingSpellId.Contains(enemy.CastingSpellId))
+                return false;
+
+            FlHandledCastingSpellId.Add(enemy.CastingSpellId);
+
             if (!await task) return false;
 
             FlStopwatch.Start();
@@ -182,6 +193,27 @@ namespace Magitek.Utilities
 
             return false;
         }
+                
+        public static bool HodlCastTimeRemaining(int hodlTillCastInMs)
+        {
+            if (hodlTillCastInMs == 0)
+                return true;
+
+            if (ZoneHasFightLogic())
+            {
+                var (encounter, enemyLogic, enemy) = GetEnemyLogicAndEnemy();
+
+                if (enemy == null)
+                    return true;
+
+                if (enemy.IsCasting)
+                    return enemy.SpellCastInfo.RemainingCastTime.TotalMilliseconds <= hodlTillCastInMs;
+                else
+                    return true;
+            }
+
+            return true;
+        }
 
         private static (Encounter, Enemy, BattleCharacter) GetEnemyLogicAndEnemy()
         {
@@ -206,12 +238,15 @@ namespace Magitek.Utilities
             if (encounter == null)
                 return SetAndReturn();
 
-            enemyLogic = encounter.Enemies.FirstOrDefault(x => Combat.Enemies.Any(y => x.Id == y.NpcId || x.Name == y.EnglishName), encounter.Enemies.First());
+            enemyLogic = encounter.Enemies.FirstOrDefault(x => Combat.Enemies.Any(y => x.Id == y.NpcId || x.Name == y.EnglishName), encounter.Enemies.FirstOrDefault());
 
             if (enemyLogic == null)
                 return SetAndReturn();
 
-            enemy = Combat.Enemies.FirstOrDefault(y => enemyLogic.Id == y.NpcId || enemyLogic.Name == y.EnglishName, Combat.Enemies.First());
+            enemy = Combat.Enemies.FirstOrDefault(y => enemyLogic.Id == y.NpcId || enemyLogic.Name == y.EnglishName, Combat.Enemies.FirstOrDefault());
+
+            if (enemy != null && !FlHandledCastingSpellId.Contains(enemy.CastingSpellId))
+                FlHandledCastingSpellId.Clear();
 
             return SetAndReturn();
 
