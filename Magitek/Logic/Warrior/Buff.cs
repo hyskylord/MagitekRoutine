@@ -38,30 +38,24 @@ namespace Magitek.Logic.Warrior
         //Berserk Becomes Inner Release
         public static async Task<bool> InnerRelease()
         {
-            Logger.WriteInfo("use check");
             if (!WarriorSettings.Instance.UseInnerRelease)
                 return false;
 
-            Logger.WriteInfo("enemy check");
             if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 3 + r.CombatReach) < 1)
                 return false;
 
-            Logger.WriteInfo("aura check");
             //Added level check as this skill is available as berserk at lvl 6 and AoE combo isnt until lvl 40
             if (!Core.Me.HasAura(Auras.SurgingTempest, true, 12000)
                 && Core.Me.ClassLevel >= Spells.MythrilTempest.LevelAcquired)
                 return false;
 
-            Logger.WriteInfo("chaos check");
             if (Core.Me.HasAura(Auras.NascentChaos))
                 return false;
 
-            Logger.WriteInfo("cooldown check");
             // We're assuming IR is usable from here. If we're on GCD with more than 800 milliseconds left
             if (Spells.HeavySwing.Cooldown.TotalMilliseconds > 800)
                 return false;
 
-            Logger.WriteInfo($@"InnerRelease Ready");
             return await WarriorRoutine.InnerRelease.Cast(Core.Me);
         }
 
