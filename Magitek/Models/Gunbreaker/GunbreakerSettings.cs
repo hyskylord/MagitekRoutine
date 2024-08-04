@@ -22,6 +22,10 @@ namespace Magitek.Models.Gunbreaker
         public bool UseAmmoCombo { get; set; }
 
         [Setting]
+        [DefaultValue(6000)]
+        public int SaveAmmoComboMseconds { get; set; }
+
+        [Setting]
         [DefaultValue(true)]
         public bool UseLionHeartCombo { get; set; }
 
@@ -53,6 +57,9 @@ namespace Magitek.Models.Gunbreaker
         [DefaultValue(true)]
         public bool UseBurstStrike { get; set; }
 
+        [Setting]
+        [DefaultValue(6000)]
+        public int SaveBurstStrikeMseconds { get; set; }
         #endregion
 
         #region Buff

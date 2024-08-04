@@ -128,8 +128,11 @@ namespace Magitek.Logic.Gunbreaker
 
             if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 5 + r.CombatReach) >= GunbreakerSettings.Instance.UseAoeEnemies)
                 return false;
+            
+            if (Spells.NoMercy.IsKnownAndReady(GunbreakerSettings.Instance.SaveAmmoComboMseconds))
+                return false;
 
-            if (Spells.NoMercy.IsKnownAndReady(2000))
+            if (Spells.DoubleDown.IsKnownAndReady(2000) && Cartridge <= GunbreakerRoutine.RequiredCartridgeForDoubleDown)
                 return false;
 
             return await Spells.GnashingFang.Cast(Core.Me.CurrentTarget);
@@ -207,7 +210,7 @@ namespace Magitek.Logic.Gunbreaker
             if (Core.Me.HasAura(Auras.ReadyToReign))
                  return false;
 
-            if (Spells.NoMercy.IsKnownAndReady(2000))
+            if (Spells.NoMercy.IsKnownAndReady(GunbreakerSettings.Instance.SaveBurstStrikeMseconds))
                 return false;
 
             if (Core.Me.HasAura(Auras.NoMercy) && Cartridge > 0)
