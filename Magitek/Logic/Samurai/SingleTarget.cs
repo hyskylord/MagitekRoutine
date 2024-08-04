@@ -22,7 +22,13 @@ namespace Magitek.Logic.Samurai
                 return false;
 
             if (Spells.Higanbana.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.Higanbana, true))
-                return false;
+                if (SamuraiSettings.Instance.HiganbanaOnlyBoss)
+                {
+                    if (Core.Me.CurrentTarget.IsBoss())
+                        return false;
+                }
+                else
+                    return false;
 
             if (Spells.Gyofu.IsKnown())
                 return await Spells.Gyofu.Cast(Core.Me.CurrentTarget);
@@ -265,7 +271,7 @@ namespace Magitek.Logic.Samurai
             if (SamuraiRoutine.AoeEnemies5Yards >= SamuraiSettings.Instance.AoeEnemies)
                 return false;
 
-            if (Utilities.Routines.Common.CheckTTDIsEnemyDyingSoon(SamuraiSettings.Instance))
+            if (SamuraiSettings.Instance.HiganbanaOnlyBoss && !Core.Me.CurrentTarget.IsBoss())
                 return false;
 
             await Spells.Higanbana.Cast(Core.Me.CurrentTarget);

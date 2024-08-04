@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Magitek.Models.Account;
 
 namespace Magitek.Logic.Roles
 {
@@ -27,13 +28,15 @@ namespace Magitek.Logic.Roles
                 if (Core.Me.HasAnyAura(defensiveAuras))
                     return false;
 
-                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs))
+                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs, BaseSettings.Instance.FightLogicResponseDelay))
                     return false;
 
                 foreach (var defensiveSpell in defensiveSpells)
                 {
                     if (defensiveSpell.IsKnownAndReady())
                     {
+                        if (BaseSettings.Instance.DebugFightLogic)
+                            Logger.WriteInfo($"[TankDefensive Response] Cast {defensiveSpell.Name}");
                         return await FightLogic.DoAndBuffer(defensiveSpell.Cast(Core.Me));
                     }
                 }
@@ -57,8 +60,11 @@ namespace Magitek.Logic.Roles
                 if (selfAuraCheck && Core.Me.HasAura(aura))
                     return false;
 
-                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs))
+                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs, BaseSettings.Instance.FightLogicResponseDelay))
                     return false;
+
+                if (BaseSettings.Instance.DebugFightLogic)
+                    Logger.WriteInfo($"[SelfShield Response] Cast {spell.Name}");
 
                 return await FightLogic.DoAndBuffer(spell.Cast(Core.Me));
             }
@@ -84,8 +90,11 @@ namespace Magitek.Logic.Roles
                 if (selfAuraCheck && aura != 0 && Core.Me.HasAura(aura))
                     return false;
 
-                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs))
+                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs, BaseSettings.Instance.FightLogicResponseDelay))
                     return false;
+
+                if (BaseSettings.Instance.DebugFightLogic)
+                    Logger.WriteInfo($"[PartyShield Response] Cast {spell.Name}");
 
                 return await FightLogic.DoAndBuffer(spell.Cast(Core.Me));
             }
@@ -111,8 +120,11 @@ namespace Magitek.Logic.Roles
                 if (targetAuraCheck && Core.Me.CurrentTarget.HasAura(aura))
                     return false;
 
-                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs))
+                if (!FightLogic.HodlCastTimeRemaining(castTimeRemainingMs, BaseSettings.Instance.FightLogicResponseDelay))
                     return false;
+
+                if (BaseSettings.Instance.DebugFightLogic)
+                    Logger.WriteInfo($"[Debuff Response] Cast {spell.Name} on {Core.Me.CurrentTarget.Name}");
 
                 return await FightLogic.DoAndBuffer(spell.Cast(Core.Me.CurrentTarget));
             }

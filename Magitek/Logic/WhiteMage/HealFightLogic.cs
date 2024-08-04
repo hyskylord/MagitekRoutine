@@ -26,6 +26,9 @@ namespace Magitek.Logic.WhiteMage
             if (!FightLogic.EnemyIsCastingBigAoe() && !FightLogic.EnemyIsCastingAoe())
                 return false;
 
+            if (!FightLogic.HodlCastTimeRemaining(hodlTillDurationInPct: BaseSettings.Instance.FightLogicResponseDelay))
+                return false;
+
             if (WhiteMageSettings.Instance.FightLogicDivineCaress
                 && Spells.DivineCaress.IsKnownAndReady()
                 && Spells.DivineCaress.CanCast())
@@ -126,6 +129,9 @@ namespace Magitek.Logic.WhiteMage
                 if (target == null)
                     return false;
             }
+
+            if (!FightLogic.HodlCastTimeRemaining(hodlTillDurationInPct: BaseSettings.Instance.FightLogicResponseDelay))
+                return false;
 
             if (WhiteMageSettings.Instance.FightLogicDivineBenison
                 && Spells.DivineBenison.IsKnownAndReady()

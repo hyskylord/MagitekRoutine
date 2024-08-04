@@ -44,7 +44,7 @@ namespace Magitek.Extensions
 
             if (target.Distance() > spell.Range)
                 return false;
-
+            
             if (ActionManager.GetPvPComboCurrentActionId(pvpComboId) != spell.Id)
                 return false;
 

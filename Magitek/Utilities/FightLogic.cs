@@ -53,6 +53,8 @@ namespace Magitek.Utilities
 
         public static async Task<bool> DoAndBuffer(Task<bool> task)
         {
+            if (!await task) return false;
+
             var (encounter, enemyLogic, enemy) = GetEnemyLogicAndEnemy();
 
             // prevent running duplicate fightlogic responses to the same spell when it's a long cast. 
@@ -60,9 +62,6 @@ namespace Magitek.Utilities
                 return false;
 
             FlHandledCastingSpellId.Add(enemy.CastingSpellId);
-
-            if (!await task) return false;
-
             FlStopwatch.Start();
             return true;
         }
@@ -193,10 +192,10 @@ namespace Magitek.Utilities
 
             return false;
         }
-                
-        public static bool HodlCastTimeRemaining(int hodlTillCastInMs)
+
+        public static bool HodlCastTimeRemaining(int hodlTillCastInMs = 0, double hodlTillDurationInPct = 0.0)
         {
-            if (hodlTillCastInMs == 0)
+            if (hodlTillCastInMs == 0 && hodlTillDurationInPct == 0)
                 return true;
 
             if (ZoneHasFightLogic())
@@ -207,9 +206,22 @@ namespace Magitek.Utilities
                     return true;
 
                 if (enemy.IsCasting)
-                    return enemy.SpellCastInfo.RemainingCastTime.TotalMilliseconds <= hodlTillCastInMs;
+                {
+                    if (hodlTillCastInMs > 0)
+                        return enemy.SpellCastInfo.RemainingCastTime.TotalMilliseconds <= hodlTillCastInMs;
+                    else if (hodlTillDurationInPct > 0)
+                    {
+                        double currentCastTime = enemy.SpellCastInfo.CurrentCastTime.TotalMilliseconds;
+                        double totalCastTime = enemy.SpellCastInfo.CastTime.TotalMilliseconds;
+                        double castProgress = (currentCastTime / totalCastTime) * 100;
+
+                        return castProgress >= hodlTillDurationInPct;
+                    }
+                }
                 else
+                {
                     return true;
+                }
             }
 
             return true;
@@ -2111,7 +2123,7 @@ namespace Magitek.Utilities
                         },
                         SharedTankBusters = null,
                         Aoes = new List<uint>() {
-                            9374 //Stotram
+                            9347 //Stotram
                         },
                         BigAoes = null
                     }
@@ -5838,6 +5850,206 @@ namespace Magitek.Utilities
                 }
             },
 
+            new Encounter {
+                ZoneId = ZoneId.Euphrosyne,
+                Name = "Euphrosyne",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 0, // Assuming an ID for Nophica
+                        Name = "Nophica",
+                        TankBusters = new List<uint>() {
+                            0x7C23, // Heavens' Earth
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x7C24, // Abundance
+                            0x7C1D, // Matron's Harvest
+                            0x7C1E, // Matron's Harvest
+                            0x7C19, // Landwaker
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    },
+                    new Enemy {
+                        Id = 1, // Assuming an ID for Euphrosynos Ktenos
+                        Name = "Euphrosynos Ktenos",
+                        TankBusters = new List<uint>() {
+                            0x7D39, // Sweeping Gouge
+                            0x7D3C, // Rapid Sever
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x7D3B, // Roaring Rumble
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    },
+                    new Enemy {
+                        Id = 2, // Assuming an ID for Euphrosynos Behemoth
+                        Name = "Euphrosynos Behemoth",
+                        TankBusters = new List<uint>() {
+                            // No tank busters mentioned in the TypeScript data
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            0x7D37, // Localized Maelstrom
+                            0x7A48, // Petrai
+                        },
+                        Aoes = new List<uint>() {
+                            0x7D38, // Trounce
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    },
+                    new Enemy {
+                        Id = 3, // Assuming an ID for Nymeia
+                        Name = "Nymeia",
+                        TankBusters = new List<uint>() {
+                            // No tank busters mentioned in the TypeScript data
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x7A47, // Axioma
+                            0x7A44, // Hydroptosis
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    },
+                    new Enemy {
+                        Id = 4, // Assuming an ID for Halone
+                        Name = "Halone",
+                        TankBusters = new List<uint>() {
+                            0x7D78, // Spears Three
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x7D79, // Rain of Spears
+                            0x7D63, // Wrath of Halone
+                            0x7D67
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    },
+                    new Enemy {
+                        Id = 5, // Assuming an ID for Menphina
+                        Name = "Menphina",
+                        TankBusters = new List<uint>() {
+                            0x019C, 
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x7BFA, // Blue Moon
+                            0x7BFB, // Blue Moon
+                            0x80FA, // Moonset Rays
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    }
+                }
+            },
+
+            new Encounter {
+                ZoneId = ZoneId.Thaleia,
+                Name = "Thaleia",
+                Expansion = FfxivExpansion.Dawntrail,
+                Enemies = new List<Enemy> {
+                    new Enemy {
+                        Id = 0, // Assuming an ID for Thaliak
+                        Name = "Thaliak",
+                        TankBusters = new List<uint>() {
+                            0x01D7, // rhyton
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x88D1, // Katarraktes
+                            0x88C4, // Rheognosis
+                            0x88C5, // Rheognosis Petrine
+                            0x88CF, // Hieroglyphika
+                            0x88D8, // Thlipsis
+                            0x88D5, // Hydroptosis
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    },
+                    new Enemy {
+                        Id = 1, // Assuming an ID for Llymlaen
+                        Name = "Llymlaen",
+                        TankBusters = new List<uint>() {
+                            
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x8819, // Deep Dive
+                            0x880B, // Tempest
+                            0x881A, // Torrential Tridents
+                            0x8824, // Godsbane
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    },
+                    new Enemy {
+                        Id = 2, // Assuming an ID for Oschon
+                        Name = "Oschon",
+                        TankBusters = new List<uint>() {
+                            0x0158, 0x01F4
+                        },
+                        SharedTankBusters = new List<uint>() {
+                        },
+                        Aoes = new List<uint>() {
+                            0x8999, // Sudden Downpour
+                            0x899A, // downpour
+                            0x013C, // foehn
+
+                        },
+                        BigAoes = new List<uint>() {
+                            // No big Aoes mentioned in the TypeScript data
+                        }
+                    },
+                    new Enemy {
+                        Id = 3, // Assuming an ID for Eulogia
+                        Name = "Eulogia",
+                        TankBusters = new List<uint>() {
+                            0x0158, 0x01F4
+                        },
+                        SharedTankBusters = new List<uint>() {
+                            // No shared tank busters mentioned in the TypeScript data
+                        },
+                        Aoes = new List<uint>() {
+                            0x8A03, // Dawn of Time
+                            0x8A2F, // The Whorl
+                            0x8A2C,
+                            0x8A47, // Hand of the Destroyer Red
+                            0x8A48, // Hand of the Destroyer Blue
+                            0x8A43, // Hieroglyphika
+                            0x8CFD, // Destructive Bolt
+                        },
+                        BigAoes = new List<uint>() {
+                        }
+                    }
+                }
+            },
             #endregion
 
             #region: Dawntrail Dungeons
@@ -6053,6 +6265,7 @@ namespace Magitek.Utilities
                         Aoes = new List<uint>() {
                             37161, // electrowave
                             37345, // heavy blast cannon
+                            37348, // tracking bolt
                         },
                         BigAoes = new List<uint>() {
                             // Add BigAoes here if available
@@ -6489,6 +6702,7 @@ namespace Magitek.Utilities
             internal List<uint> SharedTankBusters { get; set; }
             internal List<uint> Aoes { get; set; }
             internal List<uint> BigAoes { get; set; }
+            internal List<uint> Knockbacks { get; set; }
         }
 
         private class Encounter

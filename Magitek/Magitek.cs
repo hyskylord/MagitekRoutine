@@ -129,32 +129,13 @@ namespace Magitek
             #endregion
         }
 
-        private async void GameEventsOnOnMapChanged(object sender, EventArgs e)
+        private void GameEventsOnOnMapChanged(object sender, EventArgs e)
         {
-            // Wait 5 seconds for WorldManager.InPvP to have a chance to update it's cache.
-            var delays = 0;
-            while (delays < 50)
+            if (WorldManager.ZoneId != CurrentZone)
             {
-                await Task.Delay(100);
-                delays++;
-            }
+                // Set the current zone
+                CurrentZone = WorldManager.ZoneId;
 
-            CurrentZone = WorldManager.ZoneId;
-            if (WorldManager.InPvP && !BaseSettings.Instance.ActivePvpCombatRoutine)
-            {
-                Logger.WriteInfo("Entering PVP Zone. Switching to PvP CombatRoutine.");
-                BaseSettings.Instance.ActivePvpCombatRoutine = true;
-                Application.Current.Dispatcher.Invoke(delegate
-                {
-                    GambitsViewModel.Instance.ApplyGambits();
-                    OpenersViewModel.Instance.ApplyOpeners();
-                    TogglesManager.LoadTogglesForCurrentJob();
-                });
-            }
-            if (!WorldManager.InPvP && BaseSettings.Instance.ActivePvpCombatRoutine)
-            {
-                Logger.WriteInfo("Leaving PVP Zone. Switching to PvE CombatRoutine.");
-                BaseSettings.Instance.ActivePvpCombatRoutine = false;
                 Application.Current.Dispatcher.Invoke(delegate
                 {
                     GambitsViewModel.Instance.ApplyGambits();
@@ -282,6 +263,29 @@ namespace Magitek
             {
                 Logger.WriteInfo(@"Resetting Openers Because We're Out Of Combat");
                 CustomOpenerLogic._executedOpeners.Clear();
+            }
+
+            if (WorldManager.InPvP && !BaseSettings.Instance.ActivePvpCombatRoutine)
+            {
+                Logger.WriteInfo("Entering PVP Zone. Switching to PvP CombatRoutine.");
+                BaseSettings.Instance.ActivePvpCombatRoutine = true;
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    GambitsViewModel.Instance.ApplyGambits();
+                    OpenersViewModel.Instance.ApplyOpeners();
+                    TogglesManager.LoadTogglesForCurrentJob();
+                });
+            }
+            else if (!WorldManager.InPvP && BaseSettings.Instance.ActivePvpCombatRoutine)
+            {
+                Logger.WriteInfo("Leaving PVP Zone. Switching to PvE CombatRoutine.");
+                BaseSettings.Instance.ActivePvpCombatRoutine = false;
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    GambitsViewModel.Instance.ApplyGambits();
+                    OpenersViewModel.Instance.ApplyOpeners();
+                    TogglesManager.LoadTogglesForCurrentJob();
+                });
             }
 
             var time = DateTime.Now;

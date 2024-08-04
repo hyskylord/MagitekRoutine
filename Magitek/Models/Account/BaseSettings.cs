@@ -60,6 +60,10 @@ namespace Magitek.Models.Account
         public bool UseFightLogic { get; set; }
 
         [Setting]
+        [DefaultValue(20.0f)]
+        public float FightLogicResponseDelay { get; set; }
+
+        [Setting]
         public string ContributorKey { get; set; }
 
         [Setting]

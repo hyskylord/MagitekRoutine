@@ -114,7 +114,7 @@ namespace Magitek.Rotations
                 }
             }
 
-            if (await CommonFightLogic.FightLogic_SelfShield(ReaperSettings.Instance.FightLogicArcaneCrest, Spells.ArcaneCrest, false, castTimeRemainingMs: 4000)) return true;
+            if (await CommonFightLogic.FightLogic_SelfShield(ReaperSettings.Instance.FightLogicArcaneCrest, Spells.ArcaneCrest, false, castTimeRemainingMs: 3000)) return true;
             if (await CommonFightLogic.FightLogic_Debuff(ReaperSettings.Instance.FightLogicFeint, Spells.Feint, true, Auras.Feint)) return true;
 
             if (SingleTarget.ForceLimitBreak()) return true;
