@@ -428,6 +428,7 @@ namespace Magitek.Utilities
             //SAM
             ZanshinReady = 3855,
             Tendo = 3856,
+            ThirdEye = 1232,
 
             //DRG
             StarcrossReady = 3846,

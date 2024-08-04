@@ -153,6 +153,10 @@ namespace Magitek.Models.Samurai
         public bool UseHiganbana { get; set; }
 
         [Setting]
+        [DefaultValue(false)]
+        public bool HiganbanaOnlyBoss { get; set; }
+
+        [Setting]
         [DefaultValue(true)]
         public bool UseMidareSetsugekka { get; set; }
 

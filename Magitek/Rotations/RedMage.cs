@@ -112,7 +112,7 @@ namespace Magitek.Rotations
             //LimitBreak
             if (Aoe.ForceLimitBreak()) return true;
 
-            if (await CommonFightLogic.FightLogic_SelfShield(RedMageSettings.Instance.FightLogicMagickBarrier, Spells.MagickBarrier)) return true;
+            if (await CommonFightLogic.FightLogic_PartyShield(RedMageSettings.Instance.FightLogicMagickBarrier, Spells.MagickBarrier, castTimeRemainingMs: 4500)) return true;
             if (await MagicDps.FightLogic_Addle(RedMageSettings.Instance)) return true;
 
             if (RedMageRoutine.GlobalCooldown.CanWeave())

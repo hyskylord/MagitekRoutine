@@ -22,7 +22,13 @@ namespace Magitek.Logic.Samurai
                 return false;
 
             if (Spells.Higanbana.CanCast() && !Core.Me.CurrentTarget.HasAura(Auras.Higanbana, true))
-                return false;
+                if (SamuraiSettings.Instance.HiganbanaOnlyBoss)
+                {
+                    if (Core.Me.CurrentTarget.IsBoss())
+                        return false;
+                }
+                else
+                    return false;
 
             if (Spells.Gyofu.IsKnown())
                 return await Spells.Gyofu.Cast(Core.Me.CurrentTarget);
@@ -171,6 +177,9 @@ namespace Magitek.Logic.Samurai
             if (ActionResourceManager.Samurai.Kenki < 10 + SamuraiSettings.Instance.ReservedKenki) //10 for Yaten + 10 for Guoten
                 return false;
 
+            if (Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
             if (!Spells.HissatsuGyoten.IsKnownAndReady())
                 return false;
 
@@ -188,6 +197,9 @@ namespace Magitek.Logic.Samurai
             if (ActionResourceManager.Samurai.Kenki < 25 + SamuraiSettings.Instance.ReservedKenki)
                 return false;
 
+            if (Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
             if (Casting.LastSpell != Spells.MidareSetsugekka)
                 return false;
 
@@ -201,7 +213,10 @@ namespace Magitek.Logic.Samurai
 
             if (ActionResourceManager.Samurai.Kenki < 25 + SamuraiSettings.Instance.ReservedKenki)
                 return false;
-            
+
+            if (Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
             if (Casting.LastSpell == Spells.HissatsuSenei)
                 return false;
 
@@ -265,6 +280,9 @@ namespace Magitek.Logic.Samurai
             if (SamuraiRoutine.AoeEnemies5Yards >= SamuraiSettings.Instance.AoeEnemies)
                 return false;
 
+            if (SamuraiSettings.Instance.HiganbanaOnlyBoss && !Core.Me.CurrentTarget.IsBoss())
+                return false;
+
             await Spells.Higanbana.Cast(Core.Me.CurrentTarget);
 
             return true;
@@ -280,7 +298,7 @@ namespace Magitek.Logic.Samurai
             if (!SamuraiSettings.Instance.UseKaeshiSetsugekka)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Tendo))
+            if (Spells.TendoKaeshiSetsugekka.IsKnownAndReadyAndCastable())
                 return await Spells.TendoKaeshiSetsugekka.Cast(Core.Me.CurrentTarget);
 
             if (!await Spells.KaeshiSetsugekka.Cast(Core.Me.CurrentTarget))

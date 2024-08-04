@@ -89,7 +89,7 @@ namespace Magitek.Rotations
             //Buff for opener
             if (await Buff.MeikyoShisuiNotInCombat()) return true;
 
-            if (await CommonFightLogic.FightLogic_SelfShield(SamuraiSettings.Instance.FightLogicTengentsu, Spells.Tengentsu)) return true;
+            if (await CommonFightLogic.FightLogic_SelfShield(SamuraiSettings.Instance.FightLogicTengentsu, Spells.Tengentsu.IsKnown() ? Spells.Tengentsu : Spells.ThirdEye, castTimeRemainingMs: 2000)) return true;
             if (await CommonFightLogic.FightLogic_Debuff(SamuraiSettings.Instance.FightLogicFeint, Spells.Feint, true, Auras.Feint)) return true;
 
             //Utility

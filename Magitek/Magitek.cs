@@ -69,6 +69,7 @@ namespace Magitek
             CurrentJob = Core.Me.CurrentJob;
             GameEvents.OnClassChanged += GameEventsOnOnClassChanged;
             GameEvents.OnLevelUp += GameEventsOnOnLevelUp;
+            GameEvents.OnMapChanged += GameEventsOnOnMapChanged;
 
             HookBehaviors();
 
@@ -126,6 +127,22 @@ namespace Magitek
                 CombatMessageManager.RegisterMessageStrategiesForClass(Core.Me.CurrentJob);
             }
             #endregion
+        }
+
+        private void GameEventsOnOnMapChanged(object sender, EventArgs e)
+        {
+            if (WorldManager.ZoneId != CurrentZone)
+            {
+                // Set the current zone
+                CurrentZone = WorldManager.ZoneId;
+
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    GambitsViewModel.Instance.ApplyGambits();
+                    OpenersViewModel.Instance.ApplyOpeners();
+                    TogglesManager.LoadTogglesForCurrentJob();
+                });
+            }
         }
 
         public void OnStart(BotBase bot)
@@ -246,6 +263,29 @@ namespace Magitek
             {
                 Logger.WriteInfo(@"Resetting Openers Because We're Out Of Combat");
                 CustomOpenerLogic._executedOpeners.Clear();
+            }
+
+            if (WorldManager.InPvP && !BaseSettings.Instance.ActivePvpCombatRoutine)
+            {
+                Logger.WriteInfo("Entering PVP Zone. Switching to PvP CombatRoutine.");
+                BaseSettings.Instance.ActivePvpCombatRoutine = true;
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    GambitsViewModel.Instance.ApplyGambits();
+                    OpenersViewModel.Instance.ApplyOpeners();
+                    TogglesManager.LoadTogglesForCurrentJob();
+                });
+            }
+            else if (!WorldManager.InPvP && BaseSettings.Instance.ActivePvpCombatRoutine)
+            {
+                Logger.WriteInfo("Leaving PVP Zone. Switching to PvE CombatRoutine.");
+                BaseSettings.Instance.ActivePvpCombatRoutine = false;
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    GambitsViewModel.Instance.ApplyGambits();
+                    OpenersViewModel.Instance.ApplyOpeners();
+                    TogglesManager.LoadTogglesForCurrentJob();
+                });
             }
 
             var time = DateTime.Now;

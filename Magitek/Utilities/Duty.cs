@@ -1,11 +1,22 @@
 ﻿using ff14bot;
 using ff14bot.Directors;
 using ff14bot.Managers;
+using System.Collections.Generic;
 
 namespace Magitek.Utilities
 {
     public static class Duty
     {
+        public static HashSet<uint> PvpZoneIds = new HashSet<uint>()
+            {
+                1032, // the palaistra
+                1033, // the volcanic heart
+                1058, // the palaistra 2
+                1059, // the volcanic heart 2
+                1034, // cloud nine
+                1060, // cloud nine 2
+            };
+
         /// <summary>
         /// Provides Duty State information. InProgress, NotInDuty, NotStarted, and Ended.
         /// </summary>

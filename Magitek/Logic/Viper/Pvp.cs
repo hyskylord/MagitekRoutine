@@ -1,4 +1,5 @@
 ﻿using ff14bot;
+using ff14bot.Managers;
 using Magitek.Extensions;
 using Magitek.Models.Viper;
 using Magitek.Utilities;
@@ -24,7 +25,21 @@ namespace Magitek.Logic.Viper
                 return true;
             if (Spells.FourthGenerationPvp.CanCast() && await Spells.FourthGenerationPvp.CastPvpCombo(Spells.DualFangPvpCombo, Core.Me.CurrentTarget))
                 return true;
-            if (Spells.OuroborosPvp.CanCast() && await Spells.OuroborosPvp.CastPvpCombo(Spells.DualFangPvpCombo, Core.Me.CurrentTarget))
+
+            if (!Spells.OuroborosPvp.CanCast())
+                return false;
+
+            var pvpComboCheck = DataManager.GetSpellData(ActionManager.GetPvPComboCurrentActionId(65));
+
+            if (pvpComboCheck == Spells.FirstGenerationPvp ||
+                pvpComboCheck == Spells.SecondGenerationPvp ||
+                pvpComboCheck == Spells.ThirdGenerationPvp ||
+                pvpComboCheck == Spells.FourthGenerationPvp)
+            {
+                return false;
+            }
+
+            if (await Spells.OuroborosPvp.Cast(Core.Me.CurrentTarget))
                 return true;
 
             return false;
@@ -63,6 +78,9 @@ namespace Magitek.Logic.Viper
         {
             // resets uncoiled fury && snake scales
             var uncoiledFury = Spells.UncoiledFuryPvp;
+
+            if (Spells.OuroborosPvp.CanCast() && Core.Me.CurrentTarget.Distance() <= 5)
+                return false;
 
             if (uncoiledFury.Cooldown.TotalMilliseconds <= 5000)
                 return false;

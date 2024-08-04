@@ -74,7 +74,8 @@
 
                 <TextBlock Margin="0 8 0 0" Style="{DynamicResource TextBlockSection}" Text="GCD - Iaijutsu" />
                 <StackPanel Margin="5" Orientation="Horizontal">
-                    <CheckBox Content="Higabana" IsChecked="{Binding SamuraiSettings.UseHiganbana, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Content="Higabana   " IsChecked="{Binding SamuraiSettings.UseHiganbana, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Content="Only Bosses" IsChecked="{Binding SamuraiSettings.HiganbanaOnlyBoss, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                 </StackPanel>
                 <StackPanel Margin="5" Orientation="Horizontal">
                     <CheckBox Content="Midare Setsugekka" IsChecked="{Binding SamuraiSettings.UseMidareSetsugekka, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
