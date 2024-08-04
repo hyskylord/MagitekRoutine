@@ -177,6 +177,9 @@ namespace Magitek.Logic.Samurai
             if (ActionResourceManager.Samurai.Kenki < 10 + SamuraiSettings.Instance.ReservedKenki) //10 for Yaten + 10 for Guoten
                 return false;
 
+            if (Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
             if (!Spells.HissatsuGyoten.IsKnownAndReady())
                 return false;
 
@@ -194,6 +197,9 @@ namespace Magitek.Logic.Samurai
             if (ActionResourceManager.Samurai.Kenki < 25 + SamuraiSettings.Instance.ReservedKenki)
                 return false;
 
+            if (Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
             if (Casting.LastSpell != Spells.MidareSetsugekka)
                 return false;
 
@@ -207,7 +213,10 @@ namespace Magitek.Logic.Samurai
 
             if (ActionResourceManager.Samurai.Kenki < 25 + SamuraiSettings.Instance.ReservedKenki)
                 return false;
-            
+
+            if (Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
             if (Casting.LastSpell == Spells.HissatsuSenei)
                 return false;
 
@@ -289,7 +298,7 @@ namespace Magitek.Logic.Samurai
             if (!SamuraiSettings.Instance.UseKaeshiSetsugekka)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Tendo))
+            if (Spells.TendoKaeshiSetsugekka.IsKnownAndReadyAndCastable())
                 return await Spells.TendoKaeshiSetsugekka.Cast(Core.Me.CurrentTarget);
 
             if (!await Spells.KaeshiSetsugekka.Cast(Core.Me.CurrentTarget))

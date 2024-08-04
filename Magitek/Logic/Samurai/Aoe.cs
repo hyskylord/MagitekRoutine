@@ -98,6 +98,9 @@ namespace Magitek.Logic.Samurai
             if (ActionResourceManager.Samurai.Kenki < 25 + SamuraiSettings.Instance.ReservedKenki)
                 return false;
 
+            if (Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
             if (SamuraiRoutine.AoeEnemies5Yards < SamuraiSettings.Instance.AoeEnemies)
                 return false;
 
@@ -115,6 +118,9 @@ namespace Magitek.Logic.Samurai
             if (ActionResourceManager.Samurai.Kenki < 25 + SamuraiSettings.Instance.ReservedKenki)
                 return false;
 
+            if (Core.Me.HasAura(Auras.ZanshinReady))
+                return false;
+
             if (!Core.Me.CurrentTarget.InView())
                 return false;
 
@@ -126,7 +132,7 @@ namespace Magitek.Logic.Samurai
 
         public static async Task<bool> Zanshin()
         {
-            if (ActionResourceManager.Samurai.Kenki < 50 + SamuraiSettings.Instance.ReservedKenki)
+            if (ActionResourceManager.Samurai.Kenki < 50)
                 return false;
 
             if (!Core.Me.CurrentTarget.InView())
@@ -186,7 +192,7 @@ namespace Magitek.Logic.Samurai
             if (!SamuraiSettings.Instance.UseKaeshiGoken)
                 return false;
 
-            if (Core.Me.HasAura(Auras.Tendo))
+            if (Spells.TendoKaeshiGoken.IsKnownAndReadyAndCastable())
                 return await Spells.TendoKaeshiGoken.Cast(Core.Me.CurrentTarget);
 
             return await Spells.KaeshiGoken.Cast(Core.Me.CurrentTarget);
