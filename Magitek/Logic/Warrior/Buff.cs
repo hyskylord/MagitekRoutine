@@ -49,7 +49,9 @@ namespace Magitek.Logic.Warrior
                 && Core.Me.ClassLevel >= Spells.MythrilTempest.LevelAcquired)
                 return false;
 
-            if (Core.Me.HasAura(Auras.NascentChaos))
+            // trait for nascent chaos acquired at lvl 80 for single target, when we get the trait for that
+            // then only inner release with nascent chaos
+            if (Core.Me.ClassLevel >= 80 && !Core.Me.HasAura(Auras.NascentChaos))
                 return false;
 
             // We're assuming IR is usable from here. If we're on GCD with more than 800 milliseconds left
