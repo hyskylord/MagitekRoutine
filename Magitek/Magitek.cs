@@ -129,8 +129,17 @@ namespace Magitek
             #endregion
         }
 
-        private void GameEventsOnOnMapChanged(object sender, EventArgs e)
+        private async void GameEventsOnOnMapChanged(object sender, EventArgs e)
         {
+            // Wait 5 seconds for WorldManager.InPvP to have a chance to update it's cache.
+            var delays = 0;
+            while (delays < 50)
+            {
+                await Task.Delay(100);
+                delays++;
+            }
+
+            CurrentZone = WorldManager.ZoneId;
             if (WorldManager.InPvP && !BaseSettings.Instance.ActivePvpCombatRoutine)
             {
                 Logger.WriteInfo("Entering PVP Zone. Switching to PvP CombatRoutine.");
@@ -142,7 +151,7 @@ namespace Magitek
                     TogglesManager.LoadTogglesForCurrentJob();
                 });
             }
-            else if (!WorldManager.InPvP && BaseSettings.Instance.ActivePvpCombatRoutine)
+            if (!WorldManager.InPvP && BaseSettings.Instance.ActivePvpCombatRoutine)
             {
                 Logger.WriteInfo("Leaving PVP Zone. Switching to PvE CombatRoutine.");
                 BaseSettings.Instance.ActivePvpCombatRoutine = false;
