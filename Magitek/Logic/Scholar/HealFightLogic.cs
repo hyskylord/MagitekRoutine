@@ -28,9 +28,16 @@ namespace Magitek.Logic.Scholar
             if (!FightLogic.ZoneHasFightLogic())
                 return false;
 
-            if (FightLogic.EnemyIsCastingBigAoe()) return await BigAoe();
+            if (FightLogic.EnemyIsCastingBigAoe() || FightLogic.EnemyIsCastingAoe())
+            {
+                if (!FightLogic.HodlCastTimeRemaining(hodlTillDurationInPct: BaseSettings.Instance.FightLogicResponseDelay))
+                    return false;
 
-            if (FightLogic.EnemyIsCastingAoe()) return await JustAoe(); 
+                if (await BigAoe())
+                    return true;
+                if (await JustAoe())    
+                    return true;
+            }
 
             return false;
         }
@@ -120,6 +127,9 @@ namespace Magitek.Logic.Scholar
             var target = FightLogic.EnemyIsCastingTankBuster();
 
             if (target == null)
+                return false;
+
+            if (!FightLogic.HodlCastTimeRemaining(hodlTillDurationInPct: BaseSettings.Instance.FightLogicResponseDelay))
                 return false;
 
             if (!target.BeingTargetedBy(Core.Me.CurrentTarget))

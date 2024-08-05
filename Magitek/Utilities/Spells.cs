@@ -451,7 +451,7 @@ namespace Magitek.Utilities
         public static readonly SpellData Scattergun = DataManager.GetSpellData(25786);
         public static readonly SpellData ChainSaw = DataManager.GetSpellData(25788);
         public static readonly SpellData SatelliteBeam = DataManager.GetSpellData(4245);
-        public static readonly SpellData Dismantle = DataManager.GetSpellData(2287);
+        public static readonly SpellData Dismantle = DataManager.GetSpellData(2887);
         public static readonly SpellData BlazingShot = DataManager.GetSpellData(36978);
         public static readonly SpellData DoubleCheck = DataManager.GetSpellData(36979);
         public static readonly SpellData Checkmate = DataManager.GetSpellData(36980);

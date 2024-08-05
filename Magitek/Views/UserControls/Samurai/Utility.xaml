@@ -31,6 +31,16 @@
     <StackPanel Margin="10">
 
         <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Margin="5" Content=" Use TTD Checks/Save Cooldowns When Enemy Dying Within " IsChecked="{Binding SamuraiSettings.UseTTD, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <controls:Numeric MaxValue="100000" MinValue="1" Value="{Binding SamuraiSettings.SaveIfEnemyDyingWithin, Mode=TwoWay}" />
+                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Seconds" />
+                </StackPanel>
+            </StackPanel>
+        </controls:SettingsBlock>
+
+        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition />

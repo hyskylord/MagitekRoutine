@@ -29,6 +29,9 @@ namespace Magitek.Logic.Sage
             if (!FightLogic.EnemyIsCastingBigAoe() && !FightLogic.EnemyIsCastingAoe())
                 return false;
 
+            if (!FightLogic.HodlCastTimeRemaining(hodlTillDurationInPct: BaseSettings.Instance.FightLogicResponseDelay))
+                return false;
+
             var useAoEBuffs = Heal.UseAoEHealingBuff(Group.CastableAlliesWithin15);
 
             if (SageSettings.Instance.FightLogic_Kerachole
@@ -129,6 +132,9 @@ namespace Magitek.Logic.Sage
                 if (target == null)
                     return false;
             }
+
+            if (!FightLogic.HodlCastTimeRemaining(hodlTillDurationInPct: BaseSettings.Instance.FightLogicResponseDelay))
+                return false;
 
             if (SageSettings.Instance.FightLogic_Haima
                 && Spells.Haima.IsKnownAndReady()

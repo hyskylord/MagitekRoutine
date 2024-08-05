@@ -19,13 +19,17 @@ namespace Magitek.Utilities.Routines
                                             ? Spells.SpiritsWithin
                                             : Spells.Expiacion;
 
-        public static readonly SpellData[] DefensiveSpells = new SpellData[]
+        public static readonly SpellData[] DefensiveFastSpells = new SpellData[]
         {
             Spells.HolySheltron,
-            Spells.Sheltron,
+            Spells.Sheltron
+        };
+
+        public static readonly SpellData[] DefensiveSpells = new SpellData[]
+        {
             Spells.Rampart,
-            Spells.Sentinel,
             Spells.Guardian,
+            Spells.Sentinel,
         };
 
         public static readonly uint[] Defensives = new uint[]
