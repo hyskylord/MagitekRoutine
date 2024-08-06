@@ -25,9 +25,6 @@ namespace Magitek.Logic.Roles
             if (Core.Me.HasAura(Auras.PvpGuard))
                 return true;
 
-            if (await Sprint(settings))
-                return true;
-
             if (await Guard(settings))
                 return true;
 
@@ -35,6 +32,9 @@ namespace Magitek.Logic.Roles
                 return true;
 
             if (await Recuperate(settings))
+                return true;
+
+            if (await Sprint(settings))
                 return true;
 
             return false;
