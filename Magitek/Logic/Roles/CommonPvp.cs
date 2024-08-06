@@ -48,7 +48,10 @@ namespace Magitek.Logic.Roles
             if (Core.Me.HasAnyAura(Auras.Invincibility))
                 return false;
 
-            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
+            if (Core.Me.HasTarget 
+                && Core.Me.CurrentTarget.CanAttack 
+                && Core.Me.CurrentTarget.InLineOfSight()
+                && Core.Me.CurrentTarget.Distance() < 26)
                 return false;
 
             if (Core.Me.HasAura(Auras.PvpSprint))
