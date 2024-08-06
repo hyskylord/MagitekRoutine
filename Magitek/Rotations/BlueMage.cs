@@ -129,6 +129,7 @@ namespace Magitek.Rotations
             {
 
                 //GCD
+                if (await Spells.MagicHammer.Cast(Core.Me.CurrentTarget)) return true;
                 if (await Buff.Swiftcast()) return true;
                 if (await SingleTarget.TripleTrident()) return true;
                 if (await SingleTarget.MatraMagic()) return true;
@@ -152,9 +153,6 @@ namespace Magitek.Rotations
                         if (await Aoe.MountainBuster()) return true; //ShockStrike if possible, otherwise MountainBuster
                     }
                 }
-
-
-                if (await Spells.MagicHammer.Cast(Core.Me.CurrentTarget)) return true;
 
                 if (await SingleTarget.SharpKnife()) return true; //if melee
                 if (await SingleTarget.AbyssalTransfixion()) return true; //if SonicBoom deactivated
