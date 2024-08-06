@@ -25,9 +25,6 @@ namespace Magitek.Logic.Roles
             if (Core.Me.HasAura(Auras.PvpGuard))
                 return true;
 
-            if (await Sprint(settings))
-                return true;
-
             if (await Guard(settings))
                 return true;
 
@@ -35,6 +32,9 @@ namespace Magitek.Logic.Roles
                 return true;
 
             if (await Recuperate(settings))
+                return true;
+
+            if (await Sprint(settings))
                 return true;
 
             return false;
@@ -48,7 +48,10 @@ namespace Magitek.Logic.Roles
             if (Core.Me.HasAnyAura(Auras.Invincibility))
                 return false;
 
-            if (Core.Me.HasTarget && Core.Me.CurrentTarget.CanAttack)
+            if (Core.Me.HasTarget 
+                && Core.Me.CurrentTarget.CanAttack 
+                && Core.Me.CurrentTarget.InLineOfSight()
+                && Core.Me.CurrentTarget.Distance() < 26)
                 return false;
 
             if (Core.Me.HasAura(Auras.PvpSprint))

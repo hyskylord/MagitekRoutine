@@ -41,7 +41,7 @@ namespace Magitek.Logic.Warrior
             if (!WarriorSettings.Instance.UseInnerRelease)
                 return false;
 
-            if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 3 + r.CombatReach) < 1)
+            if (Combat.Enemies.Count(r => r.Distance(Core.Me) <= 3 + r.CombatReach + Core.Me.CombatReach) < 1)
                 return false;
 
             //Added level check as this skill is available as berserk at lvl 6 and AoE combo isnt until lvl 40
@@ -49,13 +49,7 @@ namespace Magitek.Logic.Warrior
                 && Core.Me.ClassLevel >= Spells.MythrilTempest.LevelAcquired)
                 return false;
 
-            // trait for nascent chaos acquired at lvl 80 for single target, when we get the trait for that
-            // then only inner release with nascent chaos
-            if (Core.Me.ClassLevel >= 80 && !Core.Me.HasAura(Auras.NascentChaos))
-                return false;
-
-            // We're assuming IR is usable from here. If we're on GCD with more than 800 milliseconds left
-            if (Spells.HeavySwing.Cooldown.TotalMilliseconds > 800)
+            if (Core.Me.HasAura(Auras.NascentChaos))
                 return false;
 
             return await WarriorRoutine.InnerRelease.Cast(Core.Me);

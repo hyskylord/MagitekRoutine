@@ -129,6 +129,7 @@ namespace Magitek.Rotations
             {
 
                 //GCD
+                if (await Spells.MagicHammer.Cast(Core.Me.CurrentTarget)) return true;
                 if (await Buff.Swiftcast()) return true;
                 if (await SingleTarget.TripleTrident()) return true;
                 if (await SingleTarget.MatraMagic()) return true;
@@ -140,7 +141,7 @@ namespace Magitek.Rotations
                     if (BlueMageRoutine.GlobalCooldown.CountOGCDs() < 2)
                     {
                         //put oGCD here
-                        if (await Aoe.NightBloom()) return true;
+                        if (await Aoe.NightBloomOrBothEnds()) return true;
                         if (await Aoe.PhantomFlurry()) return true;
                         if (await Aoe.ShockStrike()) return true;
                         if (await Aoe.GlassDance()) return true;

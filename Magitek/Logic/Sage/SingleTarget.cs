@@ -66,7 +66,7 @@ namespace Magitek.Logic.Sage
             if (!SageSettings.Instance.DoDamage)
                 return false;
 
-            if (SageSettings.Instance.UseTTDForDots && Combat.CurrentTargetCombatTimeLeft <= SageSettings.Instance.DontDotIfEnemyDyingWithin)
+            if (SageSettings.Instance.UseTTDForDots && Combat.CurrentTargetCombatTimeLeft <= SageSettings.Instance.DontDotIfEnemyDyingWithin && !Core.Me.CurrentTarget.IsBoss())
                 return false;
 
             if (!SageSettings.Instance.EukrasianDosis)

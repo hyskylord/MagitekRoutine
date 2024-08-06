@@ -45,6 +45,11 @@ namespace Magitek.Logic.Scholar
             if (Combat.Enemies.Count(HasMyBio) >= ScholarSettings.Instance.BioTargetLimit)
                 return false;
 
+            if (ScholarSettings.Instance.DontDotIfMoreEnemies
+                && ScholarSettings.Instance.DontDotIfMoreEnemiesThan > 0
+                && Combat.Enemies.Count > ScholarSettings.Instance.DontDotIfMoreEnemiesThan)
+                return false;
+
             var bioTarget = Combat.Enemies.FirstOrDefault(NeedsBio);
 
             if (bioTarget == null)
@@ -79,13 +84,17 @@ namespace Magitek.Logic.Scholar
                 return !unit.HasAura(Auras.Biolysis, true, ScholarSettings.Instance.BioRefreshSeconds * 1000);
             }
 
-            bool CanBio(GameObject unit)
-            {
-                if (!ScholarSettings.Instance.BioUseTimeTillDeath)
-                    return true;
+            
+        }
+        public static bool CanBio(GameObject unit)
+        {
+            if (!ScholarSettings.Instance.BioUseTimeTillDeath)
+                return true;
 
-                return unit.CombatTimeLeft() >= ScholarSettings.Instance.BioDontIfEnemyDyingWithinSeconds;
-            }
+            if (unit.IsBoss())
+                return true;
+
+            return unit.CombatTimeLeft() >= ScholarSettings.Instance.BioDontIfEnemyDyingWithinSeconds;
         }
 
         public static async Task<bool> Bio()
@@ -93,7 +102,15 @@ namespace Magitek.Logic.Scholar
             if (!ScholarSettings.Instance.Bio)
                 return false;
 
-            if (Core.Me.CurrentTarget.HasAnyAura(BioAuras, true, 4000))
+            if (Core.Me.CurrentTarget.HasAnyAura(BioAuras, true, ScholarSettings.Instance.BioRefreshSeconds * 1000))
+                return false;
+
+            if (ScholarSettings.Instance.DontDotIfMoreEnemies
+                && ScholarSettings.Instance.DontDotIfMoreEnemiesThan > 0
+                && Combat.Enemies.Count > ScholarSettings.Instance.DontDotIfMoreEnemiesThan)
+                return false;
+
+            if (!CanBio(Core.Me.CurrentTarget))
                 return false;
 
             return await Spells.Bio.Cast(Core.Me.CurrentTarget);

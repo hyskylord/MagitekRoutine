@@ -411,6 +411,14 @@ namespace Magitek.Models.WhiteMage
 
         [Setting]
         [DefaultValue(false)]
+        public bool DontDotIfMoreEnemies { get; set; }
+
+        [Setting]
+        [DefaultValue(5)]
+        public int DontDotIfMoreEnemiesThan { get; set; }
+
+        [Setting]
+        [DefaultValue(false)]
         public bool Dotwhilemoving { get; set; }
 
         [Setting]

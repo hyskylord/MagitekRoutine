@@ -41,6 +41,11 @@ namespace Magitek.Logic.Astrologian
             if (combustTarget == null)
                 return false;
 
+            if (AstrologianSettings.Instance.DontDotIfMoreEnemies
+                && AstrologianSettings.Instance.DontDotIfMoreEnemiesThan > 0
+                && Combat.Enemies.Count > AstrologianSettings.Instance.DontDotIfMoreEnemiesThan)
+                            return false;
+
             return await Spells.Combust.Cast(combustTarget);
 
             bool NeedsCombust(BattleCharacter unit)
@@ -74,7 +79,8 @@ namespace Magitek.Logic.Astrologian
             if (AstrologianSettings.Instance.UseTTDForCombust)
             {
                 if (Combat.CurrentTargetCombatTimeLeft
-                    <= AstrologianSettings.Instance.DontCombustIfEnemyDyingWithin)
+                    <= AstrologianSettings.Instance.DontCombustIfEnemyDyingWithin
+                    && !Core.Me.CurrentTarget.IsBoss())
                 {
                     return false;
                 }
@@ -90,6 +96,11 @@ namespace Magitek.Logic.Astrologian
 
             if (Core.Me.CurrentTarget.HasAnyAura(CombustAuras, true, msLeft: AstrologianSettings.Instance.CombustRefreshMSeconds))
                 return false;
+
+            if (AstrologianSettings.Instance.DontDotIfMoreEnemies
+                && AstrologianSettings.Instance.DontDotIfMoreEnemiesThan > 0
+                && Combat.Enemies.Count > AstrologianSettings.Instance.DontDotIfMoreEnemiesThan)
+                            return false;
 
             return await Spells.Combust.Cast(Core.Me.CurrentTarget);
         }

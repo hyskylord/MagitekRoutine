@@ -357,6 +357,14 @@ namespace Magitek.Models.Scholar
         public int BioTargetLimit { get; set; }
 
         [Setting]
+        [DefaultValue(false)]
+        public bool DontDotIfMoreEnemies { get; set; }
+
+        [Setting]
+        [DefaultValue(5)]
+        public int DontDotIfMoreEnemiesThan { get; set; }
+
+        [Setting]
         [DefaultValue(true)]
         public bool RuinBroil { get; set; }
 

@@ -84,6 +84,14 @@
                     <controls:Numeric MaxValue="100" MinValue="1" Value="{Binding WhiteMageSettings.DotHealthMinimumPercent, Mode=TwoWay}" />
                     <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
                 </StackPanel>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <CheckBox Content="Dot Multiple Targets" IsChecked="{Binding WhiteMageSettings.DotMultipleTargets, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                </StackPanel>
+                <StackPanel Margin="5" Orientation="Horizontal">
+                    <CheckBox Content="Don't Dot if more than " IsChecked="{Binding WhiteMageSettings.DontDotIfMoreEnemies, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}"/>
+                    <controls:Numeric MaxValue="100" MinValue="0" Value="{Binding WhiteMageSettings.DontDotIfMoreEnemiesThan, Mode=TwoWay}" />
+                    <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies in combat" />
+                </StackPanel>
             </StackPanel>
         </controls:SettingsBlock>
 
