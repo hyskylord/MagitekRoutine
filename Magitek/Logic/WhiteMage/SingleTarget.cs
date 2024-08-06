@@ -62,6 +62,11 @@ namespace Magitek.Logic.WhiteMage
 
         public static async Task<bool> Dots()
         {
+            if (WhiteMageSettings.Instance.DontDotIfMoreEnemies 
+                && WhiteMageSettings.Instance.DontDotIfMoreEnemiesThan > 0 
+                && Combat.Enemies.Count > WhiteMageSettings.Instance.DontDotIfMoreEnemiesThan)
+                return false;
+
             if (Combat.IsMoving(Core.Me) && Core.Me.ClassLevel < 56 || Combat.IsMoving(Core.Me) && WhiteMageSettings.Instance.Dotwhilemoving)
             {
                 return await Spells.Dia.Cast(Core.Me.CurrentTarget);
@@ -71,7 +76,7 @@ namespace Magitek.Logic.WhiteMage
             {
                 var combatTimeLeft = Core.Me.CurrentTarget.CombatTimeLeft();
 
-                if (combatTimeLeft > 0 && combatTimeLeft < WhiteMageSettings.Instance.DontDotIfEnemyDyingWithin)
+                if (combatTimeLeft > 0 && combatTimeLeft < WhiteMageSettings.Instance.DontDotIfEnemyDyingWithin && !Core.Me.CurrentTarget.IsBoss())
                     return false;
             }
             else
@@ -91,6 +96,11 @@ namespace Magitek.Logic.WhiteMage
                 return false;
 
             if (!WhiteMageSettings.Instance.DoDamage)
+                return false;
+
+            if (WhiteMageSettings.Instance.DontDotIfMoreEnemies
+                && WhiteMageSettings.Instance.DontDotIfMoreEnemiesThan > 0
+                && Combat.Enemies.Count > WhiteMageSettings.Instance.DontDotIfMoreEnemiesThan)
                 return false;
 
             var dotTarget = Combat.Enemies.FirstOrDefault(NeedsDot);

@@ -51,6 +51,7 @@
     </Grid>
 
             </Grid>
+            
         </controls:SettingsBlock>
 
         <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
@@ -64,5 +65,12 @@
 
         </controls:SettingsBlock>
 
+        <controls:SettingsBlock Margin="0,5" Background="{DynamicResource ClassSelectorBackground}">
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <CheckBox Content="Don't Dot if more than " IsChecked="{Binding ScholarSettings.DontDotIfMoreEnemies, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}"/>
+                <controls:Numeric MaxValue="100" MinValue="0" Value="{Binding ScholarSettings.DontDotIfMoreEnemiesThan, Mode=TwoWay}" />
+                <TextBlock Style="{DynamicResource TextBlockDefault}" Text=" Enemies in combat" />
+            </StackPanel>
+        </controls:SettingsBlock>
     </StackPanel>
 </UserControl>
