@@ -876,6 +876,7 @@ namespace Magitek.Utilities
         public static readonly SpellData NascentFlash = DataManager.GetSpellData(16464);
         public static readonly SpellData LandWaker = DataManager.GetSpellData(4240);
         public static readonly SpellData Damnation = DataManager.GetSpellData(36923);
+        public static readonly SpellData PrimalWrath = DataManager.GetSpellData(36924);
         #endregion
 
         // WHM

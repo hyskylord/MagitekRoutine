@@ -192,7 +192,10 @@ namespace Magitek.Logic.Reaper
                 return false;
             if (Utilities.Routines.Reaper.CheckTTDIsEnemyDyingSoon())
                 return false;
-            return await Spells.BloodStalk.CastAura(Core.Me.CurrentTarget, Auras.SoulReaver, auraTarget: Core.Me);
+            if (Core.Me.ClassLevel >= Spells.Gibbet.LevelAcquired)
+                return await Spells.BloodStalk.CastAura(Core.Me.CurrentTarget, Auras.SoulReaver, auraTarget: Core.Me);
+            else
+                return await Spells.BloodStalk.Cast(Core.Me.CurrentTarget);
         }
 
         #endregion

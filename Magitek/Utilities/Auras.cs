@@ -454,6 +454,9 @@ namespace Magitek.Utilities
             FireRumination = 3843,
             Mantra = 102,
 
+            //WAR
+            Wrathful = 3901,
+
             //To prevent conflict
             Placeholder = 9999;
 
