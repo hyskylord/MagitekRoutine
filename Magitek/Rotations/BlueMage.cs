@@ -140,7 +140,7 @@ namespace Magitek.Rotations
                     if (BlueMageRoutine.GlobalCooldown.CountOGCDs() < 2)
                     {
                         //put oGCD here
-                        if (await Aoe.NightBloom()) return true;
+                        if (await Aoe.NightBloomOrBothEnds()) return true;
                         if (await Aoe.PhantomFlurry()) return true;
                         if (await Aoe.ShockStrike()) return true;
                         if (await Aoe.GlassDance()) return true;
@@ -155,6 +155,8 @@ namespace Magitek.Rotations
 
                 if (await SingleTarget.SharpKnife()) return true; //if melee
                 if (await SingleTarget.AbyssalTransfixion()) return true; //if SonicBoom deactivated
+
+                if (await Spells.MagicHammer.Cast(Core.Me.CurrentTarget)) return true;
 
                 return await SingleTarget.SonicBoom();
             }

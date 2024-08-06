@@ -1,4 +1,5 @@
 using ff14bot;
+using ff14bot.Managers;
 using Magitek.Extensions;
 using Magitek.Models.BlueMage;
 using Magitek.Utilities;
@@ -121,7 +122,7 @@ namespace Magitek.Logic.BlueMage
         }
 
         /************** OTHER SPELLS **************/
-        public static async Task<bool> NightBloom()
+        public static async Task<bool> NightBloomOrBothEnds()
         {
             if (Utilities.Routines.BlueMage.IsMoonFluteTakenActivatedAndWindowReady && !Core.Me.HasAura(Auras.WaxingNocturne))
                 return false;
@@ -130,7 +131,12 @@ namespace Magitek.Logic.BlueMage
             if (Combat.Enemies.Count(r => r.Distance(Core.Me) < 10 + r.CombatReach) < 1)
                 return false;
 
-            return await Spells.NightBloom.Cast(Core.Me.CurrentTarget);
+            if (ActionManager.HasSpell(Spells.NightBloom.Id))
+                return await Spells.NightBloom.Cast(Core.Me.CurrentTarget);
+            if (ActionManager.HasSpell(Spells.BothEnds.Id))
+                return await Spells.BothEnds.Cast(Core.Me.CurrentTarget);
+
+            return false;
         }
 
         public static async Task<bool> PhantomFlurry()
