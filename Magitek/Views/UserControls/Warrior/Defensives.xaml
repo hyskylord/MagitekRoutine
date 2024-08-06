@@ -63,7 +63,7 @@
                     <controls:Numeric Grid.Row="0" Grid.Column="1" MaxValue="100" MinValue="1" Value="{Binding WarriorSettings.HolmgangHpPercentage, Mode=TwoWay}" />
                     <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
 
-                    <CheckBox Grid.Row="1" Grid.Column="0" Content="Vengeance" IsChecked="{Binding WarriorSettings.UseVengeance, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
+                    <CheckBox Grid.Row="1" Grid.Column="0" Content="Vengeance / Damnation" IsChecked="{Binding WarriorSettings.UseVengeance, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     <controls:Numeric Grid.Row="1"
                                       Grid.Column="1"
                                       Margin="0,3"
@@ -107,15 +107,6 @@
                                       MinValue="1"
                                       Value="{Binding WarriorSettings.ShakeItOffHpPercentage, Mode=TwoWay}" />
                     <TextBlock Grid.Row="6" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
-
-                    <CheckBox Grid.Row="7" Grid.Column="0" Content="Damnation" IsChecked="{Binding WarriorSettings.UseDamnation, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
-                    <controls:Numeric Grid.Row="7"
-                      Grid.Column="1"
-                      Margin="0,3"
-                      MaxValue="100"
-                      MinValue="1"
-                      Value="{Binding WarriorSettings.DamnationHpPercentage, Mode=TwoWay}" />
-                    <TextBlock Grid.Row="7" Grid.Column="2" Style="{DynamicResource TextBlockDefault}" Text=" Health Percent" />
 
                     <CheckBox Grid.Row="8" Grid.Column="0" Content="Arms Length" IsChecked="{Binding WarriorSettings.UseArmsLength, Mode=TwoWay}" Style="{DynamicResource CheckBoxFlat}" />
                     <controls:Numeric Grid.Row="8"
