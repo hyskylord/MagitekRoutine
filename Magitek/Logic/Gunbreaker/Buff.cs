@@ -1,4 +1,6 @@
+using Clio.Utilities.Collections;
 using ff14bot;
+using ff14bot.Managers;
 using Magitek.Extensions;
 using Magitek.Logic.Roles;
 using Magitek.Models.Account;
@@ -49,6 +51,12 @@ namespace Magitek.Logic.Gunbreaker
             if(!Core.Me.CurrentTarget.WithinSpellRange(Spells.KeenEdge.Range))
                  return false;
 
+            if(Cartridge < GunbreakerRoutine.MaxCartridge && ActionManager.LastSpell.Id == Spells.BrutalShell.Id)
+                return false;
+
+            if (Cartridge == 0)
+                return false;
+
             return await Spells.NoMercy.Cast(Core.Me);
         }
 
@@ -57,10 +65,13 @@ namespace Magitek.Logic.Gunbreaker
             if (!GunbreakerSettings.Instance.UseBloodfest)
                 return false;
 
-            if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
-                return false;
+            //if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
+            //    return false;
 
             if (Spells.NoMercy.IsKnownAndReady(4000))
+                return false;
+
+            if (!Core.Me.HasAura(Auras.NoMercy))
                 return false;
 
             return await Spells.Bloodfest.Cast(Core.Me.CurrentTarget);

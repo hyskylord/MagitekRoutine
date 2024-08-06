@@ -210,7 +210,7 @@ namespace Magitek.Logic.Gunbreaker
             if (Core.Me.HasAura(Auras.ReadyToReign))
                  return false;
 
-            if (Spells.NoMercy.IsKnownAndReady(GunbreakerSettings.Instance.SaveBurstStrikeMseconds))
+            if (Spells.NoMercy.IsKnownAndReady(1000) && Cartridge == GunbreakerRoutine.MaxCartridge)
                 return false;
 
             if (Core.Me.HasAura(Auras.NoMercy) && Cartridge > 0)
