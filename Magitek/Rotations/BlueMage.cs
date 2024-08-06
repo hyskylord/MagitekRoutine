@@ -153,10 +153,11 @@ namespace Magitek.Rotations
                     }
                 }
 
-                if (await SingleTarget.SharpKnife()) return true; //if melee
-                if (await SingleTarget.AbyssalTransfixion()) return true; //if SonicBoom deactivated
 
                 if (await Spells.MagicHammer.Cast(Core.Me.CurrentTarget)) return true;
+
+                if (await SingleTarget.SharpKnife()) return true; //if melee
+                if (await SingleTarget.AbyssalTransfixion()) return true; //if SonicBoom deactivated
 
                 return await SingleTarget.SonicBoom();
             }
