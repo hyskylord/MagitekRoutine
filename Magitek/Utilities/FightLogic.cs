@@ -53,13 +53,16 @@ namespace Magitek.Utilities
 
         public static async Task<bool> DoAndBuffer(Task<bool> task)
         {
-            if (!await task) return false;
-
             var (encounter, enemyLogic, enemy) = GetEnemyLogicAndEnemy();
+
+            if (enemy == null)
+                return false;
 
             // prevent running duplicate fightlogic responses to the same spell when it's a long cast. 
             if (FlHandledCastingSpellId.Contains(enemy.CastingSpellId))
                 return false;
+
+            if (!await task) return false;
 
             FlHandledCastingSpellId.Add(enemy.CastingSpellId);
             FlStopwatch.Start();
@@ -97,7 +100,7 @@ namespace Magitek.Utilities
 
             var (encounter, enemyLogic, enemy) = GetEnemyLogicAndEnemy();
 
-            if (enemyLogic?.SharedTankBusters == null)
+            if (enemyLogic?.SharedTankBusters == null || enemy == null || encounter == null)
                 return null;
 
             var output = enemyLogic.SharedTankBusters.Contains(enemy.CastingSpellId)
@@ -122,7 +125,7 @@ namespace Magitek.Utilities
 
             var (encounter, enemyLogic, enemy) = GetEnemyLogicAndEnemy();
 
-            if (enemyLogic?.Aoes == null)
+            if (enemyLogic?.Aoes == null || enemy == null || encounter == null)
                 return false;
 
             var output = enemyLogic.Aoes.Contains(enemy.CastingSpellId);
@@ -140,7 +143,7 @@ namespace Magitek.Utilities
 
             var (encounter, enemyLogic, enemy) = GetEnemyLogicAndEnemy();
 
-            if (enemyLogic == null)
+            if (enemyLogic == null || enemy == null || encounter == null) 
                 return false;
 
             if (enemyLogic.BigAoes == null)
@@ -257,7 +260,7 @@ namespace Magitek.Utilities
 
             enemy = Combat.Enemies.FirstOrDefault(y => enemyLogic.Id == y.NpcId || enemyLogic.Name == y.EnglishName, Combat.Enemies.FirstOrDefault());
 
-            if (enemy != null && !FlHandledCastingSpellId.Contains(enemy.CastingSpellId))
+            if (enemy != null && enemy.IsCasting && !FlHandledCastingSpellId.Contains(enemy.CastingSpellId))
                 FlHandledCastingSpellId.Clear();
 
             return SetAndReturn();
