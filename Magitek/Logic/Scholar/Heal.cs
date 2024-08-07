@@ -915,7 +915,7 @@ namespace Magitek.Logic.Scholar
             if (DateTime.Now <= ConsolationCooldown)
                 return false;
 
-            if (Utilities.Routines.Scholar.SeraphTimeRemaining() <= 6.5)
+            if (Utilities.Routines.Scholar.SeraphTimeRemaining() <= 6.5 || Spells.Consolation.Charges == 2)
                 return await Spells.Consolation.Cast(Core.Me);
 
             if (Globals.InParty)
