@@ -201,6 +201,9 @@ namespace Magitek.Views
 
         public void ShowModal(Window modal)
         {
+            if (!this.IsVisible)
+                this.Show();
+
             modal.Width = Width;
             modal.Height = Height;
             modal.Top = Top;

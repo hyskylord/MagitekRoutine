@@ -260,7 +260,7 @@ namespace Magitek.Utilities
 
             enemy = Combat.Enemies.FirstOrDefault(y => enemyLogic.Id == y.NpcId || enemyLogic.Name == y.EnglishName, Combat.Enemies.FirstOrDefault());
 
-            if (enemy != null && !FlHandledCastingSpellId.Contains(enemy.CastingSpellId))
+            if (enemy != null && enemy.IsCasting && !FlHandledCastingSpellId.Contains(enemy.CastingSpellId))
                 FlHandledCastingSpellId.Clear();
 
             return SetAndReturn();
