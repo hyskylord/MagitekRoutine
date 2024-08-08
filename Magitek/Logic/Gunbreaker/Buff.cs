@@ -34,7 +34,7 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> NoMercy() // Damage Buff +20%
         {
-            if (!GunbreakerSettings.Instance.UseNoMercy)
+            if (!GunbreakerSettings.Instance.UseNoMercy || !Spells.NoMercy.IsKnownAndReady())
                 return false;
 
             //Force Delay CD
@@ -51,7 +51,15 @@ namespace Magitek.Logic.Gunbreaker
             if(!Core.Me.CurrentTarget.WithinSpellRange(Spells.KeenEdge.Range))
                  return false;
 
-            if(Cartridge < GunbreakerRoutine.MaxCartridge && ActionManager.LastSpell.Id == Spells.BrutalShell.Id)
+            //Special Condition for opener when UseNoMercyMaxCartridge 
+            if (Core.Me.ClassLevel >= Spells.Bloodfest.LevelAcquired)
+            {
+                if (GunbreakerSettings.Instance.UseNoMercyMaxCartridge && Spells.GnashingFang.IsKnownAndReady() && Spells.DoubleDown.IsKnownAndReady() && Spells.Bloodfest.IsKnownAndReady() && Cartridge > 0)
+                    return await Spells.NoMercy.Cast(Core.Me);
+
+            }
+
+            if (Cartridge < GunbreakerRoutine.MaxCartridge && ActionManager.LastSpell.Id == Spells.BrutalShell.Id)
                 return false;
 
             if (Cartridge == 0 || (Cartridge < GunbreakerRoutine.MaxCartridge && GunbreakerSettings.Instance.UseNoMercyMaxCartridge))
@@ -62,11 +70,8 @@ namespace Magitek.Logic.Gunbreaker
 
         public static async Task<bool> Bloodfest() // +2 or +3 cartrige
         {
-            if (!GunbreakerSettings.Instance.UseBloodfest)
+            if (!GunbreakerSettings.Instance.UseBloodfest || !Spells.Bloodfest.IsKnownAndReady())
                 return false;
-
-            if (Cartridge < 2 && Core.Me.HasAura(Auras.NoMercy) && Spells.GnashingFang.IsKnownAndReady() && Spells.DoubleDown.IsKnownAndReady())
-                return await Spells.Bloodfest.Cast(Core.Me.CurrentTarget);
 
             if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
                 return false;
