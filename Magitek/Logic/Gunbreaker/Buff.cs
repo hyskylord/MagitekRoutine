@@ -54,7 +54,7 @@ namespace Magitek.Logic.Gunbreaker
             if(Cartridge < GunbreakerRoutine.MaxCartridge && ActionManager.LastSpell.Id == Spells.BrutalShell.Id)
                 return false;
 
-            if (Cartridge == 0)
+            if (Cartridge == 0 || (Cartridge < GunbreakerRoutine.MaxCartridge && GunbreakerSettings.Instance.UseNoMercyMaxCartridge))
                 return false;
 
             return await Spells.NoMercy.Cast(Core.Me);
@@ -65,10 +65,13 @@ namespace Magitek.Logic.Gunbreaker
             if (!GunbreakerSettings.Instance.UseBloodfest)
                 return false;
 
-            //if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
-            //    return false;
+            if (Cartridge < 2 && Core.Me.HasAura(Auras.NoMercy) && Spells.GnashingFang.IsKnownAndReady() && Spells.DoubleDown.IsKnownAndReady())
+                return await Spells.Bloodfest.Cast(Core.Me.CurrentTarget);
 
-            if (Spells.NoMercy.IsKnownAndReady(4000))
+            if (Cartridge > GunbreakerRoutine.MaxCartridge - GunbreakerRoutine.AmountCartridgeFromBloodfest)
+                return false;
+
+            if (Spells.NoMercy.IsKnownAndReady(8000))
                 return false;
 
             if (!Core.Me.HasAura(Auras.NoMercy))

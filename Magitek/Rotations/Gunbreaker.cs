@@ -130,12 +130,11 @@ namespace Magitek.Rotations
 
             if (GunbreakerRoutine.GlobalCooldown.CanWeave())
             {
-                //OGCD dots
-                if (await Aoe.BowShock()) return true;
                 //oGCD - Buffs
                 if (await Buff.NoMercy()) return true;
                 if (await Buff.Bloodfest()) return true;
-
+                //OGCD dots
+                if (await Aoe.BowShock()) return true;
                 //oGCD - Damage
                 if (await SingleTarget.BlastingZone()) return true;
             }

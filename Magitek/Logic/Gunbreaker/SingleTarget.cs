@@ -210,7 +210,7 @@ namespace Magitek.Logic.Gunbreaker
             if (Core.Me.HasAura(Auras.ReadyToReign))
                  return false;
 
-            if (Spells.NoMercy.IsKnownAndReady(1000) && Cartridge == GunbreakerRoutine.MaxCartridge)
+            if (Spells.NoMercy.IsKnownAndReady(2000))
                 return false;
 
             if (Core.Me.HasAura(Auras.NoMercy) && Cartridge > 0)
@@ -297,11 +297,13 @@ namespace Magitek.Logic.Gunbreaker
          *******************************************************************************/
         public static async Task<bool> BlastingZone()
         {
-            if (GunbreakerSettings.Instance.SaveBlastingZone)
-                if (Spells.NoMercy.Cooldown.TotalMilliseconds <= GunbreakerSettings.Instance.SaveBlastingZoneMseconds)
-                    return false;
+            if (GunbreakerSettings.Instance.SaveBlastingZone && Spells.NoMercy.IsKnownAndReady(GunbreakerSettings.Instance.SaveBlastingZoneMseconds))
+                return false;
 
             if (GunbreakerRoutine.IsAurasForComboActive())
+                return false;
+
+            if (Spells.DoubleDown.IsKnownAndReady())
                 return false;
 
             return await GunbreakerRoutine.BlastingZone.Cast(Core.Me.CurrentTarget);
@@ -317,6 +319,9 @@ namespace Magitek.Logic.Gunbreaker
                 return false;
 
             if (GunbreakerRoutine.IsAurasForComboActive())
+                return false;
+
+            if (Spells.GnashingFang.IsKnownAndReady())
                 return false;
 
             return await Spells.SonicBreak.Cast(Core.Me.CurrentTarget);
