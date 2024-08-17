@@ -150,9 +150,14 @@ namespace Magitek
             // Reset Zoom Limit based on ZoomHack Setting
             ZoomHack.Toggle();
 
-            Logic.OpenerLogic.InOpener = false;
-            Logic.OpenerLogic.OpenerQueue.Clear();
-            Logic.SpellQueueLogic.SpellQueue.Clear();
+            OpenerLogic.InOpener = false;
+            OpenerLogic.OpenerQueue.Clear();
+            SpellQueueLogic.SpellQueue.Clear();
+            CustomOpenerLogic.InOpener = false;
+            CustomOpenerLogic._executingOpener = null;
+            CustomOpenerLogic._executingGambit = null;
+            CustomOpenerLogic._currentOpenerQueue.Clear();
+            CustomOpenerLogic._executedOpeners.Clear();
 
             // Apply the gambits we have
             GambitsViewModel.Instance.ApplyGambits();
@@ -262,6 +267,13 @@ namespace Magitek
             if (Combat.OutOfCombatTime.ElapsedMilliseconds >= 10500 && CustomOpenerLogic._executedOpeners.Count > 0)
             {
                 Logger.WriteInfo(@"Resetting Openers Because We're Out Of Combat");
+                OpenerLogic.InOpener = false;
+                OpenerLogic.OpenerQueue.Clear();
+                SpellQueueLogic.SpellQueue.Clear();
+                CustomOpenerLogic.InOpener = false;
+                CustomOpenerLogic._executingOpener = null;
+                CustomOpenerLogic._executingGambit = null;
+                CustomOpenerLogic._currentOpenerQueue.Clear();
                 CustomOpenerLogic._executedOpeners.Clear();
             }
 
