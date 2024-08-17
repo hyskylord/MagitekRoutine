@@ -20,10 +20,10 @@ namespace Magitek.Logic
     {
         public static List<OpenerGroup> OpenerGroups { get; set; } = new List<OpenerGroup>();
         public static bool InOpener;
-        public static OpenerGroup _executingOpener = null;
-        public static Queue<Gambit> _currentOpenerQueue = null;
+        private static OpenerGroup _executingOpener = null;
+        private static Queue<Gambit> _currentOpenerQueue = null;
         public static HashSet<OpenerGroup> _executedOpeners = new HashSet<OpenerGroup>();
-        public static Gambit _executingGambit = null;
+        private static Gambit _executingGambit = null;
         private static Stopwatch GambitTimer { get; set; }
 
         
