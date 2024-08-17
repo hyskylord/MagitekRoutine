@@ -156,7 +156,7 @@ namespace Magitek
             CustomOpenerLogic.InOpener = false;
             CustomOpenerLogic._executingOpener = null;
             CustomOpenerLogic._executingGambit = null;
-            CustomOpenerLogic._currentOpenerQueue.Clear();
+            CustomOpenerLogic._currentOpenerQueue = null;
             CustomOpenerLogic._executedOpeners.Clear();
 
             // Apply the gambits we have
@@ -273,7 +273,7 @@ namespace Magitek
                 CustomOpenerLogic.InOpener = false;
                 CustomOpenerLogic._executingOpener = null;
                 CustomOpenerLogic._executingGambit = null;
-                CustomOpenerLogic._currentOpenerQueue.Clear();
+                CustomOpenerLogic._currentOpenerQueue = null;
                 CustomOpenerLogic._executedOpeners.Clear();
             }
 
