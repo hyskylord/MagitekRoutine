@@ -127,6 +127,7 @@ namespace Magitek
                 CombatMessageManager.RegisterMessageStrategiesForClass(Core.Me.CurrentJob);
             }
             #endregion
+            BaseSettings.Instance.ResetOpeners = true;
         }
 
         private void GameEventsOnOnMapChanged(object sender, EventArgs e)
@@ -143,6 +144,7 @@ namespace Magitek
                     TogglesManager.LoadTogglesForCurrentJob();
                 });
             }
+            BaseSettings.Instance.ResetOpeners = true;
         }
 
         public void OnStart(BotBase bot)
@@ -153,11 +155,7 @@ namespace Magitek
             OpenerLogic.InOpener = false;
             OpenerLogic.OpenerQueue.Clear();
             SpellQueueLogic.SpellQueue.Clear();
-            CustomOpenerLogic.InOpener = false;
-            CustomOpenerLogic._executingOpener = null;
-            CustomOpenerLogic._executingGambit = null;
-            CustomOpenerLogic._currentOpenerQueue = null;
-            CustomOpenerLogic._executedOpeners.Clear();
+            BaseSettings.Instance.ResetOpeners = true;
 
             // Apply the gambits we have
             GambitsViewModel.Instance.ApplyGambits();
@@ -267,13 +265,6 @@ namespace Magitek
             if (Combat.OutOfCombatTime.ElapsedMilliseconds >= 10500 && CustomOpenerLogic._executedOpeners.Count > 0)
             {
                 Logger.WriteInfo(@"Resetting Openers Because We're Out Of Combat");
-                OpenerLogic.InOpener = false;
-                OpenerLogic.OpenerQueue.Clear();
-                SpellQueueLogic.SpellQueue.Clear();
-                CustomOpenerLogic.InOpener = false;
-                CustomOpenerLogic._executingOpener = null;
-                CustomOpenerLogic._executingGambit = null;
-                CustomOpenerLogic._currentOpenerQueue = null;
                 CustomOpenerLogic._executedOpeners.Clear();
             }
 
