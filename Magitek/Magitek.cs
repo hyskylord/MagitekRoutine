@@ -127,6 +127,7 @@ namespace Magitek
                 CombatMessageManager.RegisterMessageStrategiesForClass(Core.Me.CurrentJob);
             }
             #endregion
+            BaseSettings.Instance.ResetOpeners = true;
         }
 
         private void GameEventsOnOnMapChanged(object sender, EventArgs e)
@@ -143,6 +144,7 @@ namespace Magitek
                     TogglesManager.LoadTogglesForCurrentJob();
                 });
             }
+            BaseSettings.Instance.ResetOpeners = true;
         }
 
         public void OnStart(BotBase bot)
@@ -150,9 +152,10 @@ namespace Magitek
             // Reset Zoom Limit based on ZoomHack Setting
             ZoomHack.Toggle();
 
-            Logic.OpenerLogic.InOpener = false;
-            Logic.OpenerLogic.OpenerQueue.Clear();
-            Logic.SpellQueueLogic.SpellQueue.Clear();
+            OpenerLogic.InOpener = false;
+            OpenerLogic.OpenerQueue.Clear();
+            SpellQueueLogic.SpellQueue.Clear();
+            BaseSettings.Instance.ResetOpeners = true;
 
             // Apply the gambits we have
             GambitsViewModel.Instance.ApplyGambits();
