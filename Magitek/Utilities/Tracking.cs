@@ -37,8 +37,7 @@ namespace Magitek.Utilities
                     //In an instance, not autonomous
                     //Track every tagged or aggroed enemy in the vicinity
                     _enemyCache = GameObjectManager.GetObjectsOfType<BattleCharacter>().Where(r => (r.TaggerType > 0
-                                                                                                       || r.HasTarget
-                                                                                                       || r.IsBoss())
+                                                                                                       || r.HasTarget)
                                                                                                    && Core.Me.Distance(r) < 50)
                                                                                        .ToList();
                 }
