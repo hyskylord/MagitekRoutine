@@ -338,8 +338,6 @@ namespace Magitek
             }
 
             CombatMessageManager.UpdateDisplayedMessage();
-
-            GambitLogic.Gambit().Wait();
             
             if ((int)e.ChatLogEntry.MessageType == 313 || (int)e.ChatLogEntry.MessageType == 185 || MessageType.SystemMessages.Equals(e.ChatLogEntry.MessageType))
             {
